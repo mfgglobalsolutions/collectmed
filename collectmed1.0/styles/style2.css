@@ -1,0 +1,280 @@
+	body {
+                background: url(../images/eob_bg.jpg);
+		background-color: #134270;
+		text-align: left;
+		font: 12px "Trebuchet MS", Arial, Tahoma, Helvetica, Sans-Serif;
+		color: #666666;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+		}
+
+
+        a:link {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+
+	a:visited {
+	        font-weight : normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+
+        a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+        a:hover {
+	        font-weight : normal; 
+	        text-decoration: underline;
+	        color: #003399;
+	        }
+
+
+         .nav a:link {
+		font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px;
+	        }
+
+
+	.nav a:visited {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+        .nav a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+        .nav a:hover {
+	        font-weight : normal; 
+	        text-decoration: none;
+	        color: #13416F;
+	        background-color: #EBE3D7; 
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+         .footer {
+		font-weight: normal;
+                font-size: 11px;
+	        color: #cccccc;
+                width: 707px;
+                text-align: center;
+                padding-top: 7px;
+	        }
+
+         .footer a:link {
+		font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;
+	        }
+
+
+	.footer a:visited {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;   
+	        }
+
+        .footer a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;  
+	        }
+
+        .footer a:hover {
+	        font-weight : normal; 
+	        text-decoration: underline;
+	        color: #82AED9;
+	        background: transparent;  
+	        }
+
+
+
+	.top    {
+		width: 707px;
+                height: 96px;
+		background: url(../images/eob_top.jpg);
+                background-color: #ffffff;
+		}
+
+	.mainundertop    {
+		width: 707px;
+                height: 52px;
+		background: url(../images/eob_main_under_top.jpg);
+		}
+
+	.insideundertop    {
+		width: 707px;
+                height: 52px;
+		background: url(../images/eob_inside_under_top.jpg);
+		}
+
+	.mainleft   {
+		width: 323px;
+		background: url(../images/eob_main_left_bg.jpg);
+		}
+
+	.insideleft   {
+		width: 208px;
+		background: url(../images/eob_inside_left_bg.jpg);
+		}
+
+	.mainlefttitle   {
+		width: 323px;
+                height: 48px;
+		background: url(../images/eob_main_left_title.jpg);
+                }
+
+	.insidelefttitle   {
+		width: 208px;
+                height: 48px;
+		background: url(../images/eob_inside_left_title.jpg);
+                }
+
+	.maincontent    {
+		width: 384px;
+		background: url(../images/eob_main_content_bg.jpg);
+                background-color: #ffffff;
+                padding-left: 5px;
+                padding-right: 32px;
+                padding-bottom: 15px;
+                padding-top: 0px;
+		}
+
+	.insidecontent    {
+		width: 499px;
+		background: url(../images/eob_inside_content_bg.jpg);
+                background-color: #ffffff;
+                padding-left: 15px;
+                padding-right: 32px;
+                padding-bottom: 15px;
+                padding-top: 0px;
+		}
+
+	.bottom    {
+		width: 707px;
+                height: 7px;
+		background: url(../images/eob_bottom.jpg);
+		}
+
+	.nav       {
+				width: 683px;
+                text-align: right;
+                padding-right: 0px;
+                padding-left: 0px;
+                padding-top: 15px;
+                padding-bottom: 0px;
+                color: #D0C3A8;
+		}
+
+	.login    {
+		width: 680px;
+                text-align: right;
+                padding-right: 20px;
+                padding-left: 0px;
+                padding-top: 11px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                color: #D0C3A8;
+		}
+
+	.maintitlefacts    {
+                padding-right: 0px;
+                padding-left: 34px;
+                padding-top: 23px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #476AAF;
+		}
+
+	.insidetitlefacts    {
+                padding-right: 0px;
+                padding-left: 34px;
+                padding-top: 23px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #476AAF;
+		}
+
+	.insidefactbg   {
+		width: 208px;
+                height: 80px;
+		background: url(../images/eob_inside_fact_bg.jpg);
+		}
+
+	.insidefact    {
+                padding-right: 55px;
+                padding-left: 48px;
+                padding-top: 19px;
+                padding-bottom: 0px;
+                font-size: 11px;
+                font-weight: normal;
+                color: #476AAF;
+                line-height: 12px;
+		}
+
+	.maintitlelight    {
+                font-size: 28px;
+                font-weight: bold;
+                color: #5BBAFE;
+                text-transform: capitalize;
+		}
+
+	.maintitledark    {
+                font-size: 28px;
+                font-weight: bold;
+                color: #476AAF;
+                text-transform: capitalize;
+		}
+
+
+	.insidetitlelight    {
+                font-size: 20px;
+                font-weight: bold;
+                color: #5BBAFE;
+                text-transform: capitalize;
+		}
+
+	.insidetitledark    {
+                font-size: 14px;
+                font-weight: bold;
+                color: #476AAF;
+                text-transform: capitalize;
+		}
+
+	 hr { 
+                height: 1px;
+                width: 98%;
+                border: 1px; 
+                border-top: 1px solid #897F70;
+                clear: all;
+                margin-top: 2px;
+                margin-bottom: 8px; 
+                } 

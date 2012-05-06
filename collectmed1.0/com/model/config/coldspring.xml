@@ -1,0 +1,27 @@
+ 	
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="Address" class="com.model.Address" autowire="byType" />
+	<bean id="InsuranceCompany" class="com.model.InsuranceCompany" autowire="byType" />
+	<bean id="Phone" class="com.model.Phone" autowire="byType" />	
+
+
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+<!-- NOTE: ANYTHING YOU PLACE BETWEEN THE COMMENTS "Start_Custom_Functions" AND "END_Custom_Functions" WILL BE COPIED WHEN  -->
+<!-- AUTOGENERATE IS RUN AGAINST THIS TABLE. THIS ALLOWS YOU TO CREATE CUSTOM FUNCTIONS FOR THIS TABLE AND KNOW THAT THEY   -->
+<!-- WILL BE COPIED WHEN AUTOGENERATE IS RERUN.                                                                             -->   	
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+	
+	<!--Start_Custom_Functions-->
+
+		
+	
+	<!--End_Custom_Functions-->		
+	
+		
+	
+</beans>
+
+

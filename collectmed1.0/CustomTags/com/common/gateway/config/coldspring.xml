@@ -1,0 +1,7 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="InsuranceCompanyFileRetrievalMedicaid_Texas" class="cmComponents.com.common.gateway.InsuranceCompanyFileRetrievalMedicaid_Texas" />
+	
+</beans>
+	

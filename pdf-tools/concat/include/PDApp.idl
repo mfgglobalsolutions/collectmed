@@ -1,0 +1,74 @@
+// PDApp.idl : IDL source for PDApp.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (PDApp.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(11E3A678-D3DD-11D3-9E7B-0060080C087D),
+		dual,
+		helpstring("IPDCat Interface"),
+		pointer_default(unique)
+	]
+	interface IPDCat : IDispatch
+	{
+			typedef enum PDErrorType { pdSuccess, pdErrFileAccess, pdErrNotPDF, pdErrUnexpectedStructure,
+			pdErrBadTrailer, pdErrBadXref, pdErrNullRef, pdErrParamValue,
+			pdErrReadingObject, pdErrAlreadyWritten,
+			pdErrOutputNotOpen, pdErrNoCurrentInput, pdErrBadCallingSequence,
+			pdErrNoMemory, pdErrException, pdErrMissingParameter, pdErrNoLogoDefined,
+			pdErrInsufficentFontData, pdErrIllegalFont, pdErrNoMoreData, pdErrNoCurrentPage,
+			pdErrOS, pdErrInternal, pdErrUnexpected, pdErrInputOutput,
+			pdErrCannotCreateOutput, pdErrNoFilesSelected,
+			pdErrNoBookmarks
+		} PDErrorType;
+
+		[id(1), helpstring("method AddParameter")] HRESULT AddParameter([in] BSTR Parameter);
+		[id(2), helpstring("method Execute")] HRESULT Execute([out, retval] PDErrorType* res);
+		[id(3), helpstring("method GetErrorCode")] HRESULT GetErrorCode([out, retval] int* res);
+	}
+
+	[
+		object,
+		uuid(BDF31A23-ABD0-11D4-B1AA-00104BB05033),
+		dual,
+		helpstring("IPDSplit Interface"),
+		pointer_default(unique)
+	]
+	interface IPDSplit : IDispatch
+	{
+		[id(1), helpstring("method AddParameter")] HRESULT AddParameter([in] BSTR Parameter);
+		[id(2), helpstring("method Execute")] HRESULT Execute([out, retval] PDErrorType* res);
+		[id(3), helpstring("method GetErrorCode")] HRESULT GetErrorCode([out, retval] int* res);
+	};
+
+[
+	uuid(11E3A66A-D3DD-11D3-9E7B-0060080C087D),
+	version(1.0),
+	helpstring("PDApp 3.10 Type Library")
+]
+library PDAPPLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(11E3A679-D3DD-11D3-9E7B-0060080C087D),
+		helpstring("PDCat Class")
+	]
+	coclass PDCat
+	{
+		[default] interface IPDCat;
+	};
+	[
+		uuid(BDF31A24-ABD0-11D4-B1AA-00104BB05033),
+		helpstring("PDSplit Class")
+	]
+	coclass PDSplit
+	{
+		[default] interface IPDSplit;
+	};
+};

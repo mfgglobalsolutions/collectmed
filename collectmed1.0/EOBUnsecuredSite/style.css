@@ -1,0 +1,473 @@
+	body {
+                background: url(images/eob_bg.jpg);
+		background-color: #134270;
+		text-align: left;
+		font: 12px "Trebuchet MS", Arial, Tahoma, Helvetica, Sans-Serif;
+		color: #666666;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+		}
+
+
+        a:link {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+
+	a:visited {
+	        font-weight : normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+
+        a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        }
+
+        a:hover {
+	        font-weight : normal; 
+	        text-decoration: underline;
+	        color: #003399;
+	        }
+
+
+         .nav a:link {
+		font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px;
+	        }
+
+
+	.nav a:visited {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+        .nav a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #0066CC;
+	        background: transparent;  
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+        .nav a:hover {
+	        font-weight : normal; 
+	        text-decoration: none;
+	        color: #13416F;
+	        background-color: #EBE3D7; 
+		padding-left: 3px; 
+		padding-right: 3px; 
+	        }
+
+         .footer {
+		font-weight: normal;
+                font-size: 11px;
+	        color: #cccccc;
+                width: 707px;
+                text-align: center;
+                padding-top: 7px;
+	        }
+
+         .footer a:link {
+		font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;
+	        }
+
+
+	.footer a:visited {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;   
+	        }
+
+        .footer a:active {
+	        font-weight: normal; 
+	        text-decoration: none;
+	        color: #82AED9;
+	        background: transparent;  
+	        }
+
+        .footer a:hover {
+	        font-weight : normal; 
+	        text-decoration: underline;
+	        color: #82AED9;
+	        background: transparent;  
+	        }
+
+
+
+	.top    {
+		width: 707px;
+                height: 96px;
+		background: url(images/eob_top.jpg);
+                background-color: #ffffff;
+		}
+
+	.mainundertop    {
+		width: 707px;
+                height: 52px;
+		background: url(images/eob_main_under_top.jpg);
+		}
+
+	.insideundertop    {
+		width: 707px;
+                height: 52px;
+		background: url(images/eob_inside_under_top.jpg);
+		}
+
+	.mainleft   {
+		width: 323px;
+		background: url(images/eob_main_left_bg.jpg);
+		}
+
+	.insideleft   {
+		width: 208px;
+		background: url(images/eob_inside_left_bg.jpg);
+		}
+
+	.mainlefttitle   {
+		width: 323px;
+                height: 48px;
+		background: url(images/eob_main_left_title.jpg);
+                }
+
+	.insidelefttitle   {
+		width: 208px;
+                height: 48px;
+		background: url(images/eob_inside_left_title.jpg);
+                }
+
+	.maincontent    {
+		width: 384px;
+		background: url(images/eob_main_content_bg.jpg);
+                background-color: #ffffff;
+                padding-left: 5px;
+                padding-right: 32px;
+                padding-bottom: 15px;
+                padding-top: 0px;
+		}
+
+	.insidecontent    {
+		width: 499px;
+		background: url(images/eob_inside_content_bg.jpg);
+                background-color: #ffffff;
+                padding-left: 15px;
+                padding-right: 32px;
+                padding-bottom: 15px;
+                padding-top: 0px;
+		}
+
+	.bottom    {
+		width: 707px;
+                height: 7px;
+		background: url(images/eob_bottom.jpg);
+		}
+
+	.nav       {
+		width: 683px;
+                text-align: right;
+                padding-right: 14px;
+                padding-left: 0px;
+                padding-top: 59px;
+                padding-bottom: 0px;
+                color: #D0C3A8;
+		}
+
+	.login    {
+		width: 680px;
+                text-align: right;
+                padding-right: 20px;
+                padding-left: 0px;
+                padding-top: 11px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                color: #D0C3A8;
+		}
+
+	.maintitlefacts    {
+                padding-right: 0px;
+                padding-left: 34px;
+                padding-top: 23px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #476AAF;
+		}
+
+	.insidetitlefacts    {
+                padding-right: 0px;
+                padding-left: 34px;
+                padding-top: 23px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #476AAF;
+		}
+
+	.insidefactbg   {
+		width: 208px;
+                height: 80px;
+		background: url(images/eob_inside_fact_bg.jpg);
+		}
+
+	.insidefact    {
+                padding-right: 55px;
+                padding-left: 48px;
+                padding-top: 19px;
+                padding-bottom: 0px;
+                font-size: 11px;
+                font-weight: normal;
+                color: #476AAF;
+                line-height: 12px;
+		}
+
+	.maintitlelight    {
+                font-size: 28px;
+                font-weight: bold;
+                color: #5BBAFE;
+                text-transform: capitalize;
+		}
+
+	.maintitledark    {
+                font-size: 28px;
+                font-weight: bold;
+                color: #476AAF;
+                text-transform: capitalize;
+		}
+
+
+	.insidetitlelight    {
+                font-size: 20px;
+                font-weight: bold;
+                color: #5BBAFE;
+                text-transform: capitalize;
+		}
+
+	.insidetitledark    {
+                font-size: 14px;
+                font-weight: bold;
+                color: #476AAF;
+                text-transform: capitalize;
+		}
+
+	 hr { 
+                height: 1px;
+                width: 98%;
+                border: 1px; 
+                border-top: 1px solid #897F70;
+                clear: all;
+                margin-top: 2px;
+                margin-bottom: 8px; 
+                } 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+	#EOBTable {
+		border: 1px solid #c0cddc;
+		}
+		#EOBTable th {		
+			color: ffffff; 
+			background-color: #c0cddc;
+			border-bottom: 1px solid #c0cddc;
+		}		
+		#EOBTable tbody tr td {				
+			border-left: 1px solid #c0cddc;				
+		}	
+		#EOBTable tbody tr.odd td{				
+			border-left: 1px solid #c0cddc;
+			background-color: #edf3fe;
+		}	
+		#EOBTable tbody tr.selected td {
+			background-color: #DCE3EB;				
+			border-left: 1px solid #c0cddc;
+			border-bottom: 1px solid #DCE3EB;
+		}
+			
+		
+		.Tbl {  
+			border: 2px groove; 
+			padding-left: 3; 
+			background-color: #ffffff; 
+			text-align: center; 
+			font-family: sans-serif,Lucida Console,MS Sans Serif,Verdana,Arial; 
+		} 
+			
+		thead {  
+			padding-right: 5; 
+			padding-left: 5; 
+			background-color: #c0cddc; 
+			font-weight: 700; 
+			color: #ffffff; 
+			font-family: Arial,sans-serif,MS Sans Serif,Verdana; 
+			font-size: x-small; 
+			font-variant: small-caps; 
+		} 
+			
+		.TblRow {  
+			color: #000000; 
+			background-color: #f9f9f9; 
+			/*text-align: left;*/ 
+			font-size: x-small; 
+		} 
+			
+		.TblALTRow {  
+			color: #000000; 
+			background-color: #ff0000;/*faf0e6*/ 
+			text-align: left; 
+			font-size: x-small; 
+		} 
+			
+		.xlg {
+			font-size:12px;
+		}
+						
+		.lg {
+			font-size:11px;
+		}
+		
+		.med {
+			font-size:10px;
+		}
+		
+		.sm {
+			font-size:9px;
+		}
+		
+		.xsm {
+			font-size:8px;
+		}		
+							
+		.copyGrey {font: normal 10px "Verdana","Arial", "Helvetica"; color: #c0c0c0}
+		
+		.TextWarning{
+			color: #ff0000; 
+		 	font-family: sans-serif; 
+		 	font-size: small; 
+		 } 
+		 
+		 .elementInformation {			
+			font: normal 9px "Verdana","Arial", "Helvetica";
+			color: #990000; 						
+		}
+		 
+		 .SiteLabel {			
+			font: normal 10px "Verdana","Arial", "Helvetica";
+			color: #000000; 						
+		}
+		 
+		.SiteRequiredLabel {			
+			font: normal 10px "Verdana","Arial", "Helvetica";
+			color: #990000; 						
+		}
+		
+		.Sitefont  {
+	        display: block; 
+			padding: 0.20em; 
+			margin: 0px; 
+	        font-family: Arial;
+	        font-size: .99em;
+	        font-weight: normal;
+	        color: #524c4c;
+	        text-decoration: none;
+	        line-height: 1.15em;
+		}
+		
+		.SiteTextbox {
+			border-right: #8b9a9f 1px solid; 
+			border-top: #8b9a9f 1px solid; 
+			font-size: .65em; 
+			border-left: #8b9a9f 1px solid; 
+			color: #000000;/*686868*/ 
+			border-bottom: #8b9a9f 1px solid; 
+			font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+		}
+		
+		.SiteTextboxALERT {
+			border-right: #FF0000 1px solid; 
+			border-top: #FF0000 1px solid; 
+			font-size: .65em; 
+			border-left: #FF0000 1px solid; 
+			color: #000000;/*686868*/ 
+			border-bottom: #FF0000 1px solid; 
+			font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+		}
+			
+		.SiteSelectBox {
+		 	border-right: #8b9a9f 1px solid; 
+			border-top: #8b9a9f 1px solid; 
+			font-size: .65em; 
+			border-left: #8b9a9f 1px solid; 
+			color: #000000;/*686868*/ 
+			border-bottom: #8b9a9f 1px solid; 
+			font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+		}
+						
+		.SiteTextArea {
+		 	border-right: #8b9a9f 1px solid; 
+			border-top: #8b9a9f 1px solid; 
+			font-size: 11px; 
+			border-left: #8b9a9f 1px solid; 
+			color: #000000;/*686868*/ 
+			border-bottom: #8b9a9f 1px solid; 
+			font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+					
+		}
+		
+		
+		.SiteSubmitbox {
+		 	font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+			font-size: .65em;
+			color: #000000;
+			border-top-color: #000000; 
+			border-left-color: #000000; 
+			border-right-color: #000000; 
+			border-bottom-color: #000000;
+			border-top-width: 2px; 
+			border-left-width: 2px; 
+			border-bottom-width: 2px; 
+			border-right-width: 2px; 
+			background-color: #ffffff;
+		}
+		
+		
+		.SiteTextboxText {
+		 	font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+			font-size: .65em;
+			line-height: 2em;
+			color: #000000;
+			display: inline;
+		}
+		
+		.SiteDataTableBorder{
+			border:1px; background: #cecece;
+		}					
+				
+				

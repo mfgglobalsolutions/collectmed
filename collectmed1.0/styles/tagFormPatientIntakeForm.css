@@ -1,0 +1,47 @@
+/* tagFormPatientIntakeForm.css */
+
+
+
+<style>				
+				
+	.spacer {width:1px; font-size:1px; height:1px; line-height:1px;}	
+	table.tableIntake {font-family:arial; width:234px; font-size:10px;}
+	table.tableIntake tr.title td {color:#ccc; background-color:#F4F4F4;}
+	table.tableIntake tr.title .blue {background-color:#DCE3EB;}
+	table.tableIntake tr.title .blackText {color:#000000; padding-left:2px;}
+	table.tableIntake tr.title .dkGreyText {color:#999; padding-left:2px;}
+	table.tableIntake tr.title .ltGrey {background-color:#F4F4F4;}
+	table.tableIntake tr.title .grey {background-color:#ccc;}
+	table.tableIntake tr.title .gtd {background-color:#ccc;}	
+	table.tableIntake .percent {font-size:1px; background-color:#DCE3EB;}
+					
+	#yellowAlert{
+		background-color:fffbb8; 
+		display:none; 
+		width:540; 
+		border:1px solid ccc889; 
+		color:616161; 
+		padding:10px; 
+		margin-bottom:1em; 
+	}
+	
+	/*#yellowAlert{
+		background-color:ffffcc; 
+		display:none; 
+		width:540; 
+		border:1px solid ccc889; 
+		color:616161; 
+		padding:10px; 
+		margin-bottom:1em; 
+	}*/
+	
+	
+	
+	.txt11{font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#000000}
+	
+	input.nb{ 
+		border:0px; 
+	} 
+	
+
+</style>		

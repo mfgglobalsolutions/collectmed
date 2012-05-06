@@ -1,0 +1,33 @@
+ 	
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="AddressService" class="com.services.AddressService" autowire="byType">
+		<constructor-arg name="systemDAO"><ref bean="systemDAO" /></constructor-arg>	
+	</bean>
+	<bean id="InsuranceCompanyService" class="com.services.InsuranceCompanyService" autowire="byType">
+		<constructor-arg name="systemDAO"><ref bean="systemDAO" /></constructor-arg>	
+	</bean>
+	<bean id="PhoneService" class="com.services.PhoneService" autowire="byType">
+		<constructor-arg name="systemDAO"><ref bean="systemDAO" /></constructor-arg>	
+	</bean>	
+
+
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+<!-- NOTE: ANYTHING YOU PLACE BETWEEN THE COMMENTS "Start_Custom_Functions" AND "END_Custom_Functions" WILL BE COPIED WHEN  -->
+<!-- AUTOGENERATE IS RUN AGAINST THIS TABLE. THIS ALLOWS YOU TO CREATE CUSTOM FUNCTIONS FOR THIS TABLE AND KNOW THAT THEY   -->
+<!-- WILL BE COPIED WHEN AUTOGENERATE IS RERUN.                                                                             -->   	
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+	
+	<!--Start_Custom_Functions-->
+
+		
+	
+	<!--End_Custom_Functions-->		
+	
+		
+	
+</beans>
+
+

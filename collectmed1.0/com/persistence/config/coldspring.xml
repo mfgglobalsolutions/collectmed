@@ -1,0 +1,9 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+	<import resource="/collectmed1.0/com/persistence/daos/config/coldspring.xml" />	
+	
+	<bean id="systemDAO" class="com.persistence.SystemDAO" autowire="byType" />	
+	
+</beans>

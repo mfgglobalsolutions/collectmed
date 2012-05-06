@@ -1,0 +1,7 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="old_Security" class="cmComponents.com.common.security.Security" singleton="true" />	
+	
+</beans>
+	

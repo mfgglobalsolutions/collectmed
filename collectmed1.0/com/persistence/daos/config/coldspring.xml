@@ -1,0 +1,27 @@
+ 	
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="AddressDAO" class="com.persistence.daos.AddressDAO" autowire="byType" />
+	<bean id="InsuranceCompanyDAO" class="com.persistence.daos.InsuranceCompanyDAO" autowire="byType" />
+	<bean id="PhoneDAO" class="com.persistence.daos.PhoneDAO" autowire="byType" />	
+
+
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+<!-- NOTE: ANYTHING YOU PLACE BETWEEN THE COMMENTS "Start_Custom_Functions" AND "END_Custom_Functions" WILL BE COPIED WHEN  -->
+<!-- AUTOGENERATE IS RUN AGAINST THIS TABLE. THIS ALLOWS YOU TO CREATE CUSTOM FUNCTIONS FOR THIS TABLE AND KNOW THAT THEY   -->
+<!-- WILL BE COPIED WHEN AUTOGENERATE IS RERUN.                                                                             -->   	
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->	
+	
+	<!--Start_Custom_Functions-->
+
+		
+	
+	<!--End_Custom_Functions-->		
+	
+		
+	
+</beans>
+
+

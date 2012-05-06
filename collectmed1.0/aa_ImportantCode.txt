@@ -1,0 +1,72 @@
+<!-------------------------------------------------------------------------------------->
+<!--- Code in this page is very important to keep. In here you will find scripts     --->
+<!--- that were created to do a specific job. Do not change them but take them       --->
+<!--- and add to them your changes.                                                  --->
+<!-------------------------------------------------------------------------------------->
+
+
+
+
+
+
+<!---**********************************************************************************************************--->
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--- This script will take what is in the StandardListItem table and create queries to your browser that can then be run through another cfm page. --->
+<!----------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!---<cfset sqlStatement = "">
+
+<cfquery name="tempgetStandard" datasource="#request.datasource#">
+	SELECT StandardListItemID, SiteID, ItemNameDisplay, ItemDescription, ListID, Active, InactiveCode, DateCreated, DateModified
+	FROM StandardListItem
+	ORDER BY StandardListItemID
+</cfquery>	
+
+<cfdump var="#tempgetStandard#" expand="no">
+
+<cfloop query="tempgetStandard">
+	<cfif SiteID EQ ""><cfset tempSiteID = "NULL"><cfelse><cfset tempSiteID = SiteID></cfif>
+	<cfif ItemNameDisplay EQ ""><cfset tempItemNameDisplay = "NULL"><cfelse><cfset tempItemNameDisplay = "'" & Replace(ItemNameDisplay, "'", "''", "ALL") & "'"></cfif>
+	<cfif ItemDescription EQ ""><cfset tempItemDescription = "NULL"><cfelse><cfset tempItemDescription = "'" & ItemDescription & "'"></cfif>
+	<cfif ListID EQ ""><cfset tempListID = "NULL"><cfelse><cfset tempListID = ListID></cfif>
+	<cfif Active EQ ""><cfset tempActive = "NULL"><cfelse><cfset tempActive = Active></cfif>
+	<cfif InactiveCode EQ ""><cfset tempInactiveCode = "NULL"><cfelse><cfset tempInactiveCode = "'" & InactiveCode & "'"></cfif>
+	<cfif DateCreated EQ ""><cfset tempDateCreated = "NULL"><cfelse><cfset tempDateCreated = CreateODBCDATE(DateCreated)></cfif>
+	<cfif DateModified EQ ""><cfset tempDateModified = "NULL"><cfelse><cfset tempDateModified = CreateODBCDATE(DateModified)></cfif>	
+	<cfset sqlStatement = "&lt;cfset tempIns = ""INSERT INTO StandardListItem2 (StandardListItemID, SiteID, ItemNameDisplay, ItemDescription, ListID, Active, InactiveCode, DateCreated, DateModified) VALUES(#StandardListItemID#, #tempSiteID#, #tempItemNameDisplay#, #tempItemDescription#, #tempListID#, #tempActive#, #tempInactiveCode#, #tempDateCreated#, #tempDateModified#)""&gt;">
+	<cfset sqlStatement2 = "&lt;cfquery name=""tempInsStandard"" datasource=""##request.datasource##""&gt;<br>##PreserveSingleQuotes(tempIns)##<br>&lt;/cfquery&gt;">
+	
+	<cfoutput>
+		<span class="siteLabel">#sqlStatement#<br>#sqlStatement2#<br><br></span>
+	</cfoutput>
+
+</cfloop>
+
+
+<!---
+
+<cfquery name="tempTableStandard" datasource="#request.datasource#">
+	if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[StandardListItem2]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+	drop table [dbo].[StandardListItem2]
+	
+	CREATE TABLE [dbo].[StandardListItem2] (
+		[StandardListItemID] [int] NULL ,
+		[SiteID] [int] NULL ,
+		[ItemNameDisplay] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+		[ItemDescription] [varchar] (400) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+		[ListID] [int] NULL ,
+		[Active] [char] (1) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+		[InactiveCode] [int] NULL ,
+		[DateCreated] [datetime] NULL ,
+		[DateModified] [datetime] NULL 
+	) ON [PRIMARY]
+</cfquery>
+--->
+
+--->
+
+
+
+<!---**********************************************************************************************************--->
+

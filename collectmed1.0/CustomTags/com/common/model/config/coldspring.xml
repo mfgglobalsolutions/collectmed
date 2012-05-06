@@ -1,0 +1,270 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	
+	<bean id="old_Client" class="cmComponents.com.common.model.Client" />	
+	<bean id="old_Datasource" class="cmComponents.com.common.model.Datasource">
+		<constructor-arg name="DSName"><value>PAClient_1084</value></constructor-arg>
+		<constructor-arg name="username"><value></value></constructor-arg>
+		<constructor-arg name="password"><value></value></constructor-arg>		
+	</bean>
+	<bean id="old_VerificationFile" class="cmComponents.com.common.model.VerificationFile" singleton="false">
+		<constructor-arg name="VerificationFileID"><value>0</value></constructor-arg>
+		<constructor-arg name="InsuranceCompanyID"><value></value></constructor-arg>
+		<constructor-arg name="UsersID"><value></value></constructor-arg>
+		<constructor-arg name="xmlFileID"><value></value></constructor-arg>
+		<constructor-arg name="active"><value>1</value></constructor-arg>
+		<constructor-arg name="inactiveCode"><value></value></constructor-arg>
+		
+		<property name="VerificationFileID"><value>0</value></property>
+		<property name="InsuranceCompanyID"><value></value></property>
+		<property name="UsersID"><value></value></property>
+		<property name="xmlFileID"><value></value></property>
+		<property name="active"><value>1</value></property>
+		<property name="inactiveCode"><value></value></property>		
+	</bean>	
+	<bean id="old_File" class="cmComponents.com.common.model.File" singleton="false">
+		<constructor-arg name="FileID"><value></value></constructor-arg>				
+		<constructor-arg name="FileType"><value></value></constructor-arg>				
+		<constructor-arg name="ClientID"><value></value></constructor-arg>				
+		<constructor-arg name="DisplayInGUID"><value></value></constructor-arg>				
+		<constructor-arg name="ParentFileID"><value></value></constructor-arg>				
+		<constructor-arg name="UsersID"><value></value></constructor-arg>				
+		<constructor-arg name="FilePlacementDirectory"><value></value></constructor-arg>				
+		<constructor-arg name="AttemptedServerFile"><value></value></constructor-arg>				
+		<constructor-arg name="ClientDirectory"><value></value></constructor-arg>				
+		<constructor-arg name="ClientFile"><value></value></constructor-arg>				
+		<constructor-arg name="ClientFileExt"><value></value></constructor-arg>				
+		<constructor-arg name="ClientFileName"><value></value></constructor-arg>				
+		<constructor-arg name="ContentSubType"><value></value></constructor-arg>				
+		<constructor-arg name="ContentType"><value></value></constructor-arg>				
+		<constructor-arg name="DateLastAccessed"><value></value></constructor-arg>				
+		<constructor-arg name="FileExisted"><value></value></constructor-arg>				
+		<constructor-arg name="FileSize"><value></value></constructor-arg>				
+		<constructor-arg name="FileWasAppended"><value></value></constructor-arg>				
+		<constructor-arg name="FileWasOverwritten"><value></value></constructor-arg>				
+		<constructor-arg name="FileWasRenamed"><value></value></constructor-arg>				
+		<constructor-arg name="FileWasSaved"><value></value></constructor-arg>				
+		<constructor-arg name="OldFileSize"><value></value></constructor-arg>				
+		<constructor-arg name="ServerDirectory"><value></value></constructor-arg>				
+		<constructor-arg name="ServerFile"><value></value></constructor-arg>				
+		<constructor-arg name="ServerFileExt"><value></value></constructor-arg>				
+		<constructor-arg name="ServerFileName"><value></value></constructor-arg>				
+		<constructor-arg name="TimeCreated"><value></value></constructor-arg>				
+		<constructor-arg name="TimeLastModified"><value></value></constructor-arg>				
+		<constructor-arg name="attributesXML"><value></value></constructor-arg>				
+		<constructor-arg name="Active"><value></value></constructor-arg>				
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>				
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>				
+		<constructor-arg name="DateModified"><value></value></constructor-arg>	
+	</bean>		
+	<bean id="old_Route" class="cmComponents.com.common.model.Route" singleton="false">
+		<constructor-arg name="RouteID"><value>0</value></constructor-arg>
+		<constructor-arg name="UserID"><value></value></constructor-arg>
+		<constructor-arg name="Name"><value></value></constructor-arg>		
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+
+		<property name="RouteID"><value>0</value></property>
+		<property name="UserID"><value></value></property>
+		<property name="Name"><value></value></property>		
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>		
+	</bean>		
+	<bean id="old_RoutePatient" class="cmComponents.com.common.model.RoutePatient" singleton="false">
+		<constructor-arg name="RoutePatientID"><value>0</value></constructor-arg>
+		<constructor-arg name="RouteID"><value></value></constructor-arg>
+		<constructor-arg name="PatientID"><value></value></constructor-arg>
+		<constructor-arg name="City"><value></value></constructor-arg>
+		<constructor-arg name="IDtext"><value></value></constructor-arg>
+		<constructor-arg name="SuppliesText"><value></value></constructor-arg>
+		<constructor-arg name="Checked"><value></value></constructor-arg>
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+
+		<property name="RoutePatientID"><value>0</value></property>
+		<property name="RouteID"><value></value></property>
+		<property name="PatientID"><value></value></property>
+		<property name="City"><value></value></property>
+		<property name="IDtext"><value></value></property>
+		<property name="SuppliesText"><value></value></property>
+		<property name="Checked"><value></value></property>
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>		
+	</bean>		
+	<bean id="old_Patient" class="cmComponents.com.common.model.Patient" singleton="false">
+		<constructor-arg name="PatientID"><value>0</value></constructor-arg>
+		<constructor-arg name="EntityID"><value></value></constructor-arg>
+		<constructor-arg name="ClaimSubmitterIdentifier"><value></value></constructor-arg>
+		<constructor-arg name="NM1IdentificationCode9"><value></value></constructor-arg>
+		<constructor-arg name="AccountNumber"><value></value></constructor-arg>
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+
+		<property name="PatientID"><value>0</value></property>
+		<property name="EntityID"><value></value></property>
+		<property name="ClaimSubmitterIdentifier"><value></value></property>
+		<property name="NM1IdentificationCode9"><value></value></property>
+		<property name="AccountNumber"><value></value></property>
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>	
+	</bean>		
+	<bean id="old_VerificationPatientInsurance" class="cmComponents.com.common.model.VerificationPatientInsurance" singleton="false">	
+		<constructor-arg name="VerificationPatientInsuranceID"><value>0</value></constructor-arg>
+		<constructor-arg name="usersID"><value></value></constructor-arg>
+		<constructor-arg name="picID"><value></value></constructor-arg>
+		<constructor-arg name="VerificationRepFName"><value></value></constructor-arg>
+		<constructor-arg name="VerificationRepLName"><value></value></constructor-arg>
+		<constructor-arg name="VerificationDate"><value></value></constructor-arg>
+		<constructor-arg name="VerificationTime"><value></value></constructor-arg>
+		<constructor-arg name="VerificationHaveIns"><value></value></constructor-arg>
+		<constructor-arg name="VerificationHaveInsFromDate"><value></value></constructor-arg>
+		<constructor-arg name="VerificationHaveInsToDate"><value></value></constructor-arg>
+		<constructor-arg name="VerificationHaveDMECov"><value></value></constructor-arg>
+		<constructor-arg name="VerificationDeductible"><value></value></constructor-arg>
+		<constructor-arg name="VerificationDeductibleAmount"><value></value></constructor-arg>
+		<constructor-arg name="VerificationDeductibleAmountMet"><value></value></constructor-arg>
+		<constructor-arg name="VerificationPPOPolicy"><value></value></constructor-arg>
+		<constructor-arg name="VerificationPercentagePayAfterDeductible"><value></value></constructor-arg>
+		<constructor-arg name="VerificationPriorAuth"><value></value></constructor-arg>
+		<constructor-arg name="VerificationAuthNumber"><value></value></constructor-arg>
+		<constructor-arg name="VerificationLifetimeBenefitMet"><value></value></constructor-arg>
+		<constructor-arg name="VerificationAuthPhoneNumber"><value></value></constructor-arg>
+		<constructor-arg name="VerificationMedicareSupplement"><value></value></constructor-arg>
+		<constructor-arg name="VerificationCoordinateBenefits"><value></value></constructor-arg>
+		<constructor-arg name="VerificationPaidMedicareDeductible"><value></value></constructor-arg>
+		<constructor-arg name="VerificationMedicaidPlan"><value></value></constructor-arg>
+		<constructor-arg name="VerificationTypeBasePlan"><value></value></constructor-arg>
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+	
+		<property name="VerificationPatientInsuranceID"><value>0</value></property>
+		<property name="usersID"><value></value></property>
+		<property name="picID"><value></value></property>
+		<property name="VerificationRepFName"><value></value></property>
+		<property name="VerificationRepLName"><value></value></property>
+		<property name="VerificationDate"><value></value></property>
+		<property name="VerificationTime"><value></value></property>
+		<property name="VerificationHaveIns"><value></value></property>
+		<property name="VerificationHaveInsFromDate"><value></value></property>
+		<property name="VerificationHaveInsToDate"><value></value></property>
+		<property name="VerificationHaveDMECov"><value></value></property>
+		<property name="VerificationDeductible"><value></value></property>
+		<property name="VerificationDeductibleAmount"><value></value></property>
+		<property name="VerificationDeductibleAmountMet"><value></value></property>
+		<property name="VerificationPPOPolicy"><value></value></property>
+		<property name="VerificationPercentagePayAfterDeductible"><value></value></property>
+		<property name="VerificationPriorAuth"><value></value></property>
+		<property name="VerificationAuthNumber"><value></value></property>
+		<property name="VerificationLifetimeBenefitMet"><value></value></property>
+		<property name="VerificationAuthPhoneNumber"><value></value></property>
+		<property name="VerificationMedicareSupplement"><value></value></property>
+		<property name="VerificationCoordinateBenefits"><value></value></property>
+		<property name="VerificationPaidMedicareDeductible"><value></value></property>
+		<property name="VerificationMedicaidPlan"><value></value></property>
+		<property name="VerificationTypeBasePlan"><value></value></property>
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>
+	</bean>	
+
+	<bean id="old_VerificationPatientInsuranceElectronic" class="cmComponents.com.common.model.VerificationPatientInsuranceElectronic" singleton="false">	
+		<constructor-arg name="VerificationPatientInsuranceElectronicID"><value>0</value></constructor-arg>
+		<constructor-arg name="vpicID"><value></value></constructor-arg>
+		<constructor-arg name="mashFileID"><value></value></constructor-arg>
+		<constructor-arg name="indexInFile"><value></value></constructor-arg>
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+	
+		<property name="VerificationPatientInsuranceElectronicID"><value>0</value></property>
+		<property name="vpicID"><value></value></property>
+		<property name="mashFileID"><value></value></property>
+		<property name="indexInFile"><value></value></property>
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>
+	</bean>	
+
+
+	<bean id="old_PatientInsuranceCompany" class="cmComponents.com.common.model.PatientInsuranceCompany" singleton="false">	
+		<constructor-arg name="recordID"><value>0</value></constructor-arg>
+		<constructor-arg name="PatientID"><value></value></constructor-arg>				
+		<constructor-arg name="InsuranceCompanyID"><value></value></constructor-arg>				
+		<constructor-arg name="PrimSecTer"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyNumber"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersFirstName"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersLastName"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersMiddleInitial"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersDOB"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersSex"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersAddressLine1"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersAddressLine2"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersCity"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersStateID"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersZipCode"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersPhone"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersPhoneExtension"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersEmployerSchoolName"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersEffectiveDateFrom"><value></value></constructor-arg>				
+		<constructor-arg name="PolicyHoldersEffectiveDateTo"><value></value></constructor-arg>				
+		<constructor-arg name="GroupNumber"><value></value></constructor-arg>				
+		<constructor-arg name="GroupName"><value></value></constructor-arg>				
+		<constructor-arg name="Deductible"><value></value></constructor-arg>				
+		<constructor-arg name="PayPercentage"><value></value></constructor-arg>				
+		<constructor-arg name="Relationship"><value></value></constructor-arg>		
+		<constructor-arg name="Active"><value>1</value></constructor-arg>
+		<constructor-arg name="InactiveCode"><value></value></constructor-arg>
+		<constructor-arg name="DateCreated"><value></value></constructor-arg>
+		<constructor-arg name="DateModified"><value></value></constructor-arg>
+		
+		<property name="recordID"><value>0</value></property>
+		<property name="PatientID"><value></value></property>				
+		<property name="InsuranceCompanyID"><value></value></property>				
+		<property name="PrimSecTer"><value></value></property>				
+		<property name="PolicyNumber"><value></value></property>				
+		<property name="PolicyHoldersFirstName"><value></value></property>				
+		<property name="PolicyHoldersLastName"><value></value></property>				
+		<property name="PolicyHoldersMiddleInitial"><value></value></property>				
+		<property name="PolicyHoldersDOB"><value></value></property>				
+		<property name="PolicyHoldersSex"><value></value></property>				
+		<property name="PolicyHoldersAddressLine1"><value></value></property>				
+		<property name="PolicyHoldersAddressLine2"><value></value></property>				
+		<property name="PolicyHoldersCity"><value></value></property>				
+		<property name="PolicyHoldersStateID"><value></value></property>				
+		<property name="PolicyHoldersZipCode"><value></value></property>				
+		<property name="PolicyHoldersPhone"><value></value></property>				
+		<property name="PolicyHoldersPhoneExtension"><value></value></property>				
+		<property name="PolicyHoldersEmployerSchoolName"><value></value></property>				
+		<property name="PolicyHoldersEffectiveDateFrom"><value></value></property>				
+		<property name="PolicyHoldersEffectiveDateTo"><value></value></property>				
+		<property name="GroupNumber"><value></value></property>				
+		<property name="GroupName"><value></value></property>				
+		<property name="Deductible"><value></value></property>				
+		<property name="PayPercentage"><value></value></property>				
+		<property name="Relationship"><value></value></property>		
+		<property name="Active"><value>1</value></property>
+		<property name="InactiveCode"><value></value></property>
+		<property name="DateCreated"><value></value></property>
+		<property name="DateModified"><value></value></property>
+	</bean>	
+	
+</beans>
+	

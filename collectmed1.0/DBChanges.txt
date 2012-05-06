@@ -1,0 +1,586 @@
+
+
+
+CHANGES are in SQL file DB_Changes.sql Just run this file
+CHANGE 1
+Add the N366 code to the EOB_MEDICARE_REMITTANCEADVICEREMARKCode table and get the description for it.
+
+CHANGE 2
+INSERT INTO StandardListItem (ItemNameDisplay, ItemDescription, ListID, Active)
+VALUES('KE', 'Bid Under Round I of the DMEPOS Competitive Bid Program For Use With Non-Competitive Bid Base Equipment KF--Class III device', 26, 1)
+INSERT INTO StandardListItem (ItemNameDisplay, ItemDescription, ListID, Active)
+VALUES('KL', 'DMEPOS Item Delivered Via Mail', 26, 1)
+
+CHANGE 3 run in Query Analyzer
+CREATE TABLE [EOB_MEDICARE_2008_A_PROCEDURECodeFeeSchedule] (
+
+CHANGE 4 run in Query Analyzer
+CREATE TABLE [EOB_MEDICARE_2009_A_PROCEDURECodeFeeSchedule] (	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************* ALL DONE BELOW THIS **********************************************************************************************
+
+
+
+
+
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[sp_UserValidLoginTime]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[sp_UserValidLoginTime]
+GO
+
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+/****** Object:  Stored Procedure dbo.sp_UserValidLoginTime    Script Date: 11/3/2007 1:27:27 PM ******/
+
+
+CREATE PROC sp_UserValidLoginTime(
+	@usersID int,
+	@ValidLogin VARCHAR(30) OUTPUT
+)
+AS
+
+DECLARE @WorkGroupIDs int
+DECLARE @DayNumber int
+DECLARE @getColStart VARCHAR(15)
+DECLARE @getColEnd VARCHAR(15)
+DECLARE @CurrentStart DATETIME
+DECLARE @CurrentEnd DATETIME
+
+SET @ValidLogin = CONVERT(VARCHAR(30), '0|0')
+
+-- Determine the current day for login
+SELECT @DayNumber = DATEPART(dw, now())
+SELECT @getColStart = CASE @DayNumber WHEN 1 then 'SundayStart' WHEN 2 then 'MondayStart' WHEN 3 then 'TuesdayStart' WHEN 4 then 'WednesdayStart' WHEN 5 then 'ThursdayStart' WHEN 6 then 'FridayStart' WHEN 7 then 'SaturdayStart' END
+SELECT @getColEnd = CASE @DayNumber WHEN 1 then 'SundayEnd' WHEN 2 then 'MondayEnd' WHEN 3 then 'TuesdayEnd' WHEN 4 then 'WednesdayEnd' WHEN 5 then 'ThursdayEnd' WHEN 6 then 'FridayEnd' WHEN 7 then 'SaturdayEnd' END
+
+--Cursor 
+DECLARE @StartTime DATETIME
+DECLARE @EndTime DATETIME
+DECLARE @sql nvarchar(4000)
+DECLARE @chvDesc varchar(255)
+SET @sql = N'SELECT ' + @getColStart + ', ' + @getColEnd + ' FROM WorkGroup WHERE WorkGroupID IN(SELECT WorkGroupID FROM UsersWorkGroup WHERE usersID = ' + CAST(@UsersID AS nVarchar(10)) + ')'
+create table #tmptbl (Starts DATETIME, Ends DATETIME)
+insert into #tmptbl exec sp_executesql @sql
+DECLARE workgroup_cursor CURSOR FOR 
+	Select * FROM #tmptbl
+OPEN workgroup_cursor
+FETCH NEXT FROM workgroup_cursor INTO @StartTime, @EndTime
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	
+
+	--Start the looping of the records to find the start and end
+	
+	IF IsDate(@CurrentStart) = 0
+	BEGIN	
+		SET @CurrentStart = @StartTime					
+	END
+	ELSE IF IsDate(@CurrentStart) = 1 
+	BEGIN
+		IF @CurrentStart > @StartTime
+		BEGIN	
+			SET @CurrentStart = @StartTime	
+		END
+	END 
+
+	IF IsDate(@CurrentEnd) = 0
+	BEGIN	
+		SET @CurrentEnd = @EndTime				
+	END
+	ELSE IF IsDate(@CurrentEnd) = 1 
+	BEGIN
+		IF @CurrentEnd < @EndTime
+		BEGIN	
+			SET @CurrentEnd = @EndTime	
+		END
+	END 
+	
+	--End the looping of the records to find the start and end
+
+	
+FETCH NEXT FROM workgroup_cursor INTO @StartTime, @EndTime
+END
+CLOSE workgroup_cursor
+DEALLOCATE workgroup_cursor
+
+
+/**************************************************************************************************/
+/*** After checking the groups for their allowed login time check the users allowed login time. ***/
+/**************************************************************************************************/
+DECLARE @UsersLoginStart DATETIME
+DECLARE @UsersLoginEnd DATETIME
+SELECT @UsersLoginStart = LoginStart, @UsersLoginEnd = LoginEnd 
+FROM pa_master.Users
+WHERE UsersID = @UsersID
+
+IF IsDate(@CurrentStart) = 0
+BEGIN	
+	SET @CurrentStart = @UsersLoginStart	
+END
+ELSE IF IsDate(@CurrentStart) = 1 
+BEGIN
+	IF @CurrentStart > @UsersLoginStart
+	BEGIN	
+		SET @CurrentStart = @UsersLoginStart
+	END
+END 
+
+IF IsDate(@CurrentEnd) = 0
+BEGIN	
+	SET @CurrentEnd = @UsersLoginEnd			
+END
+ELSE IF IsDate(@CurrentEnd) = 1 
+BEGIN
+	IF @CurrentEnd < @UsersLoginEnd
+	BEGIN	
+		SET @CurrentEnd = @UsersLoginEnd
+	END
+END   
+
+
+
+
+/**************************************************************************************************/
+/*** We have the final dates we have to check that the current time is within the dates.        ***/
+/**************************************************************************************************/
+IF IsDate(@CurrentStart) = 1 AND IsDate(@CurrentEnd) = 1
+BEGIN
+	
+	DECLARE @CurrentHour varchar(2)
+	DECLARE @CurrentHourStart varchar(2)
+	DECLARE @CurrentHourEnd varchar(2)
+	DECLARE @CurrentHourMinute varchar(2)
+	DECLARE @CurrentHourStartMinute varchar(2)
+	DECLARE @CurrentHourEndMinute varchar(2)
+	DECLARE @tempStart DATETIME
+	DECLARE @tempEnd DATETIME
+	DECLARE @tempStartDayTime VARCHAR(25)
+	DECLARE @tempEndDayTime VARCHAR(25)
+	DECLARE @tempYear VARCHAR(4) 
+	DECLARE @tempMonth VARCHAR(2)
+	DECLARE @tempDay VARCHAR(2)
+
+	SET @CurrentHour = DATEPART(hour, now())
+	SET @CurrentHourStart = DATEPART(hour, @CurrentStart)
+	SET @CurrentHourEnd = DATEPART(hour, @CurrentEnd)	
+	SET @CurrentHourMinute = DATEPART(Minute, now())
+	SET @CurrentHourStartMinute = DATEPART(Minute, @CurrentStart)
+	SET @CurrentHourEndMinute = DATEPART(Minute, @CurrentEnd)		
+	SET @tempYear = YEAR(now())
+	SET @tempMonth = MONTH(now())
+	SET @tempDay = DAY(now())
+	SET @tempStartDayTime = @tempYear + '-' + @tempMonth + '-' + @tempDay + ' ' + @CurrentHourStart + ':' + @CurrentHourStartMinute + ':' + '00.998'
+	SET @tempEndDayTime = @tempYear + '-' + @tempMonth + '-' + @tempDay + ' ' + @CurrentHourEnd + ':' + @CurrentHourEndMinute + ':' + '00.998'
+	SET @tempStart = CAST(@tempStartDayTime AS DateTime) 
+	SET @tempEnd = CAST(@tempEndDayTime AS DateTime) 
+
+
+--DEBUG
+--PRINT @tempStart
+--PRINT @tempEnd
+	
+	/*******************************************************************/
+	/* If the dates match it means that it is a 24 hour access. */
+	/*******************************************************************/
+	IF @tempStart = @tempEnd 
+	BEGIN
+		SET @tempYear = YEAR(now())
+		SET @tempMonth = MONTH(now())
+		SET @tempDay = DAY(now())
+		SET @tempEndDayTime = @tempYear + '-' + @tempMonth + '-' + @tempDay + ' 23:59:' + '00.998'
+		SET @tempEnd = CAST(@tempEndDayTime AS DateTime) 
+		SET @ValidLogin = CONVERT(VARCHAR(1), '1') + '|' + CONVERT(VARCHAR(28), @tempEnd)
+	END
+	ELSE IF now() BETWEEN @tempStart AND @tempEnd 
+	BEGIN
+		SET @ValidLogin = CONVERT(VARCHAR(1), '1') + '|' + CONVERT(VARCHAR(28), @tempEnd)
+	END
+
+END
+
+--DEBUG
+--PRINT @ValidLogin
+
+--To RUN call this line
+--exec sp_UserValidLoginTime 55, 0
+
+RETURN
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****** Object:  Table [dbo].[Role]    Script Date: 12/25/2007 8:48:55 PM ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Role]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Role]
+GO
+
+/****** Object:  Table [dbo].[Role]    Script Date: 12/25/2007 8:48:56 PM ******/
+CREATE TABLE [dbo].[Role] (
+	[RoleID] [int] IDENTITY (1000, 1) NOT NULL ,
+	[RoleName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Active] [char] (1) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[InactiveCode] [int] NULL ,
+	[DateCreated] [datetime] NOT NULL ,
+	[DateModified] [datetime] NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Role] WITH NOCHECK ADD 
+	CONSTRAINT [PK_Role] PRIMARY KEY  CLUSTERED 
+	(
+		[RoleID]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[Role] ADD 
+	CONSTRAINT [DF_Role_Active] DEFAULT (1) FOR [Active],
+	CONSTRAINT [DF_Role_DateCreated] DEFAULT (now()) FOR [DateCreated]
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--- DONE --->
+
+
+TABLE StandardListItem
+	StandardListItemID
+	(get rid of site id) ExternalListItemID] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	ItemNameDisplay
+	ItemDescription
+	ListID
+	Active
+	InactiveCode
+	DateCreated
+	DateModified
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UPDATE Client Set settingsXML = '<?xml version="1.0" encoding="UTF-8"?><setting><intake><datemodification><roleids>5</roleids><userids>100125</userids></datemodification></intake></setting>' 
+WHERE clientID = 1084
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****** Object:  Table [dbo].[Role]    Script Date: 10/27/2007 12:44:44 PM ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Role]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Role]
+GO
+
+/****** Object:  Table [dbo].[Role]    Script Date: 10/27/2007 12:44:45 PM ******/
+CREATE TABLE [dbo].[Role] (
+	[RoleID] [int] IDENTITY (500, 1) NOT NULL ,
+	[RoleName] [varchar] (50) NOT NULL ,
+	[SiteID] [int] NOT NULL ,
+	[Active] [char] (1) NOT NULL ,
+	[InactiveCode] [int] NULL ,
+	[DateCreated] [datetime] NOT NULL ,
+	[DateModified] [datetime] NULL 
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--- 1 --->DONE
+CREATE PROCEDURE sp_GetUserInformation @usersID int AS
+SELECT E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
+FROM pa_master.[Users] AS MedU INNER JOIN Entity AS E ON MedU.EntityID = E.EntityID 
+WHERE MedU.UsersID = @USersID 
+GO
+<!--- 2 --->DONE
+CREATE PROCEDURE sp_GetAdministratorInformation @ClientID int AS
+
+SELECT u.UsersID, E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
+FROM pa_master.Users AS u INNER JOIN Entity AS E ON u.EntityID = E.EntityID 
+WHERE E.EntityID = (SELECT AdministratorEntityID FROM pa_master.[Client] WHERE ClientID = @ClientID)
+GO
+<!--- 3 --->DONE
+INSERT INTO WorkGroup  (WorkGroupName, Description)
+VALUES('Intake Manager', 'Intke Managers who deal with administrative tasks of intakes.')				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+<!---AllTablesChangesStart_DONE--->
+TABLE WorkGroup
+	[Description] [varchar] (750) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[MondayStart] [datetime] NULL ,
+	[MondayEnd] [datetime] NULL ,
+	[TuesdayStart] [datetime] NULL ,
+	[TuesdayEnd] [datetime] NULL ,
+	[WednesdayStart] [datetime] NULL ,
+	[WednesdayEnd] [datetime] NULL ,
+	[ThursdayStart] [datetime] NULL ,
+	[ThursdayEnd] [datetime] NULL ,
+	[FridayStart] [datetime] NULL ,
+	[FridayEnd] [datetime] NULL ,
+	[SaturdayStart] [datetime] NULL ,
+	[SaturdayEnd] [datetime] NULL ,
+	[SundayStart] [datetime] NULL ,
+	[SundayEnd] [datetime] NULL ,		
+<!---AllTablesChangesEnd_DONE--->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

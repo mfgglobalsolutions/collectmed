@@ -1,0 +1,202 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="VerificationFileService_TXMedicaid" class="Components.service.VerificationFileService_TXMedicaid">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_VerificationFileDAO" class="Components.service.VerificationFileDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_VerificationFileGateway" class="Components.service.VerificationFileGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_VerificationFileService" class="Components.service.VerificationFileService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="VerificationFileDAO">
+			<ref bean="old_VerificationFileDAO" />
+		</constructor-arg>
+			<constructor-arg name="VerificationFileGateway">
+			<ref bean="old_VerificationFileGateway" />
+		</constructor-arg>		
+	</bean>			
+	<bean id="old_InsuranceCompanyDAO" class="Components.service.InsuranceCompanyDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>
+	<bean id="old_InsuranceCompanyGateway" class="Components.service.InsuranceCompanyGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_InsuranceCompanyService" class="Components.service.InsuranceCompanyService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="InsuranceCompanyDAO">
+			<ref bean="old_InsuranceCompanyDAO" />
+		</constructor-arg>
+			<constructor-arg name="InsuranceCompanyGateway">
+			<ref bean="old_InsuranceCompanyGateway" />
+		</constructor-arg>		
+	</bean>		
+	<bean id="old_FileDAO" class="Components.service.FileDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_FileGateway" class="Components.service.FileGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_FileService" class="Components.service.FileService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="FileDAO">
+			<ref bean="old_FileDAO" />
+		</constructor-arg>
+			<constructor-arg name="FileGateway">
+			<ref bean="old_FileGateway" />
+		</constructor-arg>		
+	</bean>	
+	<bean id="old_RouteDAO" class="Components.service.RouteDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_RouteGateway" class="Components.service.RouteGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_RouteService" class="Components.service.RouteService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="RouteDAO">
+			<ref bean="old_RouteDAO" />
+		</constructor-arg>
+			<constructor-arg name="RouteGateway">
+			<ref bean="old_RouteGateway" />
+		</constructor-arg>		
+	</bean>			
+	<bean id="old_RoutePatientDAO" class="Components.service.RoutePatientDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_RoutePatientGateway" class="Components.service.RoutePatientGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_RoutePatientService" class="Components.service.RoutePatientService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="RoutePatientDAO">
+			<ref bean="old_RoutePatientDAO" />
+		</constructor-arg>
+			<constructor-arg name="RoutePatientGateway">
+			<ref bean="old_RoutePatientGateway" />
+		</constructor-arg>		
+	</bean>			
+	<bean id="old_PatientDAO" class="Components.service.PatientDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_PatientGateway" class="Components.service.PatientGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_PatientService" class="Components.service.PatientService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="PatientDAO">
+			<ref bean="old_PatientDAO" />
+		</constructor-arg>
+			<constructor-arg name="PatientGateway">
+			<ref bean="old_PatientGateway" />
+		</constructor-arg>		
+	</bean>				
+	<bean id="old_VerificationPatientInsuranceDAO" class="Components.service.VerificationPatientInsuranceDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_VerificationPatientInsuranceGateway" class="Components.service.VerificationPatientInsuranceGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_VerificationPatientInsuranceService" class="Components.service.VerificationPatientInsuranceService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="VerificationPatientInsuranceDAO">
+			<ref bean="old_VerificationPatientInsuranceDAO" />
+		</constructor-arg>
+			<constructor-arg name="VerificationPatientInsuranceGateway">
+			<ref bean="old_VerificationPatientInsuranceGateway" />
+		</constructor-arg>		
+	</bean>		
+	
+	<bean id="old_VerificationPatientInsuranceElectronicDAO" class="Components.service.VerificationPatientInsuranceElectronicDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_VerificationPatientInsuranceElectronicGateway" class="Components.service.VerificationPatientInsuranceElectronicGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_VerificationPatientInsuranceElectronicService" class="Components.service.VerificationPatientInsuranceElectronicService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="VerificationPatientInsuranceElectronicDAO">
+			<ref bean="old_VerificationPatientInsuranceElectronicDAO" />
+		</constructor-arg>
+			<constructor-arg name="VerificationPatientInsuranceElectronicGateway">
+			<ref bean="old_VerificationPatientInsuranceElectronicGateway" />
+		</constructor-arg>		
+	</bean>		
+
+	<bean id="old_PatientInsuranceCompanyDAO" class="Components.service.PatientInsuranceCompanyDAO">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>	
+	<bean id="old_PatientInsuranceCompanyGateway" class="Components.service.PatientInsuranceCompanyGateway">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>				
+	</bean>		
+	<bean id="old_PatientInsuranceCompanyService" class="Components.service.PatientInsuranceCompanyService">
+		<constructor-arg name="Datasource">
+			<ref bean="old_Datasource" />
+		</constructor-arg>
+		<constructor-arg name="PatientInsuranceCompanyDAO">
+			<ref bean="old_PatientInsuranceCompanyDAO" />
+		</constructor-arg>
+			<constructor-arg name="PatientInsuranceCompanyGateway">
+			<ref bean="old_PatientInsuranceCompanyGateway" />
+		</constructor-arg>		
+	</bean>		
+	
+</beans>
+	

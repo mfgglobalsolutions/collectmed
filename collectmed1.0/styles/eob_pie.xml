@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pieChart depth="Double" style="Sliced" type="SmallNut" angle="300"	isMultiline="true">
+		<dataLabels style="Pattern" placement="Inside" font="Arial-10"/>
+		<legend placement="Bottom"/>
+		<elements drawOutline="false" drawShadow="true">
+			<morph morph="Grow" stage="None"/>
+		</elements>
+		<paint palette="Pastel" paint="Plain"/>
+</pieChart>

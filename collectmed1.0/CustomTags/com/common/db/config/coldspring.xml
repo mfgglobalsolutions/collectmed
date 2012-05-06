@@ -1,0 +1,21 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="StandardListItemIO" class="cmComponents.com.common.db.StandardListItemIO" />
+	<bean id="IMChatIO" class="cmComponents.com.common.db.IMChatIO" singelton="false" />
+	<bean id="InsuranceCompanyIO" class="cmComponents.com.common.db.InsuranceCompanyIO" singelton="false" />
+	<bean id="old_FileProcessIO" class="cmComponents.com.common.db.FileProcessIO" singelton="false" />
+	<bean id="TaskIO" class="cmComponents.com.common.db.TaskIO" singelton="false" />		
+	<bean id="EntityIO" class="cmComponents.com.common.db.EntityIO" singelton="false" />		
+	<bean id="PageIO" class="cmComponents.com.common.db.PageIO" singelton="false" />
+	<bean id="PageRoleIO" class="cmComponents.com.common.db.PageRoleIO" singelton="false" />
+	<bean id="EmailAddressIO" class="cmComponents.com.common.db.EmailAddressIO" singelton="false" />
+	<bean id="UsersSessionIO" class="cmComponents.com.common.db.UsersSessionIO" singelton="false">
+		<constructor-arg name="datatypeIncludes">
+			<ref bean="datatypeIncludes" />
+		</constructor-arg>
+	</bean>
+	<bean id="datatypeIncludes" class="cmComponents.com.common.db.datatypeIncludes" />
+	
+</beans>
+	

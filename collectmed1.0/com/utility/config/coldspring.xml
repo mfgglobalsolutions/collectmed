@@ -1,0 +1,19 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+	<bean id="configBean" class="com.utility.ConfigBean" singleton="false">
+      	<property name="DSN">
+            <map>${DSN}</map>
+        </property>	
+		<property name="Domain">
+            <map>${Domain}</map>
+        </property>
+      	<property name="Database">
+            <map>${Database}</map>
+        </property>
+	</bean>	
+	<bean id="globalFooter" class="com.utility.GlobalFooter" singleton="false" autowire="byType" />	
+	<bean id="mySQLProcedures" class="com.utility.MySQLProcedures" singleton="false" autowire="byType" />	
+	
+</beans>

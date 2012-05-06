@@ -1,0 +1,70 @@
+
+1) Install operating system include all updates
+2) Install Sql server 2000 (service packs)
+3) Install MDAC2.8
+4) Make sure that you have MSVCP60.dll in the 
+5) Install CFMX 7 under multiserver configuration
+6) Create the IIS websites (if ot production server import the certificates for 443 [http://support.microsoft.com/kb/232137/EN-US/  How to Import a Server Certificate for Use in Internet Information Services 5.0 ])
+7) Create a virtual directory for the file management system outside the main application path.
+
+EOB Installation
+
+1) Place the folder EOBmanager1.0 in the directory. Preferable its final resting place
+	This will make the variables 
+	
+	<cfparam name="request.driveLetter" default="C">	
+	<cfparam name="request.applicationPath" default="#trim(request.driveLetter)#:\[Path Where Installed]">
+
+	
+2) Create an extension(CF Admin) to the custom tags (NOTE: Deploying the archive might create this.)
+	[Path Where Installed]\eobmanager1.0\CustomTags
+	
+
+3) Extreme Translator
+	Look in this folder and follow the steps to install ETranslator
+	[Path Where Installed] C:\EOBManager\eob_1002_Xtranslator\XtranslatorinstallationForEOBManager.doc
+	Install the C:\EOBManager\eob_1002_Xtranslator\XTranslator1.8\xtsetup18.exe GC 1/23/07
+	
+
+4) PDF to Text (Only if you use PDF to Text)
+	Look in this folder to install the PDF2Text DLL
+	C:\EOBManager\eobmanager1.0\SiteSpecific\eob_1002_DLL
+
+
+5) Intall the database on SQL Server 2000
+	a) Restore all the databases to the SQL Server
+	b) Create the "EOBManager" login under Security and give it administrattor role under "Server Roles"
+	c) Generate the script file from the main client database ussually 1084. Script everything including database users. Then take that script and replace 
+	   the database name to "PAClient_MASTER" run it in query analyzer then Create the "PAClient_MASTER" Backup Device under Managerment>Backup
+	d) Backup the PAClient_MASTER database into the backup device noted in c. you go to the PAClient_MASTER database and choose backup then click on add and you will see a radio button stating Backup Device.	
+	YOU MUST DO THIS EVERYTIME YOU CHANGE THE DATABASE SO ANY NEW CUSTOMERS GET THE CHANGES.
+	YOU HAVE TO CREATE A BETTER WAY TO DO THIS.
+	
+	Verify connectivity and create the following Datasources through CF Admin
+	PA_MASTER
+	ro_PA_Master
+
+	
+6) Create the Event Gateways
+	Actions  Status  Gateway ID  Type  Startup  In  Out  CFC Path  Gateway Config       
+	CreateFile835ToXML   CFML   auto   3  3  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\CreateFile835ToXML.cfc         
+	EOB File Watcher   DirectoryWatcher   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\SiteSpecificCustomTags\ei_1002_EOBDirectoryWatcher.cfc   C:\EOBManager\eobmanager1.0\CustomTags\SiteSpecificCustomTags\ei_1002_EOBDirectoryWatcher.cfg   
+    LogEntry   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\LogEntry.cfc      
+    Process835XMLToDB   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\Process835XMLToDB.cfc      
+    ProcessClaimXMLToDB   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\ProcessClaimXMLToDB.cfc      
+    ProcessRandSReportClaimsPaidOrDenied   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\ProcessRandSReportClaimsPaidOrDenied.cfc      
+
+	
+7) Install pdf-tools
+	a) go to Start > Settings > Control Panel > System
+	b) Click on  Advanced > System Variables
+	c) add to the path "C:\EOBManager\pdf-tools\bin"
+
+
+8) Scheduled Task
+	Task name: Check DB Backups		http://www.eobmanager.net/db/appdbbackup.cfm	(daily) 04:00AM
+	Task name: Nightly Batch Work		http://www.eobmanager.net/db/appClientNightlyBatch.cfm	(daily) 04:15AM
+	
+		
+	
+	

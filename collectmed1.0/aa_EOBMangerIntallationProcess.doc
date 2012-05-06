@@ -1,0 +1,422 @@
+ÐÏ.à¡±.á                > . þÿ	 .           .   {        .  }   .   þÿÿÿ    z   ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿì¥Á 5@	.  ø.¿      .     .  ˆ.  . bjbjÏ2Ï2                  	.. ("  ­X  ­X  ˆ.                              ÿÿ.         ÿÿ.         ÿÿ.                 ˆ     x.      x.  x.      x.      x.      x.      x.  .           Œ.      Œ.      Œ.      Œ.      Œ.  .   ˜.  .   Œ.      L.  ö   À.      À.      À.      À.      À.      À.      À.      À.      Ë.  .   Í.      Í.      Í.      Í.      Í.      Í.  $   B	  R.  ”.  .   ñ.  .                   x.      G.                      À.      À.      G.      G.      ñ.              x.      x.      À.              À.      ..  .   Ç.      Ç.      Ç.      G.  Š.  x.      À.      x.      À.      Ë.              Ç.                                                      G.      Ë.      Ç.  .   Ç.              Ó.      x.      x.                                                              Ó.      À.      ´.  .    Ð€_ÀÉ.        Œ.      Ñ.  ¾   Ó.              Ë.      ..  0   L.      Ó.      Â.      .  "   Â.      Ó.              Œ.      Œ.      x.      x.      x.      x.                      Â.              x.      Ó.  ø   À.  Z   ..  @   Ç.      Z.  4   Ž.  ¹.                                  À.      À.      À.      ñ.      ñ.                                      ±.  .                           . ..                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+1) Install operating system include all updates
+2) Install Sql server 2000 (service packs)
+3) Install MDAC2.8
+4) Make sure that you have MSVCP60.dll in the 
+5) Install CFMX 7 under multiserver configuration
+6) Create the IIS websites (if on production server import the certificates for 443 [http://support.microsoft.com/kb/232137/EN-US/  How to Import a Server Certificate for Use in Internet Information Services 5.0 ])
+7) Create a virtual directory for the file management system outside the main application path.
+
+EOB Installation
+
+1) Place the folder EOBmanager1.0 in the directory. Preferable its final resting place
+	This will make the variables 
+	
+	<cfparam name="request.driveLetter" default="C">	
+	<cfparam name="request.applicationPath" default="#trim(request.driveLetter)#:\[Path Where Installed]">
+
+	
+2) Create an extension(CF Admin) to the custom tags (NOTE: Deploying the archive might create this.)
+	[Path Where Installed]\eobmanager1.0\CustomTags
+	
+
+NOT NEEDED ANYMORE GC 02/15/2009
+
+3) Extreme Translator
+	Look in this folder and follow the steps to install ETranslator
+	[Path Where Installed] C:\EOBManager\eob_1002_Xtranslator\XtranslatorinstallationForEOBManager.doc
+	Install the C:\EOBManager\eob_1002_Xtranslator\XTranslator1.8\xtsetup18.exe GC 1/23/07
+	
+
+4) PDF to Text (Only if you use PDF to Text)
+	Look in this folder to install the PDF2Text DLL
+	C:\EOBManager\eobmanager1.0\SiteSpecific\eob_1002_DLL
+
+
+5) Intall the database on SQL Server 2000
+	a) Restore all the databases to the SQL Server
+	b) Create the "EOBManager" login under Security and give it administrattor role under "Server Roles"
+	c) Generate the script file from the main client database ussually 1084. Script everything including database users. Then take that script and replace 
+	   the database name to "PAClient_MASTER" run it in query analyzer then Create the "PAClient_MASTER" Backup Device under Managerment>Backup
+	d) Backup the PAClient_MASTER database into the backup device noted in c. you go to the PAClient_MASTER database and choose backup then click on add 
+	and you will see a radio button stating Backup Device.	
+	YOU MUST DO THIS EVERYTIME YOU CHANGE THE DATABASE SO ANY NEW CUSTOMERS GET THE CHANGES.
+	YOU HAVE TO CREATE A BETTER WAY TO DO THIS.
+	
+	Verify connectivity and create the following Datasources through CF Admin
+	PA_MASTER
+	ro_PA_Master
+
+
+Extremely important to make sure these are the settings your SQL is running on.
+
+.
+
+Create this login to start we need a better way to do this by client.
+.
+
+setting up datasources.
+.
+
+	
+6) Create the Event Gateways
+	Actions  Status  Gateway ID  Type  Startup  In  Out  CFC Path  Gateway Config       
+	CreateFile835ToXML   CFML   auto   3  3  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\CreateFile835ToXML.cfc         
+	EOB File Watcher   DirectoryWatcher   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\SiteSpecificCustomTags\ei_1002_EOBDirectoryWatcher.cfc   C:\EOBManager\eobmanager1.0\CustomTags\SiteSpecificCustomTags\ei_1002_EOBDirectoryWatcher.cfg   
+    LogEntry   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\LogEntry.cfc      
+    Process835XMLToDB   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\Process835XMLToDB.cfc      
+    ProcessClaimXMLToDB   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\ProcessClaimXMLToDB.cfc      
+    ProcessRandSReportClaimsPaidOrDenied   CFML   auto   0  0  C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\ProcessRandSReportClaimsPaidOrDenied.cfc      
+
+	
+7) Install pdf-tools
+	a) go to Start > Settings > Control Panel > System
+	b) Click on  Advanced > System Variables
+	c) add to the path "C:\EOBManager\pdf-tools\bin"
+
+
+8) Scheduled Task
+	Task name: Check DB Backups		http://www.eobmanager.net/db/appdbbackup.cfm	(daily) 04:00AM
+	Task name: Nightly Batch Work		http://www.eobmanager.net/db/appClientNightlyBatch.cfm	(daily) 04:15AM
+	
+		
+	
+	
+                                                                                                                         .  ð.  ñ.  È.  É.  é.  ê.  9.  :.  ‹.  Œ.  .  Ž.  Õ.  Ö.  ×.  Ø.  ð.  ñ.  ò.  ˆ.  ùõùñõêùñæâ×æâÌâæâÁºù                                                                                                                                                                                                                                                                            ..h˜f$ .h.S†  ..j:k  .hu l .h.oÚ U....j/:  .hu l .hKlÚ U....j    .hu l .h.S† U....hKlÚ  ..h.S†  ..h˜f$ .h.oÚ  ..hý.j  ..h.oÚ  ..h˜f$ .hý.j . .  ..  1.  \.  o.  ž.  Ð.  §	  .
+  .
+  .
+  .
+  q
+  
+  ’
+  Å
+  -.  ..  0.  •.  Æ.  È.  É.  ë.  ..  B.  ¦.  þ.   
+  .
+  ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú                .. gd˜f$  . .  ˆ.  þ                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ....
+  .
+  _
+  –
+  —
+  ˜
+  Â
+  ò
+  X.  ñ.  ~.  L.  ¦.  Ó.  Õ.   .  +.  9.  :.  ;.  ‹.  Œ.  Ž.  .  Õ.  ×.  Ø.  ð.  ó.  õ.  ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú                .. gd˜f$  .õ.  ..  h.  ì.  á.  Q.  Ó.  Y.  ..  ..  ..  ..  M.  w.  ©.  ª.  «.  ½.  ..  .  .  „.  †.  ˆ.  ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú            ú                                                                                                                      .. gd˜f$  .& 1h.:p˜f$ .°Ð/ °à=!°'."°'.# .$ .%°                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          /:  D d       
+             À ¬.è.è.                                . .ð0   ².
+ð.   ..   
+  # .ð.   .A.   ÿ.  .   .ð.      €b .ð«9  ..ƒI–ó´¯è#h‘BIG,á\ÿ ‡9  .   D     Î. n.ð9  ƒI–ó´¯è#h‘BIG,á\ÿ‰PNG
+.
+   
+IHDR  ./  .ƒ..   l€g.   .sRGB ®Î.é   	pHYs  .Ä  .Ä.•+..  9.IDATx^í{¼.WYßÏ¾ï“T./´ýÐ.•K$D$Ü’³¹.A.Z­¥¶¶.
+UC.dç€`¤ˆQCÕ~>ü£µWÀ€A.$Ù;ñä$Ð\8±(Rz‘O,Vh#äìëÙ}æ}ö^gí5·5ï;óÎšµ¾sVvæw]žç»ÖÌï]—™™ÙÛÛ;r°=òÐÉó/¼Dþš#ì@ ..€ .º#ðá›o]___[[›)T#ùºÅ²gff
+sã¸bCÄ.¨Üˆ+—“·ºr}Dä»¿cÙ¨Ñ¬O.â@ ..€ .:%Ð o´ººjL9~ü¸ì_?Újíãç!?.íF’T{HÊYú
+¦'Uïêìå—_^«.&ÂÊÊŠjÇ˜}£;­M¥È¿lbB ..€@Ü.dÍOÐÎL~k0R'.Mfóì.Å¾uï^ùÒ.Jh+Û—.»TB[¹‘..  N	4P#.©3[uÇèª+¯°ƒ:ðÆ×½Ò.zð
+¯}…„2._ÿC/·C§ ìÌ_sÅ1	æÈ«_YÚ.ýÁW\&a:†½â%/`ÊzùÊó%ÈG³£_åEè¥—_"A¾2;Ó1˜R  4	\pÑ¥.lßóGòd.¨‘çHè.#Ë$LP)’¿.ùØ§4˜#.U%:$ßþÞïÆ„)×«-HS.z’ân[¿W‚Ãíwž”0Iž¤… . àOàÔƒÙ%È.’îèÁŠ­..2Rwåk^f‚:öºW¿T‚îØ.eÿµ?ø.	.M÷%üÐ«Vôˆìè¾9âr.I:I&Ø1M.Éì¼êå/– qÌŽì_ñ².™ Éõ£ìä.èäˆÝ.ªm.ÒCÒq¹Š¾‘fbzH/¹ìb	zÐÞ¯-‹..€ .ª	.Aò”"É­.ùÔI¾f¤nÂ:3#ušèü½ù–Û$˜ú•JQÙ¦šôñ?¸C‚ìØòS(E·Üº®Y.AÒñºO|êN	²c.ßýÁ§ï’Pí©ŠÓ­· ;*Bº.J‘.ÿô.wWçiû™µ{œ.QYZºJþT‰	..ŒMÀt†j{EZD.5rFêÊLtîœÕ»16. ³SéÀnÚ7ròüØ'n— .õ¯ˆ“Q .Óî*™ƒ¿ÿÉ5	y. Ù_ißh.w*’|êöÏJ0.Tœì#í.gr»ã®ûdßôŠô#..  V.8#uµy6P#ÍëòcÇj3µgŒj#WD(›1Ò¾‘é!ù.¡}£2ùñ.$í.™.RaÑÚ
+’Íìø[HL.@ ...0.tÎ.R…kÕèÎõuÍ.äEÞÚ=’MÇå&Ù
+{He.šñºO~æ.%h4³ãi†öŠZ\ê]Q®é.Ñ1ò¬.¢A .µ.œ¹"OAj FÇ¬­BŠœµÝ:pgÖÑé"osD½ÒuÞÎRogm·.Ü™é"g!C-.•%³Š¡lÙBE>fºÈ^È òã³Î[5É,[ÐÙ£²M.ÉYÅ ÓHrÐ,é–¹"9¢Í*†Šlue.ë¼k[..  I.ˆü8sEù#ùü.<.È$nÚ+².’aKQR.Ï.z.ú«kêœŽQ€v.ž.ƒ°s.F†Ù8‡[é©ñ4O.ò|ÿƒ>&5ÿd qÔHŸ
+äÿd ç„TA’í£.ÿ4
+®ß†‹.uÍ.5Òs...s0jTöÈŸüu¾±.i.ÈV.Ù_]½^.2ä<£..Ó.ž†.qCäBcšza;§ñÓø£¿.j#÷ïŸ(IûFŽ2.ölò.9!9!£?!ËT™ÆOã¾ñ—5r.°Ÿá=ÞHO)gãpBrBFB¢F4r.y3a.Å®W£12%	.  ..@ ).ÞýÚ”.ñ! ..@ C.
+î7êÐ
+²† .  ´	 Fi×?ÞC ...ƒ j.F=`..  ´	 Fi×?ÞC ...ƒ j.F=`..  ´	 Fi×?ÞC ...ƒ@ñÝ¯e¶á%a˜}Ö
+Ïçô…f6ö@ ..€€.0÷.5P#‘¢ /ýW_sÝM7Þ@¥B ..€À.	4V£0¥ÈÖÕ!VCG6.ø£¡#OÉ....:ØÔˆî‘Ý"é/.ýüÄ~.¤C€'.Å\×ò’^.¤˜=Ä7.@ :.í¬©“· ›Ð."}×:..  ..ÄG .5.‘Ðwžk@3âk%x...@ k.-¨‘c¢.R×F×æï(bG.Y‘mþ+=2ž%ã¥ª¥D..@ .á.h_lßœá;sE¶/¯ù8æÛIFÿ<¯àžÑ&¯°IDz’´“[N..€ .¦@ M5ÊëJ~øÎ.ë.eÊÇ1._Fÿ¦Ð.(...€@..ÚT#.Š¾‘|•ÿ™_Ñ.š¤oT6ƒ•ÏÓ.C³{fêKEïÍD¨­Ë².Ÿf^]PEgÑN^k..  ...K M5Ê;i¯n(CP.Ç^.Ñ.>;Os‰¯..«M¢.ü-lÔ.´sÎ[ât4ým &.  Ð.´¬FeÓ0>Ó3>q.á+ì.U÷·ôúîoIS)ª¶¿¶/èD0¦6’ÃF.‰...@`:.ZP#½&j°/‹eÇmÇ*âØ_Í"/->Ý5ÿâ.IW­..Ûüû‘-.àï51! ..´N .5.›ìË¨#Höd’ó•:ã\‚.“ëÁv{ N.H/ë¦ ÿNO/z`Ïuõb@ë
+‘.! Ä	´£F!C¬î®Õ^Êý{x..Ó_td¯°.©Z[=R—·Ä.iW§C®Mlƒ .b%àûF‰ÀŸáÍSSí.ªO!„I¬'-~A &.<55¦ÚÄ..@ .ƒ'.ÿHÝà«..  ..$@ 5J ’q...€@ð."™7Z[[..5.B ..H—ÀÊÊJádv<ï~M·nñ...€À@.T,­b.Ã@ê.3! ..¤A€y£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M 5
+»~°...€@..P£4ê./! ..„M`fooÏXøÈC'Ï¿ð.ù›·¹ìxØÞa]Z.ä•Æi9Œ·É.X]]-¼2..€Ï›ÈQ£¡Ô&vÖ.Ð._.....›n¼aèý.ÔhP-.c'& -~mmmâœÈ ...hÔË¹úšë.Q#æ:lsd
+..@ €ôu|BRƒÏ¨.'..  ..H.©6ô`VEv®F.\tiÞ.),½-“òù´•sÄ(...€@/.:W#¯Z¿”K†§.¼7o€.œ¤¬Š´…Åù. f‹.fff*rÓoM.'²ó­ÉÇ.—.³é·ö.;Û|Ì||'ûcarÿƒ-ò$+.tM  5êÚUò‡@­>y"’û"Ìf´Çÿ $)Œœ/ÝŽfd¬,mÞ$Owˆ...LO´K!í¾Eþ£BÑã&fEÚ|ne£sÕý!Ÿ.M…•¹`.ìcF¾Pãi¾,ŸÈ!4©@lK³ÝãqöíÛìÊ.Îçà“*.÷1c(.Ìymï.Åøvíœž.©ÆÈX–.(s>J.3Ò¥Ñì!µ²´ùÜò.qù‚.ˆ&BE‰v.cgaÎeÅÕº`.ð±PÍ`x°•SÂÑ.ÍÓ.ÔÞL+.UdRhC×…’¿.òço²gôTÕÈ¡l.ýyúN? úškkƒÓÙÒvVQPECôi.ÕóRµþæÝt.V.Óƒe‘û=—¢/].Â‘"{æÆ|åÐ.š3;UÐDž‚pú»@ÌZ.ö…Âç²S›á@#LUòŒ
+..Ø=•FXMªðçFõH]£‚j#—-”pŽW.\ÈÊÄ¯5€.BÀéÙ˜5.e.ëÂ®‰J‘³Ì!?£Å™Íð÷œ.²ãÛeå3¬¨Yæ†Ûì.çºëST.Ê.Üþ
++/3Î‘¶
+ò4©¬¸
+3ò.(–Â.JÓ”UO—£‰V6WÄ.Z4U.¬#)÷Š´RúT#½àšk®=žV;*eÒ:Éí.M³s
+*ë¢.¦õìÏÙÑÊŠ+ô·Q¡…‘.§êî‚.g+.s«Hë.ÐMM¦VP°×e.K“@ÌOM-ë[HMW|•f;ˆÃëÂçÔÙ¢â.ŒùXx¼pº¨LÒ
+—9”.'´á8‡Ùð F+L[a.õ...oKp|4..Má©©}öºn[ec€HQ×äƒÊßž%rfŒÌÇÂãùé%=R8íäsÐ±¤bNÈ.T;.eP.Æ.ª"0..Õ.bV#ñ¼lÍ.Í...€ .‚".¹..Å.c  ..(ãÇË(\mH
+.j”Tuã,. Ð?.ye‘¼ˆËsëßÜiY.ó*†i1¤œP.È/Í«®¼".k°..í.Ha..jÔ^{!§¾	È.Û·	”.®.4zclWFŒ›/o".—.é  ..@ =.>jÄ¼Q{¼É	..€ .Æ%€.KŽt.€ . Ð..Ô¨=–ä...@ .ã.@Æ%G:.@ ..h jÔ.Kr‚ .  q	 Fã’#..  ..´G`œûd­^{...  ..ÄC`uu5k”Ï
+ïqÔˆ{.ãi8x...@ m.ÓS£¶-'?.@ ..ˆ™€Oßˆy£˜[ ¾A ...
+.Ôh(5….€ .b&€.Å\»ø...@`(.P£¡Ô.vB ..ˆ™ j.síâ..  ¡.@†RSØ	..@ f.¨QÌµ‹o.€ .†B 5.JMa'.  ˜	 F1×.¾A ...
+.Ôh(5….€ .b&€.Å\»ø...@`(.P£¡Ô.vB ..ˆ™@WjtÁE—š`ó“ƒ>8óÑ|.úÄñ)}Œ8=.=†µ$.:.ûüjÔö8³†^õ.Ûß•.	²S.Þ«Á>.äc˜4.Òaº€UI.0çW°ç”V.gVRÍr.g;T#c–#H“˜KZ.@ ..ˆ’À4Ô¨p¤N‡.ÌWùa½Â>ý©U›Öü(s"Û	.óq.Žm.¿
+£<[.wJO¨Ú³ƒ3+ðzLÖ¼i«‘¹L;ƒxùa½Â>9‘œãö‘|-.f«g¬ÿWÕ…:šjû.ø.J²>.ÇËæe9³â¨ß.½èGÌØ¹^—ý^ËW‰Ì.ª³Z`ò~ua.yB@.˜ŸS6|ûô?_ücvÁŸ3«.ªÃÊ³.5ÒsÉô*ªû7.ÐÀ'o™$.Ö	.·µœYq×odÞMCô”°Á©.Mxáîe­Nu¡­ø.Y.ÃÁ.àÌ.\•ÅaðÌÞÞžñä‘‡Nžá%ò7ï[Ùñ2
+vƒ¶¥È(“¹pk.Nü|r'¡ŠYaZcRE&v‰v>ºo.æ‹(;RèW^†ãh4xÑ;.G0L»­hÌùßNªŠfoŸnù³UTŸ,œY½·™~
+øðÍ·®¯¯ßtã
+y3ô«µµµ®Ô¨_ÏJ±Ž „ŠÀ†È.ð3+²
+‚;>j4‘º)¸J..€ . 0h.1«..£A7MŒ.– gV°U3hÃbV£AW.ÆC ..HŠ j”Tuã,.  @	 FV.fA ..HŠ@'kêdùDR.Svvuuµð–€”™tí;çW×„ÃÉ?šóËgM]Wj$ëÇÃ©Q,éˆ€Ü=ÐôF´Ž,I*[=±“r9Mgc:¿zV£Â.ÒlUrÉŽÒñŠÛ¥ký•I­ãe.VVV<O.s·àØe‘p..&9¿Bs.5
+¥Fb½òNr¶Ð©²[gÅ¹šoÄ¨Q('vÇvLr~ulZãì}Ôh.«.œ§˜èGŸ.¾åã”¥ªÈÍ~6«yJq™
+…¦ªµ.L%ØYyæÖ¸.I ...333v,ç£G.5QòùË.³iâÖ.Ülr..i¨Q­öøS›ð¶;ûùßþ†Ôç 8¯.›ÇËÍßYbBÀ“À”Å@.ni6-Ú~Ü¥§ÍDƒ€C`Jj”çî<ÀÛévL¨:žÕœ·¡¶ÜŠ.cäæi'Ñ  ..DO`Jj4áË#L5ØcbÎÐ™Æñïñh|cXþAc<.²"·è[..z.8ÿ¢Kóaõúë×Ö×.¿*‹,£c.ä!üÙsø­f¿•.;s-ÎÎÖùØJ‰^™xâ&Úp.LIZ.bFÏ.uªìÉ.ÓËQ	©íôäÅo¼ÜZGA†.HÀÎÎÎ®µ9s†ÑÂ¡7ƒé©Q¾{äô$L¿§v¸Lû4.zŸ®Œ=Óc÷·ò¶9¹ÕÎ.Uç6ôV‚ý­.8õÀ=_ø/w?ô¹..Üw×çï]ÇÛß~ùe—Ý÷.>áío{›Dþ«Ç.Ó07;kï˜ú•	ù˜æˆ.M“;™˜²œ¯..ò©ò9—å`.Q½¯uqz´mlllnnnoo‹0!H­·Ò)g8=5²‡Åºpr¼Á@£:ã%/SÄVrë‚RdyæW6z:è¿\Ó3Ã¦Ñä‡¼\?å.þÖÖ¶.Ù‘#§76åâZ.ö#ëõøôiYG ;>úè.ŸøDóQöåˆnzÐ|åìÈG.Svì˜Î~þ£mƒÉÖDËçlì<0¿ñÿ.õã£
+AjÚðBŽ?U5Êƒ°GÉjGÌj96Õ€|.¨°æ9.U–[­ÙD˜„@aw’.§“V~ÈïîîloïlnmÉ/|ùu/j$?ó77·67j‚¨‘$7WqG.ò’ckƒ#`ŽJÉ·O~ò“ÛU#c§æ¬¿üå/ëÎ.›é.‰.}ë[ß’¿ÒCÚÚÚR,Œ×M§.wQÊ´ÕÈg.ÎöÓ¹C¨.ASAªÍÐtéÔ’¦öûäOœA.h·;%×M™øØÚÞ–+éÆé
+..<e.ÖêMb
+±,êh›5û§N2.eÿé.›.4_9;vLÙ—˜ù´…Å9.%[Sb>.çˆ~.cÓÖ":ôÍo~Sþª ™ñ:Ôh.gS¡‘.>§Îó1'Ãeço9ÏbÈ³jåY.…¿.ô Š‡ùõ`´DØÒbŽ8_ùÌMŽñ.EÖÈ‰.2W$.t™úœÞ±ºÛ×ïùüç?ÿÖŸ~óÜüÜìLÍoÄOßqâsŸûÜ‡>ô!ÿ.8˜Ï~ö³.~øá®ËzÆyçI._xøaQtÙ‘îÝÒÒÒ¹çž{Î9ç,//ËþÜÜ\×6L'žÅ0.Î”.v.˜Þ³Ó¥Ö.<[„j¨J.®XÑÌ+Vâ4ufoïˆ\LÏìfÿd_.m°°¸°è±éÕV®¼¡mâÐ.LRÔ¢:óóóÒ..ÍÀe.ÃtM.ahñ§=R.šÿØ3t.F<lG
+»5ù5ú…¾.Ê›‰Ù– í.Ù;#ÿä¯ü9Ø...–..—–k‚^…†·}õ«_‚QJKT[p	.ÙW.B†~.w8R·¶¶6t:Ø_M`’‘„®GêÔr3jg.Ù9ëeì8µ#où.µI.†:R'+¹e.l2W$×Ñõ.÷ÉàÛ{Ž¿MºGóu.M7ßrÛ‰.'ÞÃõ½´Ïó.xn/åšB¿í	Oý?ôQc.†¢I2R'B(ƒuòWÔº_.Û*}’ó«-.ÚÊ'”§¦¶å.ù@`š.
+—-8½®¦RdÛ?zxÂÌììL6W$ÿ.Ôeó.u›öêbuõý.z?ÕE(CuOºGJC‡:§Ù<(«u.Ôå›ˆ.qŽÓ’Z¯ÚD2ôYu©!g¤Î.±.ÆŽY+<“HÑ~íì.‘5.fÙ‚ôŠ|6.ž21/|Î.íPx\.–Å4ßjœêÈrõïwStbƒØ)(tK¤µÇí&µ.wýFî}³‘..G].s[Rþ.%;¹~ë°ó9Ò.nc­m¶½.£p5G~.,o¼MÉó®»^.Ph..:W#™]´û=²Ÿ¿!@.Ò=Š£IáE€.òR. ‘˜”8ÎÕ(q¾¸.A.haÔq.~bdÀ.úW#Ó[¢{.p;Á´H.ØÓlµ.¦F‘#.„.ý.˜†..™).¦ëÏwJ†@r.ò.f‚ ¬cT.99d8<-.ÓP£Z_tu&óFµ ˆ ..@ V.SR#í.•­_ãfC“bmjøÕ#Š.qÌ.õX/.m.˜Þ³..52ëè.‰b4o@
+t’{ÅåY.Ç..³m™*/.—¬äyòÜn}t·|”[gî¿ÿþ_þ¥ã>.ý,¼­½ð!.Æf"ªxÈ¬‰iâ”©Tÿ .Ý°(oäÓ·QÈ..ä£<.ÏÜ3Ë³.Új«-æãó,†é©Q‹Ž‘U .&Q£«¯¹../¦lÆÚúº”(/oÕG«™Òå.ÎIÔhj^ FSC=Éù55#=.B<A.mL.1-c"hžÌ<§.{LÝèeF’‡<.T.–ª.ª}!BÅ‰ÝÜœÆ)P£ÆÈÆM.Óùå£FSš7.·:H...@ .I.`¤.‰jîÈÉ˜~»u„(Ÿm[}£tŸ‘Ï¼ÑÔ.k{.Ñ7j%9A ..€@—..©ë’.yC ..€€..ÔÈ.±  ..@ K.¨Q—tÉ...€ .ü.°ŠÁ.±Š.L²Š¡ÿ…Â}ÕiÉ$ü›Þô¦F÷.±Š»_ûjÂc”ë³Š.5..,Iö	L¨F’<A”…kên¿óž¦Ïb@P£.>>jÄHÝ€*.S! ..DK 5Š¶jq...€À€.L{¤.ÍÁ™.5.Líš€ŽÔ±MHàþ»ï.ûÑJ..=…äò.G.‰d$|
+F6*Âg¤®.5JwúºQí.9V.£U.l..øÆ×¿.OïÖM²:çœs¢y†·<Û~}}.5:)RQØ});^Ø¤T..gYcRû	O'’'K@Þ"!OL=ý¶ß”W"È£¼...d[Z\”ù¹¹dÉx:.ïáØÞÚÞÜÚÚ–mk{fvöèÑì‘³£?õõ,¥¯hæú.ÓÕ2Ü¾‘P¾øªßž¤²÷_Ê7s$ûwäÈèçæÙ.û?>5ÒÁáýC	²”.Çäqphÿ›Ñ.Î×æ˜‰{.¹Ä.SÂÙ²F&ž5Í±B.<lÙÁOêƒ÷.Vxç p.YEŸý¦°¬ÃEY¹6 ]äI.íƒŠ=ìmQE.Ô]®ª.jµ°~÷ÛNeÝ™V0.í²¶täÈ™ÝíÝíÍ3;[;[§åãÌìüÌÜÜüÜÂìÜâì¬ÖÐ¡VlZ¯A_à“9”kZÚÚ.÷fméàü0mälÛuÛÒÙ"
+ÊÒ/Õ-óVMý\s"ë	jAÙÛÛÙÙ.†ÂñÌ™]y.ÇÒÑs.....]X\žÝ—óæmÉj¬¥mÉiÐ…'ò.Ýßg/~1Y5
+k.ÃµÿøIN.µ\6.ÄF@.v..ËÑ9(/;ÚÝ•kë®èÓA}7loI§À
+›"i;NØÙÜ±Ãè[‰v8¡f’K«G¶.‡²hÛ.;&lmìd!—Ö:²½½i…íí,ŒRÕ†Íí-7dr¾³­ïêœ™.†ògÖHxlÍ%
+.R#Ñ¡UkSþÿé¿N£"ð2%.Ù%4»|ÎÌÎÉïzÙ“.ïer$ò³»uF~ògAvrA¾ÝÍâì‡Ñ.ù ~q*+rNÛÎ¦.}et.¯‚‡Žlîîää­<ÉÎöÖ(h...ŠÓ„ûq4¦	gÅòpZ=¾%½"á&º>›aœËxŠ¬.ÓŽ~ôyßî.þÍµW.cxo†.¤FÂàNk“×ÞÙÌ..	È`ŽªÑÜüìÜ‚ŒÔe.³ßøl^.¤g)B>.Ý\œ›—.ÎyùœuBÚdJÂ'È²…¬îÍ–°*OÖ>˜M¤(&5úò].np'þýOôÖB£,8»’f?ççd¢h~i~ay~aI¦=æ.³Y¹¶fa± È¬ÒÜâœ	ó.Ù…øPpSY‘åªí.“vt\.ë.ÜhÎ‘¥¹ù¥¹.	^Iæ..GA“˜p¸¬ý8.Ó.!³..§]Z\’)¢s.—Ï]¥£.KÂM°ÌzH,Y.ê9ÓÏ
+ïÂU.:Rg@êï..¤sžú/.ºßúÒ.åÈ_{úÕ2±ùÍ?¾IöŸpÞ›eäã±/þšìû3êÿýÑ¯š$O¼àšoœºQ>~ç³Þ¢3“ùð.¾ûÂŸþ?.ý².üž‹~F.ï×.|¿ìÿõïÿÙÿýÀ¿²Ëú›Ï}«||ôs¿d.ü[—üœ”õg'ßk.ü»/xGöqTÀÿì»í¯þþe™Sÿí®ãß{ùõö*†/­uV"<ã¥ï–o¿xûÏÛiŸùŠ¬”?úôÛìƒÏzÕ
+£²Ê×hŒìxàã?ãp{îë? _Üÿ{o±_rÕ¯žüðOÙGžÿÃ¿îL5ö?\ý¢.ý ­I—ýØoÜõ»ÿÜNuìŸü–z§ËD.Íº.®Ñ.ÅÉÍó7Ÿyö^£aÃ?diÅDz7«.f²i"ùïÌ.YNwfWV1d.²)½Ñ|Òˆ+«.Î®tpW1.¥=ù'ÝÉ¹l€.ë$ºG"ñ33"ó‡VJX.&œ¶bµ.7RQC¶šqu[ÒÌd˜Î¬O¾`t“Ù©.ï5§Œ}D—-üÓ÷Ý,ß²ŠÁ¹jõö±­‘ºïxæþåõ‰ç_cœùú.~ÅÓ±¿ñœk%Hd[‡ž|ñuO¾XtèÈŸüE“Ïß~þÛÿÎóß..ÿÇÝ¿ .UŠžò¢ŸÊ‹Þù”.¿SöE‡äï÷^¶úå;¯Ï.ðô—¼K‚H‘|¥RtÞË~áû^.á=²oëÐ.Wü¢.9ø…O^çãÈ.¼öý?ðºLqe{Î•.xî•..•¢ç½áW.~Ã.¿ñÆKÞx£ÉêÒðk.äã=ÿI¤ýì¦R$Ÿ_ô²¿²]öcg'ó.Óo.{ÓoÊÁõßþg>V.'#­`.
+5e.Ðl¤nÔ5Éú.v'Àô.œ³q¤â.«¿bõ]´w2fX\šÏ‡âÜ¤R.Š2Y”.¡OX–•rvN¤t%¥c$.µ/%j”Ôe£!öT‡TÌŽ-Nœ.B ­‘º¿üBvEÖMºGò÷/.|¿vŒžôý?Kƒ€Àô.Œä(›€Ÿ•û‹²q9!²ý.³ùùÅýP0À5®ä4ÕªB‰ª:¸œC¶.Œ2ô[F/G“F¡J‘6*#Hù~ÒôZ]Ø%…¥FöšºŠI£sŸ–Mc|óO²1:³í.Ó}ßO..ÿÎ.ö‡§d˜ÎDøž‘ ¤È.Ôê¢Öd¤îOsÝ£?¹ã.þøð ]aé§ný9	òÕþH].&æò”ŽÑ.ä.ç©.›F!..¤ƒ+i¶¨a.A'½ú	s²îc?è²…³.ê‚ì.ÙMÙt†è..žáa©‘3RW{MÒI#Ù.ûâ¯×F–y£Ú8.áÏ?ÿ>	²£óFº}õ¾.¾z_6P6š7Úßþ×=ïùŸ÷dCjûóFž.XÑì‘ºêÔe#u.}âÚ,Üríƒ·LÔ½»÷?ÿ¤.±Aæüý¸ów~|ýw~\âË¼‘*bB A.ÎH]‚.ª].KÔÖË.ó¯§o{Æ›%xÆÿ®gýK;æ_Œ.2Èöµ.²Á:³é¼‘-Eò•Î.éÔ‘ÙdÞÈ³èî¢]øê÷eá5ï»è5‡–`4-QçžÿÃÙÔ‘ÿ¦óF:uÄ...”.0.tÎ..Ä..ÕèÎõuµ¯pA~•-¨ËmO(.¦³#~×³÷.É¬©{ÒEÙ0Ý×.¯¦óo"Î*†ê„O•Áºõëý3ï7æÝ.Óõ[.”...g®.A*¬Ø€Ôè}ÿökÇ¬­BŠj›èÿ=XáýGn¬<y.[þÞ.³uq_9ñî¯œx×Wþð]²¯+¼Ë6{Þè<]YwÛ;þëg$d½.]á­[+óFÏ{}¶°ðþ¾å¾^sßG®9ù‘küÝ?ñïöï:ºëwÝ5÷þ™...	..ùqæŠòG.Äâ¸.ÐýFÆ2¹ñ¨VŠ.nKÙ¿»eXOM•îÑÓV²eß!?5õîÿøæ.üÈM‡oÜ.‡væ&÷..>.Öy ïÁZÎÍ^‡šºs+—ÿ.0£j8ûg.ô.ŸÀk.>|¨IÕ<nø™öÝi‡Ÿxk9fšÛÙ.î7ªV.î7Òw>ôÜ7.á‘zÊ?)U.	$O¨³k4~>@ ...
+.‘.Ÿ0.wº¶³g5ÒeÜú. ó( ÕÕì`þx4.
+zê±¬c.øö‚Ø`e]à¾`..¦O`eeÅ~ÔYõþôÍ.°ÄàFêì‡vçŸ	d..z¤îìãpê..z.]q^F3ÖÛ¤Ìˆ‰;œ’}‘.NIãÉ@‡.,ã<â‰‘:3"<è‘ºñ.÷<.h<n¤..2¡“.È...€ .Â#Ð[ß(<.X...@ .¼ûµÿ:À..@ ..H–@Ï«.’åŽã.€ . `.@h..€ . Ð?.Ô¨ÿ:À..@ ..@h..€ . Ð?.Ô¨ÿ:À..@ ..@h..€ . Ð?.Ô¨ÿ:À..@ ..@h..€ . Ð?.Ô¨ÿ:À..@ ..@h..€ . Ð?.Ô¨ÿ:À..@ ..@h..€ . Ð?¡ªÑ..]jÃs>¶Åµ"[ùÊ.m•X–OÞ_SzmÑþp
+cæ.–eè_SwêK­#D€ ."&0T5’*ñ¼~yF.£ŽO=x¯	µ¥ÔFhj€gÑR®Äl”yë¦V”®æi¨ÖþF........«ÑàXwdpõu|òBüÇ7O.šª¦g¶Dƒ ..A`ÀjTv.Î.aénóÓ»pÇ.,Ê..yv.ò™Ø	ír"
+m.oüªÌ}%àXhÚ¨ã`#+ÒV¸\}zÔV¢©P.ÓÓæAœ–.	.	„ûîWy.b¾>®ºò
+=¨¿ÐÍïôüŽO.'“²$…½.çÚ§¿ë.™‘/Îóˆ]MÃ9ž÷ÎÖ.›žSnÞ_ûH.
+“a>rurCÒô*rðÌ¼°ñ$xzãòÔ.¬®®>òÐÉVŠKöÝ¯A«‘T°S»¦¾ë¾ýÑN’W,û.í£F’[á.RÅE¹Z.ª¯§Žº.êSµ.•¹o:..¡‘.U˜aŠ«V#ÇªÂ“Ö¿.mJ…Rwþ…—´r] ..ø.8~ü8jT
+J%ö¦.oÈG3ê.º.•ýÜp®AF3*~×—éPí/ñjá±áNÞ7š\.íô1©¶oT¨FeÜ|ä¶V&ñÂçòA..´H@®§¨Ñäj4ày£ÚÆ”.L3.J§gPU×Ë..=«õË‰P(–NO¨:O.TaäFÄŒ¦æ³rÊª-º,BmÂ¦.‰...ôK .5²GëESƒ.¯Õ’|’|•Ôfâ$©0£ì«¼Íö‘ÂËz>B…/öWš›9âtD<ÍgX–­§UÆ..z¶ÍN÷{FQ:. 0.¡ŽÔç-©â#PÖ5ŒÏS<
+– #uµUã3o.Cß¨...  ..@ p.¨Qà.„y5.
+W<B
+.....Fê.WeI.|>³› þ.iøŒ¨	ŠJ+)#uµõÍH]-""@ !.»»»g.o{{{	ù«a. o.vý`Ýa.Ú7:õÀ=r.5×U¹¢Žþqa-m.Ï{ÁKä»ûï¾ãÈÌÌÌè¿ÙƒM>dŸÙ& @ß¨..}£ZDD.$.‘"ù•¿³³³µµ-asssccãôÆæ†ì.Š.h5gˆ6„Ð¦r.€‚Q`ÒC.äi.Ñ¬bˆ®J.pHzE»»;ÛÛ;rY=-:$ÿe×Øì2»¹A(  b$Û›‚K€eŠ´-j´#0Q£.Nš.¸ˆ.
+ ’0Ñ! .PùY/WSQ!¹²Ê¿Ç.?=Ò¤-¶".û}£Ó..¨.²Œ•ÈÑN6“D.ƒ@..P£.j..š.Ð.#.hÚÙÞ‘1'½¤Ê<R³\Ò‹­Sm#!ß.t²)ÉôHàqˆ.P£.k.›ª	Èz…ì"º›ý“ýÙÙ™¹¹¹…Å…E¶..ÊS.	(Á%ÐFð2Š,þàt.„ j.HE`F..²~NºBÙ_ùsD–ˆÍÎÏÏ-,,,-..-.
+.ì«ÑÂ‚€.\òq$Cû.. '*.:#À
+ïÎÐ’q..t…·¬T–åa²É.ˆ(’üäW)’ù¹¹IŠ½ù–Û&I.lÚ÷¼÷½bÛ[¯½VGçä¯¬ê.hó.›¬÷.Öø..«~a.+¼këÈg…7jT‹‘...0j4.£-™Š.ãdtJ¤Hþ[^Z’‘¨IÌýÈÇ>u×]wM’C˜i×Ö×Å°Ë^üâQ¯h.(Þl„.U×š¼#NÞßXñjWÔ¨¶Ù£Fµˆˆ00.‡Ôh´€n_–3)’mB52¯¡..—ZsG÷·þÕcÉÒC]}(.———.lÒGªÍ#Ù.¢C¨Ñ„µï£FtÏ'„Lò8	œû´Ÿh%ð˜ƒ8Û.^u@ 5ê *YB ..€@C.qª‘y.¨Ïûª}â(Uÿ˜
+kèá.øÖ—>˜7Î>(û.L´ü‘pÝÃ2..C N5.¼òÚ.
+Õ.2Æ›C'Ô¤	“.Órâ7ÄÑ.[lì}3 §‚$#ñ“ÂC.´A Z52pj.©
+Œä.!..•jÇò.j“DH
+— Ð.øÕÈ¡d.ñÌqÓYq¾²;1N‡&ÿ±0[=¨.9ûz¤.$©.Ð®ÏT‹¤0.¤A -5Òq9g.Ï¼ÊÚspO.Fþí×NÚÚ‚
+3I£ÉEè¥ŽéÙ*•?.¡Û¸.V	t¥Fr¿˜,ÒÏ‡V.'³|'Æî$Ù=˜qr'MÔ.Ê:F:¦g/dÈ.‰..ÎµO âfÛö..#ÇNÔHž¢!7‹.†Þ½6.§c÷fz7..‚%`–6.®µ.Öl....½~.ÎìI.îD
+{Ezp.[ÇK[¶jÎÚÆ?æx.’j(.Ìb91XÇåòš„J
+¥6.·Ó\E.·³Eó:Q£.í.;+3"g÷t}.§od¥…š#…1.Ãœlk.’äˆÜØ•.NB. ³g‰òGÂ±.K.Dàêk®.µ­˜.§.•
+Ç©Æh0’c8æS™˜.¿0•ÉÇÎ¶¶ ;·V*’L:"P¸‚Î>hw˜Ô†ü‘Žl#[.ÄD N5Š©†ð...€@
+.P£.j9¿à»…LÉ¢W.fümÂ=^­Úk=Rø€. F.ª,L… . .-NÞ¶WM«úM!&m»/°Š¶..sl
+ï7ºêÊ+âƒÚ5·øˆ9.MÿýFb€Üµ.
+XŸ÷.¡FÑTw.Žt}Uö..Þ¶7ñù1åw¿¢F¥¯8ôìÐøÔ¸gVô|`¦.§k5Š•'Ü:­Ùv/VÚHP˜7ê´•’9.  ..x.@¼0.	..€ .:%€.uŠ—Ì! ..@À‹ jä…‰H.€ . Ð).Ô¨S¼d...@ .^."T#Y‘R.¢]ÈëUéD‚ . ...ÕH.ËúÈŠ-ÊÛ.ƒkY....@ 	8ÕH.¬•oe|œW<˜ùW?ð2ˆ&mŒ¸.€ .ê	D«Fõ®{Çà¡¨Þ¨ˆ...@`L.¨QÅ´Í˜f’...€ .¢&Ð‰.UÌÜ..¦=d§ïx5^˜W¾æýªŽi¾urÓ|œl¬†È.›! ..T.èJ¤ÔÂ‰›ÀëÃÈ@á\‘óÞX}¹†üœ“}¼0fÙ `£ÈóÄ<.@ .ž.:T#O.‚ŠVñ
+óB;ËúFFŸŒäÔÆT.*ì..….c  ..tA “7Jè3h¥o”·XžÊÞõ3¼+JW{Êl°õ@‡ËT.tÇQ.çH™VÙ9Øq*rsÌ°-é¢..+O}.5Ûx.î¿ûŽÍÍÍ-Ù$‡ÅÅÅ¥åÅå¥l›››./OR	.žá]Û.|ÞoDß¨.£W„ÂÕáù.<•.'Ç
+ac)¹.}"ù.ØÙÝ=³{æÌÞ~82ã—ŒX.˜
+.úFg1W÷.!1.MŸŸ.R!±.ßì˜eei.#Be]«©´@.ÙÝÝ•ß÷§³.ù›§OoÈ¥uaqA¶¥ÅEÙ™ç7~I½‰.momonmmË¶µ=3;{ôhÖ/.ý¡o4Qk§oT‹Ï§o.§.Õ>mÁs´°.1.¦OàÌ™3¢D.Ù¶ùøã§å£Œ2ÍÏÏ‰ ‰*ÍÎÑÝ/®.é.„h{GtiwwvvöœsŽ.//-Ë¶´$.§_•Ñ”Ø….Åô.r©h.5Š°	®®®ŠØT‡hNƒ4.™923+ÿä¯ü9rdoïŒ\aå:+?üeR„PL`Ô+.P‚K 	:ƒ1ÍV„×¡.ˆPd‘‚O.­&°ÇŸ€\Gå·¼tƒäŸìË4ˆüØ—Ñ§lvž­œ€ .P‚K àe.eŸ
+.!.ˆPBÀŠ
+.È.¢³³ó²-ÌËd‘.ÓeWUÆšê .¢.·¹.ÚBÆOIÖ¥ã{.Lƒ@W
+Q.=.;(Óð‰2b'ppI]Èæ<Žfÿd
+Dæäe“UËl….2TG—3P#d.«.Q¤LÈco/ø7..4ÄŠ™›aPÁÊ€	ÌÌd?ñeá‚\Ke.\WG:4ºkf)»†PL@à,Éš…¥‘.-gK.³.ˆY÷H.\á˜–
+NÔ¨bÚ&.®øÙ..¹tÊ67—Ôe‹º..F.Y¹Â.‰$.*.dˆFº­Ü. `TžU..CÀ—@'jä[8ñ 0..½€êÔQö@¥ý.
+hÿˆ­‚À¨.™äé¤.R4V.$Q'.P£N°’i×.TìMî:b«%à@£WÔuC%.¨‘?+bB ..€@W.P£®È’/.  ..ø.@üY....€ .º"Ð‰.ñ&ò®ª‹|! ..DJ .5.Vò~£Â-RŒ¸...@ ...èJÄ¨!¾‰|"–$† .  q	t¨FãšD:.@ ..HŽ j”\•ã0.   	 F.V
+&A ..HŽ j”\•ã0.   	 F.V
+&A ..HŽ j”\•ã0.   	 F.V
+&A ..HŽ j”\•ã0.   	t¥F¼‰<ÀÊÆ$.@ .Á.èDx.y°õa.€ .Â$Ð‰.ñ&ò0+.«  ...K .5
+Ö[.ƒ .  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ j”V}ã-.  0	 FaÖ.VA ..H‹ÀÌÞÞžñø‘‡Nžá%ò7Ï ìø.´<³úðÍ·Ž‘9I  ..LŸÀêêjá•s.KäÒ·¾¾~Ó7Œ‘6Ø$.NéWkkkáª‘ˆV°d1...€€C 5ªh.ÃV#Ú:.  .	$Û7bÞ(ÁÖŽË.€ .‚#€..W%....@ A.¨Q‚•ŽË.€ .‚#€..W%....@ A.¨Q‚•ŽË.€ .‚#€..W%....@ A.¨Q‚•ŽË.€ .‚#€..W%....@ A.¨Q‚•ŽË.€ .‚#.î“‚C…A..¸à¢K;.¡çìO=x¯mAÜÏ¾ZYY±Ÿ´–”³.¶³dŸÅ€.MØrHÞ..Q#û.¾­å.@Fri–çBæÕ¨­'›.àâ!.ò×SÏg%‡æˆ=­‹Gë.úxÑu.žS×5aòo“€ªQ|.h=.Q£øjV[ëâÑz†mž¥ãæå£FÌ.K—t.€ . Ð..Ô¨=–ä...@ .ã.@Æ%G:.@ ..h jÔ.Kr
+›€ÌK™`,µ.ò
+qQ_¡S­ÔCà4.ó*¬
+Ü‘V*+ŽLP£8ê./j.È%I–´™¿Bi„aq¬ujXî`mâ.P£Ä. îg.†(Eùš.œšÒø `.@h.©.ˆCŠìZt.$µ#¨.í!ÊÚ#.m.ùñXã¾ãò@.ŒÕlÔ(ÖšÅ¯t	ä.$Í˜žQ&'Ž=è7”‰–²‰À²ñØŠqÚtÛJHž£F!Õ.¶ôA@.RC¹þzâÉw.*.ñÌW…]
+Ï.{‰fO.Vt
+{±BÇ €..$±.ˆIì^N£z*»¸7Ê$„ÈÑ8..ÌiÚÐà9uÇ.ŸÜ²«®¼"â'VMÎ'å.:}239d>ÚÇ;š@êîÉ@…Nå=šüHÓf9…çÔùW¨Æì®¢[fxìØ±¦Ø./NÙ.Ò5Öª¿kkk¾jtõ5×µâªXƒ.µB2¾L:U#Áe.ÇÙÃSö(V.‚Ô.U8ešGÙ…ØÐ°Qh*=2	Š.ÕÈfb;RXû­œD.©Q+¶…–I;jÔ¢W¨Q‹0cÊªk5ê‹U§jÔ—SÕåNAš:>‰¸6u¶©mNüÖåmB{ºNnúFÌ.ušü! ..@ ž jTÏˆ..€ÀÐ	pkpø5ˆ.…_GX...@ ~.¨QüuŒ‡.€ .Â'à»¦®EOXÅÐ"Ì˜²ÒU.­ÜH...Þý.ñYßú¢ƒÖ3.ítpìi¼Â»E"n—-RJ0+Q£øî±0õXø&ò(¥W]vn.‘³>.g'<yÍÕyÂ|BK¾²²Â
+ïÐ*.{Š	Döxž¼“ÎDz[÷ð.ÛžìKORÎNX#Qö*œ¢o4aƒ!9.  N.$«F¬bè¤=‘).  ..4"€.5ÂEd.@ ..è„ jÔ	V2… .  F.P£F¸ˆ...@`0.œ•A..…BXC„.
+¦aa(.  ˆ	 F.W.®A .....Ôh0U…¡.€ .Ú"Pøâys°—;Ô¨­Ê%..@ .Á.(..ûuõŽð˜÷¸O_P£àZ..A ..h‹€Q.çQ …}£¶
+./.Ôh<n¤‚ . 0`.e*Õ£K¨Qð)...€@Ï.¦?"Wæ0jÔsS x.@ .S& .#3RW6‚7ý·åöð~#y&à”ÑS..  ..pÞÇ15ËuuC.Å…ø.ïè.,ßEE’'. .ÂW.u
+!-5êš&ù§@ â.6–ý„Äå..vžj!g9(¥?òÐÉ¶l –m’æýFÌ.µÕÀÈ.....¼À.JŽ.lQŠ.ÆhŠæ¢FS„MQ.€ . PB 5¢i@ ..€@ÿ.zXS×¿ÓX0p.2Žüøñ;Qj~áz*\Ž¬º©eS¡fÞ.5Š¬‘'áNô+3óë©p9¾–M-k¢Fñµm<‚ . 0<.¬©.^a1.  ˆ	°Š!âÊÅ5.@ .ƒ!€.
+¦ª0...€@Ä.P£ˆ+.×  ...† j4˜ªÂP.@ ...@"®\\ƒ . 0..¨Ñ`ª
+C! ..DLÀ½û•—.E\Ù¸...@ @.òdŠµµµCj´²². ¡˜...@ .q.pÕ(noñ...€ .‚%À¼Q°Uƒa.€ .."ðÿ.X7¬¯y„..    IEND®B`‚.1  D d       
+             à.ã
+è.è.          ..  ..  ..  ..        . .ðP   ².
+ð.   ..   
+  # .ð.   .A.   ÿ.  . C "ñ.   ›.   ÿœ.   ÿ.   ÿž.   ÿ  .ð.   .  €b .ðg0  ..”..š`QœÑøÁnÛ.%üÿ C0  .   s:    Î. n.ð;0  ”..š`QœÑøÁnÛ.%üÿ‰PNG
+.
+   
+IHDR  ..   í..   ·T.U   .sRGB ®Î.é   	pHYs  .Ä  .Ä.•+..  /ÏIDATx^í]M¬eGqžgüÇO"XÆ	.„-#....‚.šÁ°ˆÄ&.ÙÀ’.ŠÄ&.$pæ=l$6H.JðŽ•Ùya	[±dÃ¼±ÍŒÁ?˜Áæ.‘
+.A.ƒ±ñLêÞz¯¦^UwŸ:¿·Ï9ßyWOçö­®®þºO]Ý§»÷ž{ö‰S¸€ . .@ ...¸.ø .  .€ .hD`o¿Q..@ .ôAàìÙ³ÏïÛ¬á¾û.ê£
+qÀ®.Ø;sæÌ®ÒFº@`
+.üÇ¿ñ¶w¾.l±†²^v.÷®\¹²ì."w@`·..O€-v[.H}..0o1.ŒP..€ .X8.`‹….0²..€ ...k....Q.T²··.”„.. .@ .ÔƒÀÆ·Èµà..×d.wN.<4Y.!!  .Vˆ@v$Š._š —kJh$Q.À”°#-  .€@.4[0UøhÆÕHú.9.£­­×âås!(o 0;.hA.]ÝÌî.7’"ë÷æéðÎÆG.€L%.´˜åÖÞ†ôú. exŒ+é(äÂs xù‚1• .3€À4.ÐÔãx³D.¬Ÿ.C	œèxIOƒ.R‰#°YËM—ñ$’¾….äûd.¥-ÚrQÌ.“N]ÿÔ¨‡óé‰ç.’@`l."ë-¸!6-¯nå'ßdKÜdkNj“z:äš™CG”.I‚.
+_MNd.«.e2.Zø..›Ø“à1¢²|aR„Š$.. °T.¤UÕí¯	Læ]\
+.ÖQ:û.<èTŽ®Óõîˆx'ÚMÑŽËRËqIùJ³.·øóÙª­Ï%ÔÓ†ÎÆ#".X..É‰‡x6“#Q…èzJ£œ
+&<â¥°sÉ¬o!.‚8
+:$Ç.2óÌ.¹(.U.=©Çk.ú4;G.. ).Ð.ÁdM³ø..w¤'“M	æÊÓ*DùÁ"óB­æ.¡.3Ž”‹bÂ¥...ÉW/Ÿ.Yy‰"û@À Ðg.¼'ÁD¢w..CAOŒÀÑpS«±£‰MDr@`Ö.Äg¹%›f®˜Âã³Ü:®y‘©[»œ›ˆNNeçf¹%\ß`Š{^..{ÐÎ«¼`íü.ˆ°E‡\%_£ê .Q€@..°E.(ˆ.Ž..Ë.C½.Û13ˆ¶b.À.+.|d}..†e‹ILF"@ @‚-öö¾°.üì©S|C¯6}–.ïþ¼ÿ¹Ûü.\ .(  ¶@õX..ö¨
+U\ùÜæsD..2 À.ÝqÇ‡N|–‘ä.. .  .".4¬å¾ûó.—‚>ß<÷MþÜþÁoÞþÛ#ª'‰,.ŸÀ.$..€ .X<.ž->{jïîÍçÔ©œ?q÷]›_“—i¾åkŸ•á…´dmGN¿¬.Ô.ÉÍkË9.--þI@. .(#`ç-Ô~.›Ñ'r&>{'ñ.m"xêÂã.è+ÍUP8)å{3oÁ²¬Þ0_‡-.¿e¡Ñ.Ü.q;Ô–Ý¡.+Q†-µ.j3ó.·½ó}+..Y^ .ž-hf›'®ØB2Ió.Ì.40%÷ž-x.Žän—Y¡.0?±Œ..5’.Ý´õž.Êû×æøF² LãõH\Ÿ.É{2×.¨UÈ‚F ³Ü¨.Ë@ É.”µÍ.QìCèKü‰‹_Ìù..¶0¯ö<¼£à…µË¢.\i²}‘$[j-Vf‹$Ey3˜üŒ.9þÈåz.õ	¹ð.x¶8<<.P@`v.lÎ·à}ƒåÿñ.´›.'¢.É’ø..Â?%G¢L»éý.Q˜.J’(Ò
+..â.ú9Vhd.c­žÿ`ó’¬æ..ÖãINçqvµ..G.H²Å¹sç"q!³6.>ô¡.U[7²«ó¾p×.ˆ.Þÿ÷Kii¢ì[èÆ½3[pºÒ./;.¹‰.ßÖ'Ç¦.£KŽrcY¹„.åu.×ö`¬$¿9¶ ð• €l..¸ïþ‡Èï$¶¨³n4¼AK~.M4l?G+õ(ÛD$™.jrx(=ºkoZöÆ¼ä.ŒŸ‘ô.tÜ¤<|‹Îø#". .S"ÐÀ.4‰M.òÛÏ k¶y.†/“Iý“Œe±$õ.ZƒüjZgINï|î.¹ƒï
+“À .¾äÊf'-™²ø‘.. .@ ˆ@.[.!.ÑH#T9íÞ.¶^ºÞ²HÂ.s¸nÖõW&.#`.#§0.îãšätŠZCÙ.ï+.äÍOÁ2ƒ.. .@`z.šÏå¦õ.›%.êâEÝÓÛ:lŠIwdØ$ 
+.Ä.xû»þž>"¯ïãJ:KÒˆ9.‚tFoìˆ\7ä3vr9ý
+lAn.MhÓGû.ô*...žÚUÎÅuØ¡.H..Ô€ Q.›.Â¨¡8¼
+Ï=û.}(\nvbg‰-6[Bü.Cl.YšÌØ|vb1...KE€Ú.ïR˜.¥þêÝ....êŸÿé.ë|.'ž…UIz74é|.ëŽDÏ·0G66.LùLÇÈi½I@ .Ì.à.´ô`3[p/Rn$9..žŒ[ Š..b.ñ-@.»ªWå7hu•ð÷‘žùjž·à.âí;..Ÿ“?sæ.iË½KÚ33ˆ..æŽ€w/âÝÃ¸¤A‰©‚.ðÄ\êÔ.ß«ÐYè\%’8DÙ"xþ;ó./.'b0.YÀl.. ..Ü..G«E’½“È%3.Z.³..èf!Ó¡J.ò.e‹ˆoÁTqþüy¾9}ò’½qh¯‘Y 
+#ÀN.HÎ^´²¤ÕûTô¨.=È§UB.Þ!.zÜ²ÑŒVU"§­4oQð'’ä!.PìX˜$‰-˜'è?]~e†.ž’_%P‡ø¸œVRC#ŽÝ.¦L«›…ˆU	.­æ-Øf~¶e.C2’œØÐS.,.÷-*.f0.ñy.©'RÖš.|à U¢-Ê¬ Ë˜©bïààÔþÙýý._üL.r™.?¹S“.”û¤$SEŽE.¯‹S¦5¸ñP81.A¶˜Ø*$W!.­ö‰23.å	ŒA2..‰Š$ÆTÁ’<{¡/.€
+ŽD™.™.ÓEÌÐ2f?.Ö ÿ³°h.È‹Ú.±5êÑié=EÚf
+ò@ . é..Ò·Ø'ó·lA¾EŸ‘(v.|£Ì!…~½.¶ò®	.xý^³„ˆ|„-ZiŽŒ­M_!âà.ä|‹à›#ƒÛ.…5#À{ÐÖY7šÙÂôè©Ó‡aÈý†$.[øò(D.‡ É
+la.to¹a.£°Q^œ.a..1Ö&YÊpCr­æJ.Û:#€Ó:C‡ˆu! .Ûù.ž‹.†oÆ—6tAnÁ•dDf‹­ç±•Ë_Ò7"¹p¯©¬AïåÇ8‡x«’vš@Ÿ–.Èýêe
+€à§Y#@.Œd¿¼ËHõŸ<ï`Ž|c.Œ.1 08.ƒÍ[Ð.Å†.ö¦.è=Zsµ%Iî°.w¡­..=ùà.æÌsi.Ã:›„ˆ@@#ÀËZù2ógZ¬Ãì.p..ƒ 0.[.[³ñ.:\zÖW.m¸]æK.IyòYò.rÑË4à“ËÑ.K–.—ÅÛœÌZ.è.e..èÕ¬¹×@‚¯‡, 
+d¡N..ØB÷wä>—“­{ÑñÒN“V!cD.X–4òzÐ‰4hÊa…&¤Q>gFY.'ä•ûÜu„.ÑæŒ€^Íê_..’à×Ù}.žsÖaûœ..~.ÏæëJúÌ™ó4ÓxHá2iÑ.$îÅ/æQÉ€µ….òõ#{'J,?Z«´Ç«”Nô¸è©¡-.Ž_Ç Ä²Ö).hUo[	O™‹.¦5HY.>.•Ø¨‚‹§3UHß|1Å¼.Ú[L‰Ô‘‘£åJlÌ1U.­u½r…Ö½^å.=ôÊòf\”¿ê!P/`”.a-Ÿ›/ÉÇ6âYPèãæ„ûH6ZX@® ¤ˆ§1uxß"Yq9.Mä4…ŠTªB oAlq4.¦..ÙSG÷.ý½ŸÞc%.žì`.bégöØ¿±-FÁé.¤?+íI°õ.0ÑzjQ¹Ü#v..ËXl!.Š^ÈRn)Jd+Ã.R..;D .[4¶Ô.°.¿'R œ$.éŽ°~PîµB#l¸Mz™"&&é¤ugTKjË$*_gÑ‘ô.<’:ûR<>¹ò5’¤aø‘(óX6¶øúm.½Ã¹Éê.Ÿv$
+.¦G@öl¦‡–î·î¾1ƒG.é6.•A6&ù²‰ü¤Û5nÅøÒá^Ö©³ì£‹¤V"Ê
+ÃÍâM..‡ç¼ør7Px.“€$‹>YŽ£³Ed	»ÙÛœ¾Ê£2T%†. P9.4-AãFÜÑ£ù	z
+hÅ.“.ÝóŒÅÞÑLøQV’íì°Ù4ø°ÊËÚ.©ha=*%”.´ÍÄ
+ÆZ¶˜&!É©Çô‘¨F”ËÛ›ë¢mTU§ÀH]¿¡Ô.¥'.þÄÉ.­.U,2.¥
+à™ìÃÃ3D.ôt˜ã`ˆTXX#)O»i
+sƒ.:9S"¦ë-	%Ã
+n2L¤-,+,ç‚.¬¤Ú...qî8‰Që@åºˆMqûÒo.â•.¼.œQØ¢àOø©¤pncs.º¯.¦¦òWé"Iµ( *©ÈÃÖ.".BÈ&!¾Ñ&UöDÁ¨u¾*û'0Ò|$«ìPÍ·yê’½.Óxõ„f¡¡‘-t.8.nbJð;ÿ_}ƒ¶±)Ì5Ó.´F¶0Mj²îIõ+Xe"FZ´‚Ú¡ØÂ<85×¨Æ¶.Ò¸ùv)§6ð.¤š›ÙN†ç.M±åæ?Ê.êªkÎ:@Ü˜¨I7É.š`:.aÄ’ò.0*[ø
+7£‡s¨†£‘-Ì#`†›¶}ˆÍÑÅtÃ;°ùžG!Pw_äÞôK|tß÷Q
+4£ûC9Ò*³E²×Å6øturžÛøWßSñI.Uâ#éiË..…A@5Ï£.,#F_GŸ·ˆ gv”:z0èÑP.Ê†®ë.µ^Æ.ÂJHÿFÓhÐÞLÁò\¬B.ã¦rº..°1DlNÞ$‹#8Æ..ëVÄó%O.A™.ý”¬Ì„$_º¹4ú«Ü›(>ºæ.¾÷ÝJ."_M*:\7@.î-‘ðdÖL.±M.û{oƒŽ8—:S(µ$’.pÊªràTÁ.Û…ÞW/²õh?Û³j0q?]¦¦¹—öÑWî\`
+qùžuË7Ó9…"Y°-˜}y€5>ú¡b.ø*³²–ì	.¢..ÔC2OAâ¡HO..Àt.èŽÀP÷Ú_ÖÝ..7ÿÍöæG;Ÿ.7ì.÷h¶÷GŸÔVçÂ«º·"yÑ=#i.}ÿEË›®–..Óß1$l Ì%­Å.ÿ—³ í7.ô .Ty³s!Il½Í.O.%i°.¨ZW—.Þ».Ÿ	.¨«à—lÍˆ¾…o:¹Ùå..ý_Dyž¤..G%Oî,ë.µgŽ\È¨†Õ©\üþ.ƒuf.VÍ.?ÿùÏ¯¨ëòåËÜ.Á58.£ŒÀ´åÖ[.’.ÎÃP›.ªâ‰½ƒíŽ.[‡Ã£ ‡’Ì°’|52Ü.ö.ý¨T9$—t2<9äÕ(™Ë‘àP¶¡œG!K.6‡˜A¾`..‰W˜4xð:]…BF€š®Ë—é.¤[o{7Íuo–Sœºrÿ×.~üñÇ.xà.cç.¿øEoùg>ó™*²S¥.ñ—Ivýßï~'c¶×\sÍ«^õ*úO.z3ƒ.Úˆ¾Å€¶.QE{2Lß>j4†öKøž/Ý¶j..Úœ‹•T%$.µ/%§S<"æŒåIbö.leL’2[i˜‹0Q.õz©óû§?ýé¥—^¦ÿ/¾ø"}%üÿxòºûî»ÿÎ]$ù†7¼ÁHâ« ÀÕà.Û‹.	[Bøå—_&ÌáaŒñŒŒå[älM®·.ß‚ö6§ÅHÆ·8A..ßb.h†Õ9l.9¬¶asÚ¨mÖÆ7æîH`ë[¼L.ñòË—ž¹ø–[Þþü¥'/¿r™|‹‡.~ô;ßùÎ½÷Þ+ª¾üå/úÓŸ6š).ŸÜÏ~ö³¨
+K—ûÛ7¿™²øß¿ø.ý§JE^Åu×]wÃ
+7\ýõtÃNÆÒ1˜4£°E«.øµÜ2.E#QË 
+®ÍÃ.§.®°U©u.ž©Ù­ó»e‹.ÿøGêí~ï™‹o|ó­?üþÓ¯.]\¾òÃ.O?ýôW¿úUÑyÏ=÷¼÷½ï5I|ò“ŸÌ%zéÒ¥Öö,1Â­o{.eëùçž£'‹Ç ˆ'^óš×ÜxãÄ.L.KÌ÷Îò4p.Ö-.f„‘·Ä..ãHç&l..ô»!€XKC`Ë.xá...yöé.ý¦[~øÜÓ<ãöÍó.Ÿyæ.Ã.&ûÄ..@À...³Å÷/]¢q'º¡f„Hâµ¯}­..Ø"Y‹ÚöØ®Nd.Ûá.ð™7.R­.f.ª–ƒÀ–-^øýïi<ýÙ§.Üô¦›üƒg·3¯×œ{ô‰'Ÿ|òk_ûšdÖŒDÝ|óÍ...€¢!¬O|â.|oÄd„JÂ}.ÅÒqÀìÆ¸x$ê'?þ1
+÷mß'¸Lþ.±.]¯~õ«ÉÃX.[èöÐ¼žÓö©éÌ.õŽë™u.m.<.Ø9.ôTo¦[·ïFm;¿×\{íÑ.;ÔœÉuíµ×>«.ÿÆþ}÷ÝGÂ_ùÊW>þñÿò—¿äˆ$F÷rqà[ßúV	¡{/Éœ„.`¾jÛj¾çòåY
+ž¢àÉíåMqsûîßãŸ¸†W1.Õ'ÏfSÂÆã4ú¤…¸@ ŠÀÖ· —;éuKß}â¦7Þü³.]ºnÓ¬]÷È¹../^|ðÁ.E•ywV¥7hù%Úo}ë[.ýè?<ø ýÿèoû[
+yýë_Ï7råBt8ßçþ³ZV(©ˆ~IÎÈèX>¢¶Ö[.Å3%ÇoÐþÏ¯MÃ}/½ô.M..g°cAƒQôŸh¸þzâzo@¿QIvæ¾ÒOúEvÉ..úXÚk1ÞÌF¾Ú.žà¡{ô>ÕéÓgÎŸ§Ãî7ÿé.aÔSË×kÉ1[ÐH.±.Í[üü'ß§^0½¯óÐ#.[<òÈ#.Î]wÝuçwÊW.“{j.5†>úèG>ò..ôb.bä9$')¿²L.®„Çe´¤¶Á$Ñ³z\{Ýu¤áó.b.¾è+ó._‹a‹\Ëî.d^Ñì’.ÑqEFØÅk¨š-.k.¿L¥©B.ÃÄ.?ÚŽ 6f
+..A@³Å3O¼ñ-·þüÇ[¶¸ñú‡.~ìÂ….çÎ“œš×.õbU.•ÚK[.ÐO­Ö<6¶.W'0Õ‰ªº.šn5Nn§Ÿl›t9ö.gÏV	.2¯· Iš®X$[..¾L5—ps.d‹Â\È.Ø¢íÁ...Øž'suŸg
+ºñË’•²Ì.`‹…4îƒg£.[-š0´÷Ÿ|†M;’ì3.ŽI’D°•‰´DÉ‘“á‡1À.ÛÂn["}ˆ¤N
+¬n–›.À_Ågyo»Ÿsö!®Ì.™÷¯.o: ..tC€ªhy.5ß…/‡·aø.Ü¥‡«[ÑW.«:¶Höý.ÀÉŒ….’â.èÜ«bIºáK[Òø«—/„ä’Às.)¬ÅËÐŽ.|.=/<âcêÉÛ `Ó¸KE’šÃ5™/ã”øÀ$yøÊiÄt.üS9d.BZ|•Ð.Íx
+æIü#%ëKÍ÷<LKX/[.k@Ž$$<¨GÄ¼ÃÁ!ò`ðWý|–Cø¹.%ú++1.m
+†üÂ. w5ˆ.ˆ,ˆ.ø.$ºaæÐÇêI¥Òõ“ÛŽ\ˆ®Æž.L
+—VI?.I™r¢.eaÅ4evtY›–jRóe­ËTªMl!„f˜g5ôú:ˆo¡.¾Ü·jìyqëo,7NC£À”..ií...zÝº.r.UÐ®þ.¸¡
+fˆ-Yl¶ú÷ç°îÜ~]çáIÔP.#ÙP#[HÏÈt‘üÁ..Ê°¾E¹›.q.¼Œx.Þ..J×~åH%
+µ5#pÒQ V †Ø._[WcÓSÚöø6œQÛå.šÚ,„=ý.¨‘-Zåj.ßÂ.ò¶2 (œìsiŸ.² ’k.#JÈ}Ö}ä±N.êe‹`ëÙÇ·ðóÒÇ×~€.+ù_©P./S.à<z3ê¬+°jT.hˆÕ_£¦.å@ ..u­ån»Þ"˜Õäz‹`\ˆ...¨wêºDGœ0.´½
+Ÿ´’Õya`†.¬‹-ÚæÏÌ..¢.=•¶.@..¤. [LU3V²óÇTp–Ò©—-"ûDÕ€ l .I.èœTêð.w.üà.?h”Ðî9`Íf‚kÆŸO±]ü®‚•.q½lQ	@0..tC€N‡f¶ ³óþêoÞúÓ.]¢ã.hÇòo.^¤ó-h.rQû¥/}É$áC´À¯~õ«n&-/.¼=ó|s¢-1.!üº×½Ž6.ä½.—t¾Å€e×ö¥.‘¯—-à[.X? jz.¨!£>ïx§!MŸ£
+S¤£,ˆ'p.R«¢Y [.óó-‚@Alb.¸Û.<iUŸËíOä¦cYßóž÷Ðñ«tá˜U]ŽÄ.äR,þ¤Uß¾·mñ5hmãŠ|½oÐ.Þ’œóVÏgÏnöHàÿ‘X.·.Hnµ.Ðá<ÛÑ§ki¯òë¯»ž.ÎK¾šAcSri¸>õ©O.=.U<õÔS÷Üó)¢w¼ã."@÷|qˆùº.Ø.d:fŠ.åæsôè+.¥·ìKo.a¶‡¯º²%·0J.1‰’ŸïËB5œo1juäb›o.
+NýÊ©ÃKî.
+’\zæâ[nyûó—ž¼üÊæÔÕ‡.~”Ž×¾÷Þ{%.…s¹ÍYÙæ\îÜIÚt4÷ì.Ùî\ ²hiÙœ¡W€q›ž[ðËK¾äW¾÷!ÞÛÐ
+NR¾®y‹¶ë-v~¾… n:Œý›ø¶Þbäa+×˜ ..ëÇ12.1{'2„..Æ÷¿{ñæ·½ë.Ä.›.£/?ð_çèì<3Ë}ûí·‹‘.ûØÇäþ_·.¥Xô“LqßtÓM.¨g¼9„¯õÌ„sSHÎ„8.äÌ±{.Ã~'5¤[¢¾õ×..÷/ƒl¡ñ)0J¥³Ü¹™ídøq lqtÌjr]÷ö0¤ôiH†~“…×ªk%\®+.ªÒ”Ö¡‰.*z·gcÖ±˜0ž{ö‰[o{÷óßû6­Ü§¿û¿þðã?þÀ..HÖè nó.­~}V¿/›<y›ôÈQÛ¬sØã¯ë/..3aÂ`æX$U014¶ì.¶ˆÈpÑ‹d½£{ÁÂ.dŸ(F_ Ñcy.Vá×Ü³ÄQr.¥~ëlJ ¶$i•V®c%-÷I´5¬Ð^x›E¹I7’¨f&“—úÛ,o!e[..Lß.³zÃõ7Þp.õ|)DN.åã£7..ê’Múhž\OiP¸ŽH÷$Àú'/fb-ï+.°Jó.2i.l=æX©vhs½l..¥Ï>QÉ$äA•
+Ç!,ì-·¤…ˆF..¸OK¸Òôc”‹.c¹Ž¥õç4çòÈz.wzaÝgI‚crª¿
+..(‚•¡B1&.éð2yÄ.r±€\w|øÃtj7!@.­$sÇ.w<öØc.Þ\‘§"±¨eä‹.é¿„P\­ñ÷.½Ez.ºsÉO½<Œú¾À‘þáõ!úñIþZ#[H{dz—s9ßB@—Ö\.”r—§U‡H+/ø7ÃöÐ“Ü`’Ð.¦[ÿ¸ƒ¢½
+	`l“Úž†¤ëÛbXvlç¥_ŠU?õ¾g)!FÌôtM/3.K÷ŒE¾F¶ÐÖëlÏâ|‹HoºàÓ.Ø¸{geŒ'$YÛ&d”ð×.¡hkÏÄò.8
+ibÄÜN.¨‘-Z.1È¼EãàI+“ú.G<†>úÇ‹›tŒ¸ÑgJ+‰Ç./S“iÖ|¹=ïhf§!M...Ú!.õ²E°±è3o!£fðD÷jÛŽ.æü.3âïÅ¼1z„¡ðk®ö.F*»i..ž¶¢.c˜þÊ.Ñ!³;|„ÆH.§!*töD E¿¯gJ‘èm×[Dt’.Î·...±1. wgo{çûè?+¿ïþ‡...i.{Œ´ ..Œ‡@]lÑ6Ÿñiá §ÒÖ È.F.À..A`..Ô;..ÙñéähoéÛ,
+.F..  .ªE ^¶ˆìêQ-¬0.. . °0.êe‹ˆo±°Â@v€ . .Õ"0ïy.‚.ç[T[·`.#€y.Ô„e 0oß.ç[,£.".@ .ÔÀŒ}‹ÅŸoQí…..à[DP‚Lý.ÔÅ.m×[DfÂIgnÇr*.y³–_Æ­öEÛVËßê¯v«².l±ªâ^pf«.‰".ðW± è|‹ó´þ7÷Á…‡¬..  .&C :¶œ.WÞõÙ'Š÷œ .MÏÝìÒ¡w¼Ðæ™mï¼XN.§¨3.Oq²š„€ . ..zÙ"XN}ö‰Ê%!Ëü¤Ao.ñ.¾ê.£G~Ò\%.¯²U¹.ƒ°@.. . 0,.5²…ô»M.|Œó-’›¤6î (ÎAÙ.ŠèáâŒK.[üÐ..€ .."P#[ìð|..•..’8zO").?û!..,Wˆ..  .†E F¶h•Ã>ó.2æÓ*Å.ÂÁ9.æª.ú... . 06.õ²EðeÖÁç-ü±.¾.
+GGè)
+._*çÅ.ðPHqì
+.ý@ . ô˜J°Qž.¾¶ë-‚VM|¾.ÖF.Ëe%bXo±’‚^|6ëZ×.îø¸Í.¤¨½Š¶.ü‚. [,¸pW•µzG¢"{ÐVu¾….³ª
+„Ì.. °..êe‹È®.+)$d.. . °s.êe‹ˆo±sø` . .@`%.Ì{Þ‚
+	ç[¬¤¦Î7›˜·˜oÙÁrÀ¼}.œoÚ..€ .˜..û.»:ß./ÈNS5.“
+|‹Å.åÊ3R.[´]o.™	/ŸoÁÅßêýZf‹ gh±`”•×Èåe.l±¼2]gŽª.‰šò|.¿Ïk¼.´"˜.œ.·.’@ . 	.¨Ž-$ÏÁ•wý÷‰2(GŽš (b^N^gDv&çÀ`...?’ .@ ...¨—-‚..vŸ¨Â¡.rt’6ÌoFÛx.EÛ$‚8@.. . 0*.5²Ådç[$wýëyÔDÏè£.6”..  .:#P#[Lv¾Eò.‹>GM.Ï½è\Zˆ..€ .Ø..5²E+,úÏ[$‡˜xv¡•%...@ .,.zÙ"øÒÑ ó.B.É£&
+ÇT˜ƒ.
+ç^H.Šœf±à
+‡¬.. 0S.æ½Þ".zŸó-°H".2Är.`½.êÆ2.¨‹-Úb..,
+z*Þ °EÛB¼A l*±..ê.‰ŠìA;Áù.if.õ.¹ .@ .0.õ²EdW.”". .@ .Lƒ@½l.ñ-¦Á.© .  .€À¼ç-¨üp¾.*qå.`Þ¢ò.‚yA.æí[à|‹`1C.. . Ð..û.»:ß¢'âˆ¾6.à[¬­Ä—šßºØbÊó-¨Dõ.¸ýß}juîÅRë.òå. [ V,.êF¢&;ßBïéÔŸ*¨6.¢d.µ
+¹ .@`y.TÇ.m!î¿O”NÑï «C´/¢¬H._a|—øBÂ¶.@.. . 0..³g‹ÎûDù=üÉ.‘=eýbïäÖ¶.”%’ .@ .Œ‡@l!Ýy9è‚óÏ³.ú?}íã[ø“‹:œNQ.€’Í
+±}Èx5.š .˜..ÙÂìç!@ðênýŸ¾vö-’øö9Übš.C*@ .  P#[´.¢oQHh¨i.v/0.ÞªL!..€@….Ìž-:û.z¼‹[sòDãñ.¾D%J……
+“€ . ..¨«ÛÛv½E0Û}Î·.&‘.ƒcÑ.À.DÇz‹.."²@.ÔÅ.m‹$>^´«± °EÛ2]ž<ØbyeºÎ.Õ;..Ùƒv‚ó-zV‹]±TO³... . `.¨—-p¾.*+. .@ ..ê.‰"ß¢.a.#&}—rŠ¯½å_¦,¹.~úŸS&‡´FB #Q#..µ.#°@ß"Â1¼­¹6Ó8{{.. ’..@ .Ì.zÙ"2o‘„¸1";.§O^‡‡‡ôê..†¾fQŠ0.. . 06.õŽD—sv,Œ~.".2S‘¨ñ
+eÁš1.µàÂ]UÖÖè[P.“'¡¯.UøÚÐa:¡C”UÕBd.. ú.X©o¡ç6’s.ìOœ?žˆÄø.ÔôOãd€cê~".Â·ˆ .™ú.X©oA4 —/$r;(.¬".&¨Yç¨’..”ÿ.Éúë
+,..@`Í.ÔË.‘W›’%.‰¨‡¡´.Þ#„æ¿‰Kö÷Ï’Xã[RìjðGXABŒ…qÉ5WJä.. 
+.¨—-._mÊ¡éÁð!ú<W­G˜†.c;.5ú…á¦Ñ!F.@ ..@½l.q.
+¾…?.C‡äF¢4E™I‹!Ð¶:Ä#.gŒ./t.. 0 .õ²EOß"Ž.ÏRðÅK.ø"÷"®¤ä4sæ},D\  .€@½lÑÓ·èV´4iQž gµz²š§+øÃí¾.)›a"v³.±€ . .. P/[Læ[œ>s†Ý.v,È¥ ¯ÛMA.“/DÉLµø.~NÛ„.‹H‰J.KNPÒH.. . Ð.zÙb2ßâü†.ˆ-ö‰.È± 4éæx.ƒnàÂiè†.b.. P-.õ²Åx¾.ñÐÉý.‰*ÎÒ‡8ƒ>{{.†Øº..HÛFu!ŒÜ.´ÕÖ....€ .(#P/[Œê[œ<F‰X(á*+l]
+º6!W®l8... .@`å.Ô»óGð˜
+_~#®¼* û#!€?F..j'F`¥¾.­Ð>88úLŒ8’..@ .Ì.zÙb¼y..§³g7..t"Ú˜cÉÁf  .€À”.ÔË.£Î[l!¾rp@ïËnÞ”5a4îd5e}BZ@ .,.zÙblßbë^t$Œi.×›&•¥Ölä.. a.¨—-Fõ-h9.·Å4.ÕÖÃ Xú•ªaËÃh“„à@ŒŠ3”.. Ðˆ@½l1ªoATt¼%Ô•“..%Ûe.\ü Fœ.wý_‡óO|yùÆ23qEÞ‡ç$.“€ . .@À Pï.´..•4ÖÔ…'’ ?ãüùCšÉ¤Éí .ñ–èˆÜôË.!|Ï..˜üµ ¯[#VÐVNe.0‘D..¼A‹º±...ë[”O¹àÂ#÷‚¯íÔÑ.†.×í8Uâ)?@ä{ñÒÐ.y˜.]û.B-–ÌõFŽðKú.Ë¨¦È.. .;G`Õ¾…ò!.¶§æm.mÚ*jë^Ð—
+OäÜ.Ž+ž„iÍ51x1ó«ñ.¼oáý.Ÿº×)29*Úyå[‰.ð-VRÐ‹Ïæb}‹V%Ç.¬R.¡
+5§ÐJÓÑ\…‰ÃîEÒ?A­B2â.MÑ:#NIP-Ä€ .X3.õ²Å¨ïDeŠœNäÞx.¹–]zë2æÃm1·æ|EZç¶ò’D!-¯³•Ik~.w  .".ÔË.£¾.•††žŽ¨‚Rg"ð’É×g%å=g˜Fy¯DO„pt“–×©Å"µ.2@ . ..õ²ÅN|.š‰ Q©í¾„û.ÙvHgsƒ.. . °r.êe‹)}.~-Š½.b©-Q‘“±yiª3i­¼b!û@ .,.zÙ¢s3Ý!"/Ö“~¾.U,¬®#;@ .ôA 4+Û'Îq;.S.‰h..!˜\xç\ ".À.´¨.Ë@`¾.Q‚>iõx~‚–V¤Ã—QÒÈ.. .@ ..õ²Å¨ó.§Õ¥áË…÷.q . ..@ Þ‘¨ñÀe.Bôó=½lš.ïfIpí.+o%ÜÍ.ÄÚ...‰Ú.òHwX.êe‹Èôƒ`QpDü¤·.æµÜ¹pƒxrW._*­. ¹.ˆèŒ¬ø.¶Z@Û€.€-...ªv‰€^k6ß{nîý•.7¼u9ÅÍ….µ,Üx.Åd.Yô×¨..sAà¹gŸ Sé?¨š‘;;.ãa'....8o.Ùy‰öƒ’ëø ‹
+gçÂ.|ÎÉé·o½/"ÃM,&..+Ò_0Â’.§®u&“ÓòÚàHÒ..@ .ÔË..–MÄ‹óP]š-rá.ÍÂÀ¦íæq$.kâK.n	1úYFS‹.:“¶•åõ¯‘¬A.. . P/[tx'JšWÓ…÷g]ð‚íãeÛW«A.¼[Eñ3.Æ°‚ZÏ=Þ.a.¢Ë0PÎ•.yãŽtË.b.. °*.êe‹.¾…™.‚dUú¿.qÒåíÃ÷R§!.«ˆ4âÒ¦çœ‰ˆB3±Ñ.¥ /.NdÔ®1!. . °..êe‹.¾EÛ.;­Þ£ÕqO„ï·ÕzBÞ.†ôúû(M6ñœö.$‰.%$…û.†¸@ .,.zÙ¢ƒo!]ø`?<LJæÂuûÛjL‰Ûq.JâfÚONxýB >z9eycI..ˆ.. °f.Ö¸Þ‚ÊÛt·¥—íÃs.ö5W.ä½..XoÑ
+..W‹@½l1.d4KÁo¾ë´’..ƒ$–Š Øb©%»¶|Õ;.ÕyÞ¢1âÁÁÞös@çªÒÊ<ò.ŽCöø\n.¸¶
+ü..  .’.¬×· ¶•.â^$.Qu€@..à[ôA.qëA`¾.£O³èÇoÜ^.‰âc‘øjôQê)EX..€ ...õú.‚,ïšÁ“.~.Z¼f:v.\¼~ø.‹/â•dp½¾.‘.ø’.9â‚v.YI%@6 . ..ÔË.×[D"Š?!ïCÉ,çnÄ..@ . õ P/[tž6.FÔïÍê{ÙXPï6¨+„,m.jÛŒ¸žÁ“^OEGN .è‰@½l.q.’™o.ñär‹Íì7_…‘(¿å_ÏbˆD×.Çb6%‚.d€ ...zÙ"è"x,".
+Ch%2.ÕvÞÂï1žÛ.×ï&k6'o+â.ÝÎÁ..¹!ù.÷¥ Ï.ãI.X.¡
+. ú.¨—-Úº.‚u$"1Š¹LQå6.Ì•¨îøKÓ,[½Ê
+·ÈÞ5‘Ýs“¿r¢8ô¢þÇ	...#P/[D\„dÁøÓ,L.Ÿøm.3yPÞX0¹+ßP.ó‚..z±àG.Y..•#°Æõ.Ì.Š.ö..i¿¨£
+£4mä6 çp½á ß|PBÌUÖ“¬@.¥(Ç2bò2Š…y‘.Ÿ[¬·..L¨Ú!..ô-Z ¹iôOl)È.>r•U%Ï®.·…..Qãî”.&…qèEÿR€.  ..zÙ"2ýÐ¯.iCÁ.Z¾ÝG‰.Füü‰ÂA.ÌUÉa.&!óS<QÎ#.½èSÖˆ..VŽ@½lÑyÞ"R¢ôâ.>É'.EdÌ(|5.‰.—ÆZndZ[‡ä~5áÚ€\¢.kuÒ.U­00. .‹G`ó.ÜO7E‹‘úÅ×õ]e.ó.»B.é.‹À.}.òZdÁ¶Ü´š$.¶. 
+. . P?.kô-rÄ ÷¢þú:G.á[Ì±Ô`³G`¾…~ë)þ..j.. .@`Í.ÌÞ·0“áã¿IµæÚ‚¼wA ¾E.Ô.§>.æí[ðáEtÞü.õMªúŠ....  .&B`Æ¾.SÅéÓgèmXýßï..‡c¢Ú„dR.À·@½X..u±EÁ3ð->oàÑX.$F'Uäöðè#MqûÍ68ÅÆýEÊùÊ©mD..Ó# ¶˜.s¤8..ÕDùýþš(a–ÚQó›ûŸCMïö:.UŒ—ôÄ.Qó .. y!P.[.|Á..f.Ê.LÅËC§È÷z³
+ñ	ü.±&Dâê(f.”$
+3ö$¿ê,4. .  .€@.zÙ"Xlž.LHNÞ4©–¼b+M¶	Ñ>ŠÈè‘"³É.¥å“nT’´PÇbb(Ø.Ä.b@ . $.5².÷²¥_,vûƒ+è§>¾…g‚¡jIãH‘OÚ»,z§).¤¬9é÷.•)è..@`Í.ÔÈ.Ò.7½ržÀÐÿékgß¢¶R.d QÂ_…}kË2ì..@`F.ÔÈ.­àëã[´Jh2áä„
+7ú.‹.Ùó«É2‹„€ .˜..õ²E°eìì[è.lN+9“!bb	Ñ±¼ÍÉ®}9é`Æ½ÁÞ.oü\ê%ì..@ 6.ZtW'0½íz‹ I¹õ.Ñ}w¾U.¿Q?.Ö€ Ö[¬¡”×ÇºØ¢-âÉA›¤’x‡]G.[´-.È{.À.¨.Ë@ Þ‘¨ÈŽOzR·|ß­´’#KÝT!.. .@`Ö.ÔË.MK¸g
+;Œ..@ .Ì.zÙ"â[Ì.l˜..€ .˜-.óž·`ØqÄÅl«ß*.Ç¼Å*Šy.™œ½o#.VPK‘E  .vÀ¼}..q±û...š.€oÑ„.~Ÿ..u±E«õ.<..™.O.qÁoßê5wú«.½à.‹àòé 62 ¨0WÑâ	Í£ªÎÖJ°Ål‹.†Ÿ@ º‘¨öç[lÚÕnG\.^..Ü¦Po(Ûm±H·Xƒc.…@ .,.êØB`¯¼ë¼U.o•Á½xÝ¶&wr.{ü¯¾*ˆfVnöõÓ_#Ú4&&®¸ ..É.G4Iäì‰.¾Œª\ . Ð
+zÙ"žÎ[E%“Ðzi@õn¸m../.Ñæ7­J.Ö8Ü¤c	/ÊÞ´&$Ž9$ .X..5²…tŸM—<y¾..Xgß‚â&÷v-÷÷[y.IßBW²‚6O3^X\¢œŸä+tÒ·X[½G~ .h‹Àÿ.¾ôk2¦x½    IEND®B`‚x4  D d       
+             ¦.„.è.è.          ..  ..  ..  ..        . .ðP   ².
+ð.   ..   
+  # .ð.   .A.   ÿ.  . C "ñ.   ›.   ÿœ.   ÿ.   ÿž.   ÿ  .ð.   .  €b .ðÔ3  ..À¬àXGdvíÂ	¡fYnÒtÿ °3  .   ~k    Î. n.ð¨3  À¬àXGdvíÂ	¡fYnÒtÿ‰PNG
+.
+   
+IHDR  .é  .+..   uŒì   .sRGB ®Î.é   	pHYs  .Ä  .Ä.•+..  3<IDATx^íï‹$Ušï£ï«}±.îÛ‘R³(.K,¸¯¦¯v;v¦=Ëf[.‚	þ€.é­¤¥¦çÂBgY{•±Z.½ÖT6.koa“µ®» ÝÜ..¤í.vÚÌrí¶×yãB
+SŠEÕh¡÷.¸/ö]ÝçüŠ8.q"3"#"3Næ7.©Ž<?žó9'¿ñœçœŒsìèèÈÁ..  . `.ÿb•µ0..@ .@€.€vc.€ .€€}. Ýöõ.,... .h7Æ .€ .ØG Úm_ŸÁb. ..€vc.€ .€€}. Ýöõ.,... .h7Æ .€ .ØG Úm_ŸÁb. ..€vc.€ .€€}. Ýöõ.,... .h7Æ .€ .ØGàXÌwQ}úõ7ö5..ƒ .€À„.ˆ«Ýßýð'” š..  .ö.@ÌÄ¾>ƒÅ  .  íÆ. .. .û.@»íë3X..  .ÐnŒ.. ..° ´Û¾>ƒÅ  .  íÆ. .. .û.@»íë3X..  .Ck÷í×ïúÑ=ì¿×>—..w.¯>§:
+Ô‡.<ËMúÑ_}pØ·>×Ô…‡ïÿ•l.}ôìU¯.žå¹÷û—Ë+.|..â×¡Û)ºRo/•#zðG÷üúv°ÐÛ¯	Îþ. ÷ø(zÿó_û»Ïë;wLRox¦¾.h‡ø(Üºø.‘..ÆG`hívMþãŸ„ž..ì:åSåñ5Å¹ýÞ…žS¾tûû.þùÙ.‡¾Éæ¯%ÉÊSï8Ë×¾ÿáÛï?|ÁÙ|ÚUdú2.¿à\úý·ì£.n_r^<þ£à.~@û¢..#˜>Us\¼½„¢÷âqM¾.?½ÞsN•ËÎæïÔã™÷3= k›/´E®ßÿ¦¼ùtPôS75²ïÜ’Ù³áéM½¢Ã«/^Ø^þPš$ú”Ê©m:ò¦óNM8.^}Û—?µÑ( .FJ v——_(÷ö¾å.ûÍvùyÏø™gÞ§ïö+.´9ª2úÒ.¿°m®úÛ½žã,ÿŒ.vâe. ÷Ÿ›aß~¾çåKÿ›tŸ_3Ïnü¦L_xÍ‰.Ü–¨Â.ç.wŠ.Ï_*;ŽêMÒ½ûhÛYþÅ/.p.õxæ”Ø.rùÃ—OHH¼—?xF2s.‘¢÷ûõ(Ÿf.?y‘:Q¿Ä“æ¾{¨ß.y¢ìô>úŒÄ›Æ¤£ÝÔZçÜþ‡`	ãî Ô..‰.¤Ónç¾¹.œ]îx.þéÎ.÷Íy•.fÍÚ.]¸Ãb†ûë×xìEè£š¤û¢.1o
+‡—ÄçÂ	Ê.„{ó)-¤ãÇâ÷%¹ üŽ²ŸzâQM…¸
+8›Ÿ„b...‡.—Š£â.î„À.áu_.€.“)CôÌ ]»8´X.ž¨¦.~ö.iôÏ.>ñ3òÇ¯ÿ›Š.qJ/œ–Ê.ÍaPï»@ž{ÿ*kµ.éâîsÿ¾cyiÚD.¿V?—éù{YïÍÜKÏ.þ.bÆ;ÛßÐ_¼9ÎòcÒpæt¿péÒ©Dß.$.".H©ÝÎ½÷•ùwÃùî›Þ©ûJ.MãÂ*¦çíe’T/.½é<Æ¦ÞÌ=ÿü×äL•ó.Ÿ¿“.sé9ü`…ü#š¡ß&¯°wá=.£¦”äèÑ¬ß.1“o¿à_K6Y.;þ'^&.(Tâ_³gúò»­à* .NñzÍ\8w...².*z<GAxù43L>*<•Œ•7õü†;Ô®ºynì=segû£Oe`ŒSJxõµ¿÷‘sVÄ^œí.ÿð¹3óÌoúô¨™fKÁn.Ý§_Ü¥ ”.¾À.á?yÑ¡¡r‘Óí\zþ§	Ûä P$.iµûnR·?..r·{þ^š±š.!.Â¥=ñ
+ÅIY<Z\åûî..¾ÿ÷.~\þŸ|ö}â1.11íå×;7oÏ<û.edSõ¾)c±å6\cUp'=ÛÕ*cáºS?óÜ/˜DkAd..÷.©±ÔŠÏo2.ÌOŒ™××r.²± ¾H..ö.ÍZèÁ)Õ.LÊ‹?¥ÎÐB.±à†.
+°ÿ‰G\_Ù.œ.®2.6­yê.ö.ÿáÚ.ÔR1½cÁ1ÿ.+‹ºP..Œ–@Zívî¹ïTï›ï.Šóº.ÒP.ø|Ö|=PÒ#¥<^É®»ï+‹i¯.:óè.“.wå0œ2)·‡%Ý=góïh?‰ÑÅ6:ãq*
+..ÊÙ¾ð.Ñ
+¾È¦.‘=.ü¡Åž…·?ÙtN]úkò¦cçcW(·V©‡­E„á..!..6.”.].ìOTVtâ°a.?áO .áyXÍi.?ø;Z©þ…ë=dd Š...H­Ý3.–ÿø§.~÷Žë<†[@ú.ÃŽ.Z'Â/tQ.†|ò9¦äbÕ‹.[”OÊtÐr.t"¢­ÅFEp€ùk´'AH˜0cˆË+\(Ë)µƒ…ïÐ.¯ï±*.>{é.M8n³M;Üí•r.'ï.&š³ðy’.+ÑÃ†–p	¸ £Í.bV.¿í1.ì“Ì[z‰ì5Ñ§<bæ.Šd;ñJß.” .1.¤Ön¦-½./l:~.ÚW5Ów.%à«s†ý×2’À\`šÕ’×é”Ùlšïáåî6 0w;"¥¿Æ’¶ãÅÁ·«W_Ââ¡êÞ…ÿE{ÃY.´aŽofàfÄ½¢
+.‹f2jÜw«8cÕ{±vaÛ­7~^ÏÊTk•Â]Õž.|UP†°øv”Í§Ô.H¬I.6†ûi%µ&ºïútÃ‰¿f.swY’Ó›ùé.4f´..=†•+ /ŠüjàÒkÜþG:...ôÚ-â.b'VÔ%..•³³ü¡.ïÖr<ü+Ò.RL.{¥¹<.×ò›´Q{Ij.Ÿ1e@0XðEZB²râ.¶ì)ƒ0buT-aQ¨ú‹K.lø÷.«²½èpÄ/€".ç‹f2»×:./á­ë;^âçÍdØÈÙ†ðúù%'.2lB..íeÖ#,þC iË‡y.¡²'µŸ.ŽŒ}×¯}|Œ‰eI2IÄúgžûg¾6Î;”:º¿™ÐC! 0".87g hrüÿþ¾ß..6#ê"T..  .!.Ðn.
+. ..°@.1.û.
+‹­ à{·Œûú”¾±u+Ú.#A ..ð»³ ˆ2@ .@`´.àw–7j... ,.@»³ ˆ2@ .@`´. Ý£åÚ@ .@ ..Ðî,(¢.. ...-¸k•Ÿ~ýÍh
+Cm  .  .‘.âj7.‚ .€ ..‡ b&Åé.X..  .q	@»ã’B:. ..(..hwqú.–€ .€@\.Ðî¸¤..@ .ŠC Ú]œ¾€%  . .— ´;.)¤... â.€v.§/`	.€ .Ä% íŽK
+é@ .@ 8. ÝÅé.X..  .q	d¡Ý.[gŽÉëÌÖ¬Y»©><¶Òó›.J.L.·.Qéü.d]zZë..@ .†%Z»{+ÇfÛµý#~u.ê³ž|;®¸­®rØL=M×©.Ó²‡.3)N À½•Ùú‚kÂ~k§’$÷°D‘..@ .ò'ò}&¤¦³»«Gž(“”Wœ.Ý.}bhK8›ÝØò8ez.©¬õùý.K%u+YöüÙgQÃ«¯¾šE1(£ˆ.ÖÖÖŠh.l*.tÚÝG
+ã.¥!&¸LÇ›’.yç.Žúwµ%.9˜ àÕ³Ò™ßmòö.þa‡•®JÓqÿ¦?–w.œf³Ã,à.$‘‹Í)dÁá¢FØµ¤Ý½^o„.¢ª..xû­7.üïÿcD•¡..	ø£.	ÿÕm0é3fÚoUý8.	Yš@\Å½EE«ÏØŸ<·/½)AÐ.–ÆSïÓ@^nƒ^¸û7o…2QËå%Ö.hŸ'ä8|ò‹./–Ëåáó#gQ	ì|y§¨¦Á®B.H.ïî÷¼òé².¼ˆóŒ+o.)Ç¶¼èI°—u`.JÊÒˆ@|£YaK¦"Z~°·ã4.…›Î
+ßÙ;ècRuž||ºz×›ÕÖy‘«´tCXÇnÖN‹.åó­jó:¯...€ .äJ v—æ«Ý~º—ØöƒÝŽÒJo“ˆ.:ñ.70—œ‹89ËÍu¶.F«„dxP..æ¸43Á7^ú¬ÜI£â)‰[.  . Œ@Jí>].xšLOûm..`ëÆ² ²·}Åàw.L@ÑðÀ¶’.YË.5>¹ö	y.óJs.æOýÁ ct=YŸ 5.€ .."N»)v°JÑ.W¬Ù®¼NcÕÛÚ1¨zÿç½•JSæ&Eu¤ÃËîzéT|#2JÊ#.žiä8o-×..ô`2¬‚.ô´..i7.n¶Å‚¤ï¢èJ§~¹Çï¹(v³}“ž.ì¢ÇEŠçV2V¡Ô†
+õ¡ý”ìyf²0r‡>/!áÖÌdí..îš¢.ï™.2>WÛ’µ.©A`´.2ˆºk+‚ÞÒ£a.2TUh=S.{ŸU[]µ¦)oºk‹.•– Ïb¥\ï”)ôâÕb«{¯Új5DK.­Ð.öL5ÞÌ k¬"¼µÊ.pvÃ7'à).²eþ…[7»..j{,sT¢8½/Ö!X.z,Ýå^Ój2ï
+ÿâ6Ï.ü.A"K.›.k•…íš‚.æ.Ä.˜1.>ÚÍ•Q.o¡§AU
+©¬«šqõ×dxŒ¼â‘Wm4´½FšÁ¾­>®:û[ÄþU
+mU..dárA».×%.3(eÌd´s.Ô–‚ ..Ñæ..åâ+¶"ø#îjåjûwT.íç¬áð.Zl©×"ð ..9´³§o.in•&<7ÎÏ{u³å`.(ã!,..c«.Z€ËÝÕC¡œu§»YK.YAÀb.Ðn‹;¯¿é¤mÞþE§wY.ûÙ®H/D.w¥VTE¢¬.Ùë.Üt³ílŠ.._.(oH¯¹ß¾ÐR¹\ŠÅžöcîÏ¯ó­<Úïdiõ¢]“;6c.ƒD 0Y. Ý“ÔŸb.»»cq¡ëŠ§o.º¶èš¨õ‘›Ù•3L.x...+±÷ÆœýZ{Vî.ê]n×6‡].U-.@±	@»‹Ý?É¬.¬Ú¹û.™.îxûÐÙ¾..†.¸»=`€y3»
+t$³6^jþC*±u‰Å{x …¶.9CïfŠW-R@Á	@».ÞAY˜ÇƒÚlÛŒ{¹?SÒ£É¢ªþ;ôsÝÌîÆ¸™.Zì;È€íë”S..XÇ."³.'(Ã*.é´›¯\ù.¤°ß¶xÝO¡îÀz$÷`EÐ;É.ýd›Ùû¿iÀˆÉÛBïÙÌŸ.bq•O.ÈÇw_uàmdÄO¢Š7î`Q¾.Òi7·ÍýÁJ¾–¢ô!	èïañŠðd’”-<Š(9ý8*âÍ‹,+-B²³HéxÑôeü'¬Tf‚·­ó2Ê.òÍ3Ì.©Ç¥¥Í–Ãí›¥åÖ}¨ôã Ù&Œ@.ï€­µvh›\.‹óê×	C8ÖæˆwÀv»Ý±ZÊ³'ð‡ÿøw¼.6{¬.Tb.~÷ÜÒf­-+î#Ã~­.ù.?ß^`ºgø.tŸ.@O.w4..@ .Ò.È@»yÌÔ©.§Çüå$bŒ~ÿæý.ÄÛ.LËMËj_°ú<j.qš6"ïø..Þ²Bóñ½õe|$P3.dK .íæ¯®Þñ~¬'C—æ.pë{µ¿Å»dñ:ìl»wì¥±.‡¯„ïr.{+` ..@.ñny\%yX—çnœßó.°ÔN.“G‹9Úñ–Æ3ÆôcÌ8¬~+gÅ£9z‹(Þ]{2‡.ÄŒ¾%¨1D ñn.Š~.R½_ÅÿÊ!
+4Zú+ÿô·Ó….-3ž1Öç.µT†"3.€ .L.Œb&"JB“º<Š—Mc~.wßGi².Äx*ƒ .€À”.ÈR»iÍrÓ=aX.} ß D/àŽy6Zì.ÄSÚ_h6.€ .0.éâÝ`..  . 0..™úÝãh ê... )$ ížÂNG“A .¬' í¶¾.Ñ . )$ ížÂNG“A .¬' í¶¾.Ñ . )$ ížÂNG“A .¬' í¶¾.Ñ . )$€ýÝvw:½ÏÄî.Àúh.kkkÀ..Q. Ýv
+qö‚Ým€õ&.o¿õ&ÞE…¡Ñ‡ ´Ûîássìî¿hëqnÎ¤ölVíB¼;+’(..@ .FG Ú=:Ö¨	.@ .²" íÎŠ$Ê... Ñ.H§Ý¡Ó.ƒ‡V&m.+0m.Iëœô†“!C$ÙéÏ¦³"µ¼ÞÇn_äÚ)ÁÂ
+§O{'R‡ÏÕ¶	..hÆd.H§ÝŒ‰<OX.*ìTúž#‹oZ¾£Hï‹£ýÖNÅ'Ô.[ëÍFc¡~¹ç³‚.}¶]Û.GŠt.ê³AuggNn”.Y.·£éhiuX./Ÿý{.PÝm4ÕéÕî=j‘SŸõ=z—}Ù.ÙˆÄ `5ôÚ­7¿¼Ñmt‚Ú`5.‹/-­6:í›.ª	.7ÛÆâùùjóº&Þ\Ð»îá¿£ëAî`Wv.
+í´MvÔtë<{Lð£;¸.{;Nc‘?:X‹œ=·E½•ÊN.‡uZ<Faz
+.Ùj7}ç.½o.›¡«‹yKÂÉ¢Ãt”c.L Û±Ç¾Õìò\,SJ=Hà¥ôîš‚.)HÙžUHw™é_s}KéŸ¼«5®¼q.ð²u':Œ—º¥ºŒC.u´‘ÝÜ*ùú7ÎÏ{.2™^˜+ñ.¥¹.!Ó¥Ó5÷iÃ´½vZ$ HÊºÓÝ¬ÙÞ/°..†#µv;¥yy¼.9EäÐ‰‰xÃarAç™‰“ˆ…—.N šÐ¬ï®Š\jÚlJy°µ,f×”îôŸÍþ§:tÎ<jOé(ºàH—vQsÇéXÑê¼.ÃÁ#ˆDYEW|x›mgSt.Ÿu.:Ú\n©\ŽW/…löç×åéyûj†@ýß®q....L%ÌµÛ¥¨ùoÌ.._Q	ä¬Y›6G¥TÓg÷sÝ/ófÝÓÓ±ò€P1ka‘c7.â#Câ=T`+.¯zDÐƒ;{Ø^<~¿Öž•“±Þåvm“» ¸@`:	d®Ýš#çÍ¯+M#]s.5kæY¤<‡S2oŒ}•ÅåÅG:uuÏ¿
+6.Ýë[«ÔB.Ì.w<2¬;dÐÛ&ÅäcÆëë²˜%ÅMÆãÝ«\¦Ýx7MÄ.q...L+¬µÛuÍHmµÝ..¿;2¶.åððgTJ¶ÿ_lÿÁ².áV[rÇ.ÿ$áöˆ	..<¨-ãKŠXU.½õh²h={LF/.äŠ×q33´Øw°[h±e.1¹à+(ØX:¡C.ÍŠ&­vóÀ´pˆÈÿVëNì®g’æÈ.jo.ÛÿÅ7..S.w¡q×‚3ÞÎ
+škc¹’qwAzàíAák—Þ^B¾Ì(»04j’áõ=ƒã}.Y."šãÙÌŸ.bq•O.¨£YŒL^r...éx€‘j’.¸ß‚aþ`ß.ß¥ywÞgÕVW¬Q2.™gÐÿ¦z	øW±%Ku}<cQª,^¿W¯fR ‚0L..ŸçâÅ‹årYL>$ã Í´Rì÷–Õ.¯‡’¸—KÍ-P/9Œ7ø©È¯wt_ˆA³]S"†’>«ê×êÂ÷Ü .w¾¼3(	>Ÿj.x Ý.b¼GÐîþ‹¶.ï.œÔžÍª]ÙÆL²²
+å€ .€ .ô# íÆøÈ“€á-+¾mAyÖ²A`’	@»'¹wÇß6w//2én;.¿° .,%€x·¥.'Í¦xwíÉ.~.c7•	±.gžMHGæÓ.hw>\Q*.€ .äI 1“<é¢l. ..È‡ ´;.®(..@ .ò$ íÎ“.Ê... |.@»óáŠRA .@ O.Ðî<é¢l. ..È‡ ´;.®(..@ .ò$€=‚yÒÍ¿lÚß%¨a<.ÖÖÖÆSqòZm.‡.¡v;.Ú|œ.)‡x.U‘,‚-Ù.xû­7-úmŽÕãÐ.ÔÐîl¾`c/.ï..{.äd€]ï.´z.Ú…Ú.oˆwçôÕC±  . #.hwŽpQ4.€ .äD Ú.X...  .9.H¯Ýþ74¯`Ý,ÇÞŠUtà$O­dçÐAžþËt¬§›-ªG.&àÆ..Õ.$š..Æ®.Üô†¢6.7'HÆmH«ÝìlÚ.÷.òýÖN.GvgÜEÉŠã‡.{Y´þéª3…µ£zØñ†£…Ýl,“I½.&à&.ŒIÖ.¤¶™€¹ëÙ.Òn«HÇ+;-q iw¡>ËÇ™ñ¦Í ò³=¥v÷®7«­óee_ii³Um^‡ï_‡õ)™{Â•FÃ{Ÿ·Þ?åó­jg÷@/ ·Ri6º.nÿ©Ï¼l,“¡C.&à.wÀ˜±@™¶J
+..z..Ùõ4ÜvªÞàdçr¨S8Ê‹
+gg.§ñæ´ub¼ö¦ÔîÒ|µS¿¬i5C¯´À.FjBDwÎ¬¬Ð—š]îRó¨~éG=þâÑ+Xª¹UrbnœŸ÷Ì".Û;£æ`WsÈ¹‹³î{òz.ÑÞŽ³0Wâÿ.Í-ˆ/•~..J@‰ÃÆ.ŒÖäšÓp'ÂäÑ²¹°)(fh~V..s×Ópsº›5#v>.k§ÅS—ñæäöZâ–¥Õî¥.lV-Ã§>¥IS».˜.‘y¦³ÊG”ëÎ.Ül;ä»÷O.ö
+.7uâ3”Êeÿà..´9’CÜ;†pIF˜ú.“Q%(f0ÒÒj£Ó¾.xú.Î7|
+c×.l-·kÞ.]WhòåfëNksÉ.½Ü.Þ.Þ¢ÉÌ™R»	Š.=U"..œÍªÕƒÔ7ñ®Î³.*®IñfÒM	.¤ŸLú#k.}.Øº„~N$—îÅòÈL@E. Ð*ÌVJÈ.‹é¥'jNïr»¦‹³—YœhêÆ»Å.Æ›‰*œ‚ÄéµÛ…ÄEœùÓë[â!ß©ÏJ‡\_>““q&Þl..¥{`ú)è‹¼šÈ…Ûiíûæ.î¼p.¬\-ò /\«µAö=.Saþåu(Þ’ýIÐ.èvV5·:ŒÈwë..o..ï.ÍI§Ýl7?.Í$Y-ˆUå.²8"<.õ ¹ÜBûfOxÝœ@ÿôc„dsÕÒã.}!)ø-f@†Kqë¡m7éÀ.6.³ßv7ˆÉ\'o¾ÅºRÍ´|².9.2BAsjæÏ.k¸kÍh. M§Ý<.¢¯„PT‹<<.Ö¢ÁáEÙHã
+.±òâB½R—Ò.#}.Í¶"Dø=nÎÀ(É..Ö.b	šmê2DV.&˜6Ð…j¯o­Òóš|k¶Ë@m:RëÒy5BÛ”*]{îÉéž.G.b5ÞÌË0»ËM§Ý<.ÅBUê·.lyRN¹Ê.ûµ¶ü âøB­
+.{ø»«e1ÒÛz.Öóí´^èJÛÜcp»õ.lyC®^è{..%.CkQe.º\;ýæ]#.Ißxö{.áï®
+Ý0Þ.‘A¶U#..¸,%pñâÅr¹l©ñ0»./ï.ÃG9¶¦¼ü‡Xbÿ û§žžýí.\Æ¶Àêq8$êØprJ˜Òï¶íI.{A`z	h>-ûAchß-_¬¢I4~LaÅ.v[ÑM0..â.Ð..Î!öÞ±Km&ñ¥—.ãÇ.ñX9.´{Ì.€êA .@`..8ól.h.ÊBç•Ôžô^.Q Ë`Jj.vyfõ8´.µ;¬ Ý©¿a( .@ .FN 1“‘#G…  . š ´;5B. .  .#' í.9rT..  .©	@»S#D.  . 0r.Ðî‘#G…  . š ´;5B. .  .#'€=‚#Gži…´¿;ÓòPX.¬­­.È.˜R0.Ðî‚uHBsH»{½^ÂLHn.·ßzÓÆ.ŒX@vRL„vÛÝ“B»»Ý®ÝÍ€õ!.ø‡vc\ô!€x7†..€ .ØG Úm_ŸÁb. ..€vc.€ .€€}.Òi7.d.xQ{øŽ}L&ÝbôÑ¤÷0Ú7
+.Òi÷4.B.A .@ x. ÝÅë.X..  .ƒ.ä¨Ýlj®.ï.<ïî™­.n.Ý9³²ÂÒ®ôøt~KeT).‡Ž(.”åOIå».÷«k..»?.³.x%:.'ÝÞS·%®8<.õB¿þ¢*Uö3[[+Ç´Þ.˜§.»û.Öƒ@ž.Ra.>”Ú½£äOM©ƒ¨}'U«ã«Y.•Â—K?ßš—.L©å’5˜êJÕÚ"fÖÎç6¶7êhpu`¸¿.<rz/hwµSÆ½ >.Tê¦..?h<..ùˆl²ôðò.ÑA5GG9úÝŽ³³'<ëòÆÑ.?¿´w½Y­.‰›ç[Õæõžx.UçÅMþ·LQšWgy¹ù)×bÃ{’é)µ¿;»¬ÚÈºò|.Ž±lc{.övœÆ"C/Ð©.¡'Ýy~×ß..ù.O¯.ûô‚h¿¡¿.n¶;Õ%ÞË¬N‘0Öx.#ST
+.Å%›vÓ‘ÓûµölhºÞ©«{³õŽËeaŽ«ù¥ÿ­îy.ÿJÓƒ9(—¹®âvFZËÂí=ØíxEz.ŠÇZ.²RôA<.÷BÿþRŸ–æ.Ü¦...i© ?.L$tÚÍ¾„®+ÇùèbAò-¦6û-§¾,£Û*d">áÞø ‹$c¶]£8‰š.Ê >.¢®¸E.2]¸½º\ûúÆ×k¦§e¨ñ{!*¥['›
+Lk..ràÀ(.	¤Ón6.ï¸²ÌV£**(.ÜDÌõ%oß”®.-]ùVÏ"ñÑó@9ã¬‚˜˜‡«+fá.Lfl/{¸ªÀ..(¼9ê†ÞåzG.Uú7*~/˜R–N×ªªN.?.uM[..pØÀ$k	¤Ôn.Úì.¸aÊNkÿ†.j––6[;..2™­/t…‡]Þð.).§+Ó. Çc²¢¨õùnË›ø÷Ï7T]Övd.[‚ ºuŽ;ÏiÔœe.Ôw³oãã÷‚1%MÂÔ@YvjjÑbÚúÈâá.Ó‹F ï.,Z$³ÇÊ÷.² Êîj¼€Y2..”.ï.œ ÎÌ¥)iýî\ŒB¡“G€mîV[É)f¢o,š¼Æ¢E ?.hwþŒQ.–u.2ðÅBhñ¢e .. .E Ú±1".l×·¼bm/.‘Y¨..ì$€x·ý¦¬¦xwíIõ.&»›.ëƒ.pn.ÆD..Ðn... ..° b&öõ.,... .h7Æ .€ .ØG Úm_ŸÁb. ..€vc.€ .€€}. Ýöõ.,... .h7Æ .€ .ØG {.íë3ÝbÚßmw.`}4µµ5à.(.Ðn»Ç†x.•Ým€õ&.o¿õ&~›ƒ¡Ñ‡ ´Ûîáaå{.íF>"ëñ.Á.¶¶.Ä»­í:... 0Å. ÝSÜùh:.€€µ. ÝÖv.....˜b.é´Û;8\ž.ï¾_¿(HƒÇf.Å.Ø..  .i.¤ÓnVs£ë¾–™.¿S‰w€p.£‘..@ .¦œ@zíö.,-­j'ÁO9[4..²'@3IŸw.œYzsá¸NTaç¦®añ-4¦¤›ò¸½ì»cŒ%f¬Ý¾–°#
+Õ¥ØéQ.—gè¦Ö.ü3™’
+.ã1<>Ùˆ^Y¡¤"­ªúÌåÝ1Â.}Õ.òÀ÷.÷E_XÄ!bðô.×.V—JêÓÞÊl½£%eÿvZû4.Þo9õeþm.÷._y£,--Ýˆy2µ›R¯”<J§2ê­.<’ÿ¹ßª.c&U§Ê‡ÎQ·áÆSØŸü®žÞýÜtÓ»×mTé’£Qü.(™.mX.e
+û[3ÂoaòF.:ÇÅ‹.Ëå²0‘3ð.7˜…û6òÙùòNxäQWÊ‘­º»ÚhhßAúj¸ŸÇ.·¡oqìœñ..]þÐ.å—A.ç..&^óÆ–ÊIUs@.˜nøÂßªpENSU¯Þ¨›R§«­n«ÊJU=éëQCÉ¾ÏÓt*4#Ê¬iw¨3dWà>{¸‡.m¾G½Ïá+.7“vëÒ}´ßí2'I.áqF»6.´†6ºÌ#òÕ.ï.«Ÿ=+$»p.?f^¾›H=T<.´;z±îWÇmŽÿ–òQ¨|·0_[Â•²;ÉŸj#ú..YMú˜I@¬µcd½ÈF¥)Æ.ÍhökíY.H‘ózóÍ¹…NûæÁÁÞÎÂ\yn¡y½ç.ìv.‹e
+˜ìvªójÒXš¯vvåÄpaÎJºßÅÒÜÂ¸§Œ¨..²!pp³Ýñ.y©\.ŽwþÕpX”‘]¦(.‹©,¨gÙŽ.HhV®/2	é6šòfo¥Ò”ßmÒ½æº.¿tšÎ*¥£¯¹1A¸üò†TÞ.<ÒC	Ú5öÌ¡º.ê³ÊF¯Ø¨šmgS™zlÙý[.Èó.*eÒ£	ÅÀ*ìH^»#ÚIÂív’÷.äò-.3z<Îp³¼ØèìÞ¼ÙvH¦éï½­ëM.Ýþ^ð	¹gÊÎžÔs.;:"½•¥Ó5Ì„Ó"^¸o5.odÐ`.8L:õuOÚB«•½ëÍjë¼..z.YÝ%‰“U”7¸Bs%\”>9û‡ë7™.D–¯ìf	j§™ˆS±ç[Uæ”ñËsÇ.5Qåg¦j».œ9?sâ\U.T….Ÿç§Ý4Î¤À.Ð‚FpÕ‚'0Þä.f§ÝvxG—æv{Gv/ë.Õå4.T-.o¦Uúe>&hegðp·£§.[IO@}‚êÎ€p_°³‘C°×.J\µµ)V2™22=óf¿+½hOÆ4g
+Ï›Y¹ZÊP‚XžR§®&Þú2«É ó×SÆÏ5øëc_Š!c-Êw.¬Uj¥éa-ŠXË@¸.|5.¦y!.}ùÑ]íôê.¨õ šiB|ì[ÉIÕÖbfÖ×*‹i!¬.Ž€!Þm.gGÆ»M©Q_c	¾U(}UI}ËŒ	.–?0.+"Þ-B>æ@8‹*pò.Þéüî~{wÜ8ÈÑ¥²;=óîº32-Ž".iòâIÕ¬&p"^¦<(Ù%êfÀ.6Ÿc×¸»‹ì{ìÂb.ð.`?¯P‘i6å.AFíb‘H9%å.yô.p.Ÿ	Í›õ¢Œ	"ËWá
+–€Ö±DAîžßœúQ‘°)Á„yéé´;'æ(..@ L€E.Ý ±..-ÒÉÍ l¥QÛ8 “³E¼
+_Êd‹–š?.(.£EÂõyš7‡ÂÉæ.¦òE.sV¬z..;Vqú.r ø*¥²".ÆRÖ2Öìx÷Xñ§®.ïïN° ..ßßM¾2í¬ˆVÜ‚¶eüf‘‹¿>¿?Yààw\Á..ˆI€‚".*æ.3.’±è.mRÓ~:.LàwÛÝäw×žôm
+´»=°^#`<ó.®wâ12¡È Ý‰G.2€ .€ÀØ	 f2ö.€.  . ˜ ´;12d .. ±.€v½.` .€ .$& íNŒ..@ .@`ì. Ýcï.. .  .‰	@».#C.. ...;.ì..{.¤2€öw§ÊÌ  .Å&°¶¶f4.Ú]ì~.døMü Tø..@ÀJ.o¿õ¦ñ'ZÔ.h·•=ê.÷™ØÝ°~Ê.Ðkjâ·ø—ó·Ðîø¸,K	í¶¬Ã`ît.0¾bÌˆD|µûh7Ö*§{(¡õ  .#'@
+>ð¿FA»."B.. ..(..hwáº.. .€À@.Ðîˆ .@ .
+G Ú]¸.A  .SE ý/!Ú.í...²€ .€@6.„p.!ßÐîl: ¥€ .€@R.ºd'•ohwRÚH..  ....‹u"ùÆï*3èƒ1.ßæŒ.>ª.¤.ÄosÜ_W.ï.>%.Ços’âEz. .....ã/tbVŒ˜ILPH..  .." í.PgÀ.. ..ˆI ñî˜ 
+š.ñî‚v.Ì....
+’Ä_ì.ï†vÛ=Ä Ýv÷.¬Ÿ2.•J%Q‹û¼GÐ9Âe3‹./–Ëe›[ ÛA`Š.ì|y‡Z›ôÿF@ˆw'z
+"1.€ ..O@l.Œÿÿ>5A»‡ï.ä... D..	wÔig¢Fhw"òH..  .Ã.ˆïqë?á1Ö—N».¶Î.ó]+½á[.™“Õ.¯àø)s0.E‚ .€@.…ò».]/Þu*ÇÎl.dÜ¥¥.G.å¨Bu½îŸ2c³P..€ .$#P.¿;hvy£ÛèÔ/çá|'#„Ô  . P<.…ò»ýxÊ‹
+ggOxÞ^DÅóÅõ(‹..ÑîÊ›tçÌÊ
+‹È¬ô\Ïšÿ±¥â4<eoe¶ÞqšÒÝ×}ðpíþìÙÏ.Š7P`..€@¡..Öï&J¥ùjg—i7©j»¶Ïã)Ý…ú,WÚƒ­åú‚Œ±t.ÍŠ.j¦¿òî~kGÞtœNÓY¥ÌhI³¾Ëî.±”$¿åýVÕ¡¸Í¥’ÞGZ™níìófÛÙä&a~P¨!
+c@`*..Øïvù÷®7«µÓBOËç[Õæu®ÓŽë•—7¤.³”­óeþ¡/`]÷É±È®’––V.öÍ.s‡.ìí8EQ¦>.p”Môˆ™Š¡‚F‚ ..ˆ@‘ýîƒÝŽÒÜN}VnBaq
+)Íûµ¶º+¢.LfÍ×ÂœA»7Cù5+´© %‹—½@}
+S@ .&‡@ýnÝÝ®¶DÈD\2öÁ<k~í·œú2©win!IÏ¨`zÿ<nä†%ó	y’º..@ .²$PX¿»·Ri6Vyä™".^H£·"¶..÷_s/˜¥T{SX‚þ‹ˆ*éÁÖº.”		:{ ¨(
+=Nàng9üP..€À.
+åwÓ..÷ª8]wm‘V.Ýð.Ýçk‰¥¥MZb.ÉÙú¤ðÅÙz£¼Ën.V..Œ.­ùu•]”yºVeÑ.ÿ¯w´2+;­ýèíáCv.² .€@b..úÝV½GPn)™¢·Ž
+l*Þ#8...€@q.$}ƒ Ho¼Òý&>ñS..@ .@`z	dèwC»§w.¡å  .#&P¨x÷.ÛŽ×•Œ.6ª...Èœ üîÌ‘¢@. ..È ùÝTGÌÿÿòoþ¶A8¯2÷ÞÊµ.œW™+^...Ù..1“8eŠ¯vŸó*.ïŽƒ.i@ .@ 3.¤à.ÿ.X.´{ "$ .. Â.€v.®K`..€ ..$ í.ˆ.	@ .@ p. Ý…ë.... 0
+.ÚÿÒ	ÿ.¿áÐîø¬..@ .2#P{2xˆÀÚÚZÌ](d.´;³ž@A  . ˆ€.ß$Ü”WlýŽsA»ãPB.. ..È…€ï¤Â
+¿;—Î@¡  . .Ÿ€ïø.·(.~w|ÂH	.  .¹.H*ÜÐî\º.…‚ .€@Þ.àwçM.åƒ .€@ö.ð.ªì™Ž²D¼‹j”´Q..¤$@±.ÚÓ.³þï¢‚vÇÄXÐdÐî‚v.Ì...J¥’.LŸ÷.B».‘,\bÒîð.ÿÂY	ƒ@ .†%.õk.h÷°D‘..@ .ÆG k•ãcšA .@`X.ÐîaÉ!..€ .Œ ´{|ìQ3.€ ..K`Èx÷ÿûÏÿ.¶Fä... ..HK ~wZ‚È..  .£' í.=sÔ..  .i	@»Ó.D~. ...=.h÷è™£F. ..HK ›µÊ?ÿ³?Kk.òƒ@B.ôóânÜH˜	ÉA`B.d¦ÝC¼vB.¢.ã @/ô¡7õ@»ÇÁ.u.‚@–Úýçÿí¿.¢M0b
+.üã?þ.h÷.ô3š.I ñn... ..° ´Û¾>ƒÅ  .  íÆ. .. .û.LŒvñFéÜµÃÑwÀ´Õ;zÂ¨..@À@ÀFí&¹|°äþ÷Æ.9wì÷×ž°ôü‡cx..Ó°øpô§NÔßÃX€<  .# `v“’žu®þáà@ü÷î¹¯¾ËWU.?ÿØ9yjû··ò­&“¾Î.Îñ—.®<=“‰=(..@ /.¶i7)éöÙÇ.rq.é½§<¹Õ.þøó×¾—).?|^zè"¢Âœh÷Ó;ox.^;W2¹ð‡·~ë<~ñõuçã[ªLV´ëÞž½"ÿ©ElX¥Í;^.fÒ.w„EÜÃ½.²SO,Íð<h•7\¯Xôƒ.(©ü.çÖê#dÛ¹ç½¿…Ù¢-.¦zHY^.§º#[Äøç>.ÊëË€rAÀ".¶i÷ÌÃŸz÷.s.ãÖêÞ£Ì.¿zv{õ}.•_¼ñÈ+÷.'ýêW.!aºëäã'·÷„.ýÅ'WN:{Ÿ‹.îÝ:÷ØñPÏ}ëcçñ“wÍœüKçc™’? Î~µþ¯ÒñgyŽ?vîÖê?Éè
+Éýö¹G.rÈUóƒÏ^ûê.ª]\ÊÎÏ^s¤\IÏ½Ë.ü×u‡f.Z.^Þp½~{#á„K»ëé÷Þ=çœ\ÿŒj¼òž÷wÃ{,F™úò+Ž¯íÄîÃçŸùš.ÅgB.
+˜
+.Ö.°M»...R·W.ñyÓ.ÿÉõŸsñ}èÑsÎ×"I¾óé.G9éìæ»ŸÜqfîý±#Â,ôé¹úësû<.Ât|..(¸óþêýu.@ Yt^ù'¡¾Ü½]~ú.½Ó.zì¬såSþ9É½û.PÞî#¯l.“t;gî¾_Üd.*ã©/=5£WÁ.™,7Öë.x.pŒ¥Å.²Ê*×T..j»x É."=±^
+?.cU†D  .ñ	X§ÝÔ4R(éÏ~¶îpo:ú:5«.yfî.OF"¾½Ï„ý“wÉÑž¹—.C.¿ûêÔ_ž.i7¥q®œåq˜¿XÝv®|Â=ëÃýíp….=·î*¬óÚÏ™ûJÂ.pÏ#ìd.þø^½vvçÝgäó‰U.Yo°H..ciñÇH ¥‡T}0óÔ{WÏ^yF. k.ž¡ë@F. ..lÔn¯I3O×¥‹.ÕL.ÓBùö¤âR|ƒÜXr´¹KþÐ£÷Sàâpßyüát³4WÝ¸.E.„g=3+ž.þ‹EcHÜy|œ.Å½þ€{n6Ó\ ^õ.^"SÍÉ";Ø.'TÚÐ_
+.©VÄC
+¹zÌD¼ïÓtèz‘..@@#`›vShU_
+#}4ùË²<N²)Ö-µøÉÌÜÉ¯6[WXHš.&å››_ß¯/."³È4¢<òÜyì‚..ø.²XY.ÅÄO]i½Ìãã<9I¼Š“°Ú£/.§–íúþÚ...r/^ZNkM¶$.Q¯Wn..ci,›.è.ü.mª
+=ùÚ~§é-.S«ÃŽ9¾r  .Y.°M»Iæ¾.A.þß3ÎU}ŸIÎñ—Øzà_ð”´˜&.âØÂã¶·2I¡êíí.k{WD)ß_Û|÷”/.Î=ëMÚè}ü%7Dð‰ã-ÍÍ<µ|îÖ¶£b/3OÑî.¾‘ãÁ’žÌÐ…|åÐ
+Î8wÏ°¸Ð»÷.ËK.>òñ,çDÔë..	Ç\ÚÏ×Oò@.¹ÉÇµ¿û.1“
+lî"M-=òÛÇ_×vþd=^Q..€€ €÷.b$.M€.ú­¹ÏÆ³..ï..ºÛq2.ØæwO.u›[qç
+.Îî.°²¹°..ŠO Ú]ü>*š…j.Ì€€UÑÌ†= 0Q. Ý.Õ#hÌC/¹/$.üg.•£
+. .I Ú¡ .  .ö.€vÛ×g°..@ .2Ûgòê«¯‚&.Œ’ Î«.%mÔU4.Ùh÷.gÎ.­a°g..àœøièe´ÑH .í.\. .. Q.@¼{”´Q..€ .dC Ú
+G”..  .£$ í.%mÔ..  .Ù.€vgÃ.¥€ .€À(	.¹V9J.Q..€ .€@€ ün.	. ..° ´Û¾>ƒÅ  .  íÆ. .. .û.@»íë3X..  .ÐnŒ.. ..° ´Û¾>ƒÅ  .  íÆ. .. .û.@»íë3X..  .ÐnŒ.. ..° ´Û¾>ƒÅ  . ðÿ.[.K‡ü.Aæ    IEND®B`‚                                                                              . . . . œ . .         @  @ñÿ. @ .         . N o r m a l   .   . CJ. _H..aJ. mH	.sH	.tH	.                  D A@òÿ¡ D ..        . D e f a u l t   P a r a g r a p h   F o n t     R i@óÿ³ R ..        . T a b l e   N o r m a l   . .ö.  4Ö. .
+.l 4Ö. ...  aö.  . .   ( k@ôÿÁ (  .        . N o   L i s t   .       D Z@. ò D .   ˜f$   
+ P l a i n   T e x t   . . . CJ. OJ. QJ. ^J. aJ.     Ë.  .  "  . ÿÿÿÿ .  ˆ.  .    .  .
+  õ.  ˆ.  
+   .   .    .  ˆ.  .   ÿÿ.   . Û­.  . <×h.. Ü­.  . |Õh.. Ý­.  . <Õh.. Þ­.. . |Ôh.. ß­.  . üÔh.. à­.  . ¼Öh.ß.  ö.  º.  º.  ..  w.  Š.      . .   . .   . .   . .   . .   . é.  ý.  Æ.  Æ.  ..  ~.  Š.      .   .   .   .   .   .   8   .   *€urn:schemas-microsoft-com:office:smarttags.€time €:   .   *€urn:schemas-microsoft-com:office:smarttags.€Street €;   .   *€urn:schemas-microsoft-com:office:smarttags.€address €8   .   *€urn:schemas-microsoft-com:office:smarttags.€date €.  ..   
+   .€0.€1.€15.€2.€2007.€2009.€23.€4.€Day.€Hour.€Minute.€Month.€Year. .   .   .   .   .   .   .   . .   .   .   .   .   .   .   .     .     . .   
+       	   .   . .   
+   .   	   .       <   ?   ¶   Á   ”.  ›.  ¢.  µ.  Ç.  Î.  Õ.  ì.  ý.  ..  6.  A.  ›.  ¡.  ..  ..  /.  =.  “.  ›.  ..  ..  F.  U.  k.  v.  .  œ.  ×.  æ.  .	  .	  ,	  8	  ã	  î	  Z
+  `
+  
+  
+   .  ..  ..  ..  å.  í.  ..  ..  z.  {.  ×.  ê.  þ.  ÿ.  ]
+  
+  •
+  –
+  ..  ..  Š.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     Q.  W.  ø.  ý.  =.  G.  õ.  ø.  Ø	  ð	  .
+  "
+  Œ
+  
+  ..  ..  þ.  ..  w.  {.  û.  ÿ.  ’
+  –
+  ..  ..  W.  c.  {.  ~.  Š.  . 3 . 3 . 3 . 3 . . . 3 . 3 . 3 . 3 . 3 . 3 . 3 . 3 . 3 . 3 .     É.  ë.  Ø	  ð	  Š.  . . . . .     ã	  î	  Š.  . . . ÿÿ.   . .   8   .   .   å       7   ... Ú{. T\! :." ˜f$ ./( \.4 ²84 +X5 T&6 ’oO ÙnR èM[ :.c ëdf ý.j *On ,dp 73t úny kDz .S† Æ.‹ r1Œ Z- Àk .zž 'sŸ !e¢ Ò.ª Í.« 0(³ t.¼ ¤o¾ Ò.¿ t¿ ..Å j|Æ ™?Ç óLÍ ",Î ñ_Ï 1.Ñ Ø Ø SaÙ KlÚ .oÚ hQÛ Kà g.å !.æ ØZè Ï.ê \Xö ksö ³.þ ÿ@.€. .
+  .
+  °bï.. . .
+      .
+      ..       ˆ.  P  . @  ÿÿ.   . U n k n o w n ÿÿ. .           ÿÿ.     ÿÿ  . ÿÿ    ÿÿ  . ÿÿ    .   G..  ..........‡z     €.       ÿ.      T i m e s   N e w   R o m a n   5... ..........       .           €    S y m b o l   3&.  ..........‡z     €.       ÿ.      A r i a l   ?5.  ...	......‡z     €.       ÿ.      C o u r i e r   N e w   " . q.ˆ. ðÐ.  h.    0|Ò.6|Ò.    . .   [.  p
+  . .   . ...   [.  p
+  . .   .       %. ð.                                                                                                                                                                                                                                                                                                                         ¥.À.´ ´ 24              Ã.  Ã.                                                              .         .3ƒ. ð. .                             L     (ðÿ.. .?      ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿúny ÿÿ.               . . . .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   þÿ  ...                 .   à…ŸòùOh.«‘. +'³Ù0   `.  .   .      .   ˜   .   ¤   .   °   .   ¼   .   È   .   Ô   .   è   	   ô   .    .  
+   ..  .   (.  
+   4.  .   @.  .   H.  .   P.  .   X.  .   ä.  .   .     s .   .     s .   .   . s .   .     s .   .     s .   .   Normal.dot  .   .   . rm.   .   5 rm.   .   Microsoft Word 10.0 @    ¤“Ö    @    .¼s¿É.@    ´OJÀÉ..   .   .   [.  .   p
+  .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       þÿ  ...                 .   .ÕÍÕœ...“—. +,ù®0   è   .   .   h   .   p   .   |   .   „   .   Œ   .   ”   .   œ   .   ¤   .   ¬   .   ´   
+   ¼   .   É   .   ä.  .   .   .   .   .   .   .   .   Ã.  .   A
+
+ .       .       .       .       ..  .   .    ..  .   .   .   Title .   .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            .   .   .   .   .   .   .   .   	   
+   .   .   
+   .   .   .   .   þÿÿÿ.   .   .   .   .   .   .   .   .   .   .   .   .       !   "   #   $   %   &   '   (   )   *   +   ,   -   .   /   0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?   @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _   `   a   þÿÿÿc   d   e   f   g   h   i   þÿÿÿk   l   m   n   o   p   q   þÿÿÿs   t   u   v   w   x   y   þÿÿÿýÿÿÿ|   þÿÿÿþÿÿÿþÿÿÿÿÿÿÿR o o t   E n t r y                                             . ..ÿÿÿÿÿÿÿÿ.   .	.     À      F            à,–_ÀÉ.~   €       D a t a                                                         
+ ..ÿÿÿÿÿÿÿÿÿÿÿÿ                                    .   ²Ÿ      1 T a b l e                                                     . ...   .   ÿÿÿÿ                                    b    .      W o r d D o c u m e n t                                         . ...   .   ÿÿÿÿ                                        ("      . S u m m a r y I n f o r m a t i o n                           ( ..ÿÿÿÿÿÿÿÿÿÿÿÿ                                    j    .      . D o c u m e n t S u m m a r y I n f o r m a t i o n           8 ...   ÿÿÿÿÿÿÿÿ                                    r    .      . C o m p O b j                                                 . . ÿÿÿÿÿÿÿÿÿÿÿÿ                                        j                                                                           ÿÿÿÿÿÿÿÿÿÿÿÿ                                                .   þÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ. þÿ.
+  ÿÿÿÿ.	.     À      F.   Microsoft Word Document 
+   MSWordDoc .   Word.Document.8 ô9²q                                                                                                                                                                                                                                                                                                                                                                                                                                  

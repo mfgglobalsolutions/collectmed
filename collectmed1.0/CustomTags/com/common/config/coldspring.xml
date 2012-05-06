@@ -1,0 +1,29 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="Client" class="cmComponents.com.common.Client" singleton="false" />
+	<bean id="IMChat" class="cmComponents.com.common.IMChat" singleton="false" />
+	<bean id="InsuranceCompany_Com" class="cmComponents.com.common.InsuranceCompany" singleton="false" />	
+	<bean id="UserSessionInsert" class="cmComponents.com.common.UserSessionInsert" singleton="false" />
+	<bean id="User" class="cmComponents.com.common.User" singleton="false">
+		<constructor-arg name="PageIO">
+			<ref bean="PageIO" />
+		</constructor-arg>
+		<constructor-arg name="PageRoleIO">
+			<ref bean="PageRoleIO" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="Task" class="cmComponents.com.common.Task" singleton="false" />	
+	<bean id="old_Address" class="cmComponents.com.common.Address" singleton="false" />
+	<bean id="old_xmlFunctions" class="cmComponents.com.common.xmlFunctions" />
+	<bean id="old_toXML" class="cmComponents.com.common.toXML" />
+
+	<import resource="/collectmed1.0/CustomTags/com/common/authenticate/config/coldspring.xml" />
+	<import resource="/collectmed1.0/CustomTags/com/common/gateway/config/coldspring.xml" />
+	<import resource="/collectmed1.0/CustomTags/com/common/db/config/coldspring.xml" />	
+	<import resource="/collectmed1.0/CustomTags/com/common/security/config/coldspring.xml" />	
+	<import resource="/collectmed1.0/CustomTags/com/common/model/config/coldspring.xml" />
+	
+</beans>
+	
