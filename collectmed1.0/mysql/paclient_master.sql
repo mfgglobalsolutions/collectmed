@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.1.52, for Win32 (ia32)
+-- MySQL dump 10.13  Distrib 5.5.22, for Win64 (x86)
 --
--- Host: 127.0.0.1    Database: paclient_1084
+-- Host: 192.168.1.150    Database: paclient_1084
 -- ------------------------------------------------------
 -- Server version	5.1.52-community
 
@@ -252,6 +252,25 @@ CREATE TABLE `doctor` (
   `DateModified` datetime DEFAULT NULL,
   PRIMARY KEY (`DoctorID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `dtproperties`
+--
+
+DROP TABLE IF EXISTS `dtproperties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dtproperties` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `objectid` int(10) DEFAULT NULL,
+  `property` varchar(64) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `uvalue` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `lvalue` longblob,
+  `version` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`,`property`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1960,8 +1979,149 @@ CREATE TABLE `systemusermessage` (
   `InactiveCode` int(10) DEFAULT NULL,
   `DateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `DateModified` datetime DEFAULT NULL,
-  PRIMARY KEY (`SystemUserMessageID`)
+  PRIMARY KEY (`SystemUserMessageID`),
+  KEY `Dismissed` (`UsersID`,`Dismissed`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage1`
+--
+
+DROP TABLE IF EXISTS `systemusermessage1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage1` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage2`
+--
+
+DROP TABLE IF EXISTS `systemusermessage2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage2` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage3`
+--
+
+DROP TABLE IF EXISTS `systemusermessage3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage3` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage4`
+--
+
+DROP TABLE IF EXISTS `systemusermessage4`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage4` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage5`
+--
+
+DROP TABLE IF EXISTS `systemusermessage5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage5` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage6`
+--
+
+DROP TABLE IF EXISTS `systemusermessage6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage6` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `systemusermessage7`
+--
+
+DROP TABLE IF EXISTS `systemusermessage7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `systemusermessage7` (
+  `SystemUserMessageID` int(10) NOT NULL AUTO_INCREMENT,
+  `UsersID` int(10) NOT NULL,
+  `Dismissed` int(10) NOT NULL,
+  `Note` longtext NOT NULL,
+  `Active` char(1) NOT NULL,
+  `InactiveCode` int(10) DEFAULT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime DEFAULT NULL,
+  PRIMARY KEY (`SystemUserMessageID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2058,7 +2218,7 @@ CREATE TABLE `userssession` (
   `UsersSessionIdentification` varchar(80) DEFAULT NULL,
   `UsersID` int(10) NOT NULL,
   `IPAddress` varchar(20) DEFAULT NULL,
-  `SiteID` int(10) NOT NULL,
+  `SiteID` int(10) DEFAULT NULL,
   `Active` char(1) NOT NULL DEFAULT '1',
   `InactiveCode` int(10) DEFAULT NULL,
   `DateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2240,5 +2400,5 @@ CREATE TABLE `workgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-06 14:19:04
+-- Dump completed on 2012-05-06 20:38:41
 
