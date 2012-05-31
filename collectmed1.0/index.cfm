@@ -144,7 +144,7 @@
 
 
 
-<!--- 
+
 <cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
 <cfset tempConfigBean = application.beanFactory.getBean('configBean') />
 
@@ -155,6 +155,12 @@
 <cfset request.mySQLUser = tempConfigBean.getDatabase().mySQLUser /> 
 <cfset request.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
 
+
+
+
+
+
+
  
 <cfset request.newClientDB = "paclient_1096">
 <cfset temp = tempMySQLProcedures.createNewClientDB(request.mainClientDB, request.newClientDB, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass)>
@@ -164,7 +170,7 @@
 
 <!--- BACKUPS --->
 <cfset temp = tempMySQLProcedures.createClientDBBackups(request.masterDatasource, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass, request.dbBackupPath)>
- --->
+
 
 
 
