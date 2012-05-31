@@ -1,0 +1,14 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans autowire="no">
+	
+	<import resource="/collectmed1.0/com/config/coldspring.xml" /> 
+	<import resource="/collectmed1.0/CustomTags/com/common/config/coldspring.xml" /> 
+	<import resource="/collectmed1.0/components/config/coldspring.xml" /> 
+		
+</beans>
+
+
+
+
+
