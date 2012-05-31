@@ -409,7 +409,7 @@
 		
 		<cfset preInit(ObjectID)>
 	
-		<cfquery name="qGetObject" datasource="PA_Master">
+		<cfquery name="qGetObject" datasource="pa_master">
 	  		SELECT ObjectID,ObjectName,Description,Active,InactiveCode,DateCreated,DateModified
 			FROM Object  
 			WHERE ObjectID = #trim(arguments.ObjectID)# 
@@ -468,7 +468,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitObject" datasource="PA_Master">
+				<cfquery name="qUpdateCommitObject" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -488,7 +488,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitObject" datasource="PA_Master">
+				<cfquery name="qInsertCommitObject" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -930,7 +930,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getObjectQuery" datasource="PA_Master">
+			<cfquery Name="getObjectQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Object   
 				WHERE 1=1

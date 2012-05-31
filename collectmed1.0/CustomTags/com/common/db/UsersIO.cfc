@@ -750,7 +750,7 @@
 		
 		<cfset preInit(UsersID)>
 	
-		<cfquery name="qGetUsers" datasource="PA_Master">
+		<cfquery name="qGetUsers" datasource="pa_master">
 	  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
 			FROM Users  
 			WHERE UsersID = #trim(arguments.UsersID)# 
@@ -844,7 +844,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitUsers" datasource="PA_Master">
+				<cfquery name="qUpdateCommitUsers" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -864,7 +864,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitUsers" datasource="PA_Master">
+				<cfquery name="qInsertCommitUsers" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1336,7 +1336,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getUsersQuery" datasource="PA_Master">
+			<cfquery Name="getUsersQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Users   
 				WHERE 1=1

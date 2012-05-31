@@ -548,7 +548,7 @@
 							
 			<cfset serverName = "EOB">
 					
-			<cfquery name="createDB" datasource="PA_Master">		
+			<cfquery name="createDB" datasource="pa_master">		
 				RESTORE DATABASE #trim(arguments.ds)#
 			   	FROM PAClient_MASTER
 			   	WITH RECOVERY,

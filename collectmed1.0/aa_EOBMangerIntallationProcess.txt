@@ -42,7 +42,7 @@ EOB Installation
 	
 	Verify connectivity and create the following Datasources through CF Admin
 	PA_MASTER
-	ro_PA_Master
+	ro_pa_master
 
 	
 6) Create the Event Gateways

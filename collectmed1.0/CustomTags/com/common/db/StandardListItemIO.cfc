@@ -424,7 +424,7 @@
 		
 		<cfset preInit(StandardListItemID)>
 	
-		<cfquery name="qGetStandardListItem" datasource="PA_Master">
+		<cfquery name="qGetStandardListItem" datasource="pa_master">
 	  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
 			FROM StandardListItem  
 			WHERE StandardListItemID = #trim(arguments.StandardListItemID)# 
@@ -490,7 +490,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitStandardListItem" datasource="PA_Master">
+				<cfquery name="qUpdateCommitStandardListItem" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -510,7 +510,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitStandardListItem" datasource="PA_Master">
+				<cfquery name="qInsertCommitStandardListItem" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -958,7 +958,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getStandardListItemQuery" datasource="PA_Master">
+			<cfquery Name="getStandardListItemQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM StandardListItem   
 				WHERE 1=1

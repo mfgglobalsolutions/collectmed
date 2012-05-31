@@ -12,7 +12,7 @@
 		<cfargument name="objectID" required="yes" type="numeric">
 		<cfargument name="instanceID" required="yes" type="numeric">
 				
-		<cfquery name="checkObject" datasource="PA_Master">
+		<cfquery name="checkObject" datasource="pa_master">
 			Select objectName FROM Object WHERE ObjectID = #trim(objectID)# AND ObjectID NOT IN(1)
 		</cfquery>
 		
@@ -24,7 +24,7 @@
 				<cfcase value="Users">
 					<cfset objectName= "#trim(checkObject.objectName)#">
 					<cfset keyID = "UsersID">
-					<cfset thisDatasource = "PA_Master">
+					<cfset thisDatasource = "pa_master">
 				</cfcase>
 				<cfcase value="Patient">
 					<cfset objectName= "#trim(checkObject.objectName)#">

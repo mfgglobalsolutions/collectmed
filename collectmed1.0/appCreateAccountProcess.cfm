@@ -156,7 +156,7 @@
 			<cfset Entry = application.beanFactory.getBean('globalFooter').GlobalFooterE(lcase(trim(form.administratorEmailAddress))) />
 			<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(initialEntryPoint)) />
 						
-			<cfquery name="insertAdministratorUserAccount" datasource="PA_Master">
+			<cfquery name="insertAdministratorUserAccount" datasource="pa_master">
 				INSERT INTO Users  (SiteID, ClientID, EntityID, Entry, EntryPoint)
 				VALUES(#trim(request.Site.getSiteID())#, #trim(ClientID)#, '#trim(administratorID)#', '#trim(Entry)#', '#trim(EntryPoint)#');
 				SELECT LAST_INSERT_ID() AS usersID 
@@ -165,7 +165,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Give the administrator the Site administrator Role.                            --->
 			<!-------------------------------------------------------------------------------------->				
-			<cfquery name="insertSiteAdministratorUserRole" datasource="PA_Master">
+			<cfquery name="insertSiteAdministratorUserRole" datasource="pa_master">
 				INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
 				VALUES(#trim(insertAdministratorUserAccount.UsersID)#, #trim(request.Site.getSiteID())#, 1)
 			</cfquery>		
@@ -173,7 +173,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Give the administrator an EOB administrator Role.                              --->
 			<!-------------------------------------------------------------------------------------->				
-			<cfquery name="insertAdministratorUserRole" datasource="PA_Master">
+			<cfquery name="insertAdministratorUserRole" datasource="pa_master">
 				INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
 				VALUES(#trim(insertAdministratorUserAccount.UsersID)#, #trim(request.Site.getSiteID())#, 8)
 			</cfquery>		
@@ -205,7 +205,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Update the Client table witht he email id of the administrator.                --->
 			<!-------------------------------------------------------------------------------------->			
-			<cfquery name="updateClientRecord" datasource="PA_Master">
+			<cfquery name="updateClientRecord" datasource="pa_master">
 				UPDATE Client  
 				SET supportEmailID = #trim(administratorEmailID)#, EntityID = #trim(EntityID)#
 				WHERE ClientID = #trim(ClientID)#

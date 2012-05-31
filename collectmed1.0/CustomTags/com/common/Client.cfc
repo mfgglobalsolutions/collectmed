@@ -101,7 +101,7 @@
 													
 		<cftry>			
 			
-			<cfquery name="getEntityID" datasource="PA_Master">
+			<cfquery name="getEntityID" datasource="pa_master">
 				SELECT EntityID 
 				FROM Client	
 				WHERE ClientID = #trim(ClientID)#				
@@ -295,7 +295,7 @@
 				
 		<cftry>
 			
-			<cfquery name="getEmail" datasource="PA_Master">
+			<cfquery name="getEmail" datasource="pa_master">
 				SELECT SupportEmailID
 				FROM Client  
 				WHERE ClientID = #trim(ClientID)#
@@ -328,7 +328,7 @@
 				
 		<cftry>
 			
-			<cfquery name="getEmail" datasource="PA_Master">
+			<cfquery name="getEmail" datasource="pa_master">
 				SELECT SupportEmailID
 				FROM Client  
 				WHERE ClientID = #trim(ClientID)#
@@ -376,7 +376,7 @@
 													
 		<cftry>			
 			
-			<cfquery name="getXML" datasource="PA_Master">
+			<cfquery name="getXML" datasource="pa_master">
 				SELECT SettingsXML
 				FROM Client	
 				WHERE ClientID = #trim(ClientID)#				

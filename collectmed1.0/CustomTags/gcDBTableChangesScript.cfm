@@ -69,7 +69,7 @@
 											
 				<cfloop list="#trim(datasourceList)#" index="j">
 					
-					<cfquery name="checkTableChange" datasource="PA_Master">
+					<cfquery name="checkTableChange" datasource="pa_master">
 						SELECT ChangeID 
 						FROM TableChange 
 						WHERE Datasource = '#trim(j)#' 
@@ -80,7 +80,7 @@
 					
 					<cfif checkTableChange.RecordCount LTE 0> 
 						
-						<cfquery name="insertTableChange" datasource="PA_Master">
+						<cfquery name="insertTableChange" datasource="pa_master">
 							INSERT INTO TableChange (Datasource, TableName, ColumnName, ChangeScript) 
 							VALUES('#trim(j)#', '#trim(tableName)#', '#trim(ColumnName)#', '#trim(i)#')
 						</cfquery>
@@ -117,7 +117,7 @@
 <!--- Get all the records in the table that need to be processed and process         --->
 <!--- the changeScript.                                                              --->
 <!-------------------------------------------------------------------------------------->
-<cfquery name="getUpdatesTableChange" datasource="PA_Master">
+<cfquery name="getUpdatesTableChange" datasource="pa_master">
 	SELECT * 
 	FROM TableChange 
 	WHERE Active = 1 AND InactiveCode IS NULL	
@@ -140,7 +140,7 @@
 			END
 		</cfquery>
 		
-		<cfquery name="UpdateChangeTableActive" datasource="PA_Master">
+		<cfquery name="UpdateChangeTableActive" datasource="pa_master">
 			UPDATE TableChange
 			SET Active = 0, InactiveCode = 68, dateModified = now()
 			WHERE ChangeID = #trim(ChangeID)#
@@ -148,7 +148,7 @@
 	
 		<cfcatch type="Any">
 			
-			<cfquery name="UpdateChangeTableError" datasource="PA_Master">
+			<cfquery name="UpdateChangeTableError" datasource="pa_master">
 				UPDATE TableChange
 				SET Error = '#CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail# #DateFormat(NOW(), "mm/dd/yyyy")# #TimeFormat(NOW(), "hh:mm:ss tt")# | #trim(Error)#'      
 				WHERE ChangeID = #trim(ChangeID)#

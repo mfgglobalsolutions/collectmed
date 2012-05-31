@@ -154,6 +154,7 @@
 <cfset request.mySQLPort = tempConfigBean.getDatabase().mySQLPort /> 
 <cfset request.mySQLUser = tempConfigBean.getDatabase().mySQLUser /> 
 <cfset request.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
+<cfset request.dbBackupPath = tempConfigBean.getDatabase().dbBackupPath />
 
 
 
@@ -170,6 +171,7 @@
 
 <!--- BACKUPS --->
 <cfset temp = tempMySQLProcedures.createClientDBBackups(request.masterDatasource, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass, request.dbBackupPath)>
+
 
 
 

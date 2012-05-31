@@ -491,7 +491,7 @@
 		
 		<cfset preInit(recordID)>
 	
-		<cfquery name="qGetEOB_Provider" datasource="PA_Master">
+		<cfquery name="qGetEOB_Provider" datasource="pa_master">
 	  		SELECT recordID,ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode,DateCreated,DateModified
 			FROM EOB_Provider  
 			WHERE recordID = #trim(arguments.recordID)# 
@@ -560,7 +560,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitEOB_Provider" datasource="PA_Master">
+				<cfquery name="qUpdateCommitEOB_Provider" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -580,7 +580,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitEOB_Provider" datasource="PA_Master">
+				<cfquery name="qInsertCommitEOB_Provider" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1028,7 +1028,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getEOB_ProviderQuery" datasource="PA_Master">
+			<cfquery Name="getEOB_ProviderQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM EOB_Provider   
 				WHERE 1=1

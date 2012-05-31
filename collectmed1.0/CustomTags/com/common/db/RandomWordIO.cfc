@@ -365,7 +365,7 @@
 		
 		<cfset preInit(RandomWordID)>
 	
-		<cfquery name="qGetRandomWord" datasource="PA_Master">
+		<cfquery name="qGetRandomWord" datasource="pa_master">
 	  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
 			FROM RandomWord  
 			WHERE RandomWordID = #trim(arguments.RandomWordID)# 
@@ -422,7 +422,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitRandomWord" datasource="PA_Master">
+				<cfquery name="qUpdateCommitRandomWord" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -442,7 +442,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitRandomWord" datasource="PA_Master">
+				<cfquery name="qInsertCommitRandomWord" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -881,7 +881,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getRandomWordQuery" datasource="PA_Master">
+			<cfquery Name="getRandomWordQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM RandomWord   
 				WHERE 1=1

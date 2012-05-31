@@ -279,13 +279,13 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Create the obejcts that are needed to run this page.                           --->
 			<!-------------------------------------------------------------------------------------->		
-			<cfset request.Client = Createobject("component", "ClientActive").init('PA_Master')>
+			<cfset request.Client = Createobject("component", "ClientActive").init('pa_master')>
 		
 									
 			<!-------------------------------------------------------------------------------------->
 			<!--- Start by checking to see if the client name is not taken.                      --->
 			<!-------------------------------------------------------------------------------------->				
-			<cfif request.Client.ClientExists('PA_Master', trim(form.clientName))>
+			<cfif request.Client.ClientExists('pa_master', trim(form.clientName))>
 				<cfthrow message="This client name ('#trim(form.clientName)#') already exists.">
 			</cfif>
 						
@@ -450,7 +450,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Create a user account for the adminstrator. Giving the admin the admin role.   --->
 			<!-------------------------------------------------------------------------------------->			
-			<cfset request.objRandomWord = Createobject("component", "RandomWordActive").init('PA_Master')>
+			<cfset request.objRandomWord = Createobject("component", "RandomWordActive").init('pa_master')>
 			<cfset randWord = request.objRandomWord.getRandomWord(randRange) />		
 				
 			<cfset initialEntryPoint = randWord.word & request.AdministratorEntity.getEntityID()> 	
@@ -461,7 +461,7 @@
 			<cfset Entry = application.beanFactory.getBean('globalFooter').GlobalFooterE(lcase(trim(form.administratorEmailAddress))) />
 			<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(initialEntryPoint)) />
 						
-			<cfset request.AdminUserAccount = Createobject("component", "UsersActive").init('PA_Master')>
+			<cfset request.AdminUserAccount = Createobject("component", "UsersActive").init('pa_master')>
 			<cfset request.AdminUserAccount.setClientID(trim(request.Client.getClientID())) />
 			<cfset request.AdminUserAccount.setEntityID(trim(request.AdministratorEntity.getEntityID())) />
 			<cfset request.AdminUserAccount.setEntry(trim(Entry)) />
@@ -472,7 +472,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Give the administrator the Site administrator Role.                            --->
 			<!-------------------------------------------------------------------------------------->				
-			<cfset request.AdminRole1 = Createobject("component", "UsersRoleActive").init('PA_Master')>
+			<cfset request.AdminRole1 = Createobject("component", "UsersRoleActive").init('pa_master')>
 			<cfset request.AdminRole1.setUsersID(trim(request.AdminUserAccount.getUsersID())) />
 			<cfset request.AdminRole1.setRoleID(1) />			
 			<cfset request.AdminRole1.create(obj: request.AdminRole1)>	
@@ -480,7 +480,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Give the administrator an EOB administrator Role.                              --->
 			<!-------------------------------------------------------------------------------------->							
-			<cfset request.AdminRole8 = Createobject("component", "UsersRoleActive").init('PA_Master')>
+			<cfset request.AdminRole8 = Createobject("component", "UsersRoleActive").init('pa_master')>
 			<cfset request.AdminRole8.setUsersID(trim(request.AdminUserAccount.getUsersID())) />
 			<cfset request.AdminRole8.setRoleID(8) />			
 			<cfset request.AdminRole8.create(obj: request.AdminRole8)>				

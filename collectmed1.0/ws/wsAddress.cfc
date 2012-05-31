@@ -246,7 +246,7 @@
 					<cfset StateID = ListGetAt(AddressString, 5, "|")>
 				<cfelseif ListLen(AddressString, "|") GTE 5 AND ListGetAt(AddressString, 5, "|") NEQ "">	
 					<cfset State = ListGetAt(AddressString, 5, "|")>
-					<cfquery name="getState" datasource="PA_Master">
+					<cfquery name="getState" datasource="pa_master">
 						SELECT StandardListItemID
 						FROM StandardListItem
 						WHERE ItemDescription = '#trim(State)#' OR ItemNameDisplay = '#trim(State)#'
@@ -326,7 +326,7 @@
 					<cfset StateID = ListGetAt(AddressString, 5, "|")>
 				<cfelseif ListLen(AddressString, "|") GTE 5 AND ListGetAt(AddressString, 5, "|") NEQ "">	
 					<cfset State = ListGetAt(AddressString, 5, "|")>
-					<cfquery name="getState" datasource="PA_Master">
+					<cfquery name="getState" datasource="pa_master">
 						SELECT StandardListItemID
 						FROM StandardListItem
 						WHERE ItemDescription = '#trim(State)#' OR ItemNameDisplay = '#trim(State)#'

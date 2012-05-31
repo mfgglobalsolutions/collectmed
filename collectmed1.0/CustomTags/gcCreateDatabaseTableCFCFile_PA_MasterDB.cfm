@@ -121,7 +121,7 @@
 <!--- in exists otherwise thorow an error. But if it does exist                      --->
 <!--- get the name and set it to the correct letter case.                            --->
 <!-------------------------------------------------------------------------------------->
-	<cfquery name="tableExists" datasource="PA_Master">
+	<cfquery name="tableExists" datasource="pa_master">
 		SELECT name
 		FROM sysobjects
 		WHERE (type = 'U') AND (name = '#TableName#')
@@ -140,7 +140,7 @@
 <!--- Query for the tablenames columns to place in the custom                        --->
 <!--- update tag.                                                                    --->
 <!-------------------------------------------------------------------------------------->
-	<cfquery name="getTableColumns" datasource="PA_Master">
+	<cfquery name="getTableColumns" datasource="pa_master">
 		SELECT c.name ColumnName, t.name DataType, c.length ColumnLength, c.isnullable IsNullableField, c.cdefault HasDefaultValue, c.colstat IdentityField 
 		FROM syscolumns c 
 		INNER JOIN systypes t ON c.xusertype = t.xusertype 
@@ -163,7 +163,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Find the Primary key in the table if any and take it out.                      --->
 	<!-------------------------------------------------------------------------------------->
-		<cfquery name="findTablePrimaryKey" datasource="PA_Master">
+		<cfquery name="findTablePrimaryKey" datasource="pa_master">
 			SELECT column_name
 			FROM information_schema.key_column_usage 
 			WHERE constraint_catalog = db_name() AND table_name = '#TableName#' AND LOWER(constraint_name) like 'pk%'   
@@ -428,7 +428,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Query to create the new query.                                                 --->
 <!-------------------------------------------------------------------------------------->
-	<cfquery name="getDefaults" datasource="PA_Master">
+	<cfquery name="getDefaults" datasource="pa_master">
 		SELECT COLUMN_NAME, IS_NULLABLE, COLUMN_DEFAULT, DATA_TYPE
 		FROM INFORMATION_SCHEMA.Columns
 		WHERE (TABLE_NAME = N'#tablename#')
@@ -665,7 +665,7 @@
 		
 		<cfset preInit(#trim(primaryKeyColumnName)#)>
 	
-		<cfquery name="qGet#trim(tableName)#" datasource="PA_Master">
+		<cfquery name="qGet#trim(tableName)#" datasource="pa_master">
 	  		SELECT #trim(tableColumnsList)#'>
 	  		<cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))>
 				<cfset fileString = fileString & '
@@ -752,7 +752,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommit#trim(tablename)#" datasource="PA_Master">
+				<cfquery name="qUpdateCommit#trim(tablename)#" datasource="pa_master">
 		   			##PreserveSingleQuotes(sqlStatement)##
 		   		</cfquery>
 							
@@ -772,7 +772,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommit#trim(tablename)#" datasource="PA_Master">
+				<cfquery name="qInsertCommit#trim(tablename)#" datasource="pa_master">
 		   			##PreserveSingleQuotes(sqlStatement)##
 		   		</cfquery>		
 		 					
@@ -1218,7 +1218,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="get#trim(tablename)#Query" datasource="PA_Master">
+			<cfquery Name="get#trim(tablename)#Query" datasource="pa_master">
 				SELECT ##trim(Fields)##'>
 				<cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))>
 					<cfset fileString = fileString & '

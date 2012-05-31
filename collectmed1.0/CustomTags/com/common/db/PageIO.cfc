@@ -846,7 +846,7 @@
 		
 		<cfset preInit(PageID)>
 	
-		<cfquery name="qGetPage" datasource="PA_Master">
+		<cfquery name="qGetPage" datasource="pa_master">
 	  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
 			FROM Page  
 			WHERE PageID = #trim(arguments.PageID)# 
@@ -941,7 +941,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitPage" datasource="PA_Master">
+				<cfquery name="qUpdateCommitPage" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -961,7 +961,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitPage" datasource="PA_Master">
+				<cfquery name="qInsertCommitPage" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1439,7 +1439,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getPageQuery" datasource="PA_Master">
+			<cfquery Name="getPageQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Page   
 				WHERE 1=1

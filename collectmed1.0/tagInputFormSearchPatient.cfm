@@ -573,7 +573,7 @@
 				var thisHEIGHTININCHES = $PATIENT.find('HEIGHTININCHES').text();			
 				var thisMARITALSTATUS = $PATIENT.find('MARITALSTATUS').text();
 				var thisDOB = $PATIENT.find('DOB').text();			
-				if(thisDOB != ""){					
+				if(thisDOB != ""){
 					var date = new Date(thisDOB);							 								
 					var thisDOBMONTH = new String(date.getMonth() + 1)
 					if(thisDOBMONTH.length == 1)thisDOBMONTH = "0" + thisDOBMONTH;

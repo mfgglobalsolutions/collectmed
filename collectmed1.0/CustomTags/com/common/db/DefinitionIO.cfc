@@ -406,7 +406,7 @@
 		
 		<cfset preInit(DefinitionID)>
 	
-		<cfquery name="qGetDefinition" datasource="PA_Master">
+		<cfquery name="qGetDefinition" datasource="pa_master">
 	  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
 			FROM Definition  
 			WHERE DefinitionID = #trim(arguments.DefinitionID)# 
@@ -465,7 +465,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitDefinition" datasource="PA_Master">
+				<cfquery name="qUpdateCommitDefinition" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -485,7 +485,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitDefinition" datasource="PA_Master">
+				<cfquery name="qInsertCommitDefinition" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -927,7 +927,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getDefinitionQuery" datasource="PA_Master">
+			<cfquery Name="getDefinitionQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Definition   
 				WHERE 1=1

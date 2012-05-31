@@ -274,8 +274,8 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Set the datasource based on where we are reading from.                         --->
 <!-------------------------------------------------------------------------------------->
-	<cfif trim(ds) EQ "PA_Master">
-		<cfset thisDS = "PA_Master">
+	<cfif trim(ds) EQ "pa_master">
+		<cfset thisDS = "pa_master">
 	<cfelse>
 		<cfset thisDS = "##trim(request.datasource)##">
 	</cfif> 

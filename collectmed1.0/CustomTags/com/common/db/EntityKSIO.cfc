@@ -585,7 +585,7 @@
 		
 		<cfset preInit(EntityKSID)>
 	
-		<cfquery name="qGetEntityKS" datasource="PA_Master">
+		<cfquery name="qGetEntityKS" datasource="pa_master">
 	  		SELECT EntityKSID,ColM,ColE,ColL,ColI,ColA,ColC,Active,InactiveCode,DateCreated,DateModified
 			FROM EntityKS  
 			WHERE EntityKSID = #trim(arguments.EntityKSID)# 
@@ -652,7 +652,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitEntityKS" datasource="PA_Master">
+				<cfquery name="qUpdateCommitEntityKS" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -672,7 +672,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitEntityKS" datasource="PA_Master">
+				<cfquery name="qInsertCommitEntityKS" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1126,7 +1126,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getEntityKSQuery" datasource="PA_Master">
+			<cfquery Name="getEntityKSQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM EntityKS   
 				WHERE 1=1

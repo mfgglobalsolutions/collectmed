@@ -101,7 +101,7 @@
 		<!------------------------------------------------------------------>
 		<!--- Get the groups that this page is associated with.          --->
 		<!------------------------------------------------------------------>					
-			<cfquery name="getPageRoles" datasource="PA_Master">
+			<cfquery name="getPageRoles" datasource="pa_master">
 				SELECT RoleID
 				FROM PageRole
 				WHERE PageID=#pageID# AND SiteID=#request.Site.getSiteID()#

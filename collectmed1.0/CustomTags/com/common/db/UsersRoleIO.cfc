@@ -444,7 +444,7 @@
 		
 		<cfset preInit(UsersRoleID)>
 	
-		<cfquery name="qGetUsersRole" datasource="PA_Master">
+		<cfquery name="qGetUsersRole" datasource="pa_master">
 	  		SELECT UsersRoleID,UsersID,SiteID,RoleID,Active,InactiveCode,DateCreated,DateModified
 			FROM UsersRole  
 			WHERE UsersRoleID = #trim(arguments.UsersRoleID)# 
@@ -514,7 +514,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitUsersRole" datasource="PA_Master">
+				<cfquery name="qUpdateCommitUsersRole" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -534,7 +534,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitUsersRole" datasource="PA_Master">
+				<cfquery name="qInsertCommitUsersRole" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -979,7 +979,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getUsersRoleQuery" datasource="PA_Master">
+			<cfquery Name="getUsersRoleQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM UsersRole   
 				WHERE 1=1

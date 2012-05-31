@@ -839,7 +839,7 @@
 		
 		<cfset preInit(ClientID)>
 	
-		<cfquery name="qGetClient" datasource="PA_Master">
+		<cfquery name="qGetClient" datasource="pa_master">
 	  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
 			FROM Client  
 			WHERE ClientID = #trim(arguments.ClientID)# 
@@ -940,7 +940,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitClient" datasource="PA_Master">
+				<cfquery name="qUpdateCommitClient" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -960,7 +960,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitClient" datasource="PA_Master">
+				<cfquery name="qInsertCommitClient" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1438,7 +1438,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getClientQuery" datasource="PA_Master">
+			<cfquery Name="getClientQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Client   
 				WHERE 1=1

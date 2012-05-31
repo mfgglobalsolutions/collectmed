@@ -12,7 +12,7 @@
 		<cfset var clientIDs = "">
 		<cfset var getClientIDs = "">
 						
-		<cfquery name="getClientIDs" datasource="PA_Master">
+		<cfquery name="getClientIDs" datasource="pa_master">
 			SELECT ClientID FROM Client
 		</cfquery>
 		
@@ -33,7 +33,7 @@
 		<!------------------------------------------------------------------>	
 		<cfargument name="clientID" required="true" type="numeric">
 						
-		<cfquery name="getClientUsers" datasource="PA_Master">
+		<cfquery name="getClientUsers" datasource="pa_master">
 			SELECT UsersID 
 			FROM Users
 			WHERE ClientID = #arguments.clientID#

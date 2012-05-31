@@ -658,7 +658,7 @@
 		
 		<cfset preInit(RecordID)>
 	
-		<cfquery name="qGetEOB_PROCEDURECode" datasource="PA_Master">
+		<cfquery name="qGetEOB_PROCEDURECode" datasource="pa_master">
 	  		SELECT RecordID,TOSCode,Code,Description,TMRMPayable,TotalRVUs,ConversionFactor,AccessBasedOrMaxFee,NoteCode,Active,InactiveCode,DateCreated,DateModified
 			FROM EOB_PROCEDURECode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
@@ -741,7 +741,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitEOB_PROCEDURECode" datasource="PA_Master">
+				<cfquery name="qUpdateCommitEOB_PROCEDURECode" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -761,7 +761,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitEOB_PROCEDURECode" datasource="PA_Master">
+				<cfquery name="qInsertCommitEOB_PROCEDURECode" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1221,7 +1221,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getEOB_PROCEDURECodeQuery" datasource="PA_Master">
+			<cfquery Name="getEOB_PROCEDURECodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM EOB_PROCEDURECode   
 				WHERE 1=1

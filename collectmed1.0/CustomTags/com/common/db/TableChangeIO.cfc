@@ -541,7 +541,7 @@
 		
 		<cfset preInit(ChangeID)>
 	
-		<cfquery name="qGetTableChange" datasource="PA_Master">
+		<cfquery name="qGetTableChange" datasource="pa_master">
 	  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
 			FROM TableChange  
 			WHERE ChangeID = #trim(arguments.ChangeID)# 
@@ -606,7 +606,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitTableChange" datasource="PA_Master">
+				<cfquery name="qUpdateCommitTableChange" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -626,7 +626,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitTableChange" datasource="PA_Master">
+				<cfquery name="qInsertCommitTableChange" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1077,7 +1077,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getTableChangeQuery" datasource="PA_Master">
+			<cfquery Name="getTableChangeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM TableChange   
 				WHERE 1=1

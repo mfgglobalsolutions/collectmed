@@ -15,7 +15,7 @@
 		
 		<cftry>
 						
-			<cfquery name="getDXDescription" datasource="PA_Master">
+			<cfquery name="getDXDescription" datasource="pa_master">
 				SELECT Description 
 				FROM EOB_MEDICARE_DXCode
 				WHERE Code = '#trim(Code)#'

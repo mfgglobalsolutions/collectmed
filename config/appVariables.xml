@@ -11,12 +11,12 @@
 			</property>	
 			<property name="database">
 				<struct>	
-					<key name="mySQLPath" value="C:\Program Files\MySQL\MySQL Server 5.1\bin" />	
+					<key name="mySQLPath" value="C:\Program Files\MySQL\MySQL Server 5.5\bin" />	
 					<key name="mySQLIpAddress" value="127.0.0.1" />	
 					<key name="mySQLPort" value="3306" />	
 					<key name="mySQLUser" value="root" />	
 					<key name="mySQLPass" value="collectmednet" />	
-					<key name="dbBackupPath" value="C:\CollectMed\DBbackup\" />	
+					<key name="dbBackupPath" value="/dbbackup/" />	<!-- C:\railo\tomcat\webapps\collectmed\dbbackup -->
 				</struct>
 			</property>	
 			<property name="domain">
@@ -40,12 +40,12 @@
 			</property>	
 			<property name="database">
 				<struct>	
-					<key name="mySQLPath" value="C:\Program Files\MySQL\MySQL Server 5.1\bin" />	
-					<key name="mySQLIpAddress" value="192.168.1.150" />	
+					<key name="mySQLPath" value="C:\Program Files\MySQL\MySQL Server 5.5\bin" />	
+					<key name="mySQLIpAddress" value="127.0.0.1" />	
 					<key name="mySQLPort" value="3306" />	
 					<key name="mySQLUser" value="root" />	
 					<key name="mySQLPass" value="collectmednet" />	
-					<key name="dbBackupPath" value="C:\CollectMed\DBbackup\" />	
+					<key name="dbBackupPath" value="/dbbackup/" />	<!-- C:\railo\tomcat\webapps\collectmed\dbbackup -->
 				</struct>
 			</property>	
 			<property name="domain">

@@ -406,7 +406,7 @@
 		
 		<cfset preInit(RecordID)>
 	
-		<cfquery name="qGetEOB_EOPSCode" datasource="PA_Master">
+		<cfquery name="qGetEOB_EOPSCode" datasource="pa_master">
 	  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
 			FROM EOB_EOPSCode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
@@ -465,7 +465,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitEOB_EOPSCode" datasource="PA_Master">
+				<cfquery name="qUpdateCommitEOB_EOPSCode" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -485,7 +485,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitEOB_EOPSCode" datasource="PA_Master">
+				<cfquery name="qInsertCommitEOB_EOPSCode" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -927,7 +927,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getEOB_EOPSCodeQuery" datasource="PA_Master">
+			<cfquery Name="getEOB_EOPSCodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM EOB_EOPSCode   
 				WHERE 1=1

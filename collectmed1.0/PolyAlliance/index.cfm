@@ -38,7 +38,7 @@
 <br><br>
 				
 
-<cfquery name="checkExistsClient" datasource="PA_Master">
+<cfquery name="checkExistsClient" datasource="pa_master">
 	SELECT clientID
 	FROM Client  
 	WHERE ClientID > 1094

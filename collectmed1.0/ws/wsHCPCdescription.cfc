@@ -15,7 +15,7 @@
 		
 		<cftry>
 						
-			<cfquery name="getHCPCDescription" datasource="PA_Master">
+			<cfquery name="getHCPCDescription" datasource="pa_master">
 				SELECT LongDescription AS Description 
 				FROM EOB_MEDICARE_PROCEDURECode
 				WHERE HCPC = '#trim(Code)#'

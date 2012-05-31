@@ -390,7 +390,7 @@
 															
 		<cftry>		
 							
-			<cfquery name="getWord" datasource="PA_Master">
+			<cfquery name="getWord" datasource="pa_master">
 				SELECT word 
 				FROM randomword  
 				WHERE randomwordid = #trim(arguments.randRange)#

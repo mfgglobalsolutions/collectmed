@@ -92,7 +92,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- Get the administrator information.                                             --->
 		<!-------------------------------------------------------------------------------------->	
-		<cfquery name="getAllClients" datasource="PA_Master">
+		<cfquery name="getAllClients" datasource="pa_master">
 			EXEC sp_databases
 		</cfquery>	
 		<cfset clientList = "">
@@ -138,7 +138,7 @@
 		</cfloop>
 		
 		<!---<br><br>
-		<cfquery name="tempGet2" datasource="PA_Master">
+		<cfquery name="tempGet2" datasource="pa_master">
 			SELECT u.usersid, u.entry, u.entrypoint, u.entryresponse, u.Active, u.clientID, u.datecreated 
 			FROM users u 
 			Order BY DateCreated DESC

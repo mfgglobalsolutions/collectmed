@@ -415,7 +415,7 @@
 		<cfargument name="usersID" required="yes" type="numeric">
 		<cfargument name="claimID" required="yes" type="numeric">
 		
-		<cfquery name="setUsersLastRecord" datasource="PA_Master">
+		<cfquery name="setUsersLastRecord" datasource="pa_master">
 			UPDATE Users
 			SET LastOpenedClaimID = #trim(claimID)#
 			WHERE UsersID = #trim(usersID)#
@@ -572,7 +572,7 @@
 		<!------------------------------------------------------------------>	
 		<cfargument name="UsersID" required="true" type="string">
 						
-		<cfquery name="getSuspendUser" datasource="PA_Master">
+		<cfquery name="getSuspendUser" datasource="pa_master">
 			SELECT suspend
 			FROM Users  			
 			WHERE UsersID = #trim(arguments.UsersID)#

@@ -6,6 +6,97 @@ C:\Java\Training\VirtualPairProgrammers\SpringFrameworkFundamentals\Chapter+5\ch
 
 
 
+<!---
+<cfset custom = structNew()>
+<cfset custom["allowMultiQueries"] = "true">
+<cfset custom["characterEncoding"] = "UTF-8">
+<cfset custom["jdbcCompliantTruncation"] = "true">
+<cfset custom["useUnicode"] = "true">
+
+<cfadmin
+    action="updateDatasource"
+    type="server"
+    password="collectmednet"
+    classname="org.gjt.mm.mysql.Driver"
+    dsn="jdbc:mysql://{host}:{port}/{database}"
+    name="pa_master"
+	newname="pa_master"
+    host="127.0.0.1"
+    database="pa_master"
+    port="3306"
+    dbusername="root"
+    dbpassword="collectmednet"    
+    connectionTimeout="1"
+    blob="false"
+    clob="false"
+    allowed_select="true"
+    allowed_insert="true"
+    allowed_update="true"
+    allowed_delete="true"
+    allowed_alter="true"
+    allowed_drop="true"
+    allowed_revoke="true"
+    allowed_create="true"
+    allowed_grant="true"
+	custom="#custom#">
+
+<cfadmin
+    action="getDatasource"
+	name="pa_master"
+    type="server"
+    password="collectmednet"
+    returnVariable="pamaster">
+<cfdump var="#pamaster#">
+--->
+<!---
+<cfset custom = structNew()>
+<cfset custom["allowMultiQueries"] = "true">
+<cfset custom["characterEncoding"] = "UTF-8">
+<cfset custom["jdbcCompliantTruncation"] = "true">
+<cfset custom["useUnicode"] = "true">
+
+<cfadmin
+    action="updateDatasource"
+    type="server"
+    password="collectmednet"
+    classname="org.gjt.mm.mysql.Driver"
+    dsn="jdbc:mysql://{host}:{port}/{database}"
+    name="paclient_1084"
+	newname="paclient_1084"
+    host="127.0.0.1"
+    database="paclient_1084"
+    port="3306"
+    dbusername="root"
+    dbpassword="collectmednet"    
+    connectionTimeout="1"
+    blob="false"
+    clob="false"
+    allowed_select="true"
+    allowed_insert="true"
+    allowed_update="true"
+    allowed_delete="true"
+    allowed_alter="true"
+    allowed_drop="true"
+    allowed_revoke="true"
+    allowed_create="true"
+    allowed_grant="true"
+	custom="#custom#">
+
+<cfadmin
+    action="getDatasource"
+	name="paclient_1084"
+    type="server"
+    password="collectmednet"
+    returnVariable="clientDB">
+<cfdump var="#clientDB#">
+<cfabort>	--->
+
+
+
+
+
+
+
 
 ISA*00*          *00*         C21P  *ZZ*146153871      *101129*2349*U*00401*000000015*0*P*:~
 GS*FA*617591011C21P*1461*2349*21~

@@ -131,7 +131,7 @@
 			
 				<cfif trim(ST_7) NEQ "NULL">	
 								
-					<cfquery name="getStateID" datasource="PA_Master">
+					<cfquery name="getStateID" datasource="pa_master">
 						SELECT StandardListItemID
 						FROM StandardListItem
 						WHERE ItemDescription = '#trim(ST_7)#' AND Active = 1 AND ListID = 4

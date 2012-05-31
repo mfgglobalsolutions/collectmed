@@ -32,8 +32,7 @@
 	<cffunction name="onRequestStart" returnType="boolean" output="true">
 
 		<cfsilent>
-		
-		
+
 		
 			<!-------------------------------------------------------------------------------------->
 			<!--- HERE ONLY FOR DEVELOPMENT PURPOSES TO RELOAD EVERY REQUEST                     --->
@@ -88,7 +87,7 @@
 				request.tempDocsURL = "#trim(request.urlProtocol)##trim(request.urlHost)#.#trim(request.urlDomain)#.#trim(request.urlHighLevelDomain)#/#trim(request.fmsVirtualDirectory)#";
 				request.ediURL = "https://www.mfgedi.com";				
 				request.coldspringConfig = expandPath("/") & "frameworks\coldspring\coldspring.xml"; 				
-				request.masterDatasource = "PA_Master";					
+				request.masterDatasource = "pa_master";					
 				
 				request.Site = structNew();
 				request.Site.getFont = "Tahoma";				
@@ -163,7 +162,7 @@
 					request.ro_datasource = "ro_" & session.user.getDatasource();	
 				}
 				else{		
-					request.datasource = "PA_Master";
+					request.datasource = "pa_master";
 					request.ro_datasource = "ro_PAMaster";	
 				};
 				

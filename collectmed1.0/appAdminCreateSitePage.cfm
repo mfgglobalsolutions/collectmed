@@ -408,7 +408,7 @@
 			<!------------------------------------------------------------------>
 				<cfif IsDefined("form.RolesToAssociate") AND ListLen(trim(form.RolesToAssociate)) GTE 1>
 					<cfloop list="#trim(form.RolesToAssociate)#" index="i">
-						<cfquery name="insertPageGroups" datasource="PA_Master">
+						<cfquery name="insertPageGroups" datasource="pa_master">
 							INSERT INTO PageRole(PageID, RoleID, SiteID)
 							VALUES(#trim(pageID)#, #trim(i)#, #trim(request.Site.getSiteID())#)
 						</cfquery>

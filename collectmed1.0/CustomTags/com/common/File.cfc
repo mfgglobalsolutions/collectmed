@@ -373,7 +373,7 @@
 				<cfreturn false>
 			</cfif>	
 			
-			<cfquery name="getValidStatuses" datasource="PA_Master">
+			<cfquery name="getValidStatuses" datasource="pa_master">
 				SELECT StandardListItemID
 				FROM StandardListItem 
 				WHERE ListID = 11

@@ -2823,7 +2823,7 @@
 		
 		<cfset preInit(RecordID)>
 	
-		<cfquery name="qGetEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="PA_Master">
+		<cfquery name="qGetEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="pa_master">
 	  		SELECT RecordID,HCPCRecordID,CategoryID,MOD1,MOD2,MOD3,MOD4,Ceiling,Floor,Fee_AL_16,Fee_AK_17,Fee_AZ_18,Fee_AR_19,Fee_CA_20,Fee_CO_21,Fee_CT_22,Fee_DE_23,Fee_DC_24,Fee_FL_25,Fee_GA_26,Fee_HI_27,Fee_ID_28,Fee_IL_29,Fee_IN_30,Fee_IA_31,Fee_KS_32,Fee_KY_33,Fee_LA_34,Fee_ME_35,Fee_MD_36,Fee_MA_37,Fee_MI_38,Fee_MN_39,Fee_MS_40,Fee_MO_41,Fee_MT_42,Fee_NE_43,Fee_NV_44,Fee_NE_45,Fee_NJ_46,Fee_NM_47,Fee_NY_48,Fee_NC_49,Fee_ND_50,Fee_OH_51,Fee_OK_52,Fee_OR_53,Fee_PA_54,Fee_RI_55,Fee_SC_56,Fee_SD_57,Fee_TN_58,Fee_TX_59,Fee_UT_60,Fee_VT_61,Fee_VA_62,Fee_WA_63,Fee_WV_64,Fee_WI_65,Fee_WY_66,Fee_PR_229,Fee_VI_238,Active,InactiveCode,DateCreated,DateModified
 			FROM EOB_MEDICARE_2007_PROCEDURECodeFeeSchedule  
 			WHERE RecordID = #trim(arguments.RecordID)# 
@@ -3183,7 +3183,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="PA_Master">
+				<cfquery name="qUpdateCommitEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -3203,7 +3203,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="PA_Master">
+				<cfquery name="qInsertCommitEOB_MEDICARE_2007_PROCEDURECodeFeeSchedule" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -3822,7 +3822,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getEOB_MEDICARE_2007_PROCEDURECodeFeeScheduleQuery" datasource="PA_Master">
+			<cfquery Name="getEOB_MEDICARE_2007_PROCEDURECodeFeeScheduleQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM EOB_MEDICARE_2007_PROCEDURECodeFeeSchedule   
 				WHERE 1=1

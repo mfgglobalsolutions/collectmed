@@ -1784,7 +1784,7 @@
 		
 		<cfset preInit(SiteID)>
 	
-		<cfquery name="qGetSite" datasource="PA_Master">
+		<cfquery name="qGetSite" datasource="pa_master">
 	  		SELECT SiteID,ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode,DateCreated,DateModified
 			FROM Site  
 			WHERE SiteID = #trim(arguments.SiteID)# 
@@ -1940,7 +1940,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitSite" datasource="PA_Master">
+				<cfquery name="qUpdateCommitSite" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -1960,7 +1960,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitSite" datasource="PA_Master">
+				<cfquery name="qInsertCommitSite" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -2498,7 +2498,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getSiteQuery" datasource="PA_Master">
+			<cfquery Name="getSiteQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Site   
 				WHERE 1=1
@@ -2679,7 +2679,7 @@
 			
 			<cfargument name="serverName" required="Yes" type="String">
 			
-			<cfquery Name="getSiteID" datasource="PA_Master">
+			<cfquery Name="getSiteID" datasource="pa_master">
 				SELECT siteID
 				FROM Site  
 				WHERE (URLDomains = '#trim(serverName)#' OR URLDomains LIKE '#trim(serverName)#,%' OR URLDomains LIKE '%,#trim(serverName)#' OR URLDomains LIKE '%,#trim(serverName)#,%') AND Active = 1

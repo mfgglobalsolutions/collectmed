@@ -61,7 +61,7 @@
 <!--- variables from above.                                      --->
 <!------------------------------------------------------------------>
 
-	<cfquery Name="caller.#QueryName#" datasource="PA_Master" cachedwithin="#CreateTimeSpan(0,0,0,0)#">
+	<cfquery Name="caller.#QueryName#" datasource="pa_master" cachedwithin="#CreateTimeSpan(0,0,0,0)#">
 		SELECT #Fields#
 		FROM Page
 		WHERE 1=1

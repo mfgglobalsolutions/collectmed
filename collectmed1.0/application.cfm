@@ -97,7 +97,7 @@
 	
 	<cfset coldspringConfig = "#trim(request.applicationPath)#\frameworks\coldspring\coldspring.xml" />  
 	
-	<cfset request.masterDatasource = "PA_Master">	
+	<cfset request.masterDatasource = "pa_master">	
 	
 	<!--- <cfset request.mySQLPath = "C:\Program Files\MySQL\MySQL Server 5.1\bin">
 	<cfset request.mySQLIpAddress = "127.0.0.1">
@@ -237,7 +237,7 @@
 		<cfset request.datasource = session.user.getDatasource()>
 		<cfset request.ro_datasource = "ro_" & session.user.getDatasource()>		
 	<cfelse>			
-		<cfset request.datasource = "PA_Master">
+		<cfset request.datasource = "pa_master">
 		<cfset request.ro_datasource = "ro_PAMaster">		
 	</cfif>		
 		

@@ -1504,17 +1504,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 648-12-2984 : 54A206D8EDBAD4B8F5E099123054151B
 --->
 
-<!---<cfquery name="getRolePageIDs" datasource="PA_Master">
+<!---<cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
 	FROM PageROLE WHERE RoleID = 4
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
-		<cfquery name="getThisRole" datasource="PA_Master">
+		<cfquery name="getThisRole" datasource="pa_master">
 			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 7
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
-			<cfquery name="insertThisRole" datasource="PA_Master">
+			<cfquery name="insertThisRole" datasource="pa_master">
 				INSERT INTO PageRole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 7, 1002)
 			</cfquery>
@@ -1522,17 +1522,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfif>
 	</cfloop>
 </cfoutput>
-<cfquery name="getRolePageIDs" datasource="PA_Master">
+<cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
 	FROM PageROLE WHERE RoleID = 3
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
-		<cfquery name="getThisRole" datasource="PA_Master">
+		<cfquery name="getThisRole" datasource="pa_master">
 			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 6
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
-			<cfquery name="insertThisRole" datasource="PA_Master">
+			<cfquery name="insertThisRole" datasource="pa_master">
 				INSERT INTO PageRole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 6, 1002)
 			</cfquery>
@@ -1540,17 +1540,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfif>
 	</cfloop>
 </cfoutput>
-<cfquery name="getRolePageIDs" datasource="PA_Master">
+<cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
 	FROM PageROLE WHERE RoleID = 2
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
-		<cfquery name="getThisRole" datasource="PA_Master">
+		<cfquery name="getThisRole" datasource="pa_master">
 			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 5
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
-			<cfquery name="insertThisRole" datasource="PA_Master">
+			<cfquery name="insertThisRole" datasource="pa_master">
 				INSERT INTO PageRole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 5, 1002)
 			</cfquery>
@@ -1570,7 +1570,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 <!---
 Add missing pageids into page roles for roles 1 and 8
-<cfquery name="getPageIDs" datasource="PA_Master">
+<cfquery name="getPageIDs" datasource="pa_master">
 	SELECT DISTINCT PAGEID
 	FROM Page
 	WHERE PageID NOT IN(SELECT DISTINCT PAGEID FROM PageROLE WHERE ROLEID IN(1,8))
@@ -1580,12 +1580,12 @@ Add missing pageids into page roles for roles 1 and 8
 
 <cfloop list="#trim(pageIDs)#" index="i">
 
-	<cfquery name="insert1" datasource="PA_Master">
+	<cfquery name="insert1" datasource="pa_master">
 		INSERT INTO PageROLE(PageID, RoleID, SiteID)
 		VALUES(#trim(i)#, 1, 1002)
 	</cfquery>
 
-	<cfquery name="insert1" datasource="PA_Master">
+	<cfquery name="insert1" datasource="pa_master">
 		INSERT INTO PageROLE(PageID, RoleID, SiteID)
 		VALUES(#trim(i)#, 8, 1002)
 	</cfquery>

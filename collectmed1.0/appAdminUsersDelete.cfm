@@ -8,7 +8,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfif IsDefined("url.action") AND url.action EQ "suspend">
 	
-		<cfquery name="suspendUser" datasource="PA_Master">
+		<cfquery name="suspendUser" datasource="pa_master">
 			UPDATE Users 
 			SET Suspend = 1
 			WHERE EntityID = #trim(url.EntityID)#
@@ -16,7 +16,7 @@
 	
 	<cfelseif IsDefined("url.action") AND url.action EQ "reinstate">
 	
-		<cfquery name="suspendUser" datasource="PA_Master">
+		<cfquery name="suspendUser" datasource="pa_master">
 			UPDATE Users 
 			SET Suspend = 0
 			WHERE EntityID = #trim(url.EntityID)#
@@ -24,7 +24,7 @@
 	
 	<cfelse>
 		
-		<cfquery name="deleteUser" datasource="PA_Master">
+		<cfquery name="deleteUser" datasource="pa_master">
 			UPDATE Users 
 			SET Active = 0, InactiveCode = 68
 			WHERE EntityID = #trim(url.EntityID)#

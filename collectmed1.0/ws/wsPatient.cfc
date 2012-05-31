@@ -2,7 +2,8 @@
 
 <cfcomponent>
 
-
+	<cfset variables.objToXML = application.beanFactory.getBean("old_toXML") />
+		
 	<cffunction name="wsAddPatient" access="remote" returntype="xml" output="no">
 		
 		<cfargument name="Data1" type="string" hint="Client" required="true">
@@ -28,6 +29,7 @@
 		<cfset variables.ObjectTypeID = arguments.Data9>
 		<cfset variables.PolicyNumber = arguments.Data10>
 		<cfset variables.InsuranceCompanyID = arguments.Data11>
+
 						
 		<!--------------------------------------------------------------------------------------->
 		<!--- Always write this code because of dev debug.                                    --->
@@ -51,7 +53,12 @@
 			)>					
 			<cfset variables.xmlPatients = xmlsearch(variables.findPatient, "PATIENTS/PATIENT")>			
 			<cfif arrayLen(variables.xmlPatients) GTE 1>				
-				<cfinvoke component="com.common.toXML" method="stringToXML" data="<PATIENTID>#variables.xmlPatients[1].PATIENTID.xmlText#</PATIENTID>" rootelement="ENTITY" itemelement="NEWPATIENT" returnvariable="xmlFalse">
+				<cfset xmlFalse = variables.objToXML.stringToXML(
+																data: "<PATIENTID>#variables.xmlPatients[1].PATIENTID.xmlText#</PATIENTID>",
+																rootelement: "ENTITY",
+																itemelement: "NEWPATIENT"
+																) />
+				
 				<cfreturn xmlFalse>
 			</cfif>
 
@@ -61,7 +68,11 @@
 			<cfset variables.Security = application.beanFactory.getBean('old_Security')>
 			<cfset variables.Client = application.beanFactory.getBean('old_Client')>
 			<cfif NOT variables.Security.AuthenticateUserToClient(variables.ClientID, variables.UserID, variables.Client)>
-				<cfinvoke component="com.common.toXML" method="stringToXML" data="<PATIENTID>You cannot create patients under this client. Please contact an administrator if you feel you are receiving this message in error.</PATIENTID>" rootelement="ENTITY" itemelement="NEWPATIENT" returnvariable="xmlFalse">
+				<cfset xmlFalse = variables.objToXML.stringToXML(
+																data: "<PATIENTID>You cannot create patients under this client. Please contact an administrator if you feel you are receiving this message in error.</PATIENTID>",
+																rootelement: "ENTITY",
+																itemelement: "NEWPATIENT"
+																) />
 				<cfreturn xmlFalse>				
 			</cfif>
 			
@@ -103,10 +114,18 @@
 			
 									
 			<cfif patientID>				
-				<cfinvoke component="com.common.toXML" method="stringToXML" data="<PATIENTID>#variables.patientID#</PATIENTID>" rootelement="ENTITY" itemelement="NEWPATIENT" returnvariable="xmlPatient">
+				<cfset xmlPatient = variables.objToXML.stringToXML(
+																	data: "<PATIENTID>#variables.patientID#</PATIENTID>",
+																	rootelement: "ENTITY",
+																	itemelement: "NEWPATIENT"
+																) />
 				<cfreturn xmlPatient>
 			<cfelse>
-				<cfinvoke component="com.common.toXML" method="stringToXML" data="<PATIENTID>false</PATIENTID>" rootelement="ENTITY" itemelement="NEWPATIENT" returnvariable="xmlFalse">
+				<cfset xmlFalse = variables.objToXML.stringToXML(
+																	data: "<PATIENTID>false</PATIENTID>",
+																	rootelement: "ENTITY",
+																	itemelement: "NEWPATIENT"
+																) />
 				<cfreturn xmlFalse>
 			</cfif>
 								
@@ -186,7 +205,7 @@
 			<cfset request.Patient = CreateObject("component","com.common.Patient")>	
 			<cfset PatientIns = request.Patient.getPatientInsCom(clientID: trim(clientID), patientid: trim(patientID))>--->
 						
-			<cfquery name="PatientIns" datasource="PAClient_#ClientID#">
+			<cfquery name="PatientIns" datasource="paclient_#ClientID#">
 				SELECT pic.recordID, pic.Deductible, pic.GroupName, pic.GroupNumber, ic.InsuranceCompanyDBA, pic.InsuranceCompanyID, ic.InsuranceCompanyName, pic.PayPercentage, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity,  pic.PolicyHoldersDOB AS PolicyHoldersDOB, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersSex, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyNumber, pic.PrimSecTer, pic.Relationship, ic.EntityID AS Z_ICEntityID
 				FROM PatientInsuranceCompany pic
 				INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
@@ -199,7 +218,7 @@
 				<cfset verificationsXmlArray = ArrayNew(1)>	
 				<cfloop query="PatientIns">
 					<cfset thisString = "">
-					<cfquery name="getVerifications" datasource="PAClient_#ClientID#">
+					<cfquery name="getVerifications" datasource="paclient_#ClientID#">
 						SELECT vpi.VerificationPatientInsuranceID, vpi.DateCreated AS DateCreated, vpi.VerificationDateAS VerificationDate, vpi.VerificationTime,
 						CONCAT(vu.FName, ' ', vu.LName) AS Fullname, vpi.VerificationRepFName, vpi.VerificationRepLName, vpi.VerificationHaveInsFromDateAS VerificationHaveInsFromDate, vpi.VerificationHaveInsToDateAS VerificationHaveInsToDate						 
 						FROM VerificationPatientInsurance vpi		
@@ -213,8 +232,14 @@
 					</cfloop>					
 					<cfset verificationsArray[PatientIns.CurrentRow] = "#trim(thisString)#">	
 										
-					<cfinvoke component="com.common.toXML" method="queryToXML" data="#getVerifications#" includeheader="false" rootelement="VERIFICATIONS" itemelement="VERIFICATION" returnvariable="xmlPatientInsComVer">
-					<cfset verificationsXmlArray[PatientIns.CurrentRow] = "#trim(xmlPatientInsComVer)#">					
+					<cfset local.xmlPatientInsComVer = variables.objToXML.queryToXML(
+																				includeheader: "false",
+																				data: "#getVerifications#",
+																				rootelement: "VERIFICATIONS",
+																				itemelement: "VERIFICATION"
+																			) />
+																			
+					<cfset verificationsXmlArray[PatientIns.CurrentRow] = "#trim(local.xmlPatientInsComVer)#">					
 					
 				</cfloop>		
 					
@@ -342,10 +367,15 @@
 				<cfset temp = querynew("recordID")>
 			</cfif>
 			
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#temp#" preserveXML="true" rootelement="INSURANCES" itemelement="INSURANCE" returnvariable="xmlPatientInsCom">
-																			
-			<cfif xmlPatientInsCom NEQ "">				
-				<cfreturn xmlPatientInsCom>
+			<cfset local.xmlPatientInsCom = variables.objToXML.queryToXML(
+																				data: "#temp#",
+																				preserveXML: "true",
+																				rootelement: "INSURANCES", 
+																				itemelement: "INSURANCE"
+																			) />
+																																						
+			<cfif local.xmlPatientInsCom NEQ "">				
+				<cfreturn local.xmlPatientInsCom>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -429,10 +459,15 @@
 				<cfset temp = querynew("patientID")>
 			</cfif>
 			
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#temp#" rootelement="PATIENT" itemelement="PATIENT" returnvariable="xmlPatients">
+			<cfset local.xmlPatients = variables.objToXML.queryToXML(
+																		data: "#temp#",
+																		preserveXML: "true",
+																		rootelement: "PATIENT", 
+																		itemelement: "PATIENT"
+																	) />
 																			
-			<cfif xmlPatients NEQ "">				
-				<cfreturn xmlPatients>
+			<cfif local.xmlPatients NEQ "">				
+				<cfreturn local.xmlPatients>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -465,7 +500,7 @@
 		<cfargument name="Data9" type="numeric" hint="PatientID" required="false" default="0">
 		<cfargument name="Data10" type="string" hint="InsurancePolicyID" required="false" default="">
 		<cfargument name="Data11" type="string" hint="InsuranceCompanyID" required="false" default="">
-		
+	
 		<cfscript>
 			var ClientID = arguments.Data1;
 			var UserID = arguments.Data2;
@@ -489,10 +524,13 @@
 				
 			<cfset temp = searchPatientQuery(ClientID, UserID, FName, LName, SSN, DOBMM, DOBDD, DOBYY, PatientID, InsurancePolicyID, InsuranceCompanyID)>
 						
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#temp#" rootelement="PATIENTS" itemelement="PATIENT" returnvariable="xmlPatients">
-																			
-			<cfif xmlPatients NEQ "">				
-				<cfreturn xmlPatients>
+			<cfset local.xmlPatients = variables.objToXML.queryToXML(
+																		data: "#temp#",
+																		rootelement: "PATIENTS", 
+																		itemelement: "PATIENT"
+																	) />																			
+			<cfif local.xmlPatients NEQ "">				
+				<cfreturn local.xmlPatients>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -533,10 +571,13 @@
 			
 			<cfset variables.temp = searchPatientQuery(Data1: ClientID, Data2: UserID, Data9: PatientIDs)>
 		
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#variables.temp#" rootelement="PATIENTS" itemelement="PATIENT" returnvariable="xmlPatients">
-																			
-			<cfif xmlPatients NEQ "">				
-				<cfreturn xmlPatients>
+			<cfset local.xmlPatients = variables.objToXML.queryToXML(
+																		data: "#variables.temp#",																		
+																		rootelement: "PATIENTS", 
+																		itemelement: "PATIENT"
+																	) />																				
+			<cfif local.xmlPatients NEQ "">				
+				<cfreturn local.xmlPatients>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -591,7 +632,7 @@
 							
 			<cfsavecontent variable="sqlStatement">			
 				<cfoutput>
-					SELECT p.EntityID, p.PatientID, e.PrefixName, e.FName, LEFT(e.Mname, 1) AS Mname, e.LName, e.SSN, e.DOB as DOB, e.Sex, e.Weight, e.HeightinInches, e.MaritalStatus 
+					SELECT p.EntityID, p.PatientID, e.PrefixName, e.FName, LEFT(e.Mname, 1) AS Mname, e.LName, e.SSN, CONCAT(MONTH(e.DOB), '/', DAY(e.DOB), '/', YEAR(e.DOB)) AS DOB, e.Sex, e.Weight, e.HeightinInches, e.MaritalStatus 
 					<cfif isNumeric(InsuranceCompanyID)>
 						,pic.PolicyNumber
 					</cfif>	

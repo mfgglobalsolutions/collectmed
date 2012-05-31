@@ -12,7 +12,7 @@
 <cfset randRangeNum2 = randRange(1001, 2252)>
 <Cfset phoneFirst = "(222) " & left(randRangeNum, 3) & "-" & left(randRangeNum2, 2)>
 
-<cfquery name="getWord" datasource="PA_Master">
+<cfquery name="getWord" datasource="pa_master">
 	SELECT word 
 	FROM randomword  
 	WHERE randomwordid = #trim(randRangeNum)#

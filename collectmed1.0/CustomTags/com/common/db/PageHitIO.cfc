@@ -620,7 +620,7 @@
 		
 		<cfset preInit(PageHitID)>
 	
-		<cfquery name="qGetPageHit" datasource="PA_Master">
+		<cfquery name="qGetPageHit" datasource="pa_master">
 	  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
 			FROM PageHit  
 			WHERE PageHitID = #trim(arguments.PageHitID)# 
@@ -698,7 +698,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitPageHit" datasource="PA_Master">
+				<cfquery name="qUpdateCommitPageHit" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -718,7 +718,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitPageHit" datasource="PA_Master">
+				<cfquery name="qInsertCommitPageHit" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1175,7 +1175,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getPageHitQuery" datasource="PA_Master">
+			<cfquery Name="getPageHitQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM PageHit   
 				WHERE 1=1

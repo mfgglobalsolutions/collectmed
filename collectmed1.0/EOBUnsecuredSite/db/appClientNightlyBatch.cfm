@@ -10,7 +10,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Get all the clientIDs that will be run against.                                --->
 <!-------------------------------------------------------------------------------------->	
-	<cfquery name="getClientIDs" datasource="PA_Master">
+	<cfquery name="getClientIDs" datasource="pa_master">
 		SELECT ClientID FROM Client
 	</cfquery>
 	

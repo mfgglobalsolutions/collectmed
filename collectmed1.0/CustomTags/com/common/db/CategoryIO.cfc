@@ -491,7 +491,7 @@
 		
 		<cfset preInit(CategoryID)>
 	
-		<cfquery name="qGetCategory" datasource="PA_Master">
+		<cfquery name="qGetCategory" datasource="pa_master">
 	  		SELECT CategoryID,SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode,DateCreated,DateModified
 			FROM Category  
 			WHERE CategoryID = #trim(arguments.CategoryID)# 
@@ -560,7 +560,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitCategory" datasource="PA_Master">
+				<cfquery name="qUpdateCommitCategory" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -580,7 +580,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitCategory" datasource="PA_Master">
+				<cfquery name="qInsertCommitCategory" datasource="pa_master">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1028,7 +1028,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getCategoryQuery" datasource="PA_Master">
+			<cfquery Name="getCategoryQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM Category   
 				WHERE 1=1

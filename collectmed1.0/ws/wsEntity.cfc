@@ -289,7 +289,7 @@
 			
 			<cfif UserIDs NEQ "">				
 				
-				<cfquery name="temp" datasource="PA_Master">
+				<cfquery name="temp" datasource="pa_master">
 					SELECT EntityID 
 					FROM Users 
 					WHERE usersID IN(#trim(UserIDs)#) 
