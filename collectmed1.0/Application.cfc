@@ -34,6 +34,11 @@
 	
 	<cffunction name="onRequestStart" returnType="boolean" output="true">
 
+<cfdump var="#application.serverVariablesToLoad#">
+<cfdump var="#this.mappings#">
+<cfabort>
+
+
 		<cfsilent>
 
 		
