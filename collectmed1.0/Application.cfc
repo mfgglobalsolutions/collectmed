@@ -7,12 +7,17 @@
 		this.sessionManagement = true;
 		this.setClientCookies = true;
 		this.sessionTimeout=createtimespan(0,0,30,0);
-		this.applicationTimeout = createTimeSpan(0,1,0,0);		
-		this.mappings["/coldspring"] = expandPath("/collectmed/frameworks/coldspring");	
-		this.mappings["/com"] = expandPath("/collectmed/collectmed1.0/com");	
-		this.mappings["/cmComponents"] = expandPath("/collectmed/collectmed1.0/CustomTags");	
-		this.customtagpaths = expandPath("/collectmed/collectmed1.0/CustomTags"); 
+		this.applicationTimeout = createTimeSpan(0,1,0,0);	
 		this.defaultdatasource = "pa_master";
+		
+		local.addToPath = "collectmed/";
+		if(findNoCase("c:", trim(CGI.path_translated))){
+			local.addToPath = "";
+		}			
+		this.mappings["/coldspring"] = expandPath("/#local.addToPath#frameworks/coldspring");	
+		this.mappings["/com"] = expandPath("/#local.addToPath#collectmed1.0/com");	
+		this.mappings["/cmComponents"] = expandPath("/#local.addToPath#collectmed1.0/CustomTags");	
+		this.customtagpaths = expandPath("/#local.addToPath#collectmed1.0/CustomTags"); 		
 	</cfscript>
 
 	
@@ -23,7 +28,10 @@
 			/*--- Setup the correct variables for the environment you want to work on.           ---*/
 			/*--------------------------------------------------------------------------------------*/		
 			application.environmentFilePath = "../../../config/appVariables.xml";
-			application.serverVariablesToLoad = "production";
+			application.serverVariablesToLoad = "production";			
+			if(findNoCase("c:", trim(CGI.path_translated))){
+				application.serverVariablesToLoad = "development";	
+			}
 		</cfscript>
 		
 	</cffunction>
