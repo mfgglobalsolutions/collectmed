@@ -94,7 +94,7 @@
 				request.fmsPath = expandPath("/") & "#trim(request.fmsVirtualDirectory)#";				
 				request.tempDocsURL = "#trim(request.urlProtocol)##trim(request.urlHost)#.#trim(request.urlDomain)#.#trim(request.urlHighLevelDomain)#/#trim(request.fmsVirtualDirectory)#";
 				request.ediURL = "https://www.mfgedi.com";				
-				request.coldspringConfig = expandPath("/") & "frameworks\coldspring\coldspring.xml"; 				
+				request.coldspringConfig = expandPath("/") & "#local.addToPath#frameworks\coldspring\coldspring.xml"; 				
 				request.masterDatasource = "pa_master";					
 				
 				request.Site = structNew();
