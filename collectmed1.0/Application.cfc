@@ -23,7 +23,10 @@
 			/*--- Setup the correct variables for the environment you want to work on.           ---*/
 			/*--------------------------------------------------------------------------------------*/		
 			application.environmentFilePath = "../../../config/appVariables.xml";
-			application.serverVariablesToLoad = "development";
+			application.serverVariablesToLoad = "production";			
+			if(findNoCase("c:", trim(CGI.path_translated))){
+				application.serverVariablesToLoad = "development";	
+			}
 		</cfscript>
 		
 	</cffunction>
