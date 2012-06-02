@@ -39,6 +39,11 @@
 	
 	<cffunction name="onRequestStart" returnType="boolean" output="true">
 
+<cfscript>
+		request.coldspringConfig = expandPath("/") & "#this.addToPath#frameworks\coldspring\coldspring.xml"; 
+</cfscript>		
+<cfdump var="#request.coldspringConfig#"><cfabort>
+
 		<cfsilent>
 
 		
