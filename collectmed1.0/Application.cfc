@@ -39,11 +39,6 @@
 	
 	<cffunction name="onRequestStart" returnType="boolean" output="true">
 
-<cfscript>
-		request.coldspringConfig = expandPath("/") & "#this.addToPath#frameworks\coldspring\coldspring.xml"; 
-</cfscript>		
-<cfdump var="#request.coldspringConfig#"><cfabort>
-
 		<cfsilent>
 
 		
@@ -99,7 +94,7 @@
 				request.fmsPath = expandPath("/") & "#trim(request.fmsVirtualDirectory)#";				
 				request.tempDocsURL = "#trim(request.urlProtocol)##trim(request.urlHost)#.#trim(request.urlDomain)#.#trim(request.urlHighLevelDomain)#/#trim(request.fmsVirtualDirectory)#";
 				request.ediURL = "https://www.mfgedi.com";				
-				request.coldspringConfig = expandPath("/") & "#this.addToPath#frameworks\coldspring\coldspring.xml"; 				
+				request.coldspringConfig = expandPath("/") & "#this.addToPath#frameworks/coldspring/coldspring.xml"; 				
 				request.masterDatasource = "pa_master";					
 				
 				request.Site = structNew();
