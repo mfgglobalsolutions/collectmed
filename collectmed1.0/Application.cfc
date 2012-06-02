@@ -7,17 +7,12 @@
 		this.sessionManagement = true;
 		this.setClientCookies = true;
 		this.sessionTimeout=createtimespan(0,0,30,0);
-		this.applicationTimeout = createTimeSpan(0,1,0,0);	
+		this.applicationTimeout = createTimeSpan(0,1,0,0);		
+		this.mappings["/coldspring"] = expandPath("/frameworks/coldspring");	
+		this.mappings["/com"] = expandPath("/collectmed1.0/com");	
+		this.mappings["/cmComponents"] = expandPath("/collectmed1.0/CustomTags");	
+		this.customtagpaths = expandPath("/collectmed1.0/CustomTags"); 
 		this.defaultdatasource = "pa_master";
-		
-		this.addToPath = "collectmed/";
-		if(findNoCase("c:", trim(CGI.path_translated))){
-			this.addToPath = "";
-		}			
-		this.mappings["/coldspring"] = expandPath("/#this.addToPath#frameworks/coldspring");	
-		this.mappings["/com"] = expandPath("/#this.addToPath#collectmed1.0/com");	
-		this.mappings["/cmComponents"] = expandPath("/#this.addToPath#collectmed1.0/CustomTags");	
-		this.customtagpaths = expandPath("/#this.addToPath#collectmed1.0/CustomTags"); 		
 	</cfscript>
 
 	
@@ -94,7 +89,7 @@
 				request.fmsPath = expandPath("/") & "#trim(request.fmsVirtualDirectory)#";				
 				request.tempDocsURL = "#trim(request.urlProtocol)##trim(request.urlHost)#.#trim(request.urlDomain)#.#trim(request.urlHighLevelDomain)#/#trim(request.fmsVirtualDirectory)#";
 				request.ediURL = "https://www.mfgedi.com";				
-				request.coldspringConfig = expandPath("/") & "#this.addToPath#frameworks/coldspring/coldspring.xml"; 				
+				request.coldspringConfig = expandPath("/") & "frameworks\coldspring\coldspring.xml"; 				
 				request.masterDatasource = "pa_master";					
 				
 				request.Site = structNew();
