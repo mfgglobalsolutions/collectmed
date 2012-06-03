@@ -33,12 +33,7 @@
 	
 	
 	<cffunction name="onRequestStart" returnType="boolean" output="true">
-
-<cfdump var="#application.serverVariablesToLoad#">
-<cfdump var="#this.mappings#">
-<cfabort>
-
-
+		
 		<cfsilent>
 
 		
@@ -179,9 +174,9 @@
 				/*--- Set the users screen width and height to use in placing bordered tables.       ---*/
 				/*--------------------------------------------------------------------------------------*/
 				if(NOT IsDefined("session.screenWidth") OR NOT IsDefined("session.screenHeight")){
-					tk = CreateObject("java", "java.awt.Toolkit"); 
-					session.screenWidth = tk.getDefaultToolkit().getScreenSize().width;
-					session.screenHeight = tk.getDefaultToolkit().getScreenSize().height;
+					//tk = CreateObject("java", "java.awt.Toolkit"); 
+					session.screenWidth = 800;//tk.getDefaultToolkit().getScreenSize().width;
+					session.screenHeight = 600;//tk.getDefaultToolkit().getScreenSize().height;
 					
 				}
 
