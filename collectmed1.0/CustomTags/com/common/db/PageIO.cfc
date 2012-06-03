@@ -1441,7 +1441,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getPageQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Page   
+				FROM page   
 				WHERE 1=1
 					<cfif PageID NEQ "" AND IsNumeric(PageID)>AND PageID = #PageID#</cfif>
 					<cfif PageID_IN NEQ "">AND PageID IN(#trim(PageID_IN)#)</cfif>
