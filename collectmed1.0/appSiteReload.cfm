@@ -3,8 +3,8 @@
 
 
 
-	<cfset originalfolder = "#trim(request.applicationPath)#\eobmanager1.0\">
-	<cfset newfolder = "#trim(request.applicationPath)#\eobmanager1.0\">
+	<cfset originalfolder = "#trim(request.applicationPath)#\collectmed1.0\">
+	<cfset newfolder = "#trim(request.applicationPath)#\collectmed1.0\">
 
 	<cf_recurse
     	pathtoexe="#trim(request.driveLetter)#:\cfusionMX\bin\cfencode.exe"

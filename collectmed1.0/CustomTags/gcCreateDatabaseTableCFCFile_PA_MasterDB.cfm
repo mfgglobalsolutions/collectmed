@@ -122,17 +122,17 @@
 <!--- get the name and set it to the correct letter case.                            --->
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="tableExists" datasource="pa_master">
-		SELECT name
-		FROM sysobjects
-		WHERE (type = 'U') AND (name = '#TableName#')
+		SELECT *
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_name = '#TableName#';
 	</cfquery>	
+
+
 	
-	<cfif tableExists.RecordCount NEQ 1>
+	<cfif tableExists.RecordCount LT 1>
 		<cf_gcGeneralErrorTemplate
 			message="The table name (#TableName#) you sent in does not exist.">
 	</cfif>
-	
-	<cfset TableName = tableExists.name>			
 	
 	
 	
@@ -141,12 +141,11 @@
 <!--- update tag.                                                                    --->
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getTableColumns" datasource="pa_master">
-		SELECT c.name ColumnName, t.name DataType, c.length ColumnLength, c.isnullable IsNullableField, c.cdefault HasDefaultValue, c.colstat IdentityField 
-		FROM syscolumns c 
-		INNER JOIN systypes t ON c.xusertype = t.xusertype 
-		WHERE id=object_id('#TableName#')
+		SELECT COLUMN_NAME ColumnName, DATA_TYPE DataType, CHARACTER_MAXIMUM_LENGTH ColumnLength, IS_NULLABLE IsNullableField, COLUMN_DEFAULT HasDefaultValue, COLUMN_KEY IdentityField 
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_name = '#TableName#';
 	</cfquery>
-	
+
 	
 	
 <!-------------------------------------------------------------------------------------->
@@ -163,15 +162,15 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Find the Primary key in the table if any and take it out.                      --->
 	<!-------------------------------------------------------------------------------------->
-		<cfquery name="findTablePrimaryKey" datasource="pa_master">
-			SELECT column_name
-			FROM information_schema.key_column_usage 
-			WHERE constraint_catalog = db_name() AND table_name = '#TableName#' AND LOWER(constraint_name) like 'pk%'   
-		</cfquery>	
+	<cfquery name="findTablePrimaryKey" datasource="pa_master">
+		SELECT COLUMN_NAME 
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_name = '#TableName#' AND COLUMN_KEY = 'PRI';
+	</cfquery>
 		
-		<cfif findTablePrimaryKey.RecordCount EQ 1>
-			<cfset primaryKeyColumnName = findTablePrimaryKey.column_name>
-		</cfif>
+	<cfif findTablePrimaryKey.RecordCount EQ 1>
+		<cfset primaryKeyColumnName = findTablePrimaryKey.column_name>
+	</cfif>
 	
 </cfif>	
 
@@ -246,14 +245,14 @@
 <!--- Find out if the tag already exists and take out of it                          --->
 <!--- the functions that have been custom created.                                   --->
 <!-------------------------------------------------------------------------------------->			
-	<cfif FileExists("#trim(request.applicationPath)#\eobmanager1.0\CustomTags\com\common\db\#TableName#IO.cfc")>
+	<cfif FileExists("#trim(request.applicationPath)#\collectmed1.0\CustomTags\com\common\db\#TableName#IO.cfc")>
 		
 		<!-------------------------------------------------------------------------------------->
 		<!--- Read the file into a variable.                                                 --->
 		<!-------------------------------------------------------------------------------------->					
 			<cffile 
 				action="READ" 
-				file="#trim(request.applicationPath)#\eobmanager1.0\CustomTags\com\common\db\#TableName#IO.cfc" 
+				file="#trim(request.applicationPath)#\collectmed1.0\CustomTags\com\common\db\#TableName#IO.cfc" 
 				variable="FileContent">
 		
 		<!-------------------------------------------------------------------------------------->
@@ -269,115 +268,7 @@
 	
 
 
-<!-------------------------------------------------------------------------------------->
-<!--- Set the tag header with the name of the tag.                                   --->
-<!-------------------------------------------------------------------------------------->
-<cfset fileString = fileString & '<!-------------------------------------------------------------------------------------->
-<!--- NAME:                                                                          --->
-<!--- @@Name@@                                                                       --->'>
-
-<cf_gcBlockComment 
-	text="#TableName#IO.cfc" 
-	returnVarName="formattedTagName">	
-
-<cfset fileString = fileString & '
-#formattedTagName#
-<!--- @@Name@@                                                                       --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- CATEGORY:                                                                      --->
-<!--- @@CATEGORY@@                                                                   --->
-<!--- CFC                                                                            --->
-<!--- @@CATEGORY@@                                                                   --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- AUTHOR:                                                                        --->
-<!--- @@AUTHOR@@                                                                     --->
-<!--- Guillermo Cruz                                                                 --->
-<!--- @@AUTHOR@@                                                                     --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- DESCRIPTION:                                                                   ---> 
-<!--- @@DESCRIPTION@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="This tag is a CFC tag tied to the #TableName# table in the dB." 
-	returnVarName="formattedTagDescription">	
-	
-<cfset fileString = fileString & '
-#formattedTagDescription#  
-<!--- @@DESCRIPTION@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- EXAMPLE CALL:                                                                  --->
-<!--- @@ExampleCall@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="&lt;cf_db_Get_#TableName#Table" 
-	returnVarName="formattedExampleCall">	
-	
-<cfset fileString = fileString & '
-#formattedExampleCall#  
-<!--- @@ExampleCall@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- REQUIRED PARAMETERS:                                                           --->
-<!--- @@RequiredParameters@@                                                         --->'>
-
-	
-	<cf_gcBlockComment 
-		text="[None]" 
-		returnVarName="formattedRequiredParameter">	
-<cfset fileString = fileString & '
-#formattedRequiredParameter#'>  
-
-
-<cfset fileString = fileString & '  
-<!--- @@RequiredParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- OPTIONAL PARAMETERS:                                                           --->
-<!--- @@OptionalParameters@@                                                         --->
-<!--- Queryname<br>                                                                  --->
-<!--- fields<br>                                                                     --->
-<!--- orderby<br>                                                                    --->
-<!--- groupby (same as fields contents maybe different order)<br>                    --->
-<!--- andclause example.... (CN1= Column Name)                                       --->
-<!--- [ andclause="RTRIM(CN1)+''''+RTRIM(CN2)=''##Var##''" ]<br>                           --->'>
-
-<cfloop list="#tableColumnsList#" index="i">
-	<cf_gcBlockComment 
-	text="#i#<br>" 
-	returnVarName="formattedOptionalParameter">	
-	
-<cfset fileString = fileString & '
-#formattedOptionalParameter#'>  
-</cfloop>
-                     
-<cfset fileString = fileString & '  
-<!--- @@OptionalParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- RETURNED PARAMETERS:                                                           --->
-<!--- @@ReturnedParameters@@                                                         --->
-<!--- recordID                                                                       --->  
-<!--- @@ReturnedParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- HISTORY:                                                                       --->
-<!--- @@HISTORY@@                                                                    --->'>
-
-<cf_gcBlockComment 
-	text="Created #dateFormat(NOW(), "mm/dd/yyyy")#" 
-	returnVarName="formattedHistory">	
-
 <cfset fileString = fileString & ' 	
-#formattedHistory#
-<!--- @@HISTORY@@                                                                    --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-
-
 <cfcomponent name="#tablename#IO">
 
 	<cfset reset()>
@@ -544,7 +435,7 @@
 			<cfcase value="binary,varbinary,image,char,varchar,nchar,nvarchar,ntextdatetime">
 				<cfset VFDataType = "string">
 			</cfcase>
-			<cfcase value="smalldatetime,datetime">
+			<cfcase value="smalldatetime,datetime,timestamp">
 				<cfset VFDataType = "date">
 			</cfcase> 				
 			<cfcase value="bigint,Int,smallint,tinyint,bit,numeric,money,smallmoney,decimal,float,real">
@@ -658,7 +549,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="#trim(tableName)#IO" output="No">
+	<cffunction name="Init#trim(tableName)#" access="public" returntype="#trim(tableName)#IO" output="No">
 		
 		<cfargument name="#trim(primaryKeyColumnName)#" required="yes" type="numeric">		
 		<cfset var qGet#trim(tablename)# = "">
@@ -669,10 +560,10 @@
 	  		SELECT #trim(tableColumnsList)#'>
 	  		<cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))>
 				<cfset fileString = fileString & '
-			FROM [#trim(tableName)#]'>
+			FROM [#lcase(trim(tableName))#]'>
 			<cfelse>
 				<cfset fileString = fileString & '
-			FROM #trim(tableName)#'>
+			FROM #lcase(trim(tableName))#'>
 			</cfif>
 			<cfset fileString = fileString & '
 			WHERE #trim(primaryKeyColumnName)# = ##trim(arguments.#trim(primaryKeyColumnName)#)## 
@@ -882,7 +773,7 @@
 						<!--- quotes allowing to safely enter the dB.                                        --->
 						<!-------------------------------------------------------------------------------------->				 
 						<cfelseif (ListFindNoCase(stringTableColumns,currentVar) OR ListFindNoCase(nTableColumns,currentVar)) AND evaluate(currentRecord) NEQ "NULL">				
-							<cfset columnsToUpdate = columnsToUpdate & ", ##currentVar## = ''##Replace(evaluate(currentRecord), "''", "''''", "ALL")##''">
+							<cfset columnsToUpdate = columnsToUpdate & ", ##currentVar## = ''##Replace(evaluate(currentRecord), "#chr(39)#", "#chr(39)##chr(39)#", "ALL")##''">
 						
 						<!-------------------------------------------------------------------------------------->
 						<!--- When you send in a value of null and there is a default                        --->
@@ -904,7 +795,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#trim(tableName)#]'><cfelse><cfset fileString = fileString & '[#trim(tableName)#]'></cfif><cfset fileString = fileString & ' SET ##columnsToUpdate## WHERE #trim(primaryKeyColumnName)# = ##trim(variables.instance.#primaryKeyColumnName#)##">
+				<cfset sqlStatement = "UPDATE '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#lcase(trim(tableName))#]'><cfelse><cfset fileString = fileString & '[#lcase(trim(tableName))#]'></cfif><cfset fileString = fileString & ' SET ##columnsToUpdate## WHERE #trim(primaryKeyColumnName)# = ##trim(variables.instance.#primaryKeyColumnName#)##">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1021,7 +912,7 @@
 					<cfelseif (ListFindNoCase(stringTableColumns,currentVar) OR ListFindNoCase(nTableColumns,currentVar)) AND evaluate(currentRecord) NEQ "NULL">				
 						
 						<cfset columnsToInsert = ListAppend(columnsToInsert, "##currentVar##")>
-						<cfset columnsToInsertValues = ListAppend(columnsToInsertValues, "''##Replace(evaluate(currentRecord), "''", "''''", "ALL")##''")>
+						<cfset columnsToInsertValues = ListAppend(columnsToInsertValues, "''##Replace(evaluate(currentRecord), "#chr(39)#", "#chr(39)##chr(39)#", "ALL")##''")>
 										
 					<!-------------------------------------------------------------------------------------->
                     <!--- When you send in a value of null and there is a default                        --->
@@ -1051,7 +942,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#trim(tableName)#]'><cfelse><cfset fileString = fileString & '[#trim(tableName)#]'></cfif><cfset fileString = fileString & ' (##trim(columnsToInsert)##) VALUES(##trim(columnsToInsertValues)##); SELECT LAST_INSERT_ID() AS #trim(primaryKeyColumnName)# ">
+				<cfset sqlStatement = "INSERT INTO '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#lcase(trim(tableName))#]'><cfelse><cfset fileString = fileString & '[#lcase(trim(tableName))#]'></cfif><cfset fileString = fileString & ' (##trim(columnsToInsert)##) VALUES(##trim(columnsToInsertValues)##); SELECT LAST_INSERT_ID() AS #trim(primaryKeyColumnName)# ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1222,10 +1113,10 @@
 				SELECT ##trim(Fields)##'>
 				<cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))>
 					<cfset fileString = fileString & '
-				FROM [#trim(tableName)#]'>
+				FROM [#lcase(trim(tableName))#]'>
 				<cfelse>
 					<cfset fileString = fileString & '
-				FROM #trim(tableName)#'>
+				FROM #lcase(trim(tableName))#'>
 				</cfif>
 				<cfset fileString = fileString & ' WHERE 1=1'>
 				<cfset count = 0>
@@ -1336,324 +1227,7 @@
 
 
 
-<cfset fileString2 = fileString2 & '<!-------------------------------------------------------------------------------------->
-<!--- NAME:                                                                          --->
-<!--- @@Name@@                                                                       --->'>
-
-<cf_gcBlockComment 
-	text="#TableName#IO_Methods.cfm" 
-	returnVarName="formattedTagName">	
-
-<cfset fileString2 = fileString2 & '
-#formattedTagName#
-<!--- @@Name@@                                                                       --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- CATEGORY:                                                                      --->
-<!--- @@CATEGORY@@                                                                   --->
-<!--- CFC                                                                            --->
-<!--- @@CATEGORY@@                                                                   --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- AUTHOR:                                                                        --->
-<!--- @@AUTHOR@@                                                                     --->
-<!--- Guillermo Cruz                                                                 --->
-<!--- @@AUTHOR@@                                                                     --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- DESCRIPTION:                                                                   ---> 
-<!--- @@DESCRIPTION@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="Include this tag in any page that needs access the methods for the table #TableName#" 
-	returnVarName="formattedTagDescription">	
-	
-<cfset fileString2 = fileString2 & '
-#formattedTagDescription#  
-<!--- @@DESCRIPTION@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- EXAMPLE CALL:                                                                  --->
-<!--- @@ExampleCall@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="&lt;cfinclude template=""#TableName#IO_Methods.cfm""&gt;" 
-	returnVarName="formattedExampleCall">	
-	
-<cfset fileString2 = fileString2 & '
-#formattedExampleCall#  
-<!--- @@ExampleCall@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- REQUIRED PARAMETERS:                                                           --->
-<!--- @@RequiredParameters@@                                                         --->'>
-
-	
-<cf_gcBlockComment 
-	text="[None]" 
-	returnVarName="formattedRequiredParameter">	
-<cfset fileString2 = fileString2 & '
-#formattedRequiredParameter#'>  
-
-
-<cfset fileString2 = fileString2 & '  
-<!--- @@RequiredParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- OPTIONAL PARAMETERS:                                                           --->
-<!--- @@OptionalParameters@@                                                         --->
-<!---  [None]                                                                        --->
-<!--- @@OptionalParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- RETURNED PARAMETERS:                                                           --->
-<!--- @@ReturnedParameters@@                                                         --->
-<!--- [None]                                                                         --->  
-<!--- @@ReturnedParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- HISTORY:                                                                       --->
-<!--- @@HISTORY@@                                                                    --->'>
-
-<cf_gcBlockComment 
-	text="Created #dateFormat(NOW(), "mm/dd/yyyy")#" 
-	returnVarName="formattedHistory">	
-
-<cfset fileString2 = fileString2 & ' 	
-#formattedHistory#
-<!--- @@HISTORY@@                                                                    --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-
-
-'>
-
-<cfloop query="getTableColumns">	
-
-<cfset end = mid(ColumnName, 2, len(ColumnName))>
-<cfset firstLetter = UCase(Mid(ColumnName,1, 1))>
-<cfset ColumnNameFormatted = firstLetter & end>	
-
-<cf_gcBlockComment 
-	text="GET and SET method for #tablename# #trim(ColumnNameFormatted)#." 
-	returnVarName="formattedColumnDescription">		
-
-<cfset fileString2 = fileString2 & ' 	
-	<!-------------------------------------------------------------------------------------->
-	#formattedColumnDescription#
-	<!-------------------------------------------------------------------------------------->
-	<cffunction name="get#trim(ColumnNameFormatted)#" access="public" returntype="String" output="No">
-  		<cfreturn variables.instance.#trim(ColumnNameFormatted)#>
-	</cffunction>
-	
-	<cffunction name="set#trim(ColumnNameFormatted)#" access="public" output="No"> 		
-		<cfargument name="#trim(ColumnNameFormatted)#" required="Yes" type="String">			
-		<cfset variables.instance.#trim(ColumnName)# = arguments.#trim(ColumnName)#>			
-	</cffunction>	
-'>
-
-</cfloop>		
 		
-		
-
-		
-
-
-
-
-
-
-
-
-
-<cfset fileString3 = fileString3 & '<!-------------------------------------------------------------------------------------->
-<!--- NAME:                                                                          --->
-<!--- @@Name@@                                                                       --->'>
-
-<cf_gcBlockComment 
-	text="#Tablename#IOCollection.cfc" 
-	returnVarName="formattedTagName">	
-
-<cfset fileString3 = fileString3 & '
-#formattedTagName#
-<!--- @@Name@@                                                                       --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- CATEGORY:                                                                      --->
-<!--- @@CATEGORY@@                                                                   --->
-<!--- CFC                                                                            --->
-<!--- @@CATEGORY@@                                                                   --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- AUTHOR:                                                                        --->
-<!--- @@AUTHOR@@                                                                     --->
-<!--- Guillermo Cruz                                                                 --->
-<!--- @@AUTHOR@@                                                                     --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- DESCRIPTION:                                                                   ---> 
-<!--- @@DESCRIPTION@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="Creates access to a collection of rows from #TableName# (dbtable)"
-	returnVarName="formattedTagDescription">	
-	
-<cfset fileString3 = fileString3 & '
-#formattedTagDescription#  
-<!--- @@DESCRIPTION@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- EXAMPLE CALL:                                                                  --->
-<!--- @@ExampleCall@@                                                                --->'>
-
-<cf_gcBlockComment 
-	text="&lt;#Tablename#IOCollection.cfc""&gt;" 
-	returnVarName="formattedExampleCall">	
-	
-<cfset fileString3 = fileString3 & '
-#formattedExampleCall#  
-<!--- @@ExampleCall@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- REQUIRED PARAMETERS:                                                           --->
-<!--- @@RequiredParameters@@                                                         --->'>
-
-	
-<cf_gcBlockComment 
-	text="[None]" 
-	returnVarName="formattedRequiredParameter">	
-<cfset fileString3 = fileString3 & '
-#formattedRequiredParameter#'>  
-
-
-<cfset fileString3 = fileString3 & '  
-<!--- @@RequiredParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- OPTIONAL PARAMETERS:                                                           --->
-<!--- @@OptionalParameters@@                                                         --->
-<!---  [ID]                                                                        --->
-<!--- @@OptionalParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- RETURNED PARAMETERS:                                                           --->
-<!--- @@ReturnedParameters@@                                                         --->
-<!--- [None]                                                                         --->  
-<!--- @@ReturnedParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- HISTORY:                                                                       --->
-<!--- @@HISTORY@@                                                                    --->'>
-
-<cf_gcBlockComment 
-	text="Created #dateFormat(NOW(), "mm/dd/yyyy")#" 
-	returnVarName="formattedHistory">	
-
-<cfset fileString3 = fileString3 & ' 	
-#formattedHistory#
-<!--- @@HISTORY@@                                                                    --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-
-
-
-<!-------------------------------------------------------------------------------------->
-<!--- This tag is a Collection of items. You may use the following methods to gain   --->
-<!--- access to the collection.                                                      --->
-<!-------------------------------------------------------------------------------------->
-	<cfcomponent name="#Tablename#IOCollection" hint="This tag is a Collection of #Tablename# rows. You may use the following methods to gain access to the collection.">
-		
-		
-		<cfset this.#Tablename#s = ArrayNew(1)>
-	
-		<!-------------------------------------------------------------------------------------->
-		<!--- Initializes the component. Use this when creating an instance of this          --->
-		<!--- component.                                                                     --->
-		<!-------------------------------------------------------------------------------------->
-		<cffunction name="init" output="no" hint="Initializes the component. Use this when creating an instance of this component." returntype="#Tablename#IOCollection">
-		
-			<cfreturn this>
-			
-		</cffunction>
-		
-
-		
-		<!-------------------------------------------------------------------------------------->
-		<!--- Check to see if the row exists by sending in an ID.                            --->
-		<!-------------------------------------------------------------------------------------->		
-		<cffunction output="no" name="collection#Tablename#Exists" hint="Check to see if the #Tablename# exists by sending in an ID.">
-			
-			<cfargument name="#primaryKeyColumnName#" required="yes" type="numeric">
-			
-			<cfset var #Tablename#Index = "0">				
-
-			<cfloop from="1" to="##Arraylen(this.#Tablename#s)##" index="i">					
-				<cfif this.#Tablename#s[i].get#primaryKeyColumnName#() EQ trim(arguments.#primaryKeyColumnName#)>				
-					<cfset #Tablename#Index = i>
-					<cfbreak>
-				</cfif>
-			</cfloop>				
-			
-			<cfreturn #Tablename#Index>				
-		
-		</cffunction>
-		
-		
-		
-		<!-------------------------------------------------------------------------------------->
-		<!--- Add an item to the collection.                                                 --->
-		<!-------------------------------------------------------------------------------------->          
-		<cffunction output="no" name="collection#Tablename#Add" hint="Add an item to the collection.">
-		
-			<cfargument name="#primaryKeyColumnName#" required="yes" type="numeric">					
-					
-			<cfif this.collection#Tablename#Exists(#primaryKeyColumnName#) LTE 0>				
-				
-				<cfset #Tablename# = CreateObject(''component'', ''com.common.db.#Tablename#IO'')>
-				<cfset #Tablename#.init(#primaryKeyColumnName#)>
-				
-				<cfset ArrayAppend(this.#Tablename#s, #Tablename#)>
-				
-				<cfreturn #Tablename#>
-				
-			</cfif>			
-					
-		</cffunction> 
-		
-	
-	
-		<!-------------------------------------------------------------------------------------->
-		<!--- Method to get an item in the collection.                                       --->
-		<!--------------------------------------------------------------------------------------> 
-		<cffunction output="no" name="collection#Tablename#Get"  hint="Method to get an item in the collection.">
-			
-			<cfargument name="#primaryKeyColumnName#" required="yes" type="numeric">			
-						
-			<cfif this.collection#Tablename#Exists(#primaryKeyColumnName#) GT 0>			
-				<cfreturn this.#Tablename#s[this.collection#Tablename#Exists(#primaryKeyColumnName#)]>
-			<cfelse>
-				<cfreturn this.collection#Tablename#Add(arguments.#primaryKeyColumnName#)>	
-			</cfif>					
-			
-		</cffunction>		
-		
-		
-				
-	</cfcomponent>
-	
-	
-'>	
-
-
-
-
-
-
-
-
-
-
-
 
 		
 		
@@ -1666,20 +1240,9 @@
 		<cffile 
 			action="write" 
 			nameconflict="OVERWRITE" 
-			file="#trim(request.applicationPath)#\eobmanager1.0\CustomTags\com\common\db\#TableName#IO.cfc" 
+			file="#trim(request.applicationPath)#\collectmed1.0\CustomTags\com\common\db\#TableName#IO.cfc" 
 			output="#fileString#">
 		
-		<!--- <cffile 
-			action="write" 
-			nameconflict="OVERWRITE" 
-			file="#trim(request.applicationPath)#\eobmanager1.0\CustomTags\com\common\db\#TableName#IO_Methods.cfm" 
-			output="#fileString2#">		
-		
-		<cffile 
-			action="write" 
-			nameconflict="OVERWRITE" 
-			file="#trim(request.applicationPath)#\eobmanager1.0\CustomTags\com\common\db\#Tablename#IOCollection.cfc" 
-			output="#fileString3#">		 --->
 		
 		<cfset caller.tempVar = tableColumnsListWOKey>
 		
@@ -1706,21 +1269,3 @@
 	
 	
 	
-<!--- Test Scripts
-
-<cfset tablename = "debug">
-	
-<cf_gcCreateDatabaseTableCFCFile
-	tablename="#tablename#">
-
-<cfset debugs = CreateObject("component","com.common.db.DebugIOCollection").Init()>							
-<cfset debugs.collectionDebugAdd(1496)>		
-<cfset debugs.collectionDebugAdd(1497)>
-
-<cfset tempo = debugs.collectionDebugGet(1496)>
-<cfoutput>
-	tempo.getNote: #tempo.getNote()#<br>
-	tempo.getTS: #dateformat(trim(tempo.getTS()), "mm/dd/yyyy")#<br>
-</cfoutput>
-
---->

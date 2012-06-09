@@ -38,7 +38,7 @@
 	<cfparam name="attributes.fileInDirectory" default="no">
 	<cfset fileInDirectory = attributes.fileInDirectory>
 	
-	<cfparam name="attributes.componentPath" default="eobmanager1.0\com\services\config">
+	<cfparam name="attributes.componentPath" default="collectmed1.0\com\services\config">
 	<cfset componentPath = attributes.componentPath>
 	 
 
@@ -81,7 +81,7 @@
 
 
 
-<cfdirectory action="LIST" directory="C:\EOBManager\eobmanager1.0\com\services" name="CurrentServicescfcs">	
+<cfdirectory action="LIST" directory="C:\collectmed\collectmed1.0\com\services" name="CurrentServicescfcs">	
 
 
 <cfset fileString = fileString & ' 	

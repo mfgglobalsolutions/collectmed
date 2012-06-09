@@ -2,7 +2,7 @@
 
 
 
-<cfcomponent extends="com.common.db.EntityIO">		
+<cfcomponent extends="cmComponents.com.common.db.EntityIO">		
 			
 			
 			

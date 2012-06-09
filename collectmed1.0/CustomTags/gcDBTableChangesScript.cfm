@@ -1,14 +1,14 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Find out if the tag already exists.                                            --->
 <!-------------------------------------------------------------------------------------->			
-<cfif FileExists("#trim(request.applicationPath)#\eobmanager1.0\DBChanges.txt")>
+<cfif FileExists("#trim(request.applicationPath)#\collectmed1.0\DBChanges.txt")>
 	
 	<!-------------------------------------------------------------------------------------->
 	<!--- Read the file into a variable.                                                 --->
 	<!-------------------------------------------------------------------------------------->					
 		<cffile 
 			action="READ" 
-			file="#trim(request.applicationPath)#\eobmanager1.0\DBChanges.txt" 
+			file="#trim(request.applicationPath)#\collectmed1.0\DBChanges.txt" 
 			variable="FileContent">
 	
 	<!-------------------------------------------------------------------------------------->
@@ -106,7 +106,7 @@
 	<cffile 
 		action="write" 
 		nameconflict="OVERWRITE" 
-		file="#trim(request.applicationPath)#\eobmanager1.0\DBChanges.txt" 
+		file="#trim(request.applicationPath)#\collectmed1.0\DBChanges.txt" 
 		output="#fileContent#">
 		
 </cfif>

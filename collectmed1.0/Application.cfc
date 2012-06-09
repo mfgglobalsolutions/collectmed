@@ -71,6 +71,11 @@
 					request.urlProtocol = "https://";
 				}
 				
+				
+				if(findNoCase("c:", trim(CGI.path_translated))){
+					request.urlProtocol = "http://";
+				}
+				
 				request.ServerName = trim(CGI.SERVER_NAME);			
 				request.validPageCall = 0;
 				request.urlHost = ListGetAt(trim(request.ServerName), 1, ".");	

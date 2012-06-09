@@ -6,7 +6,7 @@
 		}
 	</cfscript>		
 		
-	<cfset directory = "#trim(request.applicationPath)#\eobmanager1.0">
+	<cfset directory = "#trim(request.applicationPath)#\collectmed1.0">
 	
 	<cfset next_directory_to_crawl = directory>		
 	<cfset current_directory_to_crawl = "">
@@ -87,7 +87,7 @@
 	
 		</cfloop>
 		
-		#NumberFormat(file_counter)# Lines of Code makeup EOBManager1.0
+		#NumberFormat(file_counter)# Lines of Code makeup collectmed1.0
 		
 	
 		<cfcatch type="Any">											

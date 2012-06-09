@@ -114,7 +114,7 @@
 	<cfparam name="attributes.tempName" default="Service">
 	<cfset tempName = attributes.tempName>
 	
-	<cfparam name="attributes.componentPath" default="eobmanager1.0\com\services">
+	<cfparam name="attributes.componentPath" default="collectmed1.0\com\services">
 	<cfset componentPath = attributes.componentPath>
 	 
 		

@@ -160,7 +160,7 @@
 
 
 
-
+<!--- 
 
  
 <cfset request.newClientDB = "paclient_1096">
@@ -173,7 +173,7 @@
 <cfset temp = tempMySQLProcedures.createClientDBBackups(request.masterDatasource, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass, request.dbBackupPath)>
 
 
-
+ --->
 
 
 
@@ -192,15 +192,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+	<bean id="AddressDAO" class="com.persistence.daos.AddressDAO" autowire="byType" />
+	<bean id="InsuranceCompanyDAO" class="com.persistence.daos.InsuranceCompanyDAO" autowire="byType" />
+	<bean id="PhoneDAO" class="com.persistence.daos.PhoneDAO" autowire="byType" />	

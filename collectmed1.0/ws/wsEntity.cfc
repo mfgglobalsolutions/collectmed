@@ -2,6 +2,7 @@
 
 <cfcomponent>
 
+	<cfset variables.objToXML = application.beanFactory.getBean("old_toXML") />
 	
 	<cffunction name="wsGetEntityAddPhoXML" access="remote" returnType="string" output="no">
 		
@@ -18,24 +19,28 @@
 		<cfsetting showdebugoutput="No">
 		
 		<cftry>
-							
+<cfdump var="IN Entity 22" output="console">						
 			<!-------------------------------------------------------------------------------------->
 			<!--- Call the get Addresses                                                         --->
 			<!-------------------------------------------------------------------------------------->
-			<cfset variables.Addresses = wsGetEntityAddressesXML(trim(ClientID), trim(EntityID), "false")>	
-
+			<cfset local.Addresses = wsGetEntityAddressesXML(trim(ClientID), trim(EntityID), "false")>	
+<cfdump var="#local.Addresses#" output="console">	
 			<!-------------------------------------------------------------------------------------->
 			<!--- Call the get Phones                                                            --->
 			<!-------------------------------------------------------------------------------------->
-			<cfset variables.Phones = wsGetEntityPhonesXML(trim(ClientID), trim(EntityID), "false")>
-									
+			<cfset local.Phones = wsGetEntityPhonesXML(trim(ClientID), trim(EntityID), "false")>
+<cfdump var="#local.Phones#" output="console">										
 			<!-------------------------------------------------------------------------------------->
 			<!--- Combine the two Phones and Addresses.                                          --->
 			<!-------------------------------------------------------------------------------------->				
-			<cfinvoke component="com.common.toXML" method="stringToXML" data="#variables.Addresses##variables.Phones#" rootelement="ENTITY" itemelement="ADDRESSESPHONES" returnvariable="xmlAddressesPhones">
-										
-			<cfif xmlAddressesPhones NEQ "">				
-				<cfreturn xmlAddressesPhones>
+			<cfset local.xmlAddressesPhones = variables.objToXML.stringToXML(
+																	data: "#local.Addresses##local.Phones#",
+																	rootelement: "ENTITY",
+																	itemelement: "ADDRESSESPHONES"
+																) />	
+<cfdump var="#local.xmlAddressesPhones#" output="console">																										
+			<cfif local.xmlAddressesPhones NEQ "">				
+				<cfreturn local.xmlAddressesPhones>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -72,17 +77,22 @@
 		
 		<cftry>
 							
-			<cfinvoke 
-				component="com.common.Entity" 
-				method="getEntityAddresses" 
-				clientID="#trim(ClientID)#"
-				entityid="#trim(entityID)#"
-				returnvariable="qAddresses">
+			<!--- <cfset local.Entity = CreateObject("component", "com.common.Entity")> --->
+			<cfset local.Entity = application.beanFactory.getBean("Entity")>	
+			<cfset local.qAddresses = local.Entity.getEntityAddresses(
+																		clientID: "#trim(ClientID)#",
+																		entityid: "#trim(entityID)#"
+																	  ) />
 				
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#qAddresses#" rootelement="ADDRESSES" itemelement="ADDRESS" includeheader="#trim(IncludeHeader)#" returnvariable="xmlAddresses">
+			<cfset local.xmlAddresses = variables.objToXML.queryToXML(
+																		data: "#local.qAddresses#",
+																		rootelement: "ADDRESSES",
+																		itemelement: "ADDRESS",
+																		includeheader: "#trim(IncludeHeader)#"	
+																	 ) />
 										
-			<cfif xmlAddresses NEQ "">				
-				<cfreturn xmlAddresses>
+			<cfif local.xmlAddresses NEQ "">				
+				<cfreturn local.xmlAddresses>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -119,26 +129,30 @@
 		
 		<cftry>
 							
-			<cfinvoke 
-				component="com.common.Entity" 
-				method="getEntityPhones" 
-				clientID="#trim(ClientID)#"
-				entityid="#trim(entityID)#"
-				returnvariable="qPhones">
+			<cfset local.Entity = application.beanFactory.getBean("Entity")>
+			<cfset local.qPhones = local.Entity.getEntityPhones(
+																	clientID: "#trim(ClientID)#",
+																	entityid: "#trim(entityID)#"			
+																)>
 			
 			<cfset ds = "PAClient_" & trim(ClientID)> 	
 				
 			<cfset count = 1>
-			<cfloop query="qPhones">
-				<cfset temp = QuerySetCell(qPhones, "PhoneExtension", "#REQUEST.cleanAlphaNumeric(REQUEST.StringGlobalFooterD(PhoneExtension, ds))#", count)>
-				<cfset temp = QuerySetCell(qPhones, "PhoneNumber", "#REQUEST.cleanAlphaNumeric(REQUEST.StringGlobalFooterD(PhoneNumber, ds))#", count)>
+			<cfloop query="local.qPhones">
+				<cfset temp = QuerySetCell(local.qPhones, "PhoneExtension", "#REQUEST.cleanAlphaNumeric(REQUEST.StringGlobalFooterD(PhoneExtension, ds))#", count)>
+				<cfset temp = QuerySetCell(local.qPhones, "PhoneNumber", "#REQUEST.cleanAlphaNumeric(REQUEST.StringGlobalFooterD(PhoneNumber, ds))#", count)>
 				<cfset count = count + 1>
 			</cfloop>	
 	
-			<cfinvoke component="com.common.toXML" method="queryToXML" data="#qPhones#" rootelement="PHONES" itemelement="PHONE" includeheader="#trim(IncludeHeader)#" returnvariable="xmlPhones">
+			<cfset local.xmlPhones = variables.objToXML.queryToXML(
+																		data: "#local.qPhones#",
+																		rootelement: "PHONES",
+																		itemelement: "PHONE",
+																		includeheader: "#trim(IncludeHeader)#"	
+																	 ) />
 										
-			<cfif xmlPhones NEQ "">				
-				<cfreturn xmlPhones>
+			<cfif local.xmlPhones NEQ "">				
+				<cfreturn local.xmlPhones>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>
@@ -173,16 +187,14 @@
 		
 		<cftry>
 							
-			
-			<cfinvoke 
-				component="com.common.Entity" 
-				method="getEntityAddressPhoneString" 
-				clientID="#trim(ClientID)#"
-				entityid="#trim(entityID)#"
-				returnvariable="str">
+			<cfset local.Entity = application.beanFactory.getBean("Entity")>
+			<cfset local.str = local.Entity.getEntityAddressPhoneString(
+																			clientID: "#trim(ClientID)#",
+																			entityid: "#trim(entityID)#"			
+																		)>			
 									
-			<cfif str NEQ "">				
-				<cfreturn str>
+			<cfif local.str NEQ "">				
+				<cfreturn local.str>
 			<cfelse>
 				<cfreturn false>	
 			</cfif>

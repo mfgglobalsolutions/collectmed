@@ -45,7 +45,7 @@
 	<cfparam name="attributes.stringTypes" default="nvarchar,varchar,nchar,char,text">
 	<cfset stringTypes = attributes.stringTypes>
 	
-	<cfparam name="attributes.dateTypes" default="smalldatetime,datetime">
+	<cfparam name="attributes.dateTypes" default="smalldatetime,datetime,timestamp">
 	<cfset dateTypes = attributes.dateTypes>
 	
 	<cfparam name="attributes.nTypes" default="ntext">
@@ -117,7 +117,7 @@
 	<cfparam name="attributes.tempName" default="DAO">
 	<cfset tempName = attributes.tempName>
 	
-	<cfparam name="attributes.componentPath" default="eobmanager1.0\com\persistence\daos">
+	<cfparam name="attributes.componentPath" default="collectmed1.0\com\persistence\daos">
 	<cfset componentPath = attributes.componentPath>
 	 
 	 
@@ -147,29 +147,27 @@
 <!--- get the name and set it to the correct letter case.                            --->
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="tableExists" datasource="#ds#">
-		SELECT name
-		FROM dbo.sysobjects  
-		WHERE (type = 'U') AND (name = '#TableName#')
-	</cfquery>	
+		SELECT *
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_schema = '#ds#' AND table_name = '#TableName#';
+	</cfquery>		
 	
-	<cfif tableExists.RecordCount NEQ 1>
+	<cfif tableExists.RecordCount LT 1>
 		<cf_gcGeneralErrorTemplate
 			message="The table name (#TableName#) you sent in does not exist.">
 	</cfif>
 	
-	<cfset TableName = tableExists.name>			
-	
-	
+		
 	
 <!-------------------------------------------------------------------------------------->
 <!--- Query for the tablenames columns to place in the custom                        --->
 <!--- update tag.                                                                    --->
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getTableColumns" datasource="#ds#">
-		SELECT c.name ColumnName, t.name DataType, c.length ColumnLength, c.isnullable IsNullableField, c.cdefault HasDefaultValue, c.colstat IdentityField 
-		FROM syscolumns c   INNER JOIN systypes t   ON c.xusertype = t.xusertype 
-		WHERE id=object_id('#TableName#')
-	</cfquery>
+		SELECT COLUMN_NAME ColumnName, DATA_TYPE DataType, CHARACTER_MAXIMUM_LENGTH ColumnLength, IS_NULLABLE IsNullableField, COLUMN_DEFAULT HasDefaultValue, COLUMN_KEY IdentityField 
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_schema = '#ds#' AND table_name = '#TableName#';
+	</cfquery>	
 	
 	<cfif debug>
 		<cfdump var="#getTableColumns#">
@@ -189,18 +187,17 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Find the Primary key in the table if any and take it out.                      --->
 	<!-------------------------------------------------------------------------------------->
-		<cfquery name="findTablePrimaryKey" datasource="#ds#">
-			SELECT column_name
-			FROM information_schema.key_column_usage   
-			WHERE constraint_catalog = db_name() AND table_name = '#TableName#' AND LOWER(constraint_name) like 'pk%'   
-		</cfquery>	
+	<cfquery name="findTablePrimaryKey" datasource="#ds#">
+		SELECT COLUMN_NAME 
+		FROM information_schema.`COLUMNS` C 
+		WHERE table_schema = '#ds#' AND table_name = '#TableName#' AND COLUMN_KEY = 'PRI';
+	</cfquery>	
 		
 		<cfif findTablePrimaryKey.RecordCount EQ 1>
 			<cfset primaryKeyColumnName = findTablePrimaryKey.column_name>
 		</cfif>
 	
-</cfif>	
-
+</cfif>
 
 	
 
@@ -431,7 +428,7 @@
 		
 		<cfquery name="qExists" datasource="##variables.instance.configBean.getDSN().client##" maxrows="1">
 			SELECT count(1) as idexists
-			FROM #trim(TableName)#
+			FROM #lcase(trim(TableName))#
 			WHERE #trim(primaryKeyColumnName)# = <cfqueryparam value="##arguments.#trim(TableName)#.get#capitalizeFirstLetter(trim(primaryKeyColumnName))#()##" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -471,7 +468,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreate#trim(tablename)#" datasource="##variables.instance.configBean.getDSN().client##">
-				INSERT INTO #trim(tablename)# (#trim(insertColumns)#)
+				INSERT INTO #lcase(trim(tablename))# (#trim(insertColumns)#)
 				VALUES ('>
 
 <cfset comma = ",">				
@@ -492,7 +489,7 @@
 			<cfset columnDataType = "string">
 			<cfset CF_SQL_TYPE = "CF_SQL_VARCHAR">
 		</cfcase>
-		<cfcase value="datetime,smalldatetime">
+		<cfcase value="datetime,smalldatetime,timestamp">
 			<cfset columnDataType = "datetime">
 			<cfset CF_SQL_TYPE = "CF_SQL_TIMESTAMP">
 		</cfcase>   
@@ -624,7 +621,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdate#trim(tablename)#" datasource="##variables.instance.configBean.getDSN().client##">
-				UPDATE #trim(tablename)#  SET'>
+				UPDATE #lcase(trim(tablename))#  SET'>
 				
 				
 
@@ -644,7 +641,7 @@
 			<cfset columnDataType = "string">
 			<cfset CF_SQL_TYPE = "CF_SQL_VARCHAR">
 		</cfcase>
-		<cfcase value="datetime,smalldatetime">
+		<cfcase value="datetime,smalldatetime,timestamp">
 			<cfset columnDataType = "datetime">
 			<cfset CF_SQL_TYPE = "CF_SQL_TIMESTAMP">
 		</cfcase>   
@@ -727,7 +724,7 @@
 
 		<cfquery name="qDelete#trim(TableName)#" datasource="##variables.instance.configBean.getDSN().client##" result="status">
 			DELETE
-			FROM #trim(TableName)#
+			FROM #lcase(trim(TableName))#
 			WHERE #trim(primaryKeyColumnName)# = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="##trim(arguments.#trim(primaryKeyColumnName)#)##" /> 
 		</cfquery>
 
@@ -754,10 +751,10 @@
 	  		SELECT #trim(tableColumnsList)#'>
 	  		<cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))>
 				<cfset fileString = fileString & '
-			FROM [#trim(tableName)#]  '>
+			FROM [#lcase(trim(tableName))#]  '>
 			<cfelse>
 				<cfset fileString = fileString & '
-			FROM #trim(tableName)#  '>
+			FROM #lcase(trim(tableName))#  '>
 			</cfif>
 			<cfset fileString = fileString & '
 			WHERE #trim(primaryKeyColumnName)# = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="##trim(arguments.#trim(primaryKeyColumnName)#)##" /> 
@@ -798,7 +795,7 @@
 		
 			<cfquery name="qSearch"	 datasource="##variables.instance.configBean.getDSN().client##">
 				SELECT #trim(tableColumnsList)#
-				FROM '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#trim(TableName)#]'><cfelse><cfset fileString = fileString & '#trim(TableName)#'></cfif><cfset fileString = fileString & '
+				FROM '><cfif ListFindNoCase(SQLReservedKeywords, trim(tableName))><cfset fileString = fileString & '[#lcase(trim(TableName))#]'><cfelse><cfset fileString = fileString & '#lcase(trim(TableName))#'></cfif><cfset fileString = fileString & '
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>'>
 				
@@ -822,7 +819,7 @@
 			<cfset columnDataType = "string">
 			<cfset CF_SQL_TYPE = "CF_SQL_VARCHAR">
 		</cfcase>
-		<cfcase value="datetime,smalldatetime">
+		<cfcase value="datetime,smalldatetime,timestamp">
 			<cfset columnDataType = "datetime">
 			<cfset CF_SQL_TYPE = "CF_SQL_TIMESTAMP">
 		</cfcase>   

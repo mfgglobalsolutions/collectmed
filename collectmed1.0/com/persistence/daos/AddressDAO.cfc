@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.configBean.getDSN().client#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM Address
+			FROM address
 			WHERE AddressID = <cfqueryparam value="#arguments.Address.getAddressID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateAddress" datasource="#variables.instance.configBean.getDSN().client#">
-				INSERT INTO Address (SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode)
+				INSERT INTO address (SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.Address.getSiteID()))>						
 						<cfqueryparam value="#trim(arguments.Address.getSiteID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -181,7 +181,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateAddress" datasource="#variables.instance.configBean.getDSN().client#">
-				UPDATE Address  SET
+				UPDATE address  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					SiteID =				
@@ -279,7 +279,7 @@
 
 		<cfquery name="qDeleteAddress" datasource="#variables.instance.configBean.getDSN().client#" result="status">
 			DELETE
-			FROM Address
+			FROM address
 			WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.AddressID)#" /> 
 		</cfquery>
 
@@ -298,7 +298,7 @@
 	
 		<cfquery name="qGetAddress" datasource="#variables.instance.configBean.getDSN().client#">
 	  		SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-			FROM Address  
+			FROM address  
 			WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.AddressID)#" /> 
 		</cfquery>
 		
@@ -329,7 +329,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.configBean.getDSN().client#">
 				SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-				FROM Address
+				FROM address
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "AddressID")>				

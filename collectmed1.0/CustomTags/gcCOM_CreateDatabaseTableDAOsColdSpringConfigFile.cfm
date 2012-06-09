@@ -38,10 +38,13 @@
 	<cfparam name="attributes.fileInDirectory" default="no">
 	<cfset fileInDirectory = attributes.fileInDirectory>
 	
-	<cfparam name="attributes.componentPath" default="eobmanager1.0\com\persistence\daos\config">
+	<cfparam name="attributes.componentPath" default="collectmed1.0\com\persistence\daos\config">
 	<cfset componentPath = attributes.componentPath>
 	 
-
+	<cfparam name="attributes.persistDAOSPath" default="com.persistence.daos">
+	<cfset persistDAOSPath = attributes.persistDAOSPath>
+	
+	
 	
 <!-------------------------------------------------------------------------------------->
 <!--- Find out if the tag already exists and take out of it                          --->
@@ -81,7 +84,7 @@
 
 
 
-<cfdirectory action="LIST" directory="C:\EOBManager\eobmanager1.0\com\persistence\daos" name="CurrentDAOcfcs">	
+<cfdirectory action="LIST" directory="C:\railo\tomcat\webapps\collectmed\collectmed1.0\com\persistence\daos" name="CurrentDAOcfcs">	
 
 
 <cfset fileString = fileString & ' 	
@@ -93,7 +96,7 @@
 <cfloop query="CurrentDAOcfcs">		
 <cfif ListLast(name, ".") EQ "cfc">		
 <cfset fileString = fileString & '
-	<bean id="#ListFirst(name, ".")#" class="com.persistence.daos.#ListFirst(name, ".")#" autowire="byType" />'>
+	<bean id="#ListFirst(name, ".")#" class="#persistDAOSPath#.#ListFirst(name, ".")#" autowire="byType" />'>
 </cfif>	
 </cfloop>
 

@@ -22,7 +22,7 @@
 	<cfparam name="attributes.directoryPath" default="">
 	<cfset directoryPath = attributes.directoryPath>
 		
-	<cfparam name="attributes.MapFile" default="#trim(request.applicationPath)#\eobmanager1.0\includes\835_to_xml.xmp">
+	<cfparam name="attributes.MapFile" default="#trim(request.applicationPath)#\collectmed1.0\includes\835_to_xml.xmp">
 	<cfset MapFile = attributes.MapFile>
 	
 	<cfparam name="attributes.LicenseKey" default="812LX-3DT3X-YFD4XT-3Y6DF">

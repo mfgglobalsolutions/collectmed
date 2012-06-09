@@ -1,6 +1,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	
+	<bean id="Entity" class="cmComponents.com.common.Entity" singleton="false" />
 	<bean id="Client" class="cmComponents.com.common.Client" singleton="false" />
 	<bean id="IMChat" class="cmComponents.com.common.IMChat" singleton="false" />
 	<bean id="InsuranceCompany_Com" class="cmComponents.com.common.InsuranceCompany" singleton="false" />	

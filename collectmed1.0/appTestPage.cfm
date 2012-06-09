@@ -1,3 +1,42 @@
+http://www.adobe.com/cfusion/event/index.cfm?event=set_registered&id=2044432&loc=en_us
+<cfset ds = "paclient_1084">
+<cfset tableList = "Address"><!--- ,Phone,InsuranceCompany --->
+
+<cfloop list="#tableList#" index="table">
+	<!--- <cf_gcCOM_CreateDatabaseTableCFCFile tablename="#trim(table)#" ds="#trim(ds)#"> --->
+	<cf_gcCOM_CreateDatabaseTableCFCFileDAO tablename="#trim(table)#" ds="#trim(ds)#"> 
+	<!--- <cf_gcCOM_CreateDatabaseTableCFCFileService tablename="#trim(table)#" ds="#trim(ds)#">  --->
+</cfloop>
+<cf_gcCOM_CreateDatabaseTableDAOsColdSpringConfigFile>
+<cfabort>
+
+
+	<cfquery name="tables" datasource="pa_master">
+		SELECT DISTINCT TABLE_NAME
+		FROM information_schema.`COLUMNS`
+		WHERE TABLE_SCHEMA = 'pa_master'		
+	</cfquery>	
+
+	<cfloop list="#valuelist(tables.TABLE_NAME)#" index="i">
+		<cf_gcCreateDatabaseTableCFCFile_PA_MasterDB tablename="#i#" ds="pa_master">
+		<cfoutput>#i# DONE <br></cfoutput>
+	</cfloop>
+
+	<cfquery name="tables" datasource="paclient_1084">
+		SELECT DISTINCT TABLE_NAME
+		FROM information_schema.`COLUMNS`
+		WHERE TABLE_SCHEMA = 'paclient_1084'		
+	</cfquery>	
+
+	<cfloop list="#valuelist(tables.TABLE_NAME)#" index="i">
+		<cf_gcCreateDatabaseTableCFCFile_PA_MasterDB tablename="#i#" ds="paclient_1084">
+		<cfoutput>#i# DONE <br></cfoutput>
+	</cfloop>
+
+<cfabort>
+
+
+
 
 
 <style>	
@@ -685,7 +724,7 @@ ORDER BY pat.DateCreated DESC
    adminObj = createObject("component","cfide.adminapi.eventgateway");
 </cfscript>
 <cfset arrCFCPaths = arrayNew(1)>
-<cfset arrCFCPaths[1] = 'C:\EOBManager\eobmanager1.0\CustomTags\com\common\gateway\InsuranceCompanyFileRetrievalMedicaid_Texas.cfc'>
+<cfset arrCFCPaths[1] = 'C:\collectmed\collectmed1.0\CustomTags\com\common\gateway\InsuranceCompanyFileRetrievalMedicaid_Texas.cfc'>
 <cfset adminObj.setGatewayInstance(gatewayid: 'ICFileRetrievalMedicaid_Texas', type:'CFML', cfcPaths: arrCFCPaths, configurationpath: '', mode:'AUTO')>
 <cfdump var="#arrCFCPaths#">
 <cfdump var="#adminObj.getGatewayInstances()#"> 

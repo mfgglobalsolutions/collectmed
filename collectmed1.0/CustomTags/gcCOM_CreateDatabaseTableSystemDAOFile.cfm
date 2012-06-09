@@ -41,7 +41,7 @@
 	<cfparam name="attributes.tempName" default="systemDAO">
 	<cfset tempName = attributes.tempName>
 	
-	<cfparam name="attributes.componentPath" default="eobmanager1.0\com\persistence">
+	<cfparam name="attributes.componentPath" default="collectmed1.0\com\persistence">
 	<cfset componentPath = attributes.componentPath>
 	 
 
@@ -84,7 +84,7 @@
 
 
 
- <cfdirectory action="LIST" directory="C:\EOBManager\eobmanager1.0\com\persistence\daos" name="CurrentDAOS">	
+ <cfdirectory action="LIST" directory="C:\collectmed\collectmed1.0\com\persistence\daos" name="CurrentDAOS">	
 
 
 
