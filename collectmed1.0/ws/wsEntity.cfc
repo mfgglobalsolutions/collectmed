@@ -19,17 +19,17 @@
 		<cfsetting showdebugoutput="No">
 		
 		<cftry>
-<cfdump var="IN Entity 22" output="console">						
+						
 			<!-------------------------------------------------------------------------------------->
 			<!--- Call the get Addresses                                                         --->
 			<!-------------------------------------------------------------------------------------->
 			<cfset local.Addresses = wsGetEntityAddressesXML(trim(ClientID), trim(EntityID), "false")>	
-<cfdump var="#local.Addresses#" output="console">	
+
 			<!-------------------------------------------------------------------------------------->
 			<!--- Call the get Phones                                                            --->
 			<!-------------------------------------------------------------------------------------->
 			<cfset local.Phones = wsGetEntityPhonesXML(trim(ClientID), trim(EntityID), "false")>
-<cfdump var="#local.Phones#" output="console">										
+										
 			<!-------------------------------------------------------------------------------------->
 			<!--- Combine the two Phones and Addresses.                                          --->
 			<!-------------------------------------------------------------------------------------->				
@@ -38,7 +38,7 @@
 																	rootelement: "ENTITY",
 																	itemelement: "ADDRESSESPHONES"
 																) />	
-<cfdump var="#local.xmlAddressesPhones#" output="console">																										
+																										
 			<cfif local.xmlAddressesPhones NEQ "">				
 				<cfreturn local.xmlAddressesPhones>
 			<cfelse>
