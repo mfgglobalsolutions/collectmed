@@ -848,7 +848,7 @@
 	
 		<cfquery name="qGetPage" datasource="pa_master">
 	  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM Page  
+			FROM page  
 			WHERE PageID = #trim(arguments.PageID)# 
 		</cfquery>
 		
@@ -1093,7 +1093,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Page  SET #columnsToUpdate# WHERE PageID = #trim(variables.instance.PageID)#">
+				<cfset sqlStatement = "UPDATE page  SET #columnsToUpdate# WHERE PageID = #trim(variables.instance.PageID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1240,7 +1240,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Page  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageID ">
+				<cfset sqlStatement = "INSERT INTO page  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
