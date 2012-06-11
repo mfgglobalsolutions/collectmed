@@ -11,7 +11,7 @@
 			</property>	
 			<property name="database">
 				<struct>	
-					<key name="mySQLPath" value="C:\Program Files\MySQL\MySQL Server 5.5\bin" />	
+					<key name="mySQLPath" value="/usr/bin" />	
 					<key name="mySQLIpAddress" value="127.0.0.1" />	
 					<key name="mySQLPort" value="3306" />	
 					<key name="mySQLUser" value="root" />	

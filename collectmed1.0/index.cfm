@@ -192,6 +192,3 @@
 
 
 
-	<bean id="AddressDAO" class="com.persistence.daos.AddressDAO" autowire="byType" />
-	<bean id="InsuranceCompanyDAO" class="com.persistence.daos.InsuranceCompanyDAO" autowire="byType" />
-	<bean id="PhoneDAO" class="com.persistence.daos.PhoneDAO" autowire="byType" />	

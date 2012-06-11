@@ -1,14 +1,26 @@
 http://www.adobe.com/cfusion/event/index.cfm?event=set_registered&id=2044432&loc=en_us
-<cfset ds = "paclient_1084">
-<cfset tableList = "Address"><!--- ,Phone,InsuranceCompany --->
 
+<cfset ds = "paclient_1084">
+<cfset tableList = "Address,Phone,InsuranceCompany">
 <cfloop list="#tableList#" index="table">
 	<!--- <cf_gcCOM_CreateDatabaseTableCFCFile tablename="#trim(table)#" ds="#trim(ds)#"> --->
 	<cf_gcCOM_CreateDatabaseTableCFCFileDAO tablename="#trim(table)#" ds="#trim(ds)#"> 
 	<!--- <cf_gcCOM_CreateDatabaseTableCFCFileService tablename="#trim(table)#" ds="#trim(ds)#">  --->
 </cfloop>
+
+<cfset ds = "pa_master">
+<cfset tableList = "EntityKS">
+<cfloop list="#tableList#" index="table">
+	<!--- <cf_gcCOM_CreateDatabaseTableCFCFile tablename="#trim(table)#" ds="#trim(ds)#"> --->
+	<cf_gcCOM_CreateDatabaseTableCFCFileDAO tablename="#trim(table)#" ds="#trim(ds)#"> 
+	<!--- <cf_gcCOM_CreateDatabaseTableCFCFileService tablename="#trim(table)#" ds="#trim(ds)#">  --->
+</cfloop>
+
+
 <cf_gcCOM_CreateDatabaseTableDAOsColdSpringConfigFile>
+
 <cfabort>
+
 
 
 	<cfquery name="tables" datasource="pa_master">

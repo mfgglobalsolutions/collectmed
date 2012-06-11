@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.configBean.getDSN().client#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM Phone
+			FROM phone
 			WHERE PhoneID = <cfqueryparam value="#arguments.Phone.getPhoneID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePhone" datasource="#variables.instance.configBean.getDSN().client#">
-				INSERT INTO Phone (SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode)
+				INSERT INTO phone (SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.Phone.getSiteID()))>						
 						<cfqueryparam value="#trim(arguments.Phone.getSiteID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -156,7 +156,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdatePhone" datasource="#variables.instance.configBean.getDSN().client#">
-				UPDATE Phone  SET
+				UPDATE phone  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					SiteID =				
@@ -219,7 +219,7 @@
 
 		<cfquery name="qDeletePhone" datasource="#variables.instance.configBean.getDSN().client#" result="status">
 			DELETE
-			FROM Phone
+			FROM phone
 			WHERE PhoneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PhoneID)#" /> 
 		</cfquery>
 
@@ -238,7 +238,7 @@
 	
 		<cfquery name="qGetPhone" datasource="#variables.instance.configBean.getDSN().client#">
 	  		SELECT PhoneID,SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode,DateCreated,DateModified
-			FROM Phone  
+			FROM phone  
 			WHERE PhoneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PhoneID)#" /> 
 		</cfquery>
 		
@@ -269,7 +269,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.configBean.getDSN().client#">
 				SELECT PhoneID,SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode,DateCreated,DateModified
-				FROM Phone
+				FROM phone
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "PhoneID")>				

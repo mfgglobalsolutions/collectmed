@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.configBean.getDSN().client#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam value="#arguments.InsuranceCompany.getInsuranceCompanyID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateInsuranceCompany" datasource="#variables.instance.configBean.getDSN().client#">
-				INSERT INTO InsuranceCompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,LoginInstructionsXML,Active,InactiveCode)
+				INSERT INTO insurancecompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,LoginInstructionsXML,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.InsuranceCompany.getClientID()))>						
 						<cfqueryparam value="#trim(arguments.InsuranceCompany.getClientID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -115,8 +115,8 @@
 					<cfelse>
 						 <cfqueryparam null="true" cfsqltype="CF_SQL_INTEGER" />
 					</cfif>	
-				)
-				SELECT SCOPE_IDENTITY() AS InsuranceCompanyID 
+				);
+				SELECT LAST_INSERT_ID() AS InsuranceCompanyID 
 			</cfquery>
 			
 		</cftransaction>	
@@ -171,7 +171,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateInsuranceCompany" datasource="#variables.instance.configBean.getDSN().client#">
-				UPDATE InsuranceCompany  SET
+				UPDATE insurancecompany  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					ClientID =				
@@ -255,7 +255,7 @@
 
 		<cfquery name="qDeleteInsuranceCompany" datasource="#variables.instance.configBean.getDSN().client#" result="status">
 			DELETE
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 
@@ -274,7 +274,7 @@
 	
 		<cfquery name="qGetInsuranceCompany" datasource="#variables.instance.configBean.getDSN().client#">
 	  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,LoginInstructionsXML,Active,InactiveCode,DateCreated,DateModified
-			FROM InsuranceCompany  
+			FROM insurancecompany  
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 		
@@ -288,7 +288,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- GATEWAY PUBLIC METHODS                                                         --->
 	<!-------------------------------------------------------------------------------------->
-	<cffunction name="getAllInsuranceCompanys"  access="public" output="false" hint="I run a query of all InsuranceCompanys within the database table.">
+	<cffunction name="getAllInsuranceCompanys" access="public" output="false" hint="I run a query of all InsuranceCompanys within the database table.">
 		<cfargument name="filter" required="false" type="Struct" default="#structNew()#" hint="I am a structure used to filter the query." />							
 		<cfreturn filterAllInsuranceCompanys(arguments.filter) />	
 	</cffunction>	
@@ -305,7 +305,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.configBean.getDSN().client#">
 				SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,LoginInstructionsXML,Active,InactiveCode,DateCreated,DateModified
-				FROM InsuranceCompany
+				FROM insurancecompany
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "InsuranceCompanyID")>				

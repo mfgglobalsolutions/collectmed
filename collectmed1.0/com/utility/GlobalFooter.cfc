@@ -7,12 +7,15 @@
 	<!--- Pseudo-constructor                                                             --->
 	<!-------------------------------------------------------------------------------------->
 	<cfset variables.instance.configBean = '' />
+	<cfset variables.instance.entityKSDAO = '' />
 	
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I am the constructor method for the Address DAO Class.">
 		<cfargument name="configBean" required="true" type="com.utility.configBean" hint="I am the config object." />
+		<cfargument name="entityKSDAO" required="true" type="com.persistence.daos.entityKSDAO" hint="I am the EntityKSDAO object." />
 		
 		<cfscript>
 			variables.instance.configBean = arguments.configBean;
+			variables.instance.entityKSDAO = arguments.entityKSDAO;
 		</cfscript>
 			
 		<cfreturn this />
@@ -75,43 +78,12 @@
 		<cfreturn decrypt(trim(footer), getGlobalFooterKS(), "AES", "Hex")>
 				
 	</cffunction>
-	
-	
+		
 	<cffunction name="getGlobalFooterKS" returntype="string" output="no" access="private">				
 		
 		<cftry>			
-		
-			<cfquery name="getColB" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 
-				SELECT ColI
-				FROM EntityKS 
-				Where EntityKSID = 9
-			</cfquery>				
-		
-			<cfquery name="getColC" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 	
-				SELECT ColL
-				FROM EntityKS W
-				Where EntityKSID = 12
-			</cfquery>
-		
-			<cfquery name="getColD" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
-				SELECT ColE
-				FROM EntityKS 
-				Where EntityKSID = 5
-			</cfquery>
-		
-			<cfquery name="getColE" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
-				SELECT ColM
-				FROM EntityKS
-				Where EntityKSID = 14
-			</cfquery>
-		
-			<cfquery name="getColF" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 						
-				SELECT ColC
-				FROM EntityKS
-				Where EntityKSID = 54
-			</cfquery>	
-			
-			<cfset GlobalFooterSP = trim(variables.instance.configBean.getDomain().ColA) & getColB.ColI & getColC.ColL & getColD.ColE & getColE.ColM & getColF.ColC /> 
+					
+			<cfset GlobalFooterSP = trim(variables.instance.configBean.getDomain().ColA) & variables.instance.entityKSDAO.getColB() & variables.instance.entityKSDAO.getColC() & variables.instance.entityKSDAO.getColD() & variables.instance.entityKSDAO.getColE() & variables.instance.entityKSDAO.getColF() /> 
 			
 			<cfset GlobalFooter = Left(GlobalFooterSP, 24)>
 			
@@ -130,4 +102,3 @@
 			
 </cfcomponent>
 
-	
