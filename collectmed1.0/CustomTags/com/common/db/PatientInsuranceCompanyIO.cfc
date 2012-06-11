@@ -1346,7 +1346,7 @@
 	
 		<cfquery name="qGetPatientInsuranceCompany" datasource="#trim(request.datasource)#">
 	  		SELECT recordID,PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode,DateCreated,DateModified
-			FROM PatientInsuranceCompany  
+			FROM patientinsurancecompany  
 			WHERE recordID = #trim(arguments.recordID)# 
 		</cfquery>
 		
@@ -1770,7 +1770,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO PatientInsuranceCompany  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
+				<cfset sqlStatement = "INSERT INTO patientinsurancecompany  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -2001,7 +2001,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getPatientInsuranceCompanyQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM PatientInsuranceCompany   
+				FROM patientinsurancecompany   
 				WHERE 1=1
 					<cfif recordID NEQ "" AND IsNumeric(recordID)>AND recordID = #recordID#</cfif>
 					<cfif recordID_IN NEQ "">AND recordID IN(#trim(recordID_IN)#)</cfif>
@@ -2147,5 +2147,7 @@
 
 	
 </cfcomponent>
+
+
 
 

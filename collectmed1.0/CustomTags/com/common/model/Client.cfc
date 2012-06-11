@@ -13,7 +13,7 @@
 		<cfset var getClientIDs = "">
 						
 		<cfquery name="getClientIDs" datasource="pa_master">
-			SELECT ClientID FROM Client
+			SELECT ClientID FROM client
 		</cfquery>
 		
 		<cfset clientIDs = valuelist(getClientIDs.ClientID)>
@@ -35,7 +35,7 @@
 						
 		<cfquery name="getClientUsers" datasource="pa_master">
 			SELECT UsersID 
-			FROM Users
+			FROM users
 			WHERE ClientID = #arguments.clientID#
 		</cfquery>		
 				
@@ -47,3 +47,5 @@
 </cfcomponent>
 
 	
+
+

@@ -977,7 +977,7 @@
 	
 		<cfquery name="qGetInterchange" datasource="#trim(request.datasource)#">
 	  		SELECT InterchangeID,FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,Active,InactiveCode,DateCreated
-			FROM Interchange  
+			FROM interchange  
 			WHERE InterchangeID = #trim(arguments.InterchangeID)# 
 		</cfquery>
 		
@@ -1365,7 +1365,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Interchange  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS InterchangeID ">
+				<cfset sqlStatement = "INSERT INTO interchange  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS InterchangeID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1569,7 +1569,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getInterchangeQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Interchange   
+				FROM interchange   
 				WHERE 1=1
 					<cfif InterchangeID NEQ "" AND IsNumeric(InterchangeID)>AND InterchangeID = #InterchangeID#</cfif>
 					<cfif InterchangeID_IN NEQ "">AND InterchangeID IN(#trim(InterchangeID_IN)#)</cfif>
@@ -1688,5 +1688,7 @@
 
 	
 </cfcomponent>
+
+
 
 

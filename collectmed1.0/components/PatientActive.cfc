@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "PatientID") AND stValues.PatientID NEQ 0>
 				<cfquery name="qGetPatient" datasource="#trim(variables.ds)#">
 			  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-					FROM Patient  
+					FROM patient  
 					WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PatientID#" /> 
 				</cfquery>		
 				<cfif qGetPatient.Recordcount LTE 0>
@@ -283,7 +283,7 @@
 	
 		<cfquery name="qGetPatient" datasource="#trim(variables.ds)#">
 	  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-			FROM Patient  
+			FROM patient  
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PatientID)#" /> 
 		</cfquery>
 		
@@ -312,7 +312,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePatient" datasource="#trim(variables.ds)#">
-				INSERT INTO Patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,InactiveCode)
+				INSERT INTO patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localEntityID))>						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -411,7 +411,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePatient" datasource="#trim(variables.ds)#">
-				UPDATE Patient  SET
+				UPDATE patient  SET
 					
 					EntityID =				
 					<cfif IsNumeric(trim(localEntityID))>						
@@ -480,7 +480,7 @@
 
 		<cfquery name="qDeletePatient" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Patient
+			FROM patient
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getPatientID())#" /> 
 		</cfquery>
 
@@ -502,5 +502,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

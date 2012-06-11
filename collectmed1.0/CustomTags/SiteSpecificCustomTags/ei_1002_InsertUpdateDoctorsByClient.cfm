@@ -193,7 +193,7 @@
 		<!-------------------------------------------------------------------------------------->				
 		<cfquery name="getDoctorID" datasource="#trim(datasource)#">
 			SELECT DoctorID
-			FROM Doctor
+			FROM doctor
 			WHERE ClientDoctorID = '#trim(thisClientDoctorID)#' 
 		</cfquery>
 		
@@ -205,7 +205,7 @@
 				<!--- Start the insert of the new Doctor account.                                    --->
 				<!-------------------------------------------------------------------------------------->
 				<cfquery name="insertNewDoctor" datasource="#trim(datasource)#">
-					INSERT INTO Entity  (SiteID, ClientID, ObjectTypeID, Prefixname, FName, LName)
+					INSERT INTO entity  (SiteID, ClientID, ObjectTypeID, Prefixname, FName, LName)
 					VALUES(#trim(request.Site.getSiteID())#, '#trim(clientID)#', 10, <cfif trim(prefix) EQ "null">NULL<cfelse>'#trim(prefix)#'</cfif>, <cfif trim(FirstName) EQ "null">NULL<cfelse>'#trim(FirstName)#'</cfif>, <cfif trim(LastName) EQ "null">NULL<cfelse>'#trim(LastName)#'</cfif>);
 					SELECT LAST_INSERT_ID() AS newDoctorID 
 				</cfquery>			
@@ -217,7 +217,7 @@
 				<cfset stateID = getStateID.standardlistItemID>
 				
 				<cfquery name="insertAddress" datasource="#trim(datasource)#">
-					INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
+					INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
 					VALUES(11, <cfif trim(AddressLine1) EQ "null">NULL<cfelse>'#trim(AddressLine1)#'</cfif>, <cfif trim(AddressLine2) EQ "null">NULL<cfelse>'#trim(AddressLine2)#'</cfif>, <cfif trim(City) EQ "null">NULL<cfelse>'#trim(City)#'</cfif>, <cfif NOT IsNumeric(stateID)>NULL<cfelse>#trim(StateID)#</cfif>, <cfif trim(ZipCode) EQ "null">NULL<cfelse>'#trim(ZipCode)#'</cfif>);
 					SELECT LAST_INSERT_ID() AS addressID 
 				</cfquery>
@@ -225,7 +225,7 @@
 				<cfset addressID = insertAddress.addressID>
 				
 				<cfquery name="insertEntityAddress" datasource="#trim(datasource)#">
-					INSERT INTO EntityAddress  (EntityID, AddressID, IsDefault)
+					INSERT INTO entityaddress  (EntityID, AddressID, IsDefault)
 					VALUES(#trim(newDoctorID)#, '#trim(addressID)#', 1)				
 				</cfquery>	
 				
@@ -242,7 +242,7 @@
 				</cfif>
 				
 				<cfquery name="insertNewDoctorPhone" datasource="#trim(datasource)#">
-					INSERT INTO Phone  (phoneNumber, phoneExtension, PhoneTypeID)
+					INSERT INTO phone  (phoneNumber, phoneExtension, PhoneTypeID)
 					VALUES(<cfif trim(Phone) EQ "Null">NULL<cfelse>'#trim(Phone)#'</cfif>, <cfif trim(Ext) EQ "Null">NULL<cfelse>'#trim(Ext)#'</cfif>, 74);
 					SELECT LAST_INSERT_ID() AS phoneID 
 				</cfquery>
@@ -250,7 +250,7 @@
 				<cfset newDoctorPhoneID = insertNewDoctorPhone.phoneID>	
 				
 				<cfquery name="insertNewDoctorEntityPhone" datasource="#trim(datasource)#">
-					INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+					INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 					VALUES(#trim(newDoctorID)#, '#trim(newDoctorPhoneID)#', 1)				
 				</cfquery>
 				
@@ -263,7 +263,7 @@
 				</cfif>							
 				
 				<cfquery name="insertNewDoctorFax" datasource="#trim(datasource)#">
-					INSERT INTO Phone  (phoneNumber, PhoneTypeID)
+					INSERT INTO phone  (phoneNumber, PhoneTypeID)
 					VALUES(<cfif trim(Fax) EQ "Null">NULL<cfelse>'#trim(Fax)#'</cfif>, 87);
 					SELECT LAST_INSERT_ID() AS FaxID 
 				</cfquery>
@@ -271,13 +271,13 @@
 				<cfset newDoctorFaxID = insertNewDoctorFax.FaxID>	
 				
 				<cfquery name="insertNewDoctorEntityFax" datasource="#trim(datasource)#">
-					INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+					INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 					VALUES(#trim(newDoctorID)#, '#trim(newDoctorFaxID)#', 1)				
 				</cfquery>								
 					
 									
 				<cfquery name="insertCode" datasource="#trim(datasource)#">
-					INSERT INTO Doctor  (EntityID, ClientDoctorID, DoctorCategory, UPIN, MedicareNumber, MedicaidNumber, GroupName)
+					INSERT INTO doctor  (EntityID, ClientDoctorID, DoctorCategory, UPIN, MedicareNumber, MedicaidNumber, GroupName)
 					VALUES(#trim(newDoctorID)#, <cfif trim(thisClientDoctorID) EQ "Null">NULL<cfelse>'#trim(thisClientDoctorID)#',</cfif> <cfif trim(DoctorCategory) EQ "Null">NULL<cfelse>'#trim(DoctorCategory)#'</cfif>, <cfif trim(UPIN) EQ "Null">NULL<cfelse>'#trim(UPIN)#'</cfif>, <cfif trim(MedicareNumber) EQ "Null">NULL<cfelse>'#trim(MedicareNumber)#'</cfif>, <cfif trim(MedicaidNumber) EQ "Null">NULL<cfelse>'#trim(MedicaidNumber)#'</cfif>, <cfif trim(GroupName) EQ "Null">NULL<cfelse>'#trim(GroupName)#'</cfif>);
 					SELECT LAST_INSERT_ID() AS thisRecordID 
 				</cfquery>
@@ -294,3 +294,9 @@
 	</cfloop>	
 
 	
+
+
+
+
+
+

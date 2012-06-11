@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID") AND stValues.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID NEQ 0>
 				<cfquery name="qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
 			  		SELECT Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID,ClaimID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-					FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  
+					FROM claim_medicare_supplemental_amount  
 					WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID#" /> 
 				</cfquery>		
 				<cfif qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT.Recordcount LTE 0>
@@ -269,7 +269,7 @@
 	
 		<cfquery name="qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
 	  		SELECT Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID,ClaimID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-			FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  
+			FROM claim_medicare_supplemental_amount  
 			WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID)#" /> 
 		</cfquery>
 		
@@ -297,7 +297,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
-				INSERT INTO Claim_MEDICARE_SUPPLEMENTAL_AMOUNT (ClaimID,QualifierCode,MonetaryAmount2,InactiveCode)
+				INSERT INTO claim_medicare_supplemental_amount (ClaimID,QualifierCode,MonetaryAmount2,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localQualifierCode)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -377,7 +377,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
-				UPDATE Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  SET
+				UPDATE claim_medicare_supplemental_amount  SET
 					
 					ClaimID =						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -427,7 +427,7 @@
 
 		<cfquery name="qDeleteClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT
+			FROM claim_medicare_supplemental_amount
 			WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClaim_MEDICARE_SUPPLEMENTAL_AMOUNTID())#" /> 
 		</cfquery>
 

@@ -26,7 +26,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateTableChange" datasource="#trim(arguments.ds)#">
-				INSERT INTO TableChange (Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode)
+				INSERT INTO tablechange (Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localDatasource)#" cfsqltype="CF_SQL_VARCHAR" />,						
 						<cfqueryparam value="#trim(localTablename)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateTableChange" datasource="#trim(arguments.ds)#">
-				UPDATE TableChange  SET
+				UPDATE tablechange  SET
 					
 					Datasource =						
 						<cfqueryparam value="#trim(localDatasource)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -179,7 +179,7 @@
 
 		<cfquery name="qDeleteTableChange" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM TableChange
+			FROM tablechange
 			WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getChangeID())#" /> 
 		</cfquery>
 
@@ -199,7 +199,7 @@
 	
 		<cfquery name="qGetTableChange" datasource="#trim(arguments.ds)#">
 	  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
-			FROM TableChange  
+			FROM tablechange  
 			WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ChangeID)#" /> 
 		</cfquery>
 		
@@ -222,5 +222,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

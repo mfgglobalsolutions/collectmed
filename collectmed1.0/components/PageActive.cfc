@@ -64,7 +64,7 @@
 			<cfif StructKeyExists(stValues, "PageID") AND stValues.PageID NEQ 0>
 				<cfquery name="qGetPage" datasource="#trim(variables.ds)#">
 			  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
-					FROM Page  
+					FROM page  
 					WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageID#" /> 
 				</cfquery>		
 				<cfif qGetPage.Recordcount LTE 0>
@@ -515,7 +515,7 @@
 	
 		<cfquery name="qGetPage" datasource="#trim(variables.ds)#">
 	  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM Page  
+			FROM page  
 			WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageID)#" /> 
 		</cfquery>
 		
@@ -554,7 +554,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePage" datasource="#trim(variables.ds)#">
-				INSERT INTO Page (SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,InactiveCode)
+				INSERT INTO page (SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -723,7 +723,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePage" datasource="#trim(variables.ds)#">
-				UPDATE Page  SET
+				UPDATE page  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -862,7 +862,7 @@
 
 		<cfquery name="qDeletePage" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Page
+			FROM page
 			WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getPageID())#" /> 
 		</cfquery>
 
@@ -884,5 +884,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

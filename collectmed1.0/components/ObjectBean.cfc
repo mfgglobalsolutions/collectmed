@@ -36,7 +36,7 @@
 			<cfif StructKeyExists(stValues, "ObjectID") AND stValues.ObjectID NEQ 0>
 				<cfquery name="qGetObject" datasource="#trim(arguments.ds)#">
 			  		SELECT ObjectID,ObjectName,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM Object  
+					FROM object  
 					WHERE ObjectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ObjectID#" /> 
 				</cfquery>		
 				<cfif qGetObject.Recordcount LTE 0>
@@ -219,5 +219,6 @@
 		
 		
 </cfcomponent>
+
 
 

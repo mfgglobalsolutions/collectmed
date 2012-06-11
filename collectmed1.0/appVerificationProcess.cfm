@@ -34,7 +34,7 @@
 		<cfset variables.folder = "">
 		<cfquery name="getThisIC" datasource="PAClient_#variables.clientID#">
 			SELECT LoginInstructionsXML
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = 44584
 		</cfquery>
 		<cfset variables.connectionDataXML = xmlParse(getThisIC.LoginInstructionsXML)>
@@ -277,5 +277,6 @@
 	
 	
 </cftry>
+
 
 

@@ -18,7 +18,7 @@
 			<cfif IsNumeric(InsuranceCompanyID) OR IsNumeric(recordID)>
 						
 				<cfquery name="DeactivatePatientInsuranceCompany" datasource="PAClient_#trim(ClientID)#">
-					UPDATE PatientInsuranceCompany
+					UPDATE patientinsurancecompany
 					SET Active = 0, PrimSecTer = NULL
 					WHERE PatientID = #trim(patientID)# AND <cfif IsNumeric(InsuranceCompanyID)>InsuranceCompanyID = #trim(InsuranceCompanyID)#<cfelseif IsNumeric(recordID)>recordID = #trim(recordID)#</cfif>
 				</cfquery>
@@ -53,14 +53,14 @@
 			
 			<cfquery name="getPatientInsuranceCompanies" datasource="PAClient_#trim(ClientID)#">
 				SELECT recordID, PrimSecTer 
-				FROM PatientInsuranceCompany	 
+				FROM patientinsurancecompany	 
 				WHERE PatientID = #trim(patientID)# AND Active = 1 AND PrimSecTer IS NOT NULL	
 				ORDER BY PrimSecTer
 			</cfquery>
 			
 			<cfloop query="getPatientInsuranceCompanies">	
 				<cfquery name="DeactivatePatientInsuranceCompany" datasource="PAClient_#trim(ClientID)#">
-					UPDATE PatientInsuranceCompany
+					UPDATE patientinsurancecompany
 					SET PrimSecTer = #trim(CurrentRow)#
 					WHERE recordID = #trim(recordID)#
 				</cfquery>
@@ -87,3 +87,4 @@
 		
 		
 		
+

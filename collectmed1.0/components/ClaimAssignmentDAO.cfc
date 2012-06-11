@@ -22,7 +22,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaimAssignment" datasource="#trim(arguments.ds)#">
-				INSERT INTO ClaimAssignment (ClaimID,UserID,AssignorID,Note)
+				INSERT INTO claimassignment (ClaimID,UserID,AssignorID,Note)
 				VALUES (						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localUserID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -104,7 +104,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaimAssignment" datasource="#trim(arguments.ds)#">
-				UPDATE ClaimAssignment  SET
+				UPDATE claimassignment  SET
 					
 					ClaimID =						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -148,7 +148,7 @@
 
 		<cfquery name="qDeleteClaimAssignment" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM ClaimAssignment
+			FROM claimassignment
 			WHERE ClaimAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaimAssignmentID())#" /> 
 		</cfquery>
 
@@ -168,7 +168,7 @@
 	
 		<cfquery name="qGetClaimAssignment" datasource="#trim(arguments.ds)#">
 	  		SELECT ClaimAssignmentID,ClaimID,UserID,DateCreated,AssignorID,Note
-			FROM ClaimAssignment  
+			FROM claimassignment  
 			WHERE ClaimAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimAssignmentID)#" /> 
 		</cfquery>
 		

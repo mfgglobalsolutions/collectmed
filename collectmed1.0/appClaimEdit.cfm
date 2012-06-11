@@ -251,7 +251,7 @@
 									<!-------------------------------------------------------------------------------------->									
 									<cfquery name="getOpenClose" datasource="#trim(request.Datasource)#">
 										SELECT OpenOrClose, UsersID, DateCreated, Note 	
-										FROM ProcedureOpenClose  
+										FROM procedureopenclose  
 										WHERE ProcedureID = #trim(ProcedureID)#
 										Order BY DateCreated DESC
 									</cfquery>
@@ -262,7 +262,7 @@
 											
 											<cfquery name="getByAssignmentName" datasource="#trim(request.datasource)#">
 												SELECT CONCAT(FName, ' ', LName) AS OpenCloseFullname 
-												FROM view_UserAccountParameters 
+												FROM view_useraccountparameters 
 												WHERE UsersID = #trim(UsersID)#
 											</cfquery>
 											
@@ -596,3 +596,4 @@
  </table>
  --->
  
+

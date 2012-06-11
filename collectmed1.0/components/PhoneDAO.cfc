@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePhone" datasource="#trim(arguments.ds)#">
-				INSERT INTO Phone (SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode)
+				INSERT INTO phone (SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -127,7 +127,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePhone" datasource="#trim(arguments.ds)#">
-				UPDATE Phone  SET
+				UPDATE phone  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -196,7 +196,7 @@
 
 		<cfquery name="qDeletePhone" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Phone
+			FROM phone
 			WHERE PhoneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getPhoneID())#" /> 
 		</cfquery>
 
@@ -216,7 +216,7 @@
 	
 		<cfquery name="qGetPhone" datasource="#trim(arguments.ds)#">
 	  		SELECT PhoneID,SiteID,PhoneTypeID,PhoneNumber,PhoneExtension,Active,InactiveCode,DateCreated,DateModified
-			FROM Phone  
+			FROM phone  
 			WHERE PhoneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PhoneID)#" /> 
 		</cfquery>
 		
@@ -247,7 +247,7 @@
 				
 				<cfquery name="getPhones" datasource="#trim(arguments.ds)#">
 					SELECT p.PhoneID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.PhoneID, p.SiteID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.Active, p.DateCreated, sli.ItemNameDisplay AS PhoneType, ep.IsDefault
-					FROM EntityPhone ep INNER JOIN Phone p ON ep.PhoneID = p.PhoneID						
+					FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID						
 					INNER JOIN pa_master.StandardListItem sli ON p.PhoneTypeID = sli.StandardListItemID 				
 					WHERE ep.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
 					<cfif IsNumeric(Active)>
@@ -280,12 +280,12 @@
 				
 				<cfquery name="getEntityPhone" datasource="#trim(arguments.ds)#">
 					SELECT * 
-					FROM EntityPhone  
+					FROM entityphone  
 					WHERE EntityID = #trim(arguments.EntityID)# AND PhoneID = #trim(arguments.PhoneID)#					
 				</cfquery>		
 				<cfif getEntityPhone.recordCount LTE 0>
 					<cfquery name="insertEntityPhone" datasource="#trim(arguments.ds)#">
-						INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+						INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 						VALUES(
 							<cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />, 
 							<cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" />, 
@@ -315,13 +315,13 @@
 			<cftry>
 											
 				<cfquery name="archiveEntityPhone" datasource="#trim(arguments.ds)#">
-					UPDATE EntityPhone 
+					UPDATE entityphone 
 					SET Active = 0, InactiveCode = 68
 					WHERE PhoneID = <cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" /> 		
 				</cfquery>	
 						
 				<cfquery name="archivePhone" datasource="#trim(arguments.ds)#">
-					UPDATE Phone 
+					UPDATE phone 
 					SET Active = 0, InactiveCode = 68
 					WHERE PhoneID = <cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" /> 	 	
 				</cfquery>
@@ -339,5 +339,9 @@
 		
 	
 </cfcomponent>
+
+
+
+
 
 

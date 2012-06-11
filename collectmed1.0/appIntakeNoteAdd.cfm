@@ -79,7 +79,7 @@
 		<!--- done to the intake and notify an administrator.                                --->
 		<!-------------------------------------------------------------------------------------->
 		<cfquery name="updateIntake" datasource="#request.datasource#">
-			UPDATE Intake
+			UPDATE intake
 			SET dateModified = now()
 			WHERE IntakeID = #trim(instanceID)#
 		</cfquery>
@@ -100,4 +100,5 @@
 <!--- Locate the user back to the note page.                                         --->
 <!-------------------------------------------------------------------------------------->
 	<cflocation addtoken="No" url="#trim(urlString)#">
+
 

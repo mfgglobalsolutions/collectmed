@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateStandardListItem" datasource="#trim(arguments.ds)#">
-				INSERT INTO StandardListItem (ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode)
+				INSERT INTO standardlistitem (ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localExternalListItemID) NEQ "" AND trim(localExternalListItemID) NEQ "@@" AND trim(localExternalListItemID) NEQ "NULL">						
 						<cfqueryparam value="#trim(localExternalListItemID)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateStandardListItem" datasource="#trim(arguments.ds)#">
-				UPDATE StandardListItem  SET
+				UPDATE standardlistitem  SET
 					
 					ExternalListItemID =	
 					<cfif trim(localExternalListItemID) NEQ "" AND trim(localExternalListItemID) NEQ "@@" AND trim(localExternalListItemID) NEQ "NULL">						
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteStandardListItem" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM StandardListItem
+			FROM standardlistitem
 			WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getStandardListItemID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetStandardListItem" datasource="#trim(arguments.ds)#">
 	  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
-			FROM StandardListItem  
+			FROM standardlistitem  
 			WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.StandardListItemID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

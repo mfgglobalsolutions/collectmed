@@ -15,7 +15,7 @@
 				
 			<cfquery name="getAllWorkGroups" datasource="PAClient_#trim(ClientID)#">				
 				SELECT WorkGroupID, ClientID, WorkGroupName, DateCreated, DateModified, Description, MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd
-				FROM WorkGroup		
+				FROM workgroup		
 			</cfquery>				
 			
 			<cfreturn getAllWorkGroups>
@@ -37,5 +37,6 @@
 	
 	
 </cfcomponent>
+
 
 

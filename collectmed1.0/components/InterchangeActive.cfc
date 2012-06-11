@@ -66,7 +66,7 @@
 			<cfif StructKeyExists(stValues, "InterchangeID") AND stValues.InterchangeID NEQ 0>
 				<cfquery name="qGetInterchange" datasource="#trim(variables.ds)#">
 			  		SELECT InterchangeID,FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,Active,InactiveCode,DateCreated
-					FROM Interchange  
+					FROM interchange  
 					WHERE InterchangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.InterchangeID#" /> 
 				</cfquery>		
 				<cfif qGetInterchange.Recordcount LTE 0>
@@ -529,7 +529,7 @@
 	
 		<cfquery name="qGetInterchange" datasource="#trim(variables.ds)#">
 	  		SELECT InterchangeID,FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,Active,InactiveCode,DateCreated
-			FROM Interchange  
+			FROM interchange  
 			WHERE InterchangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InterchangeID)#" /> 
 		</cfquery>
 		
@@ -569,7 +569,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateInterchange" datasource="#trim(variables.ds)#">
-				INSERT INTO Interchange (FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,InactiveCode)
+				INSERT INTO interchange (FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localInterchangeFileID)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -734,7 +734,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateInterchange" datasource="#trim(variables.ds)#">
-				UPDATE Interchange  SET
+				UPDATE interchange  SET
 					
 					FileID =						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -864,7 +864,7 @@
 
 		<cfquery name="qDeleteInterchange" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Interchange
+			FROM interchange
 			WHERE InterchangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getInterchangeID())#" /> 
 		</cfquery>
 
@@ -886,5 +886,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

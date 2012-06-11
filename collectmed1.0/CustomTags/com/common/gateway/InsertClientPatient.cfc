@@ -133,7 +133,7 @@
 								
 					<cfquery name="getStateID" datasource="pa_master">
 						SELECT StandardListItemID
-						FROM StandardListItem
+						FROM standardlistitem
 						WHERE ItemDescription = '#trim(ST_7)#' AND Active = 1 AND ListID = 4
 					</cfquery>
 					
@@ -209,7 +209,7 @@
 				
 				
 				<cfquery name="insertEntity" datasource="#trim(request.datasource)#">
-					INSERT INTO Entity 
+					INSERT INTO entity 
 					(SiteID, ClientID, ObjectTypeID, Fname, Mname, Lname, DOB, Sex, SSN, MaritalStatus, Languages)
 					VALUES(#trim(SiteID)#, #trim(ClientID)#, 3, <cfif First EQ "NULL">NULL<cfelse>'#trim(First)#'</cfif>, <cfif Middle EQ "NULL">NULL<cfelse>'#trim(Middle)#'</cfif>, <cfif Last EQ "NULL">NULL<cfelse>'#trim(Last)#'</cfif>, #trim(dobDate)#, #trim(Sex)#, <cfif SSN EQ "NULL">NULL<cfelse>'#trim(SSN)#'</cfif>, #trim(MaritalStatus)#, 1); 
 					SELECT LAST_INSERT_ID() AS EntityID 			
@@ -218,7 +218,7 @@
 				<cfset EntityID = insertEntity.entityID>
 														
 				<cfquery name="insertPatient" datasource="#trim(request.datasource)#">
-					INSERT INTO Patient 
+					INSERT INTO patient 
 					(ClaimSubmitterIdentifier, EntityID)
 					VALUES('#trim(ClaimSubmitterIdentifier_102)#', #trim(EntityID)#);
 					SELECT LAST_INSERT_ID() AS PatientID 			
@@ -233,13 +233,13 @@
 				<cfif trim(Address1_4) NEQ "NULL">
 							
 					<cfquery name="insertThisEntityAddress" datasource="#trim(request.datasource)#">
-						INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
+						INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
 						VALUES(12, '#trim(Address1_4)#', <cfif Address2_5 EQ "NULL">NULL<cfelse>'#trim(Address2_5)#'</cfif>, '#trim(City_6)#', #trim(AddressStateID)#, '#trim(Zip_8)#');
 						SELECT LAST_INSERT_ID() AS AddressID 		
 					</cfquery>	
 					<cfset thisEntityAddressID = insertThisEntityAddress.AddressID>						
 					<cfquery name="insertThisEntityEntityAddress" datasource="#trim(request.datasource)#">
-						INSERT INTO EntityAddress  (AddressID, EntityID, IsDefault)			
+						INSERT INTO entityaddress  (AddressID, EntityID, IsDefault)			
 						VALUES(#trim(thisEntityAddressID)#, #trim(EntityID)#, 1)						
 					</cfquery>
 				
@@ -254,13 +254,13 @@
 					<cfset PhoneNumberE = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(PhoneHome_9)) />
 														
 					<cfquery name="insertThisEntityPhone" datasource="#trim(request.datasource)#">
-						INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
+						INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
 						VALUES(76, '#trim(PhoneNumberE)#', NULL);
 						SELECT LAST_INSERT_ID() AS PhoneID 		
 					</cfquery>		
 					<cfset thisEntityPhoneID = insertThisEntityPhone.PhoneID>						
 					<cfquery name="insertThisEntityEntityPhone" datasource="#trim(request.datasource)#">
-						INSERT INTO EntityPhone  (PhoneID, EntityID, IsDefault)			
+						INSERT INTO entityphone  (PhoneID, EntityID, IsDefault)			
 						VALUES(#trim(thisEntityPhoneID)#, #trim(EntityID)#, 1)					
 					</cfquery>		
 				
@@ -274,7 +274,7 @@
 				<cfif trim(EmpName_35) NEQ "NULL" AND trim(EmpName_35) NEQ "">
 					
 					<cfquery name="insertEmployerEntity" datasource="#trim(request.datasource)#">
-						INSERT INTO Entity  (SiteID, ObjectTypeID)
+						INSERT INTO entity  (SiteID, ObjectTypeID)
 						VALUES(#trim(SiteID)#, 8); 
 						SELECT LAST_INSERT_ID() AS EntityID 			
 					</cfquery>				
@@ -288,7 +288,7 @@
 						<cfif trim(State_41) NEQ "NULL">	
 							<cfquery name="getStateID" datasource="#trim(request.datasource)#">
 								SELECT StandardListItemID
-								FROM StandardListItem
+								FROM standardlistitem
 								WHERE ItemDescription = '#trim(State_41)#' AND Active = 1 AND ListID = 4
 							</cfquery>
 							
@@ -301,14 +301,14 @@
 							<cfset EmployerAddressStateID = "NULL">	
 						</cfif>
 						<cfquery name="insertEmployerAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
+							INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
 							VALUES(13, '#trim(Address1_38)#', '#trim(Address2_39)#', '#trim(City_40)#', #trim(EmployerAddressStateID)#, '#trim(Zip_42)#');
 							SELECT LAST_INSERT_ID() AS AddressID 			
 						</cfquery>				
 						<cfset employerAddressID = insertEmployerAddress.AddressID>	
 						
 						<cfquery name="insertEmployerEntityAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityAddress  (AddressID, EntityID, IsDefault)			
+							INSERT INTO entityaddress  (AddressID, EntityID, IsDefault)			
 							VALUES(#trim(employerAddressID)#, #trim(EmployerEntityID)#, 1)							
 						</cfquery>	
 						
@@ -331,14 +331,14 @@
 						</cfif>
 						
 						<cfquery name="insertEmployerPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
+							INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
 							VALUES(74, '#trim(PhoneNumberE)#', <cfif trim(Ext_44) EQ "NULL">NULL<cfelse>'#trim(PhoneExtensionE)#'</cfif>);
 							SELECT LAST_INSERT_ID() AS PhoneID 			
 						</cfquery>				
 						<cfset employerPhoneID = insertEmployerPhone.PhoneID>	
 						
 						<cfquery name="insertEmployerEntityPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityPhone  (PhoneID, EntityID, IsDefault)			
+							INSERT INTO entityphone  (PhoneID, EntityID, IsDefault)			
 							VALUES(#trim(employerPhoneID)#, #trim(EmployerEntityID)#, 1)							
 						</cfquery>		
 						
@@ -352,14 +352,14 @@
 					<!--- Insert the Employer Record                                                     --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertEmployer" datasource="#trim(request.datasource)#">
-						INSERT INTO Employer 	(EmployerName, EntityID)
+						INSERT INTO employer 	(EmployerName, EntityID)
 						VALUES('#trim(EmpName_35)#', #trim(EmployerEntityID)#); 
 						SELECT LAST_INSERT_ID() AS EmployerID 			
 					</cfquery>				
 					<cfset employerID = insertEmployer.EmployerID>
 					
 					<cfquery name="insertEmployer" datasource="#trim(request.datasource)#">
-						UPDATE Entity SET EmployerID = #trim(employerID)#
+						UPDATE entity SET EmployerID = #trim(employerID)#
 						WHERE EntityID = #trim(EntityID)#
 					</cfquery>
 					
@@ -379,7 +379,7 @@
 					<cfif trim(State_52) NEQ "NULL">	
 						<cfquery name="getStateID" datasource="#trim(request.datasource)#">
 							SELECT StandardListItemID
-							FROM StandardListItem
+							FROM standardlistitem
 							WHERE ItemDescription = '#trim(State_52)#' AND Active = 1 AND ListID = 4
 						</cfquery>
 						
@@ -433,7 +433,7 @@
 					<!--- Insert the InsuranceCompany Entity                                             --->
 					<!-------------------------------------------------------------------------------------->				
 					<cfquery name="insertInsuranceCompanyEntity" datasource="#trim(request.datasource)#">
-						INSERT INTO Entity  (SiteID, ObjectTypeID)
+						INSERT INTO entity  (SiteID, ObjectTypeID)
 						VALUES(#trim(SiteID)#, 4); 
 						SELECT LAST_INSERT_ID() AS EntityID 			
 					</cfquery>				
@@ -445,14 +445,14 @@
 					<cfif trim(Address1_49) NEQ "NULL">
 											
 						<cfquery name="insertInsuranceCompanyAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
+							INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
 							VALUES(13, '#trim(Address1_49)#', '#trim(Address2_50)#', '#trim(City_51)#', #trim(primAddressStateID)#, '#trim(Zip_53)#');
 							SELECT LAST_INSERT_ID() AS AddressID 			
 						</cfquery>				
 						<cfset InsuranceCompanyAddressID = insertInsuranceCompanyAddress.AddressID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityAddress  (AddressID, EntityID, IsDefault)			
+							INSERT INTO entityaddress  (AddressID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyAddressID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>	
 					
@@ -471,14 +471,14 @@
 						</cfif>
 						
 						<cfquery name="insertInsuranceCompanyPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
+							INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
 							VALUES(74, '#trim(PhoneNumberE)#', <cfif trim(Ext_58) EQ "NULL">NULL<cfelse>'#trim(PhoneExtensionE)#'</cfif>);
 							SELECT LAST_INSERT_ID() AS PhoneID 			
 						</cfquery>				
 						<cfset InsuranceCompanyPhoneID = insertInsuranceCompanyPhone.PhoneID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityPhone  (PhoneID, EntityID, IsDefault)			
+							INSERT INTO entityphone  (PhoneID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyPhoneID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>					
 					
@@ -488,7 +488,7 @@
 					<!--- Insert the Insurance Company Record                                            --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertprimInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO InsuranceCompany 	(ClientID,InsuranceCompanyName,EntityID)
+						INSERT INTO insurancecompany 	(ClientID,InsuranceCompanyName,EntityID)
 						VALUES(#trim(ClientID)#, '#trim(PayorName1_46)#', #trim(InsuranceCompanyEntityID)#); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>				
@@ -500,11 +500,11 @@
 					<!---<cffile 
 						action="write" 
 						file="C:\temp\sql\temp468_#count#.txt" 
-						output="INSERT INTO PatientInsuranceCompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage) VALUES(#trim(PatientID)#, #trim(primInsuranceCompanyID)#, 1, #trim(PolicyNumber_55)#','#REQUEST.capitalizeFirstLetter(trim(FName_61))#', '#REQUEST.capitalizeFirstLetter(trim(LName_60))#', #trim(payor1dobDate)#, #trim(payor1Sex)#, '#trim(GROUPNumber_56)#', #trim(primRelation)#, #trim(Deductable_47)#, #trim(PayPercentage_48)#)"> 
+						output="INSERT INTO patientinsurancecompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage) VALUES(#trim(PatientID)#, #trim(primInsuranceCompanyID)#, 1, #trim(PolicyNumber_55)#','#REQUEST.capitalizeFirstLetter(trim(FName_61))#', '#REQUEST.capitalizeFirstLetter(trim(LName_60))#', #trim(payor1dobDate)#, #trim(payor1Sex)#, '#trim(GROUPNumber_56)#', #trim(primRelation)#, #trim(Deductable_47)#, #trim(PayPercentage_48)#)"> 
 							--->			
 					
 					<cfquery name="insertprimInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO PatientInsuranceCompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
+						INSERT INTO patientinsurancecompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
 						VALUES(#trim(PatientID)#, #trim(primInsuranceCompanyID)#, 1, <cfif trim(PolicyNumber_55) NEQ "NULL">'#trim(PolicyNumber_55)#'<cfelse>NULL</cfif>, <cfif trim(FName_61) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(FName_61))#'<cfelse>NULL</cfif>, <cfif trim(LName_60) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(LName_60))#'<cfelse>NULL</cfif>, #trim(payor1dobDate)#, #trim(payor1Sex)#, <cfif trim(GROUPNumber_56) NEQ "NULL">'#trim(GROUPNumber_56)#'<cfelse>NULL</cfif>, #trim(primRelation)#, <cfif trim(Deductable_47) NEQ "NULL">#trim(Deductable_47)#<cfelse>NULL</cfif>, <cfif trim(PayPercentage_48) NEQ "NULL" AND IsNumeric(trim(PayPercentage_48))>#trim(PayPercentage_48)#<cfelse>NULL</cfif>); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>
@@ -524,7 +524,7 @@
 					<cfif trim(State_71) NEQ "NULL">	
 						<cfquery name="getStateID" datasource="#trim(request.datasource)#">
 							SELECT StandardListItemID
-							FROM StandardListItem
+							FROM standardlistitem
 							WHERE ItemDescription = '#trim(State_71)#' AND Active = 1 AND ListID = 4
 						</cfquery>
 						<cfif IsNumeric(getStateID.StandardListItemID)>
@@ -577,7 +577,7 @@
 					<!--- Insert the InsuranceCompany Entity                                             --->
 					<!-------------------------------------------------------------------------------------->				
 					<cfquery name="insertInsuranceCompanyEntity" datasource="#trim(request.datasource)#">
-						INSERT INTO Entity  (SiteID, ObjectTypeID)
+						INSERT INTO entity  (SiteID, ObjectTypeID)
 						VALUES(#trim(SiteID)#, 4); 
 						SELECT LAST_INSERT_ID() AS EntityID 			
 					</cfquery>				
@@ -592,18 +592,18 @@
 						<!---<cffile 
 						action="write" 
 						file="C:\temp\sql\temp_#count#.txt" 
-						output="INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode) VALUES(13, '#trim(Address1_68)#', '#trim(Address2_69)#', '#trim(City_70)#', #trim(secAddressStateID)#, #trim(Zip_72)#)">			
+						output="INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode) VALUES(13, '#trim(Address1_68)#', '#trim(Address2_69)#', '#trim(City_70)#', #trim(secAddressStateID)#, #trim(Zip_72)#)">			
 							--->	
 											
 						<cfquery name="insertInsuranceCompanyAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
+							INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
 							VALUES(13, '#trim(Address1_68)#', '#trim(Address2_69)#', '#trim(City_70)#', #trim(secAddressStateID)#, '#trim(Zip_72)#');
 							SELECT LAST_INSERT_ID() AS AddressID 			
 						</cfquery>				
 						<cfset InsuranceCompanyAddressID = insertInsuranceCompanyAddress.AddressID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityAddress  (AddressID, EntityID, IsDefault)			
+							INSERT INTO entityaddress  (AddressID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyAddressID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>	
 					
@@ -622,14 +622,14 @@
 						</cfif>
 						
 						<cfquery name="insertInsuranceCompanyPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
+							INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
 							VALUES(74, '#trim(PhoneNumberE)#', <cfif trim(Ext_77) EQ "NULL">NULL<cfelse>'#trim(PhoneExtensionE)#'</cfif>);
 							SELECT LAST_INSERT_ID() AS PhoneID 			
 						</cfquery>				
 						<cfset InsuranceCompanyPhoneID = insertInsuranceCompanyPhone.PhoneID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityPhone  (PhoneID, EntityID, IsDefault)			
+							INSERT INTO entityphone  (PhoneID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyPhoneID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>					
 					
@@ -639,7 +639,7 @@
 					<!--- Insert the Insurance Company Record                                            --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertsecInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO InsuranceCompany 	(ClientID,InsuranceCompanyName,EntityID)
+						INSERT INTO insurancecompany 	(ClientID,InsuranceCompanyName,EntityID)
 						VALUES(#trim(ClientID)#, '#trim(PayName2_65)#', #trim(InsuranceCompanyEntityID)#); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>				
@@ -649,7 +649,7 @@
 					<!--- Insert the Patient Insurance Company Record                                    --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertsecInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO PatientInsuranceCompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
+						INSERT INTO patientinsurancecompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
 						VALUES(#trim(PatientID)#, #trim(secInsuranceCompanyID)#, 2, <cfif trim(PolicyNumber_74) NEQ "NULL">'#trim(PolicyNumber_74)#'<cfelse>NULL</cfif>, <cfif trim(FName_80) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(FName_80))#'<cfelse>NULL</cfif>, <cfif trim(LName_79) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(LName_79))#'<cfelse>NULL</cfif>, #trim(payor2dobDate)#, #trim(payor2Sex)#, <cfif trim(GroupNumber_75) NEQ "NULL">'#trim(GroupNumber_75)#'<cfelse>NULL</cfif>, #trim(secRelation)#, <cfif trim(Deductablr_66) NEQ "NULL">#trim(Deductablr_66)#<cfelse>NULL</cfif>, <cfif trim(PayPercentage_67) NEQ "NULL" AND IsNumeric(trim(PayPercentage_67))>#trim(PayPercentage_67)#<cfelse>NULL</cfif>); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>
@@ -669,7 +669,7 @@
 					<cfif trim(State_90) NEQ "NULL">	
 						<cfquery name="getStateID" datasource="#trim(request.datasource)#">
 							SELECT StandardListItemID
-							FROM StandardListItem
+							FROM standardlistitem
 							WHERE ItemDescription = '#trim(State_90)#' AND Active = 1 AND ListID = 4
 						</cfquery>
 						<cfif IsNumeric(getStateID.StandardListItemID)>
@@ -722,7 +722,7 @@
 					<!--- Insert the InsuranceCompany Entity                                             --->
 					<!-------------------------------------------------------------------------------------->				
 					<cfquery name="insertInsuranceCompanyEntity" datasource="#trim(request.datasource)#">
-						INSERT INTO Entity  (SiteID, ObjectTypeID)
+						INSERT INTO entity  (SiteID, ObjectTypeID)
 						VALUES(#trim(SiteID)#, 4); 
 						SELECT LAST_INSERT_ID() AS EntityID 			
 					</cfquery>				
@@ -734,14 +734,14 @@
 					<cfif trim(Address1_87) NEQ "NULL">
 											
 						<cfquery name="insertInsuranceCompanyAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
+							INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)			
 							VALUES(13, '#trim(Address1_87)#', '#trim(Address2_88)#', '#trim(City_89)#', #trim(terAddressStateID)#, '#trim(Zip_91)#');
 							SELECT LAST_INSERT_ID() AS AddressID 			
 						</cfquery>				
 						<cfset InsuranceCompanyAddressID = insertInsuranceCompanyAddress.AddressID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityAddress" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityAddress  (AddressID, EntityID, IsDefault)			
+							INSERT INTO entityaddress  (AddressID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyAddressID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>	
 					
@@ -760,14 +760,14 @@
 						</cfif>
 						
 						<cfquery name="insertInsuranceCompanyPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
+							INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)			
 							VALUES(74, '#trim(PhoneNumberE)#', <cfif trim(Ext_96) EQ "NULL">NULL<cfelse>'#trim(PhoneExtensionE)#'</cfif>);
 							SELECT LAST_INSERT_ID() AS PhoneID 			
 						</cfquery>				
 						<cfset InsuranceCompanyPhoneID = insertInsuranceCompanyPhone.PhoneID>	
 						
 						<cfquery name="insertInsuranceCompanyEntityPhone" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityPhone  (PhoneID, EntityID, IsDefault)			
+							INSERT INTO entityphone  (PhoneID, EntityID, IsDefault)			
 							VALUES(#trim(InsuranceCompanyPhoneID)#, #trim(InsuranceCompanyEntityID)#, 1)							
 						</cfquery>					
 					
@@ -777,7 +777,7 @@
 					<!--- Insert the Insurance Company Record                                            --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertterInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO InsuranceCompany 	(ClientID,InsuranceCompanyName,EntityID)
+						INSERT INTO insurancecompany 	(ClientID,InsuranceCompanyName,EntityID)
 						VALUES(#trim(ClientID)#, '#trim(PayName3_84)#', #trim(InsuranceCompanyEntityID)#); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>				
@@ -787,7 +787,7 @@
 					<!--- Insert the Patient Insurance Company Record                                    --->
 					<!-------------------------------------------------------------------------------------->								
 					<cfquery name="insertterInsuranceCompany" datasource="#trim(request.datasource)#">
-						INSERT INTO PatientInsuranceCompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
+						INSERT INTO patientinsurancecompany  (PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber, PolicyHoldersFirstName, PolicyHoldersLastName, PolicyHoldersDOB, PolicyHoldersSex, GroupNumber, Relationship, Deductible, PayPercentage)
 						VALUES(#trim(PatientID)#, #trim(terInsuranceCompanyID)#, 3, <cfif trim(PolicyNumber_93) NEQ "NULL">'#trim(PolicyNumber_93)#'<cfelse>NULL</cfif>, <cfif trim(FName_99) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(FName_99))#'<cfelse>NULL</cfif>, <cfif trim(LName_98) NEQ "NULL">'#REQUEST.capitalizeFirstLetter(trim(LName_98))#'<cfelse>NULL</cfif>, #trim(payor3dobDate)#, #trim(payor3Sex)#, <cfif trim(GroupNumber_94) NEQ "NULL">'#trim(GroupNumber_94)#'<cfelse>NULL</cfif>, #trim(terRelation)#, <cfif trim(Deductable_85) NEQ "NULL">#trim(Deductable_85)#<cfelse>NULL</cfif>, <cfif trim(PayPercentage_86) NEQ "NULL" AND IsNumeric(trim(PayPercentage_86))>#trim(PayPercentage_86)#<cfelse>NULL</cfif>); 
 						SELECT LAST_INSERT_ID() AS InsuranceCompanyID 			
 					</cfquery>
@@ -801,7 +801,7 @@
 				
 					
 				<cfquery name="updateDebug" datasource="#trim(request.datasource)#">
-					UPDATE Debug
+					UPDATE debug
 					SET Note = 'updated_|#trim(count)#|#ClaimSubmitterIdentifier_102#|'
 					Where referenceID = #trim(count)#
 				</cfquery>					
@@ -826,3 +826,14 @@
 </cfcomponent>
 
 	
+
+
+
+
+
+
+
+
+
+
+

@@ -72,7 +72,7 @@
 			<cfif StructKeyExists(stValues, "Procedure_MEDICARE_CLAIMADJUSTMENTID") AND stValues.Procedure_MEDICARE_CLAIMADJUSTMENTID NEQ 0>
 				<cfquery name="qGetProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(arguments.ds)#">
 			  		SELECT Procedure_MEDICARE_CLAIMADJUSTMENTID,ProcedureID,ClaimAdjustmentGroupCode1,ClaimAdjustmentReasonCode2,MonetaryAmount3,Quantity4,ClaimAdjustmentReasonCode5,MonetaryAmount6,Quantity7,ClaimAdjustmentReasonCode8,MonetaryAmount9,Quantity10,ClaimAdjustmentReasonCode11,MonetaryAmount12,Quantity13,ClaimAdjustmentReasonCode14,MonetaryAmount15,Quantity16,ClaimAdjustmentReasonCode17,MonetaryAmount18,Quantity19,Active,InactiveCode,DateCreated,DateModified
-					FROM Procedure_MEDICARE_CLAIMADJUSTMENT  
+					FROM procedure_medicare_claimadjustment  
 					WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Procedure_MEDICARE_CLAIMADJUSTMENTID#" /> 
 				</cfquery>		
 				<cfif qGetProcedure_MEDICARE_CLAIMADJUSTMENT.Recordcount LTE 0>
@@ -691,5 +691,6 @@
 		
 		
 </cfcomponent>
+
 
 

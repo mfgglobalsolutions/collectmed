@@ -60,7 +60,7 @@
 			<cfif StructKeyExists(stValues, "UsersID") AND stValues.UsersID NEQ 0>
 				<cfquery name="qGetUsers" datasource="#trim(variables.ds)#">
 			  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
-					FROM Users  
+					FROM users  
 					WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersID#" /> 
 				</cfquery>		
 				<cfif qGetUsers.Recordcount LTE 0>
@@ -483,7 +483,7 @@
 	
 		<cfquery name="qGetUsers" datasource="#trim(variables.ds)#">
 	  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
-			FROM Users  
+			FROM users  
 			WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersID)#" /> 
 		</cfquery>
 		
@@ -520,7 +520,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsers" datasource="#trim(variables.ds)#">
-				INSERT INTO Users (SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,LastOpenedClaimID,LoginStart,LoginEnd,InactiveCode)
+				INSERT INTO users (SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,LastOpenedClaimID,LoginStart,LoginEnd,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -657,7 +657,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsers" datasource="#trim(variables.ds)#">
-				UPDATE Users  SET
+				UPDATE users  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -766,7 +766,7 @@
 
 		<cfquery name="qDeleteUsers" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Users
+			FROM users
 			WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getUsersID())#" /> 
 		</cfquery>
 
@@ -788,5 +788,7 @@
 		
 		
 </cfcomponent>
+
+
 
 

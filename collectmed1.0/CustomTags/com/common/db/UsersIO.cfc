@@ -752,7 +752,7 @@
 	
 		<cfquery name="qGetUsers" datasource="pa_master">
 	  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
-			FROM Users  
+			FROM users  
 			WHERE UsersID = #trim(arguments.UsersID)# 
 		</cfquery>
 		
@@ -1143,7 +1143,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Users  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersID ">
+				<cfset sqlStatement = "INSERT INTO users  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1338,7 +1338,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getUsersQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Users   
+				FROM users   
 				WHERE 1=1
 					<cfif UsersID NEQ "" AND IsNumeric(UsersID)>AND UsersID = #UsersID#</cfif>
 					<cfif UsersID_IN NEQ "">AND UsersID IN(#trim(UsersID_IN)#)</cfif>
@@ -1448,5 +1448,6 @@
 
 	
 </cfcomponent>
+
 
 

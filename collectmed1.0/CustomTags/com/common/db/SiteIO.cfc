@@ -1786,7 +1786,7 @@
 	
 		<cfquery name="qGetSite" datasource="pa_master">
 	  		SELECT SiteID,ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode,DateCreated,DateModified
-			FROM Site  
+			FROM site  
 			WHERE SiteID = #trim(arguments.SiteID)# 
 		</cfquery>
 		
@@ -2239,7 +2239,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Site  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SiteID ">
+				<cfset sqlStatement = "INSERT INTO site  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SiteID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -2500,7 +2500,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getSiteQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Site   
+				FROM site   
 				WHERE 1=1
 					<cfif SiteID NEQ "" AND IsNumeric(SiteID)>AND SiteID = #SiteID#</cfif>
 					<cfif SiteID_IN NEQ "">AND SiteID IN(#trim(SiteID_IN)#)</cfif>
@@ -2681,7 +2681,7 @@
 			
 			<cfquery Name="getSiteID" datasource="pa_master">
 				SELECT siteID
-				FROM Site  
+				FROM site  
 				WHERE (URLDomains = '#trim(serverName)#' OR URLDomains LIKE '#trim(serverName)#,%' OR URLDomains LIKE '%,#trim(serverName)#' OR URLDomains LIKE '%,#trim(serverName)#,%') AND Active = 1
 			</cfquery>
 				
@@ -2699,5 +2699,7 @@
 
 	
 </cfcomponent>
+
+
 
 

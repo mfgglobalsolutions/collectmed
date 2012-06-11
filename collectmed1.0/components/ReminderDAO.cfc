@@ -27,7 +27,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateReminder" datasource="#trim(arguments.ds)#">
-				INSERT INTO Reminder (UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode)
+				INSERT INTO reminder (UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localObjectID))>						
@@ -127,7 +127,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateReminder" datasource="#trim(arguments.ds)#">
-				UPDATE Reminder  SET
+				UPDATE reminder  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -194,7 +194,7 @@
 
 		<cfquery name="qDeleteReminder" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Reminder
+			FROM reminder
 			WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getReminderID())#" /> 
 		</cfquery>
 
@@ -214,7 +214,7 @@
 	
 		<cfquery name="qGetReminder" datasource="#trim(arguments.ds)#">
 	  		SELECT ReminderID,UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Reminder  
+			FROM reminder  
 			WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ReminderID)#" /> 
 		</cfquery>
 		
@@ -237,5 +237,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

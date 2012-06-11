@@ -279,7 +279,7 @@
 	
 		<cfquery name="qGetUsersWorkGroup" datasource="#trim(request.datasource)#">
 	  		SELECT UsersWorkGroupID,UsersID,WorkGroupID,DateCreated
-			FROM UsersWorkGroup  
+			FROM usersworkgroup  
 			WHERE UsersWorkGroupID = #trim(arguments.UsersWorkGroupID)# 
 		</cfquery>
 		
@@ -632,7 +632,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO UsersWorkGroup  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersWorkGroupID ">
+				<cfset sqlStatement = "INSERT INTO usersworkgroup  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersWorkGroupID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -788,7 +788,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getUsersWorkGroupQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM UsersWorkGroup   
+				FROM usersworkgroup   
 				WHERE 1=1
 					<cfif UsersWorkGroupID NEQ "" AND IsNumeric(UsersWorkGroupID)>AND UsersWorkGroupID = #UsersWorkGroupID#</cfif>
 					<cfif UsersWorkGroupID_IN NEQ "">AND UsersWorkGroupID IN(#trim(UsersWorkGroupID_IN)#)</cfif>
@@ -859,5 +859,7 @@
 
 	
 </cfcomponent>
+
+
 
 

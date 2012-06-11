@@ -68,7 +68,7 @@
 			<cfif StructKeyExists(stValues, "EntityID") AND stValues.EntityID NEQ 0>
 				<cfquery name="qGetEntity" datasource="#trim(variables.ds)#">
 			  		SELECT EntityID,SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode,DateCreated,DateModified
-					FROM Entity  
+					FROM entity  
 					WHERE EntityID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EntityID#" /> 
 				</cfquery>		
 				<cfif qGetEntity.Recordcount LTE 0>
@@ -579,7 +579,7 @@
 	
 		<cfquery name="qGetEntity" datasource="#trim(variables.ds)#">
 	  		SELECT EntityID,SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode,DateCreated,DateModified
-			FROM Entity  
+			FROM entity  
 			WHERE EntityID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EntityID)#" /> 
 		</cfquery>
 		
@@ -620,7 +620,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntity" datasource="#trim(variables.ds)#">
-				INSERT INTO Entity (SiteID,ClientID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,InactiveCode)
+				INSERT INTO entity (SiteID,ClientID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -798,7 +798,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntity" datasource="#trim(variables.ds)#">
-				UPDATE Entity  SET
+				UPDATE entity  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -947,7 +947,7 @@
 
 		<cfquery name="qDeleteEntity" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Entity
+			FROM entity
 			WHERE EntityID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getEntityID())#" /> 
 		</cfquery>
 
@@ -969,5 +969,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

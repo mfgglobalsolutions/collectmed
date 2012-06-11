@@ -38,7 +38,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.datasource.getDSName()#">
 				SELECT FileID,FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,attributesXML,Active,InactiveCode,DateCreated,DateModified
-				FROM File
+				FROM file
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "FileID")>				
@@ -165,5 +165,6 @@
 		
 	
 </cfcomponent>
+
 
 

@@ -60,7 +60,7 @@
 			<cfif StructKeyExists(stValues, "ClientID") AND stValues.ClientID NEQ 0>
 				<cfquery name="qGetClient" datasource="#trim(arguments.ds)#">
 			  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
-					FROM Client  
+					FROM client  
 					WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClientID#" /> 
 				</cfquery>		
 				<cfif qGetClient.Recordcount LTE 0>
@@ -516,7 +516,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="checkExistsClient" datasource="#trim(arguments.ds)#">
 				SELECT clientID
-				FROM Client  
+				FROM client  
 				WHERE lower(ClientName) = '#LCase(trim(arguments.clientName))#'
 			</cfquery>
 			
@@ -609,5 +609,6 @@
 		
 		
 </cfcomponent>
+
 
 

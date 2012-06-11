@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "RandomWordID") AND stValues.RandomWordID NEQ 0>
 				<cfquery name="qGetRandomWord" datasource="#trim(variables.ds)#">
 			  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
-					FROM RandomWord  
+					FROM randomword  
 					WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RandomWordID#" /> 
 				</cfquery>		
 				<cfif qGetRandomWord.Recordcount LTE 0>
@@ -213,7 +213,7 @@
 	
 		<cfquery name="qGetRandomWord" datasource="#trim(variables.ds)#">
 	  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
-			FROM RandomWord  
+			FROM randomword  
 			WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RandomWordID)#" /> 
 		</cfquery>
 		
@@ -239,7 +239,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateRandomWord" datasource="#trim(variables.ds)#">
-				INSERT INTO RandomWord (Word,InactiveCode)
+				INSERT INTO randomword (Word,InactiveCode)
 				VALUES (	
 					<cfif trim(localWord) NEQ "" AND trim(localWord) NEQ "@@" AND trim(localWord) NEQ "NULL">						
 						<cfqueryparam value="#trim(localWord)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -317,7 +317,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateRandomWord" datasource="#trim(variables.ds)#">
-				UPDATE RandomWord  SET
+				UPDATE randomword  SET
 					
 					Word =	
 					<cfif trim(localWord) NEQ "" AND trim(localWord) NEQ "@@" AND trim(localWord) NEQ "NULL">						
@@ -365,7 +365,7 @@
 
 		<cfquery name="qDeleteRandomWord" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM RandomWord
+			FROM randomword
 			WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getRandomWordID())#" /> 
 		</cfquery>
 
@@ -412,5 +412,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

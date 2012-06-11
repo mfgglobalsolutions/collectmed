@@ -1487,7 +1487,7 @@
 	
 		<cfquery name="qGetFile" datasource="#trim(request.datasource)#">
 	  		SELECT FileID,FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,Active,InactiveCode,DateCreated,DateModified
-			FROM File  
+			FROM file  
 			WHERE FileID = #trim(arguments.FileID)# 
 		</cfquery>
 		
@@ -1908,7 +1908,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO File  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS FileID ">
+				<cfset sqlStatement = "INSERT INTO file  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS FileID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -2148,7 +2148,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getFileQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM File   
+				FROM file   
 				WHERE 1=1
 					<cfif FileID NEQ "" AND IsNumeric(FileID)>AND FileID = #FileID#</cfif>
 					<cfif FileID_IN NEQ "">AND FileID IN(#trim(FileID_IN)#)</cfif>
@@ -2303,5 +2303,7 @@
 
 	
 </cfcomponent>
+
+
 
 

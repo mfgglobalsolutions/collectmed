@@ -660,7 +660,7 @@
 		<!-------------------------------------------------------------------------------------->								
 		<cfquery name="getWorkGroupName" datasource="#trim(request.datasource)#">
 			SELECT WorkGroupID
-			FROM WorkGroup
+			FROM workgroup
 			WHERE WorkGroupName = '#trim(form.WorkGroupName)#'
 		</cfquery>		
 			

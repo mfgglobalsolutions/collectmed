@@ -448,7 +448,7 @@
 				<cfset newPrinted = ListAppend(request.Intake.getPrinted(), "#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(session.User.getUsersID())#|#trim(session.Entity.getFName())# #trim(session.Entity.getLName())#|#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(finalFileName)#")>
 				
 				<cfquery name="updateQuote" datasource="#request.datasource#">
-					UPDATE Intake
+					UPDATE intake
 					SET printed = '#trim(newPrinted)#'
 					WHERE intakeID = #trim(intakeID)#
 				</cfquery>
@@ -476,3 +476,4 @@
 		
 	
 	</cfif>		
+

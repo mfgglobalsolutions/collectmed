@@ -493,7 +493,7 @@
 	
 		<cfquery name="qGetIntakeAutoSave" datasource="#trim(request.datasource)#">
 	  		SELECT RecordID,UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IntakeAutoSave  
+			FROM intakeautosave  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -856,7 +856,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO IntakeAutoSave  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO intakeautosave  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1027,7 +1027,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getIntakeAutoSaveQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM IntakeAutoSave   
+				FROM intakeautosave   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -1113,5 +1113,7 @@
 
 	
 </cfcomponent>
+
+
 
 

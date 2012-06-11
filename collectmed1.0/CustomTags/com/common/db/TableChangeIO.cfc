@@ -543,7 +543,7 @@
 	
 		<cfquery name="qGetTableChange" datasource="pa_master">
 	  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
-			FROM TableChange  
+			FROM tablechange  
 			WHERE ChangeID = #trim(arguments.ChangeID)# 
 		</cfquery>
 		
@@ -905,7 +905,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO TableChange  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ChangeID ">
+				<cfset sqlStatement = "INSERT INTO tablechange  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ChangeID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1079,7 +1079,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getTableChangeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM TableChange   
+				FROM tablechange   
 				WHERE 1=1
 					<cfif ChangeID NEQ "" AND IsNumeric(ChangeID)>AND ChangeID = #ChangeID#</cfif>
 					<cfif ChangeID_IN NEQ "">AND ChangeID IN(#trim(ChangeID_IN)#)</cfif>
@@ -1168,5 +1168,7 @@
 
 	
 </cfcomponent>
+
+
 
 

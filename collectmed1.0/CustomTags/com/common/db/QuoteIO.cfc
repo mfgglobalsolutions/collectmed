@@ -2209,7 +2209,7 @@
 	
 		<cfquery name="qGetQuote" datasource="#trim(request.datasource)#">
 	  		SELECT QuoteID,ClientID,AssignedToUserID,hidden_UsersID,hidden_TimeStart,callerFNameTBox,callerMInitialTBox,callerLNameTBox,callerPhoneTBox,patientFNameTBox,patientMInitialTBox,patientLNameTBox,roomNumberTBox,bedNumberTBox,patientAddressTBox,patientCityTBox,patientStateTBox,patientZipTBox,patientPhoneTBox,patientDOBMM,patientDOBDD,patientDOBYY,OPTION_3a_CBox_PatientSexMale,OPTION_3a_CBox_PatientSexFemale,patientSSNTBox,patientHeightFeet,patientHeightInches,patientWeightTBox,alternateContactFNameTBox,alternateContactMInitialTBox,alternateContactLNameTBox,alternateContactRelationshipTBox,alternateContactPhoneTBox,alternateContactWorkPhoneTBox,primaryInsuranceNameTBox,secondaryInsuranceNameTBox,primaryPolicyNumberTBox,secondaryPolicyNumberTBox,orderingPhysicianFNameTBox,orderingPhysicianMInitialTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,printed,Cancelled,Active,InactiveCode,DateCreated,DateModified
-			FROM Quote  
+			FROM quote  
 			WHERE QuoteID = #trim(arguments.QuoteID)# 
 		</cfquery>
 		
@@ -2653,7 +2653,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Quote  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS QuoteID ">
+				<cfset sqlStatement = "INSERT INTO quote  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS QuoteID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -2941,7 +2941,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getQuoteQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Quote   
+				FROM quote   
 				WHERE 1=1
 					<cfif QuoteID NEQ "" AND IsNumeric(QuoteID)>AND QuoteID = #QuoteID#</cfif>
 					<cfif QuoteID_IN NEQ "">AND QuoteID IN(#trim(QuoteID_IN)#)</cfif>
@@ -3144,5 +3144,7 @@
 
 	
 </cfcomponent>
+
+
 
 

@@ -195,7 +195,7 @@
 		<span width="100%" >
 		<cfquery name="getClientName" datasource="#trim(request.datasource)#">
 			Select EntityID,Fname,Lname 
-			FROM Entity
+			FROM entity
 			WHERE ObjectTypeID = 2 AND Active = 1
 		</cfquery>
 <table border="0" cellspacing="0" cellpadding="0" width="527" id="myTable" >

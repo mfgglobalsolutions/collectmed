@@ -48,7 +48,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateFile" datasource="#trim(arguments.ds)#">
-				INSERT INTO File (FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,Active,InactiveCode)
+				INSERT INTO file (FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localFileType))>						
 						<cfqueryparam value="#trim(localFileType)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -307,7 +307,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateFile" datasource="#trim(arguments.ds)#">
-				UPDATE File  SET
+				UPDATE file  SET
 					
 					FileType =				
 					<cfif IsNumeric(trim(localFileType))>						
@@ -533,7 +533,7 @@
 
 		<cfquery name="qDeleteFile" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM File
+			FROM file
 			WHERE FileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getFileID())#" /> 
 		</cfquery>
 
@@ -553,7 +553,7 @@
 	
 		<cfquery name="qGetFile" datasource="#trim(arguments.ds)#">
 	  		SELECT FileID,FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,Active,InactiveCode,DateCreated,DateModified
-			FROM File  
+			FROM file  
 			WHERE FileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.FileID)#" /> 
 		</cfquery>
 		
@@ -576,5 +576,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

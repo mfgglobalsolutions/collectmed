@@ -56,7 +56,7 @@
 			<cfif StructKeyExists(stValues, "UsersID") AND stValues.UsersID NEQ 0>
 				<cfquery name="qGetUsers" datasource="#trim(arguments.ds)#">
 			  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
-					FROM Users  
+					FROM users  
 					WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersID#" /> 
 				</cfquery>		
 				<cfif qGetUsers.Recordcount LTE 0>

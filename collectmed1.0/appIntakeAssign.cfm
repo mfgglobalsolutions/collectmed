@@ -89,7 +89,7 @@
 
 		<cfquery name="getUsersID" datasource="#request.datasource#">
 			SELECT AssignedToUserID
-			FROM Intake
+			FROM intake
 			WHERE IntakeID = #trim(IntakeID)#
 		</cfquery>
 
@@ -97,7 +97,7 @@
 
 		<cfquery name="getIntake" datasource="#request.datasource#">
 			SELECT CONCAT(FName, ' ', LName) AS Fullname
-			FROM view_UserAccountParameters
+			FROM view_useraccountparameters
 			WHERE UsersID = #trim(AssignedToUserID)#
 		</cfquery>
 
@@ -169,7 +169,7 @@
 <cfif NOT ListContains(session.User.getRoleIDs(), "5") AND NOT ListContains(session.User.getRoleIDs(), "6") AND assignedLoggedIn>
 	<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
 		SELECT FName, LName
-		FROM view_UserAccountParameters
+		FROM view_useraccountparameters
 		WHERE UsersID = #trim(AssignedToUserID)#
 	</cfquery>
 	<cfoutput>
@@ -326,3 +326,4 @@
 		</script>
 
 	</cfif>
+

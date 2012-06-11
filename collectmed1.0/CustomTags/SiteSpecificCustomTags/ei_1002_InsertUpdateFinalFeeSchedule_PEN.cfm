@@ -241,20 +241,20 @@
 		
 		<cfquery name="getCode" datasource="#trim(request.datasource)#">
 			SELECT RecordID 
-			FROM EOB_MEDICARE_PROCEDURECode
+			FROM eob_medicare_procedurecode
 			WHERE HCPC = '#trim(HCPCS)#' 
 		</cfquery>
 		
 		<cfif getCode.Recordcount LTE 0>
 			
 			<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-				INSERT INTO EOB_MEDICARE_PROCEDURECode  (HCPC, LongDescription, ShortDescription)
+				INSERT INTO eob_medicare_procedurecode  (HCPC, LongDescription, ShortDescription)
 				VALUES('#trim(HCPCS)#', <cfif Description EQ "NULL">#trim(Description)#<cfelse>'#trim(Description)#'</cfif>, <cfif Description EQ "NULL">#trim(Description)#<cfelse>'#trim(Description)#'</cfif>)
 			</cfquery>	
 			
 			<cfquery name="getCode" datasource="#trim(request.datasource)#">
 				SELECT RecordID 
-				FROM EOB_MEDICARE_PROCEDURECode
+				FROM eob_medicare_procedurecode
 				WHERE HCPC = '#trim(HCPCS)#' 
 			</cfquery>	
 			
@@ -314,3 +314,4 @@
 	</cfloop>
 	
 	
+

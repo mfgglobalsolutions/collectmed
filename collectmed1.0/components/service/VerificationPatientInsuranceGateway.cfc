@@ -38,7 +38,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.datasource.getDSName()#">
 				SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-				FROM VerificationPatientInsurance
+				FROM verificationpatientinsurance
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "VerificationPatientInsuranceID")>				
@@ -153,5 +153,6 @@
 		
 	
 </cfcomponent>
+
 
 

@@ -60,7 +60,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID
-			FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT
+			FROM claim_medicare_supplemental_amount
 			WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID IN(#trim(arguments.idList)#) 
 		</cfquery>
 
@@ -89,7 +89,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT  #trim(arguments.fieldList)#
-			FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT
+			FROM claim_medicare_supplemental_amount
 			WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID IN(#trim(arguments.idList)#) 
 			LIMIT 100
 		</cfquery>

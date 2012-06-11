@@ -34,7 +34,7 @@
 			<cfif StructKeyExists(stValues, "RandomWordID") AND stValues.RandomWordID NEQ 0>
 				<cfquery name="qGetRandomWord" datasource="#trim(arguments.ds)#">
 			  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
-					FROM RandomWord  
+					FROM randomword  
 					WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RandomWordID#" /> 
 				</cfquery>		
 				<cfif qGetRandomWord.Recordcount LTE 0>
@@ -222,5 +222,6 @@
 		
 		
 </cfcomponent>
+
 
 

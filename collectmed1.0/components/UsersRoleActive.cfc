@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "UsersRoleID") AND stValues.UsersRoleID NEQ 0>
 				<cfquery name="qGetUsersRole" datasource="#trim(variables.ds)#">
 			  		SELECT UsersRoleID,UsersID,SiteID,RoleID,Active,InactiveCode,DateCreated,DateModified
-					FROM UsersRole  
+					FROM usersrole  
 					WHERE UsersRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersRoleID#" /> 
 				</cfquery>		
 				<cfif qGetUsersRole.Recordcount LTE 0>
@@ -269,7 +269,7 @@
 	
 		<cfquery name="qGetUsersRole" datasource="#trim(variables.ds)#">
 	  		SELECT UsersRoleID,UsersID,SiteID,RoleID,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersRole  
+			FROM usersrole  
 			WHERE UsersRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersRoleID)#" /> 
 		</cfquery>
 		
@@ -297,7 +297,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsersRole" datasource="#trim(variables.ds)#">
-				INSERT INTO UsersRole (UsersID,SiteID,RoleID,InactiveCode)
+				INSERT INTO usersrole (UsersID,SiteID,RoleID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -381,7 +381,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsersRole" datasource="#trim(variables.ds)#">
-				UPDATE UsersRole  SET
+				UPDATE usersrole  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -435,7 +435,7 @@
 
 		<cfquery name="qDeleteUsersRole" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM UsersRole
+			FROM usersrole
 			WHERE UsersRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getUsersRoleID())#" /> 
 		</cfquery>
 
@@ -457,5 +457,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

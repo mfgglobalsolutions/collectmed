@@ -36,7 +36,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetEOB_DRGCode" datasource="#trim(arguments.ds)#">
 			  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_DRGCode  
+					FROM eob_drgcode  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_DRGCode.Recordcount LTE 0>
@@ -219,5 +219,6 @@
 		
 		
 </cfcomponent>
+
 
 

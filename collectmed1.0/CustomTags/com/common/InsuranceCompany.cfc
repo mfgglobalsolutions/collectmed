@@ -15,7 +15,7 @@
 			
 			<cfquery name="checkExistsInsuranceCompany" datasource="PAClient_#trim(ClientID)#">
 				SELECT InsuranceCompanyID
-				FROM InsuranceCompany
+				FROM insurancecompany
 				WHERE clientID = #trim(clientID)# AND InsuranceCompanyName = '#trim(InsuranceCompanyName)#'
 			</cfquery>
 						
@@ -192,7 +192,7 @@
 				SELECT ic.InsuranceCompanyID, ic.InsuranceCompanyName, ic.InsuranceCompanyDBA, ic.EntityID, ic.OCNANumber, ic.InsuranceCompanyURL, 
 				a.AddressID, a.SiteID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, a.Active, a.DateCreated, 
 				sli2.ItemNameDisplay AS AddressType, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr
-				FROM InsuranceCompany ic 
+				FROM insurancecompany ic 
 				LEFT JOIN EntityAddress ea ON ic.EntityID = ea.EntityID AND ea.Active = 1		
 				LEFT JOIN Address a ON ea.AddressID = a.AddressID AND a.Active = 1		
 				LEFT JOIN pa_master.StandardListItem sli ON a.stateID = sli.StandardListItemID 		
@@ -228,7 +228,7 @@
 												
 			<cfquery name="getInsuranceCompany" datasource="PAClient_#trim(arguments.ClientID)#">								
 				SELECT InsuranceCompanyID, InsuranceCompanyName, InsuranceCompanyDBA, EntityID, OCNANumber, InsuranceCompanyURL				
-				FROM InsuranceCompany 
+				FROM insurancecompany 
 				WHERE InsuranceCompanyID = #trim(arguments.InsuranceCompanyID)# AND Active = 1					
 			</cfquery>
 						
@@ -260,7 +260,7 @@
 			
 			<cfquery name="getInsuranceCompanies" datasource="PAClient_#trim(ClientID)#">								
 				SELECT <cfif isNumeric(arguments.count) AND arguments.count GT 0>TOP #arguments.count#</cfif> ic.InsuranceCompanyName, ic.InsuranceCompanyID
-				FROM InsuranceCompany ic
+				FROM insurancecompany ic
 				WHERE 1 = 1
 				<cfif arguments.searchSTR NEQ "">AND ic.insuranceCompanyName LIKE '%#arguments.searchSTR#%'</cfif> 
 				AND ic.Active = 1	

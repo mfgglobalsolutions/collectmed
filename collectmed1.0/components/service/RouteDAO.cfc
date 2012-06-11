@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM Route
+			FROM route
 			WHERE RouteID = <cfqueryparam value="#arguments.Route.getRouteID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateRoute" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO Route (UserID,Name,Active,InactiveCode)
+				INSERT INTO route (UserID,Name,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.Route.getUserID()))>						
 						<cfqueryparam value="#trim(arguments.Route.getUserID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -146,7 +146,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateRoute" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE Route  SET
+				UPDATE route  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					UserID =				
@@ -195,7 +195,7 @@
 
 		<cfquery name="qDeleteRoute" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM Route
+			FROM route
 			WHERE RouteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RouteID)#" /> 
 		</cfquery>
 
@@ -214,7 +214,7 @@
 	
 		<cfquery name="qGetRoute" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT RouteID,UserID,Name,Active,InactiveCode,DateCreated,DateModified
-			FROM Route  
+			FROM route  
 			WHERE RouteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RouteID)#" /> 
 		</cfquery>
 		
@@ -311,5 +311,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

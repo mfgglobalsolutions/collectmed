@@ -19,7 +19,7 @@
 					a.City AS patientCityTBox, 
 					ee.DOB AS patientDOB, 
 					ee.SSN AS patientSSNTBox 				
-					FROM Intake i 
+					FROM intake i 
 					LEFT JOIN pa_master.Users u ON i.hidden_UsersID = u.UsersID 
 					LEFT JOIN Entity e ON u.EntityID = e.EntityID
 					LEFT JOIN Patient p ON i.PatientID = p.PatientID
@@ -295,7 +295,7 @@
 						<!---Show Intake Assignments--->
 						<cfquery name="getAssignments" datasource="#trim(request.datasource)#">
 							SELECT ia.UserID, ia.AssignorID, ia.DateCreated AS AssignmentDateCreated, ia.Note, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
-							FROM IntakeAssignment ia 
+							FROM intakeassignment ia 
 							JOIN view_UserAccountParameters vuap ON ia.UserID = vuap.UsersID
 							WHERE ia.IntakeID = #trim(IntakeID)#
 							ORDER BY ia.DateCreated DESC
@@ -307,7 +307,7 @@
 							
 							<cfquery name="getByAssignmentName" datasource="#trim(request.datasource)#">
 								SELECT CONCAT(FName, ' ', LName) AS AssignorFullname 
-								FROM view_UserAccountParameters 
+								FROM view_useraccountparameters 
 								WHERE UsersID = #trim(AssignorID)#
 							</cfquery>
 							
@@ -321,7 +321,7 @@
 						<cfif IsNumeric(assignedToUserID)>
 							<cfquery name="getByAssignedToName" datasource="#trim(request.datasource)#">
 								SELECT FName, LName
-								FROM view_UserAccountParameters 
+								FROM view_useraccountparameters 
 								WHERE UsersID = #trim(assignedToUserID)#
 							</cfquery>
 							
@@ -395,3 +395,5 @@
 	</cfoutput>
 	
 	
+
+

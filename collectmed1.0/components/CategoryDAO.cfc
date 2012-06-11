@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateCategory" datasource="#trim(arguments.ds)#">
-				INSERT INTO Category (SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode)
+				INSERT INTO category (SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localCategoryName)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateCategory" datasource="#trim(arguments.ds)#">
-				UPDATE Category  SET
+				UPDATE category  SET
 					
 					SiteID =						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteCategory" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Category
+			FROM category
 			WHERE CategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getCategoryID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetCategory" datasource="#trim(arguments.ds)#">
 	  		SELECT CategoryID,SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM Category  
+			FROM category  
 			WHERE CategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.CategoryID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

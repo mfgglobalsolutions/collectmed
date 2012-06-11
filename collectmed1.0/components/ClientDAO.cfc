@@ -35,7 +35,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClient" datasource="#trim(arguments.ds)#">
-				INSERT INTO Client (ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode)
+				INSERT INTO client (ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localClientName) NEQ "" AND trim(localClientName) NEQ "@@" AND trim(localClientName) NEQ "NULL">						
 						<cfqueryparam value="#trim(localClientName)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -207,7 +207,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClient" datasource="#trim(arguments.ds)#">
-				UPDATE Client  SET
+				UPDATE client  SET
 					
 					ClientName =	
 					<cfif trim(localClientName) NEQ "" AND trim(localClientName) NEQ "@@" AND trim(localClientName) NEQ "NULL">						
@@ -346,7 +346,7 @@
 
 		<cfquery name="qDeleteClient" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Client
+			FROM client
 			WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClientID())#" /> 
 		</cfquery>
 
@@ -366,7 +366,7 @@
 	
 		<cfquery name="qGetClient" datasource="#trim(arguments.ds)#">
 	  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
-			FROM Client  
+			FROM client  
 			WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClientID)#" /> 
 		</cfquery>
 		
@@ -389,5 +389,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

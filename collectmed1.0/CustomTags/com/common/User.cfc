@@ -317,7 +317,7 @@
 		--->
 		<cfquery name="getUsersSessionID" datasource="#trim(request.datasource)#">
 			SELECT UsersSessionID 
-			FROM usersSession 
+			FROM userssession 
 			WHERE usersID = #arguments.usersID# 
 			AND DateModified IS NULL 
 			ORDER BY DATECreated DESC
@@ -331,7 +331,7 @@
 		<cfelseif getUsersSessionID.RecordCount LT 1> 
 			<cfquery name="setExcludedID" datasource="#trim(request.datasource)#">
 				SELECT UsersSessionID 
-				FROM usersSession 
+				FROM userssession 
 				WHERE usersID = #arguments.usersID#
 				ORDER BY DATEMODIFIED DESC
 				LIMIT 1
@@ -340,7 +340,7 @@
 		</cfif>
 		
 		<cfquery name="updateUsersSessionID" datasource="#trim(request.datasource)#">
-			UPDATE usersSession
+			UPDATE userssession
 			SET Active = 0, InactiveCode = 68
 			WHERE usersID = #arguments.usersID# 
 			AND UsersSessionID != #excludedID#
@@ -363,9 +363,9 @@
 		--->
 			<cfquery name="getLastLogin" datasource="#trim(request.datasource)#">
 				SELECT DateCreated
-				FROM usersSession 
+				FROM userssession 
 				WHERE UsersID = #arguments.usersID#
-				AND DateCreated < (SELECT max(DateCreated) FROM usersSession   WHERE UsersID = #arguments.usersID#)
+				AND DateCreated < (SELECT max(DateCreated) FROM userssession   WHERE UsersID = #arguments.usersID#)
 				ORDER BY DateCreated DESC
 				LIMIT 1 		
 			</cfquery>
@@ -385,7 +385,7 @@
 		
 		<cfquery name="getUsersLastRecord" datasource="#trim(request.datasource)#">
 			SELECT DateCreated, DateModified, usersSessionID
-			FROM usersSession  
+			FROM userssession  
 			WHERE UsersID = #trim(usersID)# 
 			ORDER BY DateCreated DESC	
 			LIMIT 1		
@@ -416,7 +416,7 @@
 		<cfargument name="claimID" required="yes" type="numeric">
 		
 		<cfquery name="setUsersLastRecord" datasource="pa_master">
-			UPDATE Users
+			UPDATE users
 			SET LastOpenedClaimID = #trim(claimID)#
 			WHERE UsersID = #trim(usersID)#
 		</cfquery>
@@ -439,7 +439,7 @@
 			WHERE usersID = #trim(usersID)#
 			UNION
 			SELECT RoleID
-			FROM UsersRole
+			FROM usersrole
 			WHERE usersID = #trim(usersID)#
 		</cfquery>	
 		
@@ -574,7 +574,7 @@
 						
 		<cfquery name="getSuspendUser" datasource="pa_master">
 			SELECT suspend
-			FROM Users  			
+			FROM users  			
 			WHERE UsersID = #trim(arguments.UsersID)#
 		</cfquery>	
 							
@@ -631,8 +631,8 @@
 	
 		<cfquery name="getWorkGroupStartEnd" datasource="PAClient_#trim(arguments.ClientID)#">
 			SELECT #getColStart# AS StartTime, #getColEnd# AS EndTime
-			FROM WorkGroup 
-			WHERE WorkGroupID IN(SELECT WorkGroupID FROM UsersWorkGroup WHERE usersID = #arguments.usersID#)	
+			FROM workgroup 
+			WHERE WorkGroupID IN(SELECT WorkGroupID FROM usersworkgroup WHERE usersID = #arguments.usersID#)	
 		</cfquery>
 	 
 		<cfloop query="getWorkGroupStartEnd">
@@ -728,4 +728,10 @@
 
 	
 </cfcomponent>
+
+
+
+
+
+
 

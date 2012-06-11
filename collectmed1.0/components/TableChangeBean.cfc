@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "ChangeID") AND stValues.ChangeID NEQ 0>
 				<cfquery name="qGetTableChange" datasource="#trim(arguments.ds)#">
 			  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
-					FROM TableChange  
+					FROM tablechange  
 					WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ChangeID#" /> 
 				</cfquery>		
 				<cfif qGetTableChange.Recordcount LTE 0>
@@ -285,5 +285,6 @@
 		
 		
 </cfcomponent>
+
 
 

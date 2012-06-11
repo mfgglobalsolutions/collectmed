@@ -377,7 +377,7 @@
 	
 		<cfquery name="qGetPageRole" datasource="pa_master">
 	  		SELECT PageRoleID,PageID,RoleID,SiteID,Active,InactiveCode,DateCreated,DateModified
-			FROM PageRole  
+			FROM pagerole  
 			WHERE PageRoleID = #trim(arguments.PageRoleID)# 
 		</cfquery>
 		
@@ -744,7 +744,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO PageRole  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageRoleID ">
+				<cfset sqlStatement = "INSERT INTO pagerole  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageRoleID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -912,7 +912,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getPageRoleQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM PageRole   
+				FROM pagerole   
 				WHERE 1=1
 					<cfif PageRoleID NEQ "" AND IsNumeric(PageRoleID)>AND PageRoleID = #PageRoleID#</cfif>
 					<cfif PageRoleID_IN NEQ "">AND PageRoleID IN(#trim(PageRoleID_IN)#)</cfif>
@@ -995,5 +995,7 @@
 
 	
 </cfcomponent>
+
+
 
 

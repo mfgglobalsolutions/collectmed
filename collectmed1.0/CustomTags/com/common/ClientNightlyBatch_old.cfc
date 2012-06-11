@@ -47,7 +47,7 @@
 									
 			<cfquery name="getIntakesTimeSpan" datasource="PAClient_#trim(ClientID)#">
 				SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateModified, timestampdiff(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
-				FROM Intake i
+				FROM intake i
 				LEFT JOIN Patient p ON i.PatientID = p.PatientID
 				LEFT JOIN Entity e ON e.EntityID = p.EntityID
 				JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
@@ -55,7 +55,7 @@
 				AND i.ClosingInvoiceNumber IS NULL
 				UNION
 				SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateCreated, timestampdiff(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
-				FROM Intake i
+				FROM intake i
 				LEFT JOIN Patient p ON i.PatientID = p.PatientID
 				LEFT JOIN Entity e ON e.EntityID = p.EntityID
 				JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
@@ -105,7 +105,7 @@
 		
 		<cfquery name="getIntakesTimeSpan" datasource="PAClient_#trim(ClientID)#">
 			SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateModified, timestampdiff(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
-			FROM Intake i
+			FROM intake i
 			LEFT JOIN Patient p ON i.PatientID = p.PatientID
 			LEFT JOIN Entity e ON e.EntityID = p.EntityID
 			JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
@@ -113,7 +113,7 @@
 			AND i.ClosingInvoiceNumber IS NULL
 			UNION
 			SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateCreated, timestampdiff(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
-			FROM Intake i
+			FROM intake i
 			LEFT JOIN Patient p ON i.PatientID = p.PatientID
 			LEFT JOIN Entity e ON e.EntityID = p.EntityID
 			JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
@@ -165,7 +165,7 @@
 						
 		<cfquery name="getTasksTimeSpan" datasource="PAClient_#trim(ClientID)#">
 			SELECT t.TaskID AS TaskID, t.CreatorID, timestampdiff(Hour, t.DueDate, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
-			FROM Task t
+			FROM task t
 			JOIN view_UserAccountParameters vw ON t.AssignedToUserID = vw.UsersID
 			WHERE t.Active = 1 AND t.DueDate IS NOT NULL AND timestampdiff(Hour, t.DueDate, now()) > 1 AND t.StatusID NOT IN(174,175) <!---NOT Closed/Archived--->
 		</cfquery>		
@@ -204,3 +204,4 @@
 </cfcomponent> 
 
 	
+

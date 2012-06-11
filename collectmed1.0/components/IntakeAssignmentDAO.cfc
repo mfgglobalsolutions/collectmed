@@ -22,7 +22,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateIntakeAssignment" datasource="#trim(arguments.ds)#">
-				INSERT INTO IntakeAssignment (IntakeID,UserID,AssignorID,Note)
+				INSERT INTO intakeassignment (IntakeID,UserID,AssignorID,Note)
 				VALUES (						
 						<cfqueryparam value="#trim(localIntakeID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localUserID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -104,7 +104,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateIntakeAssignment" datasource="#trim(arguments.ds)#">
-				UPDATE IntakeAssignment  SET
+				UPDATE intakeassignment  SET
 					
 					IntakeID =						
 						<cfqueryparam value="#trim(localIntakeID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -148,7 +148,7 @@
 
 		<cfquery name="qDeleteIntakeAssignment" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM IntakeAssignment
+			FROM intakeassignment
 			WHERE INTAKE_AssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getINTAKE_AssignmentID())#" /> 
 		</cfquery>
 
@@ -168,7 +168,7 @@
 	
 		<cfquery name="qGetIntakeAssignment" datasource="#trim(arguments.ds)#">
 	  		SELECT INTAKE_AssignmentID,IntakeID,UserID,DateCreated,AssignorID,Note
-			FROM IntakeAssignment  
+			FROM intakeassignment  
 			WHERE INTAKE_AssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.INTAKE_AssignmentID)#" /> 
 		</cfquery>
 		
@@ -191,5 +191,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -186,7 +186,7 @@
 							<cfelse>
 							
 								<!-------------------------------------------------------------------------------------->
-								<!--- Check the DB for this modifier. HardCoded 132 from StandardList table ID: 17   --->
+								<!--- Check the DB for this modifier. HardCoded 132 FROM standardlist table ID: 17   --->
 								<!-------------------------------------------------------------------------------------->		
 								<cfset request.EOB_MEDICARE_CLAIMMODIFIERCode.reset()>
 								<cfset getModifierInDB = request.EOB_MEDICARE_CLAIMMODIFIERCode.getEOB_MEDICARE_CLAIMMODIFIERCodeQuery(fields: "RecordID", StandardListItemID: 132, modifier: trim(thisMod))>			

@@ -364,7 +364,7 @@
 	
 		<cfquery name="qGetClaimAssignment" datasource="#trim(request.datasource)#">
 	  		SELECT ClaimAssignmentID,ClaimID,UserID,DateCreated,AssignorID,Note
-			FROM ClaimAssignment  
+			FROM claimassignment  
 			WHERE ClaimAssignmentID = #trim(arguments.ClaimAssignmentID)# 
 		</cfquery>
 		
@@ -577,7 +577,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE ClaimAssignment  SET #columnsToUpdate# WHERE ClaimAssignmentID = #trim(variables.instance.ClaimAssignmentID)#">
+				<cfset sqlStatement = "UPDATE claimassignment  SET #columnsToUpdate# WHERE ClaimAssignmentID = #trim(variables.instance.ClaimAssignmentID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -724,7 +724,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO ClaimAssignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimAssignmentID ">
+				<cfset sqlStatement = "INSERT INTO claimassignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimAssignmentID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -886,7 +886,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaimAssignmentQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM ClaimAssignment   
+				FROM claimassignment   
 				WHERE 1=1
 					<cfif ClaimAssignmentID NEQ "" AND IsNumeric(ClaimAssignmentID)>AND ClaimAssignmentID = #ClaimAssignmentID#</cfif>
 					<cfif ClaimAssignmentID_IN NEQ "">AND ClaimAssignmentID IN(#trim(ClaimAssignmentID_IN)#)</cfif>

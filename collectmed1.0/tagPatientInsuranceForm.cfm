@@ -102,8 +102,8 @@
 	<!---<cfset patientsInsuranceCompanies = request.patient.getPatientInsCom(patientID)>	--->				
 	<cfquery name="patientsInsuranceCompanies" datasource="PAClient_#session.ClientID#">
 		SELECT pic.recordID, pic.PrimSecTer, ic.InsuranceCompanyName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersFirstName, ic.InsuranceCompanyID
-		FROM PatientInsuranceCompany pic 
-		INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+		FROM patientinsurancecompany pic 
+		INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 		WHERE pic.PatientID = #trim(patientID)# AND pic.Active = 1
 		ORDER BY pic.PrimSecTer
 	</cfquery>
@@ -211,3 +211,4 @@
 											</cfswitch>
 									</cfloop>
 								</select>--->
+

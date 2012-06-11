@@ -509,7 +509,7 @@
 	
 		<cfquery name="qGetInsuranceCompany" datasource="#trim(request.datasource)#">
 	  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-			FROM InsuranceCompany  
+			FROM insurancecompany  
 			WHERE InsuranceCompanyID = #trim(arguments.InsuranceCompanyID)# 
 		</cfquery>
 		
@@ -879,7 +879,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO InsuranceCompany  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS InsuranceCompanyID ">
+				<cfset sqlStatement = "INSERT INTO insurancecompany  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS InsuranceCompanyID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1056,7 +1056,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getInsuranceCompanyQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM InsuranceCompany   
+				FROM insurancecompany   
 				WHERE 1=1
 					<cfif InsuranceCompanyID NEQ "" AND IsNumeric(InsuranceCompanyID)>AND InsuranceCompanyID = #InsuranceCompanyID#</cfif>
 					<cfif InsuranceCompanyID_IN NEQ "">AND InsuranceCompanyID IN(#trim(InsuranceCompanyID_IN)#)</cfif>
@@ -1148,5 +1148,7 @@
 
 	
 </cfcomponent>
+
+
 
 

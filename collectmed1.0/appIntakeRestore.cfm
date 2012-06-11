@@ -138,7 +138,7 @@
 		<cfif ListContains(session.User.getRoleIDs(), "5") OR ListContains(session.User.getRoleIDs(), "6")>
 
 			<cfquery name="restoreIntake" datasource="#trim(request.datasource)#">
-				UPDATE Intake
+				UPDATE intake
 				SET Active = 1
 				WHERE IntakeID = #trim(IntakeID)#
 			</cfquery>
@@ -169,5 +169,6 @@
 
 
 </cfif>
+
 
 

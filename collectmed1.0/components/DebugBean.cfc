@@ -32,7 +32,7 @@
 			<cfif StructKeyExists(stValues, "DebugID") AND stValues.DebugID NEQ 0>
 				<cfquery name="qGetDebug" datasource="#trim(arguments.ds)#">
 			  		SELECT DebugID,referenceID,Note,TS,tesst
-					FROM Debug  
+					FROM debug  
 					WHERE DebugID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.DebugID#" /> 
 				</cfquery>		
 				<cfif qGetDebug.Recordcount LTE 0>
@@ -172,5 +172,6 @@
 		
 		
 </cfcomponent>
+
 
 

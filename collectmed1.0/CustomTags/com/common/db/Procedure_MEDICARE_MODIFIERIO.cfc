@@ -324,7 +324,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_MODIFIER" datasource="#trim(request.datasource)#">
 	  		SELECT Procedure_MEDICARE_MODIFIERID,ProcedureID,ModifierCode,Description,DateCreated
-			FROM Procedure_MEDICARE_MODIFIER  
+			FROM procedure_medicare_modifier  
 			WHERE Procedure_MEDICARE_MODIFIERID = #trim(arguments.Procedure_MEDICARE_MODIFIERID)# 
 		</cfquery>
 		
@@ -679,7 +679,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Procedure_MEDICARE_MODIFIER  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_MODIFIERID ">
+				<cfset sqlStatement = "INSERT INTO procedure_medicare_modifier  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_MODIFIERID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -838,7 +838,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedure_MEDICARE_MODIFIERQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Procedure_MEDICARE_MODIFIER   
+				FROM procedure_medicare_modifier   
 				WHERE 1=1
 					<cfif Procedure_MEDICARE_MODIFIERID NEQ "" AND IsNumeric(Procedure_MEDICARE_MODIFIERID)>AND Procedure_MEDICARE_MODIFIERID = #Procedure_MEDICARE_MODIFIERID#</cfif>
 					<cfif Procedure_MEDICARE_MODIFIERID_IN NEQ "">AND Procedure_MEDICARE_MODIFIERID IN(#trim(Procedure_MEDICARE_MODIFIERID_IN)#)</cfif>
@@ -912,5 +912,7 @@
 
 	
 </cfcomponent>
+
+
 
 

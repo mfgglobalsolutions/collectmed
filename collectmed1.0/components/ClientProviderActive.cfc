@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "ClientProviderID") AND stValues.ClientProviderID NEQ 0>
 				<cfquery name="qGetClientProvider" datasource="#trim(variables.ds)#">
 			  		SELECT ClientProviderID,ClientID,ProviderID,Active,InactiveCode,DateCreated,DateModified
-					FROM ClientProvider  
+					FROM clientprovider  
 					WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClientProviderID#" /> 
 				</cfquery>		
 				<cfif qGetClientProvider.Recordcount LTE 0>
@@ -239,7 +239,7 @@
 	
 		<cfquery name="qGetClientProvider" datasource="#trim(variables.ds)#">
 	  		SELECT ClientProviderID,ClientID,ProviderID,Active,InactiveCode,DateCreated,DateModified
-			FROM ClientProvider  
+			FROM clientprovider  
 			WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClientProviderID)#" /> 
 		</cfquery>
 		
@@ -266,7 +266,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClientProvider" datasource="#trim(variables.ds)#">
-				INSERT INTO ClientProvider (ClientID,ProviderID,InactiveCode)
+				INSERT INTO clientprovider (ClientID,ProviderID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localProviderID)#" cfsqltype="CF_SQL_VARCHAR" />,				
@@ -343,7 +343,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClientProvider" datasource="#trim(variables.ds)#">
-				UPDATE ClientProvider  SET
+				UPDATE clientprovider  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -390,7 +390,7 @@
 
 		<cfquery name="qDeleteClientProvider" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM ClientProvider
+			FROM clientprovider
 			WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClientProviderID())#" /> 
 		</cfquery>
 
@@ -412,5 +412,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

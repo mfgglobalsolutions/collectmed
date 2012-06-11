@@ -48,7 +48,7 @@
 			<cfif StructKeyExists(stValues, "Claim_ProcessXMLToDBID") AND stValues.Claim_ProcessXMLToDBID NEQ 0>
 				<cfquery name="qGetClaim_ProcessXMLToDB" datasource="#trim(variables.ds)#">
 			  		SELECT Claim_ProcessXMLToDBID,InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode,DateCreated,DateModified
-					FROM Claim_ProcessXMLToDB  
+					FROM claim_processxmltodb  
 					WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Claim_ProcessXMLToDBID#" /> 
 				</cfquery>		
 				<cfif qGetClaim_ProcessXMLToDB.Recordcount LTE 0>
@@ -331,7 +331,7 @@
 	
 		<cfquery name="qGetClaim_ProcessXMLToDB" datasource="#trim(variables.ds)#">
 	  		SELECT Claim_ProcessXMLToDBID,InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode,DateCreated,DateModified
-			FROM Claim_ProcessXMLToDB  
+			FROM claim_processxmltodb  
 			WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Claim_ProcessXMLToDBID)#" /> 
 		</cfquery>
 		
@@ -362,7 +362,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim_ProcessXMLToDB" datasource="#trim(variables.ds)#">
-				INSERT INTO Claim_ProcessXMLToDB (InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,InactiveCode)
+				INSERT INTO claim_processxmltodb (InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localInterchangeID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localClaimXML)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -467,7 +467,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim_ProcessXMLToDB" datasource="#trim(variables.ds)#">
-				UPDATE Claim_ProcessXMLToDB  SET
+				UPDATE claim_processxmltodb  SET
 					
 					InterchangeID =						
 						<cfqueryparam value="#trim(localInterchangeID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -542,7 +542,7 @@
 
 		<cfquery name="qDeleteClaim_ProcessXMLToDB" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Claim_ProcessXMLToDB
+			FROM claim_processxmltodb
 			WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClaim_ProcessXMLToDBID())#" /> 
 		</cfquery>
 

@@ -37,7 +37,7 @@
 	
 	<cfquery name="qFiles" datasource="#request.datasource#">
 		SELECT f.fileID,f.UsersID,f.ClientFileName,f.ClientFileExt,f.dateCreated,f.fileSize,f.fileType,f.fileplacementdirectory,DATEPART(month, f.DateCreated) AS 'month', DATEPART(year, f.DateCreated) AS 'year', DATEPART(day, f.DateCreated) AS 'day', s.ItemNameDisplay as 'Type'
-		FROM File f INNER JOIN pa_master.StandardListItem s ON f.fileType = s.StandardListItemID
+		FROM file f INNER JOIN pa_master.StandardListItem s ON f.fileType = s.StandardListItemID
 		WHERE DisplayInGUID = 1			
 	</cfquery>
 		
@@ -241,7 +241,7 @@
 																			
 																			<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 																				SELECT FName + '&nbsp;' + LName AS Fullname 
-																				FROM view_UserAccountParameters 
+																				FROM view_useraccountparameters 
 																				WHERE UsersID = #trim(UsersID)#
 																			</cfquery>
 																			
@@ -322,7 +322,7 @@
 																			
 																			<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 																				SELECT FName + '&nbsp;' + LName AS Fullname 
-																				FROM view_UserAccountParameters 
+																				FROM view_useraccountparameters 
 																				WHERE UsersID = #trim(UsersID)#
 																			</cfquery>
 																			
@@ -403,7 +403,7 @@
 																			
 																			<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 																				SELECT FName + '&nbsp;' + LName AS Fullname 
-																				FROM view_UserAccountParameters 
+																				FROM view_useraccountparameters 
 																				WHERE UsersID = #trim(UsersID)#
 																			</cfquery>
 																			
@@ -484,7 +484,7 @@
 																			
 																			<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 																				SELECT FName + '&nbsp;' + LName AS Fullname 
-																				FROM view_UserAccountParameters 
+																				FROM view_useraccountparameters 
 																				WHERE UsersID = #trim(UsersID)#
 																			</cfquery>
 																			
@@ -702,7 +702,7 @@
 											
 											<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 												SELECT FName + '&nbsp;' + LName AS Fullname 
-												FROM view_UserAccountParameters 
+												FROM view_useraccountparameters 
 												WHERE UsersID = #trim(UsersID)#
 											</cfquery>
 											
@@ -900,7 +900,7 @@ StandardListItemID	ItemNameDisplay		ItemDescription
 	
 	<cfquery name="qFiles" datasource="#request.datasource#">
 		select fileID,UsersID,ClientFileName,ClientFileExt,dateCreated,fileSize,fileType,fileplacementdirectory, DATEPART(month, DateCreated) AS 'month', DATEPART(year, DateCreated) AS 'year', DATEPART(day, DateCreated) AS 'day'
-		FROM File
+		FROM file
 		WHERE DisplayInGUID = 1		
 	</cfquery>
 		
@@ -1176,7 +1176,7 @@ StandardListItemID	ItemNameDisplay		ItemDescription
 		
 																<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 																	SELECT FName + '&nbsp;' + LName AS Fullname 
-																	FROM view_UserAccountParameters 
+																	FROM view_useraccountparameters 
 																	WHERE UsersID = #trim(UsersID)#
 																</cfquery>
 																
@@ -1224,3 +1224,4 @@ StandardListItemID	ItemNameDisplay		ItemDescription
 
 	
 --->		
+

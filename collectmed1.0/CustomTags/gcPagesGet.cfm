@@ -63,7 +63,7 @@
 
 	<cfquery Name="caller.#QueryName#" datasource="pa_master" cachedwithin="#CreateTimeSpan(0,0,0,0)#">
 		SELECT #Fields#
-		FROM Page
+		FROM page
 		WHERE 1=1
 			<cfif PageID NEQ ""> AND PageID IN(#PageID#)</cfif>
 			<cfif PageIDNotIn NEQ ""> AND PageID NOT IN(#PageIDNotIn#)</cfif>			

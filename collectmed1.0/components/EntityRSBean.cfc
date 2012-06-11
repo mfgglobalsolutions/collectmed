@@ -50,7 +50,7 @@
 			<cfif StructKeyExists(stValues, "EntityRSID") AND stValues.EntityRSID NEQ 0>
 				<cfquery name="qGetEntityRS" datasource="#trim(arguments.ds)#">
 			  		SELECT EntityRSID,EntityID,ColM,ColE,ColL,ColI,ColA,ColC,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EntityRS  
+					FROM entityrs  
 					WHERE EntityRSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EntityRSID#" /> 
 				</cfquery>		
 				<cfif qGetEntityRS.Recordcount LTE 0>
@@ -381,5 +381,6 @@
 		
 		
 </cfcomponent>
+
 
 

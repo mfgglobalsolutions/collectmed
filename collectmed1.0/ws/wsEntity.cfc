@@ -239,7 +239,7 @@
 			<cfif UserIDs NEQ "">				
 				<cfquery name="temp" datasource="PAClient_#trim(ClientID)#">
 					SELECT entityID, fname, lname 
-					FROM Entity 
+					FROM entity 
 					WHERE EntityID IN ( SELECT EntityID FROM pa_master.Users WHERE usersID IN(#trim(UserIDs)#) )					
 				</cfquery>						
 			</cfif>
@@ -303,7 +303,7 @@
 				
 				<cfquery name="temp" datasource="pa_master">
 					SELECT EntityID 
-					FROM Users 
+					FROM users 
 					WHERE usersID IN(#trim(UserIDs)#) 
 					AND EntryPoint = '#trim(managerPasswordE)#'					
 				</cfquery>	

@@ -496,7 +496,7 @@
 	
 		<cfquery name="qGetEmployer" datasource="#trim(request.datasource)#">
 	  		SELECT EmployerID,EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode,DateCreated,DateModified
-			FROM Employer  
+			FROM employer  
 			WHERE EmployerID = #trim(arguments.EmployerID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Employer  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EmployerID ">
+				<cfset sqlStatement = "INSERT INTO employer  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EmployerID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEmployerQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Employer   
+				FROM employer   
 				WHERE 1=1
 					<cfif EmployerID NEQ "" AND IsNumeric(EmployerID)>AND EmployerID = #EmployerID#</cfif>
 					<cfif EmployerID_IN NEQ "">AND EmployerID IN(#trim(EmployerID_IN)#)</cfif>
@@ -1116,5 +1116,7 @@
 
 	
 </cfcomponent>
+
+
 
 

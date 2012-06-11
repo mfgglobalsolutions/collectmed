@@ -493,7 +493,7 @@
 	
 		<cfquery name="qGetCategory" datasource="pa_master">
 	  		SELECT CategoryID,SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM Category  
+			FROM category  
 			WHERE CategoryID = #trim(arguments.CategoryID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Category  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS CategoryID ">
+				<cfset sqlStatement = "INSERT INTO category  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS CategoryID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getCategoryQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Category   
+				FROM category   
 				WHERE 1=1
 					<cfif CategoryID NEQ "" AND IsNumeric(CategoryID)>AND CategoryID = #CategoryID#</cfif>
 					<cfif CategoryID_IN NEQ "">AND CategoryID IN(#trim(CategoryID_IN)#)</cfif>
@@ -1116,5 +1116,6 @@
 
 	
 </cfcomponent>
+
 
 

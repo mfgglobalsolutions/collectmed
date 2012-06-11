@@ -86,7 +86,7 @@
 			<cfif StructKeyExists(stValues, "FileID") AND stValues.FileID NEQ 0>
 				<cfquery name="qGetFile" datasource="#trim(arguments.ds)#">
 			  		SELECT FileID,FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,Active,InactiveCode,DateCreated,DateModified
-					FROM File  
+					FROM file  
 					WHERE FileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.FileID#" /> 
 				</cfquery>		
 				<cfif qGetFile.Recordcount LTE 0>
@@ -801,5 +801,6 @@
 		
 		
 </cfcomponent>
+
 
 

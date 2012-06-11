@@ -35,7 +35,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePage" datasource="#trim(arguments.ds)#">
-				INSERT INTO Page (SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode)
+				INSERT INTO page (SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -207,7 +207,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePage" datasource="#trim(arguments.ds)#">
-				UPDATE Page  SET
+				UPDATE page  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -346,7 +346,7 @@
 
 		<cfquery name="qDeletePage" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Page
+			FROM page
 			WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getPageID())#" /> 
 		</cfquery>
 
@@ -366,7 +366,7 @@
 	
 		<cfquery name="qGetPage" datasource="#trim(arguments.ds)#">
 	  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM Page  
+			FROM page  
 			WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageID)#" /> 
 		</cfquery>
 		
@@ -389,5 +389,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

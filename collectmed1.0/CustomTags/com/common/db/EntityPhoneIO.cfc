@@ -449,7 +449,7 @@
 	
 		<cfquery name="qGetEntityPhone" datasource="#trim(request.datasource)#">
 	  		SELECT recordID,EntityID,PhoneID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityPhone  
+			FROM entityphone  
 			WHERE recordID = #trim(arguments.recordID)# 
 		</cfquery>
 		
@@ -813,7 +813,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EntityPhone  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
+				<cfset sqlStatement = "INSERT INTO entityphone  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -981,7 +981,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntityPhoneQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM EntityPhone   
+				FROM entityphone   
 				WHERE 1=1
 					<cfif recordID NEQ "" AND IsNumeric(recordID)>AND recordID = #recordID#</cfif>
 					<cfif recordID_IN NEQ "">AND recordID IN(#trim(recordID_IN)#)</cfif>
@@ -1064,5 +1064,6 @@
 
 	
 </cfcomponent>
+
 
 

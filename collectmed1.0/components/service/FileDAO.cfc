@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM File
+			FROM file
 			WHERE FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateFile" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO File (FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,attributesXML,Active,InactiveCode)
+				INSERT INTO file (FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,attributesXML,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.File.getFileType()))>						
 						<cfqueryparam value="#trim(arguments.File.getFileType())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -272,7 +272,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateFile" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE File  SET
+				UPDATE file  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					FileType =				
@@ -499,7 +499,7 @@
 
 		<cfquery name="qDeleteFile" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM File
+			FROM file
 			WHERE FileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.FileID)#" /> 
 		</cfquery>
 
@@ -518,7 +518,7 @@
 	
 		<cfquery name="qGetFile" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT FileID,FileType,ClientID,DisplayInGUID,ParentFileID,UsersID,FilePlacementDirectory,AttemptedServerFile,ClientDirectory,ClientFile,ClientFileExt,ClientFileName,ContentSubType,ContentType,DateLastAccessed,FileExisted,FileSize,FileWasAppended,FileWasOverwritten,FileWasRenamed,FileWasSaved,OldFileSize,ServerDirectory,ServerFile,ServerFileExt,ServerFileName,TimeCreated,TimeLastModified,attributesXML,Active,InactiveCode,DateCreated,DateModified
-			FROM File  
+			FROM file  
 			WHERE FileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.FileID)#" /> 
 		</cfquery>
 		
@@ -615,5 +615,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

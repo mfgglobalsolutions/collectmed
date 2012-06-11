@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "UsersSessionID") AND stValues.UsersSessionID NEQ 0>
 				<cfquery name="qGetUsersSession" datasource="#trim(variables.ds)#">
 			  		SELECT UsersSessionID,UsersSessionIdentification,UsersID,IPAddress,SiteID,Active,InactiveCode,DateCreated,DateModified
-					FROM UsersSession  
+					FROM userssession  
 					WHERE UsersSessionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersSessionID#" /> 
 				</cfquery>		
 				<cfif qGetUsersSession.Recordcount LTE 0>
@@ -287,7 +287,7 @@
 	
 		<cfquery name="qGetUsersSession" datasource="#trim(variables.ds)#">
 	  		SELECT UsersSessionID,UsersSessionIdentification,UsersID,IPAddress,SiteID,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersSession  
+			FROM userssession  
 			WHERE UsersSessionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersSessionID)#" /> 
 		</cfquery>
 		
@@ -316,7 +316,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsersSession" datasource="#trim(variables.ds)#">
-				INSERT INTO UsersSession (UsersSessionIdentification,UsersID,IPAddress,SiteID,InactiveCode)
+				INSERT INTO userssession (UsersSessionIdentification,UsersID,IPAddress,SiteID,InactiveCode)
 				VALUES (	
 					<cfif trim(localUsersSessionIdentification) NEQ "" AND trim(localUsersSessionIdentification) NEQ "@@" AND trim(localUsersSessionIdentification) NEQ "NULL">						
 						<cfqueryparam value="#trim(localUsersSessionIdentification)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -407,7 +407,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsersSession" datasource="#trim(variables.ds)#">
-				UPDATE UsersSession  SET
+				UPDATE userssession  SET
 					
 					UsersSessionIdentification =	
 					<cfif trim(localUsersSessionIdentification) NEQ "" AND trim(localUsersSessionIdentification) NEQ "@@" AND trim(localUsersSessionIdentification) NEQ "NULL">						
@@ -468,7 +468,7 @@
 
 		<cfquery name="qDeleteUsersSession" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM UsersSession
+			FROM userssession
 			WHERE UsersSessionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getUsersSessionID())#" /> 
 		</cfquery>
 
@@ -490,5 +490,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

@@ -29,7 +29,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_DMEFEECode" datasource="#trim(arguments.ds)#">
-				INSERT INTO EOB_DMEFEECode (TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,Active,InactiveCode)
+				INSERT INTO eob_dmefeecode (TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localTOSCode) NEQ "" AND trim(localTOSCode) NEQ "@@" AND trim(localTOSCode) NEQ "NULL">						
 						<cfqueryparam value="#trim(localTOSCode)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -155,7 +155,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_DMEFEECode" datasource="#trim(arguments.ds)#">
-				UPDATE EOB_DMEFEECode  SET
+				UPDATE eob_dmefeecode  SET
 					
 					TOSCode =	
 					<cfif trim(localTOSCode) NEQ "" AND trim(localTOSCode) NEQ "@@" AND trim(localTOSCode) NEQ "NULL">						
@@ -248,7 +248,7 @@
 
 		<cfquery name="qDeleteEOB_DMEFEECode" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EOB_DMEFEECode
+			FROM eob_dmefeecode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -268,7 +268,7 @@
 	
 		<cfquery name="qGetEOB_DMEFEECode" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_DMEFEECode  
+			FROM eob_dmefeecode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -291,5 +291,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

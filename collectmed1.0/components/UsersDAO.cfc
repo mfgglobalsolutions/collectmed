@@ -33,7 +33,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsers" datasource="#trim(arguments.ds)#">
-				INSERT INTO Users (SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode)
+				INSERT INTO users (SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -175,7 +175,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsers" datasource="#trim(arguments.ds)#">
-				UPDATE Users  SET
+				UPDATE users  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -284,7 +284,7 @@
 
 		<cfquery name="qDeleteUsers" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Users
+			FROM users
 			WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getUsersID())#" /> 
 		</cfquery>
 
@@ -304,7 +304,7 @@
 	
 		<cfquery name="qGetUsers" datasource="#trim(arguments.ds)#">
 	  		SELECT UsersID,SiteID,ClientID,EntityID,Entry,EntryPoint,EntryQID,EntryResponse,ChangedPassword,LastOpenedClaimID,Suspend,LoginStart,LoginEnd,Active,InactiveCode,DateCreated,DateModified
-			FROM Users  
+			FROM users  
 			WHERE UsersID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersID)#" /> 
 		</cfquery>
 		
@@ -327,5 +327,7 @@
 		
 	
 </cfcomponent>
+
+
 
 

@@ -62,7 +62,7 @@
 			<cfif StructKeyExists(stValues, "InterchangeID") AND stValues.InterchangeID NEQ 0>
 				<cfquery name="qGetInterchange" datasource="#trim(arguments.ds)#">
 			  		SELECT InterchangeID,FileID,InterchangeFileID,InterchangeDate,ClientID,InterchangeClientName,InterchangeClientAddressLine1,InterchangeClientAddressLine2,InterchangeClientCity,InterchangeClientState,InterchangeClientZipcode,LXAssignedNumber,ReassociationTraceNumber,InterchangeSenderIDQualifier,InterchangeSenderID,InterchangeReceiverIDQualifier,InterchangeReceiverID,Active,InactiveCode,DateCreated
-					FROM Interchange  
+					FROM interchange  
 					WHERE InterchangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.InterchangeID#" /> 
 				</cfquery>		
 				<cfif qGetInterchange.Recordcount LTE 0>
@@ -513,5 +513,6 @@
 		
 		
 </cfcomponent>
+
 
 

@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsersSession" datasource="#trim(arguments.ds)#">
-				INSERT INTO UsersSession (UsersSessionIdentification,UsersID,IPAddress,SiteID,Active,InactiveCode)
+				INSERT INTO userssession (UsersSessionIdentification,UsersID,IPAddress,SiteID,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localUsersSessionIdentification) NEQ "" AND trim(localUsersSessionIdentification) NEQ "@@" AND trim(localUsersSessionIdentification) NEQ "NULL">						
 						<cfqueryparam value="#trim(localUsersSessionIdentification)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsersSession" datasource="#trim(arguments.ds)#">
-				UPDATE UsersSession  SET
+				UPDATE userssession  SET
 					
 					UsersSessionIdentification =	
 					<cfif trim(localUsersSessionIdentification) NEQ "" AND trim(localUsersSessionIdentification) NEQ "@@" AND trim(localUsersSessionIdentification) NEQ "NULL">						
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteUsersSession" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM UsersSession
+			FROM userssession
 			WHERE UsersSessionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getUsersSessionID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetUsersSession" datasource="#trim(arguments.ds)#">
 	  		SELECT UsersSessionID,UsersSessionIdentification,UsersID,IPAddress,SiteID,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersSession  
+			FROM userssession  
 			WHERE UsersSessionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersSessionID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "ObjectID") AND stValues.ObjectID NEQ 0>
 				<cfquery name="qGetObject" datasource="#trim(variables.ds)#">
 			  		SELECT ObjectID,ObjectName,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM Object  
+					FROM object  
 					WHERE ObjectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ObjectID#" /> 
 				</cfquery>		
 				<cfif qGetObject.Recordcount LTE 0>
@@ -235,7 +235,7 @@
 	
 		<cfquery name="qGetObject" datasource="#trim(variables.ds)#">
 	  		SELECT ObjectID,ObjectName,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM Object  
+			FROM object  
 			WHERE ObjectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ObjectID)#" /> 
 		</cfquery>
 		
@@ -262,7 +262,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateObject" datasource="#trim(variables.ds)#">
-				INSERT INTO Object (ObjectName,Description,InactiveCode)
+				INSERT INTO object (ObjectName,Description,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localObjectName)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localDescription) NEQ "" AND trim(localDescription) NEQ "@@" AND trim(localDescription) NEQ "NULL">						
@@ -343,7 +343,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateObject" datasource="#trim(variables.ds)#">
-				UPDATE Object  SET
+				UPDATE object  SET
 					
 					ObjectName =						
 						<cfqueryparam value="#trim(localObjectName)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -394,7 +394,7 @@
 
 		<cfquery name="qDeleteObject" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Object
+			FROM object
 			WHERE ObjectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getObjectID())#" /> 
 		</cfquery>
 
@@ -416,5 +416,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

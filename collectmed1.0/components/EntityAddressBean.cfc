@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "recordID") AND stValues.recordID NEQ 0>
 				<cfquery name="qGetEntityAddress" datasource="#trim(arguments.ds)#">
 			  		SELECT recordID,EntityID,AddressID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EntityAddress  
+					FROM entityaddress  
 					WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.recordID#" /> 
 				</cfquery>		
 				<cfif qGetEntityAddress.Recordcount LTE 0>
@@ -249,5 +249,6 @@
 		
 		
 </cfcomponent>
+
 
 

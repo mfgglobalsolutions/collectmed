@@ -23,7 +23,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedureEOBcode" datasource="#trim(arguments.ds)#">
-				INSERT INTO ProcedureEOBcode (ProcedureID,EOBCode,Status,ClosingUserID,CloseDate)
+				INSERT INTO procedureeobcode (ProcedureID,EOBCode,Status,ClosingUserID,CloseDate)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localEOBCode)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -111,7 +111,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedureEOBcode" datasource="#trim(arguments.ds)#">
-				UPDATE ProcedureEOBcode  SET
+				UPDATE procedureeobcode  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -162,7 +162,7 @@
 
 		<cfquery name="qDeleteProcedureEOBcode" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM ProcedureEOBcode
+			FROM procedureeobcode
 			WHERE ClaimEOBCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaimEOBCodeID())#" /> 
 		</cfquery>
 
@@ -182,7 +182,7 @@
 	
 		<cfquery name="qGetProcedureEOBcode" datasource="#trim(arguments.ds)#">
 	  		SELECT ClaimEOBCodeID,ProcedureID,EOBCode,Status,ClosingUserID,CloseDate
-			FROM ProcedureEOBcode  
+			FROM procedureeobcode  
 			WHERE ClaimEOBCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimEOBCodeID)#" /> 
 		</cfquery>
 		
@@ -205,5 +205,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

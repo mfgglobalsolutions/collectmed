@@ -34,7 +34,7 @@
 			<cfif StructKeyExists(stValues, "ClaimAssignmentID") AND stValues.ClaimAssignmentID NEQ 0>
 				<cfquery name="qGetClaimAssignment" datasource="#trim(arguments.ds)#">
 			  		SELECT ClaimAssignmentID,ClaimID,UserID,DateCreated,AssignorID,Note
-					FROM ClaimAssignment  
+					FROM claimassignment  
 					WHERE ClaimAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClaimAssignmentID#" /> 
 				</cfquery>		
 				<cfif qGetClaimAssignment.Recordcount LTE 0>

@@ -587,7 +587,7 @@
 	
 		<cfquery name="qGetEntityKS" datasource="pa_master">
 	  		SELECT EntityKSID,ColM,ColE,ColL,ColI,ColA,ColC,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityKS  
+			FROM entityks  
 			WHERE EntityKSID = #trim(arguments.EntityKSID)# 
 		</cfquery>
 		
@@ -951,7 +951,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EntityKS  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityKSID ">
+				<cfset sqlStatement = "INSERT INTO entityks  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityKSID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1128,7 +1128,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntityKSQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EntityKS   
+				FROM entityks   
 				WHERE 1=1
 					<cfif EntityKSID NEQ "" AND IsNumeric(EntityKSID)>AND EntityKSID = #EntityKSID#</cfif>
 					<cfif EntityKSID_IN NEQ "">AND EntityKSID IN(#trim(EntityKSID_IN)#)</cfif>
@@ -1220,5 +1220,7 @@
 
 	
 </cfcomponent>
+
+
 
 

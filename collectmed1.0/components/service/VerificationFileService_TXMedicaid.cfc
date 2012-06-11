@@ -42,7 +42,7 @@
 		
 			<cfquery name="getBIDFileID" datasource="#variables.instance.datasource.getDSName()#">
 				SELECT ClientFile
-				FROM File
+				FROM file
 				WHERE ClientFileName LIKE (<cfqueryparam value="%#trim(batchID)#%" cfsqltype="CF_SQL_VARCHAR" />)
 				AND ClientFileExt = <cfqueryparam value="BID" cfsqltype="CF_SQL_VARCHAR" />
 			</cfquery>
@@ -54,7 +54,7 @@
 				
 				<cfquery name="getTextFileParentID" datasource="#variables.instance.datasource.getDSName()#">
 					SELECT ParentFIleID
-					FROM File
+					FROM file
 					WHERE FileID = <cfqueryparam value="#textParentFileID#" cfsqltype="CF_SQL_INTEGER" />
 				</cfquery>
 							
@@ -77,7 +77,7 @@
 		
 		<cfquery name="getParentFileID" datasource="#variables.instance.datasource.getDSName()#">
 			SELECT FileID
-			FROM File
+			FROM file
 			WHERE ClientFileName = <cfqueryparam value="#trim(arguments.parentFileName)#" cfsqltype="CF_SQL_VARCHAR" />
 		</cfquery>
 		
@@ -91,5 +91,6 @@
 	
 		
 </cfcomponent>
+
 
 

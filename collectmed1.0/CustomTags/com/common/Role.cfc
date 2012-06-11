@@ -14,7 +14,7 @@
 		
 		<!---<cfquery name="getUsers" datasource="PAClient_#trim(ClientID)#">
 			SELECT usersID
-			FROM usersRole
+			FROM usersrole
 			WHERE RoleID IN(#trim(roleID)#)			
 		</cfquery>--->
 		<cfquery name="getUsers" datasource="PAClient_#trim(ClientID)#">			
@@ -23,7 +23,7 @@
 			WHERE RoleID IN(#trim(roleID)#)	
 			UNION
 			SELECT usersID
-			FROM usersRole
+			FROM usersrole
 			WHERE RoleID IN(#trim(roleID)#)					
 		</cfquery>
 				
@@ -94,7 +94,7 @@
 				FROM pa_master.[Role]
 				UNION
 				SELECT RoleID, RoleName, Active, InactiveCode, DateCreated, DateModified, 1 as Editable
-				FROM Role					
+				FROM role					
 			</cfquery>				
 			
 			<cfreturn getAllRoles>
@@ -116,5 +116,7 @@
 	
 	
 </cfcomponent>
+
+
 
 

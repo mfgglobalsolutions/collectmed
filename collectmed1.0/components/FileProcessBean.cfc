@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "FileProcessID") AND stValues.FileProcessID NEQ 0>
 				<cfquery name="qGetFileProcess" datasource="#trim(arguments.ds)#">
 			  		SELECT FileProcessID,FileID,StatusID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM FileProcess  
+					FROM fileprocess  
 					WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.FileProcessID#" /> 
 				</cfquery>		
 				<cfif qGetFileProcess.Recordcount LTE 0>
@@ -249,5 +249,6 @@
 		
 		
 </cfcomponent>
+
 
 

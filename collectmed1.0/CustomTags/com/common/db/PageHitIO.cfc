@@ -622,7 +622,7 @@
 	
 		<cfquery name="qGetPageHit" datasource="pa_master">
 	  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
-			FROM PageHit  
+			FROM pagehit  
 			WHERE PageHitID = #trim(arguments.PageHitID)# 
 		</cfquery>
 		
@@ -997,7 +997,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO PageHit  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageHitID ">
+				<cfset sqlStatement = "INSERT INTO pagehit  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PageHitID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1177,7 +1177,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getPageHitQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM PageHit   
+				FROM pagehit   
 				WHERE 1=1
 					<cfif PageHitID NEQ "" AND IsNumeric(PageHitID)>AND PageHitID = #PageHitID#</cfif>
 					<cfif PageHitID_IN NEQ "">AND PageHitID IN(#trim(PageHitID_IN)#)</cfif>
@@ -1272,5 +1272,7 @@
 
 	
 </cfcomponent>
+
+
 
 

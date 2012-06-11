@@ -21,7 +21,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim_MEDICARE_MOA" datasource="#trim(arguments.ds)#">
-				INSERT INTO Claim_MEDICARE_MOA (ClaimID,ReimbursementRate,MOACode)
+				INSERT INTO claim_medicare_moa (ClaimID,ReimbursementRate,MOACode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localReimbursementRate))>						
@@ -100,7 +100,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim_MEDICARE_MOA" datasource="#trim(arguments.ds)#">
-				UPDATE Claim_MEDICARE_MOA  SET
+				UPDATE claim_medicare_moa  SET
 					
 					ClaimID =						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -141,7 +141,7 @@
 
 		<cfquery name="qDeleteClaim_MEDICARE_MOA" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Claim_MEDICARE_MOA
+			FROM claim_medicare_moa 
 			WHERE Claim_MEDICARE_MOAID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaim_MEDICARE_MOAID())#" /> 
 		</cfquery>
 
@@ -161,7 +161,7 @@
 	
 		<cfquery name="qGetClaim_MEDICARE_MOA" datasource="#trim(arguments.ds)#">
 	  		SELECT Claim_MEDICARE_MOAID,ClaimID,ReimbursementRate,MOACode,DateCreated
-			FROM Claim_MEDICARE_MOA  
+			FROM claim_medicare_moa  
 			WHERE Claim_MEDICARE_MOAID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Claim_MEDICARE_MOAID)#" /> 
 		</cfquery>
 		

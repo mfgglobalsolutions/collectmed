@@ -33,7 +33,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<cfquery name="getIntakeGroup" datasource="PAClient_#trim(ClientID)#">
 		SELECT WorkGroupID
-		FROM WorkGroup
+		FROM workgroup
 		WHERE WorkGroupName = 'Intake Manager'
 	</cfquery>
 	
@@ -41,8 +41,8 @@
 	
 		<cfquery name="getAssignedIntakes" datasource="PAClient_#trim(ClientID)#">
 			SELECT AssignedToUserID, Count(IntakeID) AS NumberOfIntakes
-			FROM Intake
-			WHERE AssignedToUserID IN (SELECT UsersID FROM UsersWorkGroup   WHERE WorkGroupID = #trim(getIntakeGroup.WorkGroupID)#) 
+			FROM intake
+			WHERE AssignedToUserID IN (SELECT UsersID FROM usersworkgroup   WHERE WorkGroupID = #trim(getIntakeGroup.WorkGroupID)#) 
 			AND Active = 1 AND ClosingInvoiceNumber IS NULL
 			--Looking to see who has more intakes currently assigned counting the ClosingInvoiceNumber
 			--AND (Active = 1 OR ClosingInvoiceNumber IS NOT NULL)		
@@ -70,7 +70,7 @@
 		<cfquery name="getAdminInfo" datasource="PA_Client#trim(arguments.clientID)#">						
 			SELECT u.UsersID, E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
 			FROM pa_master.Users AS u 
-			INNER JOIN Entity AS E ON u.EntityID = E.EntityID 
+			INNER JOIN entity AS E ON u.EntityID = E.EntityID 
 			WHERE E.EntityID = (SELECT AdministratorEntityID FROM pa_master.[Client] WHERE ClientID = #trim(arguments.clientID)#)
 		</cfquery>
 		
@@ -105,3 +105,7 @@
 	<cflocation addtoken="No" url="appMyDesktop.cfm?msg=#URLEncodedFormat(trim(msg))#">
 	
 		
+
+
+
+

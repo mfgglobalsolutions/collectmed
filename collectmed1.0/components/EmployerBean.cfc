@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "EmployerID") AND stValues.EmployerID NEQ 0>
 				<cfquery name="qGetEmployer" datasource="#trim(arguments.ds)#">
 			  		SELECT EmployerID,EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode,DateCreated,DateModified
-					FROM Employer  
+					FROM employer  
 					WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EmployerID#" /> 
 				</cfquery>		
 				<cfif qGetEmployer.Recordcount LTE 0>
@@ -267,5 +267,6 @@
 		
 		
 </cfcomponent>
+
 
 

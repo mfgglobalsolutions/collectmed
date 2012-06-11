@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "LogID") AND stValues.LogID NEQ 0>
 				<cfquery name="qGetLog" datasource="#trim(variables.ds)#">
 			  		SELECT LogID,Code,IPaddress,LogText,Active,InactiveCode,DateCreated,DateModified
-					FROM Log  
+					FROM log  
 					WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.LogID#" /> 
 				</cfquery>		
 				<cfif qGetLog.Recordcount LTE 0>
@@ -261,7 +261,7 @@
 	
 		<cfquery name="qGetLog" datasource="#trim(variables.ds)#">
 	  		SELECT LogID,Code,IPaddress,LogText,Active,InactiveCode,DateCreated,DateModified
-			FROM Log  
+			FROM log  
 			WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.LogID)#" /> 
 		</cfquery>
 		
@@ -289,7 +289,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateLog" datasource="#trim(variables.ds)#">
-				INSERT INTO Log (Code,IPaddress,LogText,InactiveCode)
+				INSERT INTO log (Code,IPaddress,LogText,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localCode))>						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -381,7 +381,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateLog" datasource="#trim(variables.ds)#">
-				UPDATE Log  SET
+				UPDATE log  SET
 					
 					Code =				
 					<cfif IsNumeric(trim(localCode))>						
@@ -443,7 +443,7 @@
 
 		<cfquery name="qDeleteLog" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Log
+			FROM log
 			WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getLogID())#" /> 
 		</cfquery>
 
@@ -465,5 +465,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

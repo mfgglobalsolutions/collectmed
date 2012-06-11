@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "Procedure_MEDICARE_REMARK_CODEID") AND stValues.Procedure_MEDICARE_REMARK_CODEID NEQ 0>
 				<cfquery name="qGetProcedure_MEDICARE_REMARK_CODE" datasource="#trim(variables.ds)#">
 			  		SELECT Procedure_MEDICARE_REMARK_CODEID,ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode,DateCreated,DateModified
-					FROM Procedure_MEDICARE_REMARK_CODE  
+					FROM procedure_medicare_remark_code  
 					WHERE Procedure_MEDICARE_REMARK_CODEID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Procedure_MEDICARE_REMARK_CODEID#" /> 
 				</cfquery>		
 				<cfif qGetProcedure_MEDICARE_REMARK_CODE.Recordcount LTE 0>
@@ -261,7 +261,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_REMARK_CODE" datasource="#trim(variables.ds)#">
 	  		SELECT Procedure_MEDICARE_REMARK_CODEID,ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_REMARK_CODE  
+			FROM procedure_medicare_remark_code  
 			WHERE Procedure_MEDICARE_REMARK_CODEID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Procedure_MEDICARE_REMARK_CODEID)#" /> 
 		</cfquery>
 		
@@ -289,7 +289,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure_MEDICARE_REMARK_CODE" datasource="#trim(variables.ds)#">
-				INSERT INTO Procedure_MEDICARE_REMARK_CODE (ProcedureID,QualifierCode,IndustryCode,InactiveCode)
+				INSERT INTO procedure_medicare_remark_code (ProcedureID,QualifierCode,IndustryCode,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localQualifierCode)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -369,7 +369,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure_MEDICARE_REMARK_CODE" datasource="#trim(variables.ds)#">
-				UPDATE Procedure_MEDICARE_REMARK_CODE  SET
+				UPDATE procedure_medicare_remark_code  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -419,7 +419,7 @@
 
 		<cfquery name="qDeleteProcedure_MEDICARE_REMARK_CODE" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Procedure_MEDICARE_REMARK_CODE
+			FROM procedure_medicare_remark_code
 			WHERE Procedure_MEDICARE_REMARK_CODEID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getProcedure_MEDICARE_REMARK_CODEID())#" /> 
 		</cfquery>
 
@@ -441,5 +441,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

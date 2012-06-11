@@ -11,7 +11,7 @@
 			<cfset thisRecordID = ListLast(i, "_")>
 			
 			<cfquery name="updateRecord" datasource="#trim(request.datasource)#">
-				UPDATE PatientInsuranceCompany
+				UPDATE patientinsurancecompany
 				SET PrimSecTer = #evaluate(i)#
 				WHERE recordID = #trim(thisRecordID)#
 			</cfquery>							
@@ -21,3 +21,4 @@
 	</cfloop>	
 	
 	
+

@@ -383,7 +383,7 @@
 	
 		<cfquery name="qGetUsersSession" datasource="#trim(request.datasource)#">
 	  		SELECT UsersSessionID,UsersSessionIdentification,UsersID,IPAddress,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersSession  
+			FROM userssession  
 			WHERE UsersSessionID = #trim(arguments.UsersSessionID)# 
 		</cfquery>
 		
@@ -744,7 +744,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO UsersSession  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersSessionID; ">
+				<cfset sqlStatement = "INSERT INTO userssession  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersSessionID; ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -912,7 +912,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getUsersSessionQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM UsersSession   
+				FROM userssession   
 				WHERE 1=1
 					<cfif UsersSessionID NEQ "" AND IsNumeric(UsersSessionID)>AND UsersSessionID = #UsersSessionID#</cfif>
 					<cfif UsersSessionID_IN NEQ "">AND UsersSessionID IN(#trim(UsersSessionID_IN)#)</cfif>
@@ -995,5 +995,7 @@
 
 	
 </cfcomponent>
+
+
 
 

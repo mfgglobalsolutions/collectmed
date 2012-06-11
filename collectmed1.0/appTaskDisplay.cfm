@@ -87,7 +87,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getTasks" datasource="#trim(request.datasource)#">
 		SELECT f.TaskID, f.ObjectID, f.InstanceID, f.priority, f.Note, f.dueDate, f.Active, f.DateCreated, f.statusID
-		FROM Task f
+		FROM task f
 		WHERE f.AssignedtoUserID = #trim(session.User.GetUsersID())# 
 		AND StatusID NOT IN(174,175)<!---Do not get Archived or Closed.--->
 		ORDER BY f.PRIORITY, f.dueDate									

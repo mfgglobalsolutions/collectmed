@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "ClaimEOBCodeID") AND stValues.ClaimEOBCodeID NEQ 0>
 				<cfquery name="qGetProcedureEOBcode" datasource="#trim(variables.ds)#">
 			  		SELECT ClaimEOBCodeID,ProcedureID,EOBCode,Status,ClosingUserID,CloseDate
-					FROM ProcedureEOBcode  
+					FROM procedureeobcode  
 					WHERE ClaimEOBCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClaimEOBCodeID#" /> 
 				</cfquery>		
 				<cfif qGetProcedureEOBcode.Recordcount LTE 0>
@@ -218,7 +218,7 @@
 	
 		<cfquery name="qGetProcedureEOBcode" datasource="#trim(variables.ds)#">
 	  		SELECT ClaimEOBCodeID,ProcedureID,EOBCode,Status,ClosingUserID,CloseDate
-			FROM ProcedureEOBcode  
+			FROM procedureeobcode  
 			WHERE ClaimEOBCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimEOBCodeID)#" /> 
 		</cfquery>
 		
@@ -245,7 +245,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedureEOBcode" datasource="#trim(variables.ds)#">
-				INSERT INTO ProcedureEOBcode (ProcedureID,EOBCode,Status,ClosingUserID,CloseDate)
+				INSERT INTO procedureeobcode (ProcedureID,EOBCode,Status,ClosingUserID,CloseDate)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localEOBCode)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -331,7 +331,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedureEOBcode" datasource="#trim(variables.ds)#">
-				UPDATE ProcedureEOBcode  SET
+				UPDATE procedureeobcode  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -382,7 +382,7 @@
 
 		<cfquery name="qDeleteProcedureEOBcode" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM ProcedureEOBcode
+			FROM procedureeobcode
 			WHERE ClaimEOBCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClaimEOBCodeID())#" /> 
 		</cfquery>
 
@@ -404,5 +404,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

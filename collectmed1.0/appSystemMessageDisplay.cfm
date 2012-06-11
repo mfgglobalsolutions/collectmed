@@ -73,14 +73,14 @@
 		
 			<cfquery name="getSystemUserMessageUsersID" datasource="#trim(request.datasource)#">
 				SELECT UsersID 
-				FROM SystemUserMessage 
+				FROM systemusermessage 
 				WHERE SystemUserMessageID = #trim(i)#			 
 			</cfquery>
 			
 			<cfif getSystemUserMessageUsersID.RecordCount EQ 1 AND getSystemUserMessageUsersID.UsersID EQ session.User.getUsersID()>
 				
 				<cfquery name="updateSystemUserMessage" datasource="#trim(request.datasource)#">
-					UPDATE SystemUserMessage
+					UPDATE systemusermessage
 					SET Dismissed = 1 
 					WHERE SystemUserMessageID = #trim(i)#			 
 				</cfquery>
@@ -98,7 +98,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getSystemUserMessages" datasource="#trim(request.datasource)#">
 		SELECT SystemUserMessageID, UsersID, Note AS shortNote, Note, Active, DateCreated
-		FROM SystemUserMessage  
+		FROM systemusermessage  
 		WHERE usersID = #trim(session.User.GetUsersID())# 
 		
 		<cfif NOT IsDefined("form.SubmittedSystemUserMessage")>AND Dismissed = 0</cfif>
@@ -322,3 +322,4 @@
 	</cfoutput>
 		
 		
+

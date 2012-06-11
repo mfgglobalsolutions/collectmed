@@ -205,7 +205,7 @@
 								
 								<cfquery name="getCreatorName" datasource="#trim(request.datasource)#">
 									SELECT FName, LName 
-									FROM view_UserAccountParameters 
+									FROM view_useraccountparameters 
 									WHERE UsersID = #trim(hidden_UsersID)#
 								</cfquery>
 								

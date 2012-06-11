@@ -80,7 +80,7 @@
 			<cfif StructKeyExists(stValues, "VerificationPatientInsuranceID") AND stValues.VerificationPatientInsuranceID NEQ 0>
 				<cfquery name="qGetVerificationPatientInsurance" datasource="#trim(arguments.ds)#">
 			  		SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-					FROM VerificationPatientInsurance  
+					FROM verificationpatientinsurance  
 					WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.VerificationPatientInsuranceID#" /> 
 				</cfquery>		
 				<cfif qGetVerificationPatientInsurance.Recordcount LTE 0>
@@ -723,5 +723,6 @@
 		
 		
 </cfcomponent>
+
 
 

@@ -61,7 +61,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getClaimStatuses" datasource="#trim(request.datasource)#">		
 		SELECT count(c.AssignedToUserID) AS valuecolumn, CONCAT(vw.Fname, ' ', vw.Lname) AS itemColumn
-		FROM Claim c JOIN view_UserAccountParameters vw ON c.AssignedToUserID = vw.UsersID
+		FROM claim c JOIN view_UserAccountParameters vw ON c.AssignedToUserID = vw.UsersID
 		GROUP BY c.AssignedToUserID, vw.Fname, vw.Lname
 	</cfquery>
 		

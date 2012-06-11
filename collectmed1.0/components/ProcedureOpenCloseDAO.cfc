@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedureOpenClose" datasource="#trim(arguments.ds)#">
-				INSERT INTO ProcedureOpenClose (ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode)
+				INSERT INTO procedureopenclose (ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localProcedureID))>						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedureOpenClose" datasource="#trim(arguments.ds)#">
-				UPDATE ProcedureOpenClose  SET
+				UPDATE procedureopenclose  SET
 					
 					ProcedureID =				
 					<cfif IsNumeric(trim(localProcedureID))>						
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteProcedureOpenClose" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM ProcedureOpenClose
+			FROM procedureopenclose
 			WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getProcedureOpenCloseID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetProcedureOpenClose" datasource="#trim(arguments.ds)#">
 	  		SELECT ProcedureOpenCloseID,ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM ProcedureOpenClose  
+			FROM procedureopenclose  
 			WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ProcedureOpenCloseID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -281,14 +281,14 @@
 			
 			<cfquery name="getEntity" datasource="PAClient_1088">
 				SELECT entityID
-				FROM Entity
+				FROM entity
 				WHERE ObjectTypeID = 3 AND Fname <cfif First EQ "NULL">IS NULL<cfelse> = '#trim(First)#'</cfif> AND  Mname <cfif Middle EQ "NULL">IS NULL<cfelse> = '#trim(Middle)#'</cfif> AND  Lname <cfif Last EQ "NULL">IS NULL<cfelse> = '#trim(Last)#'</cfif> AND  DOB <cfif dobDate EQ "NULL">IS NULL<cfelse>= #trim(dobDate)#</cfif> AND  Sex <cfif Sex EQ "NULL">IS NULL<cfelse>= #trim(Sex)#</cfif> AND  SSN <cfif SSN EQ "NULL">IS NULL<cfelse> = '#trim(SSN)#'</cfif>							
 			</cfquery>
 			
 			<cfif getEntity.recordCount GTE 1>			
 				<cfquery name="getPat" datasource="PAClient_1088">
 					SELECT ClientPatientID
-					FROM Patient
+					FROM patient
 					WHERE entityID = #getEntity.entityID#
 				</cfquery>
 				<cfoutput><font size="1">{#getPat.ClientPatientID#}</font></cfoutput>
@@ -327,3 +327,5 @@
 	</cfloop>
 					
 	
+
+

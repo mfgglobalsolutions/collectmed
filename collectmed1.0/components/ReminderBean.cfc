@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "ReminderID") AND stValues.ReminderID NEQ 0>
 				<cfquery name="qGetReminder" datasource="#trim(arguments.ds)#">
 			  		SELECT ReminderID,UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Reminder  
+					FROM reminder  
 					WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ReminderID#" /> 
 				</cfquery>		
 				<cfif qGetReminder.Recordcount LTE 0>
@@ -327,5 +327,6 @@
 		
 		
 </cfcomponent>
+
 
 

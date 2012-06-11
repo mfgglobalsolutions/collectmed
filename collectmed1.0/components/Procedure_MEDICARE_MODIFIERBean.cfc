@@ -32,7 +32,7 @@
 			<cfif StructKeyExists(stValues, "Procedure_MEDICARE_MODIFIERID") AND stValues.Procedure_MEDICARE_MODIFIERID NEQ 0>
 				<cfquery name="qGetProcedure_MEDICARE_MODIFIER" datasource="#trim(arguments.ds)#">
 			  		SELECT Procedure_MEDICARE_MODIFIERID,ProcedureID,ModifierCode,Description,DateCreated
-					FROM Procedure_MEDICARE_MODIFIER  
+					FROM procedure_medicare_modifier  
 					WHERE Procedure_MEDICARE_MODIFIERID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Procedure_MEDICARE_MODIFIERID#" /> 
 				</cfquery>		
 				<cfif qGetProcedure_MEDICARE_MODIFIER.Recordcount LTE 0>
@@ -175,5 +175,6 @@
 		
 		
 </cfcomponent>
+
 
 

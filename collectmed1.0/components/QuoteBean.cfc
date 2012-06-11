@@ -118,7 +118,7 @@
 			<cfif StructKeyExists(stValues, "QuoteID") AND stValues.QuoteID NEQ 0>
 				<cfquery name="qGetQuote" datasource="#trim(arguments.ds)#">
 			  		SELECT QuoteID,ClientID,AssignedToUserID,hidden_UsersID,hidden_TimeStart,callerFNameTBox,callerMInitialTBox,callerLNameTBox,callerPhoneTBox,patientFNameTBox,patientMInitialTBox,patientLNameTBox,roomNumberTBox,bedNumberTBox,patientAddressTBox,patientCityTBox,patientStateTBox,patientZipTBox,patientPhoneTBox,patientDOBMM,patientDOBDD,patientDOBYY,OPTION_3a_CBox_PatientSexMale,OPTION_3a_CBox_PatientSexFemale,patientSSNTBox,patientHeightFeet,patientHeightInches,patientWeightTBox,alternateContactFNameTBox,alternateContactMInitialTBox,alternateContactLNameTBox,alternateContactRelationshipTBox,alternateContactPhoneTBox,alternateContactWorkPhoneTBox,primaryInsuranceNameTBox,secondaryInsuranceNameTBox,primaryPolicyNumberTBox,secondaryPolicyNumberTBox,orderingPhysicianFNameTBox,orderingPhysicianMInitialTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,printed,Cancelled,Active,InactiveCode,DateCreated,DateModified
-					FROM Quote  
+					FROM quote  
 					WHERE QuoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.QuoteID#" /> 
 				</cfquery>		
 				<cfif qGetQuote.Recordcount LTE 0>
@@ -1129,5 +1129,6 @@
 		
 		
 </cfcomponent>
+
 
 

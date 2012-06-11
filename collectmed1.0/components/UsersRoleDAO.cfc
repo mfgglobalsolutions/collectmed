@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsersRole" datasource="#trim(arguments.ds)#">
-				INSERT INTO UsersRole (UsersID,SiteID,RoleID,Active,InactiveCode)
+				INSERT INTO usersrole (UsersID,SiteID,RoleID,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -111,7 +111,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsersRole" datasource="#trim(arguments.ds)#">
-				UPDATE UsersRole  SET
+				UPDATE usersrole  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -165,7 +165,7 @@
 
 		<cfquery name="qDeleteUsersRole" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM UsersRole
+			FROM usersrole
 			WHERE UsersRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getUsersRoleID())#" /> 
 		</cfquery>
 
@@ -185,7 +185,7 @@
 	
 		<cfquery name="qGetUsersRole" datasource="#trim(arguments.ds)#">
 	  		SELECT UsersRoleID,UsersID,SiteID,RoleID,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersRole  
+			FROM usersrole  
 			WHERE UsersRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersRoleID)#" /> 
 		</cfquery>
 		
@@ -208,5 +208,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

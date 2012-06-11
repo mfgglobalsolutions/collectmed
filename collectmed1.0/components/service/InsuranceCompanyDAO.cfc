@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam value="#arguments.InsuranceCompany.getInsuranceCompanyID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO InsuranceCompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode)
+				INSERT INTO insurancecompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.InsuranceCompany.getClientID()))>						
 						<cfqueryparam value="#trim(arguments.InsuranceCompany.getClientID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -166,7 +166,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE InsuranceCompany  SET
+				UPDATE insurancecompany  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					ClientID =				
@@ -243,7 +243,7 @@
 
 		<cfquery name="qDeleteInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 
@@ -262,7 +262,7 @@
 	
 		<cfquery name="qGetInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-			FROM InsuranceCompany  
+			FROM insurancecompany  
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 		
@@ -359,5 +359,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

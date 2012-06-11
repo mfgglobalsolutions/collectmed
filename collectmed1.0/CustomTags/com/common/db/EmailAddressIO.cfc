@@ -534,7 +534,7 @@
 	
 		<cfquery name="qGetEmailAddress" datasource="#trim(request.datasource)#">
 	  		SELECT EmailAddressID,SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EmailAddress  
+			FROM emailaddress  
 			WHERE EmailAddressID = #trim(arguments.EmailAddressID)# 
 		</cfquery>
 		
@@ -905,7 +905,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EmailAddress  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EmailAddressID ">
+				<cfset sqlStatement = "INSERT INTO emailaddress  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EmailAddressID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1079,7 +1079,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEmailAddressQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM EmailAddress   
+				FROM emailaddress   
 				WHERE 1=1
 					<cfif EmailAddressID NEQ "" AND IsNumeric(EmailAddressID)>AND EmailAddressID = #EmailAddressID#</cfif>
 					<cfif EmailAddressID_IN NEQ "">AND EmailAddressID IN(#trim(EmailAddressID_IN)#)</cfif>
@@ -1168,5 +1168,7 @@
 
 	
 </cfcomponent>
+
+
 
 

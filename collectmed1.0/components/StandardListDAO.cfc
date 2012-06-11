@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateStandardList" datasource="#trim(arguments.ds)#">
-				INSERT INTO StandardList (SiteID,ListName,ListDescription,Active,InactiveCode)
+				INSERT INTO standardlist (SiteID,ListName,ListDescription,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -115,7 +115,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateStandardList" datasource="#trim(arguments.ds)#">
-				UPDATE StandardList  SET
+				UPDATE standardlist  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -173,7 +173,7 @@
 
 		<cfquery name="qDeleteStandardList" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM StandardList
+			FROM standardlist
 			WHERE StandardListID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getStandardListID())#" /> 
 		</cfquery>
 
@@ -193,7 +193,7 @@
 	
 		<cfquery name="qGetStandardList" datasource="#trim(arguments.ds)#">
 	  		SELECT StandardListID,SiteID,ListName,ListDescription,Active,InactiveCode,DateCreated,DateModified
-			FROM StandardList  
+			FROM standardlist  
 			WHERE StandardListID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.StandardListID)#" /> 
 		</cfquery>
 		
@@ -216,5 +216,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

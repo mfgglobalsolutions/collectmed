@@ -14,7 +14,7 @@
 			
 			<cfquery name="getFileID" datasource="PAClient_#trim(ClientID)#">
 				SELECT FileID 
-				FROM Interchange  
+				FROM interchange  
 				WHERE InterchangeID = #trim(InterchangeID)#
 			</cfquery>
 									

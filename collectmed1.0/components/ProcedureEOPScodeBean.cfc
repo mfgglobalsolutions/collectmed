@@ -34,7 +34,7 @@
 			<cfif StructKeyExists(stValues, "ClaimEOPSCodeID") AND stValues.ClaimEOPSCodeID NEQ 0>
 				<cfquery name="qGetProcedureEOPScode" datasource="#trim(arguments.ds)#">
 			  		SELECT ClaimEOPSCodeID,ProcedureID,EOPSCode,Status,ClosingUserID,CloseDate
-					FROM ProcedureEOPScode  
+					FROM procedureeopscode  
 					WHERE ClaimEOPSCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClaimEOPSCodeID#" /> 
 				</cfquery>		
 				<cfif qGetProcedureEOPScode.Recordcount LTE 0>
@@ -202,5 +202,6 @@
 		
 		
 </cfcomponent>
+
 
 

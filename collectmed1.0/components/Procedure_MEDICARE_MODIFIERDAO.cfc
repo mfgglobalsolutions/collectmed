@@ -21,7 +21,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure_MEDICARE_MODIFIER" datasource="#trim(arguments.ds)#">
-				INSERT INTO Procedure_MEDICARE_MODIFIER (ProcedureID,ModifierCode,Description)
+				INSERT INTO procedure_medicare_modifier (ProcedureID,ModifierCode,Description)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localModifierCode))>						
@@ -100,7 +100,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure_MEDICARE_MODIFIER" datasource="#trim(arguments.ds)#">
-				UPDATE Procedure_MEDICARE_MODIFIER  SET
+				UPDATE procedure_medicare_modifier  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -141,7 +141,7 @@
 
 		<cfquery name="qDeleteProcedure_MEDICARE_MODIFIER" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Procedure_MEDICARE_MODIFIER
+			FROM procedure_medicare_modifier
 			WHERE Procedure_MEDICARE_MODIFIERID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getProcedure_MEDICARE_MODIFIERID())#" /> 
 		</cfquery>
 
@@ -161,7 +161,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_MODIFIER" datasource="#trim(arguments.ds)#">
 	  		SELECT Procedure_MEDICARE_MODIFIERID,ProcedureID,ModifierCode,Description,DateCreated
-			FROM Procedure_MEDICARE_MODIFIER  
+			FROM procedure_medicare_modifier  
 			WHERE Procedure_MEDICARE_MODIFIERID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Procedure_MEDICARE_MODIFIERID)#" /> 
 		</cfquery>
 		
@@ -184,5 +184,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -578,7 +578,7 @@
 	
 		<cfquery name="qGetClaim_ProcessXMLToDB" datasource="#trim(request.datasource)#">
 	  		SELECT Claim_ProcessXMLToDBID,InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode,DateCreated,DateModified
-			FROM Claim_ProcessXMLToDB  
+			FROM claim_processxmltodb  
 			WHERE Claim_ProcessXMLToDBID = #trim(arguments.Claim_ProcessXMLToDBID)# 
 		</cfquery>
 		
@@ -801,7 +801,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Claim_ProcessXMLToDB  SET #columnsToUpdate# WHERE Claim_ProcessXMLToDBID = #trim(variables.instance.Claim_ProcessXMLToDBID)#">
+				<cfset sqlStatement = "UPDATE claim_processxmltodb  SET #columnsToUpdate# WHERE Claim_ProcessXMLToDBID = #trim(variables.instance.Claim_ProcessXMLToDBID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -948,7 +948,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Claim_ProcessXMLToDB  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_ProcessXMLToDBID ">
+				<cfset sqlStatement = "INSERT INTO claim_processxmltodb  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_ProcessXMLToDBID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1125,7 +1125,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaim_ProcessXMLToDBQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Claim_ProcessXMLToDB   
+				FROM claim_processxmltodb   
 				WHERE 1=1
 					<cfif Claim_ProcessXMLToDBID NEQ "" AND IsNumeric(Claim_ProcessXMLToDBID)>AND Claim_ProcessXMLToDBID = #Claim_ProcessXMLToDBID#</cfif>
 					<cfif Claim_ProcessXMLToDBID_IN NEQ "">AND Claim_ProcessXMLToDBID IN(#trim(Claim_ProcessXMLToDBID_IN)#)</cfif>

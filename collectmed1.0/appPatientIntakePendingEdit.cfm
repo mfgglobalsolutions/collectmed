@@ -1274,7 +1274,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getPendingIntake" datasource="#request.datasource#">
 		SELECT patientFName, patientLName, RecordID, UsersID, intakeXML
-		FROM intakeAutoSave
+		FROM intakeautosave
 		WHERE RecordID = #trim(recordID)#
 	</cfquery>
 	
@@ -1671,5 +1671,6 @@
 		hcpcCost8TBox="#trim(hcpcCost8TBox)#"
 		hcpcCost9TBox="#trim(hcpcCost9TBox)#"
 		hcpcCost10TBox="#trim(hcpcCost10TBox)#">
+
 
 

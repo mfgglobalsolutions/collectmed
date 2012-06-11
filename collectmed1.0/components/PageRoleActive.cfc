@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "PageRoleID") AND stValues.PageRoleID NEQ 0>
 				<cfquery name="qGetPageRole" datasource="#trim(variables.ds)#">
 			  		SELECT PageRoleID,PageID,RoleID,SiteID,Active,InactiveCode,DateCreated,DateModified
-					FROM PageRole  
+					FROM pagerole  
 					WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageRoleID#" /> 
 				</cfquery>		
 				<cfif qGetPageRole.Recordcount LTE 0>
@@ -269,7 +269,7 @@
 	
 		<cfquery name="qGetPageRole" datasource="#trim(variables.ds)#">
 	  		SELECT PageRoleID,PageID,RoleID,SiteID,Active,InactiveCode,DateCreated,DateModified
-			FROM PageRole  
+			FROM pagerole  
 			WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageRoleID)#" /> 
 		</cfquery>
 		
@@ -297,7 +297,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePageRole" datasource="#trim(variables.ds)#">
-				INSERT INTO PageRole (PageID,RoleID,SiteID,InactiveCode)
+				INSERT INTO pagerole (PageID,RoleID,SiteID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localRoleID)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -377,7 +377,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePageRole" datasource="#trim(variables.ds)#">
-				UPDATE PageRole  SET
+				UPDATE pagerole  SET
 					
 					PageID =						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -427,7 +427,7 @@
 
 		<cfquery name="qDeletePageRole" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM PageRole
+			FROM pagerole
 			WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getPageRoleID())#" /> 
 		</cfquery>
 
@@ -449,5 +449,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

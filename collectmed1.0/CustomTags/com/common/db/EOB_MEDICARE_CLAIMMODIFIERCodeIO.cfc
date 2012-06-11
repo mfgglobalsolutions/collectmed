@@ -453,7 +453,7 @@
 	
 		<cfquery name="qGetEOB_MEDICARE_CLAIMMODIFIERCode" datasource="pa_master">
 	  		SELECT RecordID,StandardListItemID,Modifier,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_MEDICARE_CLAIMMODIFIERCode  
+			FROM eob_medicare_claimmodifiercode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -814,7 +814,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_MEDICARE_CLAIMMODIFIERCode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO eob_medicare_claimmodifiercode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -982,7 +982,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEOB_MEDICARE_CLAIMMODIFIERCodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EOB_MEDICARE_CLAIMMODIFIERCode   
+				FROM eob_medicare_claimmodifiercode   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -1065,5 +1065,7 @@
 
 	
 </cfcomponent>
+
+
 
 

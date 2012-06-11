@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "LogID") AND stValues.LogID NEQ 0>
 				<cfquery name="qGetLog" datasource="#trim(arguments.ds)#">
 			  		SELECT LogID,Code,IPaddress,LogText,Active,InactiveCode,DateCreated,DateModified
-					FROM Log  
+					FROM log  
 					WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.LogID#" /> 
 				</cfquery>		
 				<cfif qGetLog.Recordcount LTE 0>
@@ -245,5 +245,6 @@
 		
 		
 </cfcomponent>
+
 
 

@@ -46,7 +46,7 @@
 			<cfif StructKeyExists(stValues, "PageHitID") AND stValues.PageHitID NEQ 0>
 				<cfquery name="qGetPageHit" datasource="#trim(arguments.ds)#">
 			  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
-					FROM PageHit  
+					FROM pagehit  
 					WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageHitID#" /> 
 				</cfquery>		
 				<cfif qGetPageHit.Recordcount LTE 0>
@@ -341,5 +341,6 @@
 		
 		
 </cfcomponent>
+
 
 

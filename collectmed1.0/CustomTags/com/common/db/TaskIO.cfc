@@ -617,7 +617,7 @@
 	
 		<cfquery name="qGetTask" datasource="#trim(request.datasource)#">
 	  		SELECT TaskID,ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Task  
+			FROM task  
 			WHERE TaskID = #trim(arguments.TaskID)# 
 		</cfquery>
 		
@@ -1008,7 +1008,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Task  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS TaskID ">
+				<cfset sqlStatement = "INSERT INTO task  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS TaskID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1194,7 +1194,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getTaskQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Task   
+				FROM task   
 				WHERE 1=1
 					<cfif TaskID NEQ "" AND IsNumeric(TaskID)>AND TaskID = #TaskID#</cfif>
 					<cfif TaskID_IN NEQ "">AND TaskID IN(#trim(TaskID_IN)#)</cfif>
@@ -1295,5 +1295,7 @@
 
 	
 </cfcomponent>
+
+
 
 

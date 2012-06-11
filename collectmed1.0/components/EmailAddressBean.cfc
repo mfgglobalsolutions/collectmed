@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "EmailAddressID") AND stValues.EmailAddressID NEQ 0>
 				<cfquery name="qGetEmailAddress" datasource="#trim(arguments.ds)#">
 			  		SELECT EmailAddressID,SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EmailAddress  
+					FROM emailaddress  
 					WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EmailAddressID#" /> 
 				</cfquery>		
 				<cfif qGetEmailAddress.Recordcount LTE 0>
@@ -299,7 +299,7 @@
 					
 			<cfquery name="getEmail" datasource="#trim(arguments.ds)#">
 				SELECT EmailAddressID
-				FROM EmailAddress  
+				FROM emailaddress  
 				WHERE Email = '#trim(variables.email)#'
 			</cfquery>
 									
@@ -324,5 +324,6 @@
 		
 		
 </cfcomponent>
+
 
 

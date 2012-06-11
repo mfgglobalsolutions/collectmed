@@ -85,8 +85,8 @@
 			
 				<cfquery name="getInsComs" datasource="#trim(arguments.datasource)#">
 					SELECT pic.recordID, pic.InsuranceCompanyID, pic.PrimSecTer, pic.PolicyNumber, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersDOB, pic.PolicyHoldersSex, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.GroupNumber, pic.GroupName, pic.Relationship, pic.Deductible, pic.PayPercentage, ic.InsuranceCompanyName
-					FROM PatientInsuranceCompany pic
-					INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+					FROM patientinsurancecompany pic
+					INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 					WHERE pic.patientID = <cfqueryparam value="#trim(arguments.patientID)#" cfsqltype="CF_SQL_VARCHAR" />
 					<cfif arguments.insuranceCompanyID>
 						AND pic.insuranceCompanyID = <cfqueryparam value="#trim(arguments.insuranceCompanyID)#" cfsqltype="CF_SQL_INTEGER" />
@@ -110,5 +110,7 @@
 		
 	
 </cfcomponent>
+
+
 
 

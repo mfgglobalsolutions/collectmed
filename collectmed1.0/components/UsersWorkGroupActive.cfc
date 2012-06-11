@@ -34,7 +34,7 @@
 			<cfif StructKeyExists(stValues, "UsersWorkGroupID") AND stValues.UsersWorkGroupID NEQ 0>
 				<cfquery name="qGetUsersWorkGroup" datasource="#trim(variables.ds)#">
 			  		SELECT UsersWorkGroupID,UsersID,WorkGroupID,DateCreated
-					FROM UsersWorkGroup  
+					FROM usersworkgroup  
 					WHERE UsersWorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersWorkGroupID#" /> 
 				</cfquery>		
 				<cfif qGetUsersWorkGroup.Recordcount LTE 0>
@@ -169,7 +169,7 @@
 	
 		<cfquery name="qGetUsersWorkGroup" datasource="#trim(variables.ds)#">
 	  		SELECT UsersWorkGroupID,UsersID,WorkGroupID,DateCreated
-			FROM UsersWorkGroup  
+			FROM usersworkgroup  
 			WHERE UsersWorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.UsersWorkGroupID)#" /> 
 		</cfquery>
 		
@@ -193,7 +193,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateUsersWorkGroup" datasource="#trim(variables.ds)#">
-				INSERT INTO UsersWorkGroup (UsersID,WorkGroupID)
+				INSERT INTO usersworkgroup (UsersID,WorkGroupID)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localWorkGroupID)#" cfsqltype="CF_SQL_INTEGER" />	
@@ -259,7 +259,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateUsersWorkGroup" datasource="#trim(variables.ds)#">
-				UPDATE UsersWorkGroup  SET
+				UPDATE usersworkgroup  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -289,7 +289,7 @@
 
 		<cfquery name="qDeleteUsersWorkGroup" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM UsersWorkGroup
+			FROM usersworkgroup
 			WHERE UsersWorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getUsersWorkGroupID())#" /> 
 		</cfquery>
 
@@ -311,5 +311,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

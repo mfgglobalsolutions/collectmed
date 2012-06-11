@@ -919,7 +919,7 @@
 	
 		<cfquery name="qGetEntity" datasource="#trim(request.datasource)#">
 	  		SELECT EntityID,SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode,DateCreated,DateModified
-			FROM Entity  
+			FROM entity  
 			WHERE EntityID = #trim(arguments.EntityID)# 
 		</cfquery>
 		
@@ -1327,7 +1327,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Entity  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityID ">
+				<cfset sqlStatement = "INSERT INTO entity  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1534,7 +1534,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntityQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Entity   
+				FROM entity   
 				WHERE 1=1
 					<cfif EntityID NEQ "" AND IsNumeric(EntityID)>AND EntityID = #EntityID#</cfif>
 					<cfif EntityID_IN NEQ "">AND EntityID IN(#trim(EntityID_IN)#)</cfif>
@@ -1656,5 +1656,6 @@
 
 	
 </cfcomponent>
+
 
 

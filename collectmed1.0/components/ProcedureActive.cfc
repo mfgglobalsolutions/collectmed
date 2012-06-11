@@ -353,7 +353,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure" datasource="#trim(variables.ds)#">
-				INSERT INTO Procedure (ClaimID,ProcedureCode,PriorProcedureCode,ServiceDateFrom,ServiceDateTo,BilledQuantity,BilledAmount,PaidQuantity,PaidAmount)
+				INSERT INTO procedure (ClaimID,ProcedureCode,PriorProcedureCode,ServiceDateFrom,ServiceDateTo,BilledQuantity,BilledAmount,PaidQuantity,PaidAmount)
 				VALUES (						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localProcedureCode)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -467,7 +467,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure" datasource="#trim(variables.ds)#">
-				UPDATE Procedure  SET
+				UPDATE procedure  SET
 					
 					ClaimID =						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -546,7 +546,7 @@
 
 		<cfquery name="qDeleteProcedure" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Procedure
+			FROM procedure
 			WHERE ProcedureID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getProcedureID())#" /> 
 		</cfquery>
 
@@ -568,5 +568,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

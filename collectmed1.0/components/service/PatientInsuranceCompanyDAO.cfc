@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM PatientInsuranceCompany
+			FROM patientinsurancecompany
 			WHERE recordID = <cfqueryparam value="#arguments.PatientInsuranceCompany.getRecordID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePatientInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO PatientInsuranceCompany (PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode)
+				INSERT INTO patientinsurancecompany (PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(arguments.PatientInsuranceCompany.getPatientID())#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(arguments.PatientInsuranceCompany.getInsuranceCompanyID())#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -248,7 +248,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdatePatientInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE PatientInsuranceCompany  SET
+				UPDATE patientinsurancecompany  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					PatientID =						
@@ -443,7 +443,7 @@
 
 		<cfquery name="qDeletePatientInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM PatientInsuranceCompany
+			FROM patientinsurancecompany
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 
@@ -462,7 +462,7 @@
 	
 		<cfquery name="qGetPatientInsuranceCompany" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT recordID,PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode,DateCreated,DateModified
-			FROM PatientInsuranceCompany  
+			FROM patientinsurancecompany  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -559,5 +559,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

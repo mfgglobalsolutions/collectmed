@@ -48,7 +48,7 @@
 			<cfif StructKeyExists(stValues, "ReminderID") AND stValues.ReminderID NEQ 0>
 				<cfquery name="qGetReminder" datasource="#trim(variables.ds)#">
 			  		SELECT ReminderID,UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Reminder  
+					FROM reminder  
 					WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ReminderID#" /> 
 				</cfquery>		
 				<cfif qGetReminder.Recordcount LTE 0>
@@ -343,7 +343,7 @@
 	
 		<cfquery name="qGetReminder" datasource="#trim(variables.ds)#">
 	  		SELECT ReminderID,UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Reminder  
+			FROM reminder  
 			WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ReminderID)#" /> 
 		</cfquery>
 		
@@ -374,7 +374,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateReminder" datasource="#trim(variables.ds)#">
-				INSERT INTO Reminder (UsersID,ObjectID,InstanceID,showDate,Note,InactiveCode)
+				INSERT INTO reminder (UsersID,ObjectID,InstanceID,showDate,Note,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localObjectID))>						
@@ -470,7 +470,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateReminder" datasource="#trim(variables.ds)#">
-				UPDATE Reminder  SET
+				UPDATE reminder  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -537,7 +537,7 @@
 
 		<cfquery name="qDeleteReminder" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Reminder
+			FROM reminder
 			WHERE ReminderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getReminderID())#" /> 
 		</cfquery>
 
@@ -559,5 +559,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

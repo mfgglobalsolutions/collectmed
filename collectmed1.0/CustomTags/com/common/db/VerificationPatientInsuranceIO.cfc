@@ -1365,7 +1365,7 @@
 	
 		<cfquery name="qGetVerificationPatientInsurance" datasource="#trim(request.datasource)#">
 	  		SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-			FROM VerificationPatientInsurance  
+			FROM verificationpatientinsurance  
 			WHERE VerificationPatientInsuranceID = #trim(arguments.VerificationPatientInsuranceID)# 
 		</cfquery>
 		
@@ -1771,7 +1771,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO VerificationPatientInsurance  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS VerificationPatientInsuranceID ">
+				<cfset sqlStatement = "INSERT INTO verificationpatientinsurance  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS VerificationPatientInsuranceID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -2002,7 +2002,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getVerificationPatientInsuranceQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM VerificationPatientInsurance   
+				FROM verificationpatientinsurance   
 				WHERE 1=1
 					<cfif VerificationPatientInsuranceID NEQ "" AND IsNumeric(VerificationPatientInsuranceID)>AND VerificationPatientInsuranceID = #VerificationPatientInsuranceID#</cfif>
 					<cfif VerificationPatientInsuranceID_IN NEQ "">AND VerificationPatientInsuranceID IN(#trim(VerificationPatientInsuranceID_IN)#)</cfif>
@@ -2148,5 +2148,7 @@
 
 	
 </cfcomponent>
+
+
 
 

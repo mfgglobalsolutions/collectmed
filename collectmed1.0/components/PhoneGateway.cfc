@@ -60,7 +60,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT PhoneID
-			FROM Phone
+			FROM phone
 			WHERE PhoneID IN(#trim(arguments.idList)#) 
 		</cfquery>
 
@@ -89,7 +89,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT #trim(arguments.fieldList)#
-			FROM Phone
+			FROM phone
 			WHERE PhoneID IN(#trim(arguments.idList)#) 
 			LIMIT 100
 		</cfquery>

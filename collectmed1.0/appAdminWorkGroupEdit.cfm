@@ -35,7 +35,7 @@
 <!-------------------------------------------------------------------------------------->								
 	<cfquery name="getWorkGroup" datasource="#trim(request.datasource)#">
 		SELECT WorkGroupID, WorkGroupName, Description,	MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd
-		FROM WorkGroup
+		FROM workgroup
 		WHERE WorkGroupID = #trim(WorkGroupID)#
 	</cfquery>		
 		
@@ -1073,7 +1073,7 @@
 		<!--- UYpdate the record.                                                            --->
 		<!-------------------------------------------------------------------------------------->		
 		<cfquery name="updateWorkGroup" datasource="#trim(request.datasource)#">
-			UPDATE WorkGroup
+			UPDATE workgroup
 			SET WorkGroupName = '#trim(form.WorkGroupName)#',
 			Description = '#trim(form.Description)#',								
 			MondayStart = #MondayStart#,
@@ -1102,3 +1102,4 @@
 	
 	
 	</cfif>		
+

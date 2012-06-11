@@ -38,7 +38,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.datasource.getDSName()#">
 				SELECT RoutePatientID,RouteID,SubRoute,PatientID,FName,LName,City,IDtext,SuppliesText,Checked,Active,InactiveCode,DateCreated,DateModified
-				FROM RoutePatient
+				FROM routepatient
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "RoutePatientID")>				
@@ -108,5 +108,6 @@
 		
 	
 </cfcomponent>
+
 
 

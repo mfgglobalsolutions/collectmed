@@ -5,7 +5,7 @@
 
 <cfquery name="getIntakes" datasource="#trim(request.datasource)#">
 	SELECT IntakeID, PatientSSNTBox
-	FROM Intake
+	FROM intake
 </cfquery>
 
 <cfoutput>
@@ -42,4 +42,5 @@
 	</cfloop>
 
 </cfoutput>
+
 

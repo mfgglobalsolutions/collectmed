@@ -65,7 +65,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<cfquery name="getUserEmailAddresses" datasource="#trim(request.datasource)#">
 			SELECT EmailAddressID, EmailTypeID, Email, IsDefault
-			FROM EmailAddress
+			FROM emailaddress
 			WHERE EntityID = #trim(accesscontrol.EntityID)#
 		</cfquery>		
 		
@@ -96,7 +96,7 @@
 		<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(newEntryPoint))>
 					
 		<cfquery name="updateUsersAccount" datasource="#trim(request.datasource)#">
-			UPDATE Users  
+			UPDATE users  
 			SET EntryPoint = '#trim(EntryPoint)#', ChangedPassword = 0
 			WHERE UsersID = #trim(UsersID)#
 		</cfquery>		
@@ -143,3 +143,4 @@
 		</cf_gcBorderedTable>
 		
 		
+

@@ -46,7 +46,7 @@
 			<cfif StructKeyExists(stValues, "EmailAddressID") AND stValues.EmailAddressID NEQ 0>
 				<cfquery name="qGetEmailAddress" datasource="#trim(variables.ds)#">
 			  		SELECT EmailAddressID,SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EmailAddress  
+					FROM emailaddress  
 					WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EmailAddressID#" /> 
 				</cfquery>		
 				<cfif qGetEmailAddress.Recordcount LTE 0>
@@ -313,7 +313,7 @@
 	
 		<cfquery name="qGetEmailAddress" datasource="#trim(variables.ds)#">
 	  		SELECT EmailAddressID,SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EmailAddress  
+			FROM emailaddress  
 			WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EmailAddressID)#" /> 
 		</cfquery>
 		
@@ -343,7 +343,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEmailAddress" datasource="#trim(variables.ds)#">
-				INSERT INTO EmailAddress (SiteID,EntityID,EmailTypeID,Email,InactiveCode)
+				INSERT INTO emailaddress (SiteID,EntityID,EmailTypeID,Email,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -436,7 +436,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEmailAddress" datasource="#trim(variables.ds)#">
-				UPDATE EmailAddress  SET
+				UPDATE emailaddress  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -500,7 +500,7 @@
 
 		<cfquery name="qDeleteEmailAddress" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EmailAddress
+			FROM emailaddress
 			WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getEmailAddressID())#" /> 
 		</cfquery>
 
@@ -522,7 +522,7 @@
 					
 			<cfquery name="getEmail" datasource="#trim(variables.ds)#">
 				SELECT EmailAddressID
-				FROM EmailAddress  
+				FROM emailaddress  
 				WHERE Email = '#trim(variables.email)#'
 			</cfquery>
 									
@@ -547,5 +547,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

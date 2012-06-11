@@ -2,7 +2,7 @@
 
 		<cfquery name="getIntake" datasource="#trim(request.datasource)#">
 			SELECT i.*, ih.*
-			FROM Intake i INNER JOIN IntakeHCPC ih ON i.intakeID = ih.intakeID
+			FROM intake i INNER JOIN intakehcpc ih ON i.intakeID = ih.intakeID
 			WHERE i.IntakeID = #trim(form.intakeID)#
 		</cfquery>
 
@@ -1890,3 +1890,4 @@
 			<cfset request.intakeNote.addNoteEntry(clientID: trim(session.clientID), NoteID: intakeNoteID, noteEntry: '#trim(note)#', userID: #trim(session.user.getUsersID())#, userFName: '#trim(session.user.getFName())#', userLName: '#trim(session.user.getLName())#')>
 
 		</cfif>
+

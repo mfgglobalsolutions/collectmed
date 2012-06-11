@@ -408,7 +408,7 @@
 	
 		<cfquery name="qGetDefinition" datasource="pa_master">
 	  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
-			FROM Definition  
+			FROM definition  
 			WHERE DefinitionID = #trim(arguments.DefinitionID)# 
 		</cfquery>
 		
@@ -764,7 +764,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Definition  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS DefinitionID ">
+				<cfset sqlStatement = "INSERT INTO definition  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS DefinitionID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -929,7 +929,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getDefinitionQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Definition   
+				FROM definition   
 				WHERE 1=1
 					<cfif DefinitionID NEQ "" AND IsNumeric(DefinitionID)>AND DefinitionID = #DefinitionID#</cfif>
 					<cfif DefinitionID_IN NEQ "">AND DefinitionID IN(#trim(DefinitionID_IN)#)</cfif>
@@ -1009,5 +1009,7 @@
 
 	
 </cfcomponent>
+
+
 
 

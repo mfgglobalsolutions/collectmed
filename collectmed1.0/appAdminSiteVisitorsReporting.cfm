@@ -48,7 +48,7 @@
 <!------------------------------------------------------------------>	
 	<cfquery name="TodaysVisitors" datasource="#datasource#">
 		SELECT DISTINCT(IPAddress)
-		FROM PageHit
+		FROM pagehit
 		WHERE DateCreated >= #DateCreatedTodayStart#
 			 AND DateCreated <= #DateCreatedTodayEnd#			 
 	</cfquery>
@@ -66,7 +66,7 @@
 <!------------------------------------------------------------------>	
 	<cfquery name="YesterdaysVisitors" datasource="#datasource#">
 		SELECT DISTINCT(IPAddress)
-		FROM PageHit
+		FROM pagehit
 		WHERE DateCreated >= #DateCreatedYesterdayStart#
 			 AND DateCreated <= #DateCreatedYesterdayEnd#			 
 	</cfquery>
@@ -107,7 +107,7 @@
 		
 		<cfquery name="thisWeeksVisitors" datasource="#datasource#">
 			SELECT DISTINCT(IPAddress)
-			FROM PageHit
+			FROM pagehit
 			WHERE DateCreated >= #startOfWeek#
 				 AND DateCreated <= #endOfWeek#			 
 		</cfquery>

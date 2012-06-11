@@ -120,7 +120,7 @@
 												
 			<cfsavecontent variable="sqlStatement">
 				<cfoutput>
-					UPDATE Intake SET dateModified = now()#PreserveSingleQuotes(foundVar)# #trim(pXML)# WHERE intakeID = #trim(form.intakeID)#
+					UPDATE intake SET dateModified = now()#PreserveSingleQuotes(foundVar)# #trim(pXML)# WHERE intakeID = #trim(form.intakeID)#
 				</cfoutput>
 			</cfsavecontent> 
 			
@@ -145,7 +145,7 @@
 			<cfif trim(foundVarHCPC) NEQ "">
 				<cfsavecontent variable="sqlStatementHCPC">
 					<cfoutput>
-						UPDATE IntakeHCPC SET dateModified = now()#PreserveSingleQuotes(foundVarHCPC)# WHERE intakeID = #trim(form.intakeID)#
+						UPDATE intakehcpc SET dateModified = now()#PreserveSingleQuotes(foundVarHCPC)# WHERE intakeID = #trim(form.intakeID)#
 					</cfoutput>
 				</cfsavecontent> 
 			</cfif>				
@@ -314,14 +314,14 @@
 		
 			<!---<cfquery name="checkAutoSave" datasource="#trim(request.datasource)#">
 				SELECT RecordID
-				FROM IntakeAutoSave
+				FROM intakeautosave
 				WHERE UsersID = #trim(hidden_UsersID)# AND PatientFName = '#trim(patientFNameTBox)#' AND PatientLName = '#trim(patientLNameTBox)#'
 			</cfquery>		--->	
 			
 			<cfif checkAutoSave.RecordCount GTE 1>	
 			
 				<cfquery name="updateAutoSave" datasource="#trim(request.datasource)#">
-					UPDATE IntakeAutoSave
+					UPDATE intakeautosave
 					SET IntakeXML = '#trim(xmlStruct)#', dateModified = now()
 					WHERE RecordID = #trim(checkAutoSave.RecordID)#
 				</cfquery>			
@@ -352,3 +352,6 @@
 
 
 	--->
+
+
+

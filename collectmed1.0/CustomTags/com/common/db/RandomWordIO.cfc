@@ -367,7 +367,7 @@
 	
 		<cfquery name="qGetRandomWord" datasource="pa_master">
 	  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
-			FROM RandomWord  
+			FROM randomword  
 			WHERE RandomWordID = #trim(arguments.RandomWordID)# 
 		</cfquery>
 		
@@ -721,7 +721,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO RandomWord  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RandomWordID ">
+				<cfset sqlStatement = "INSERT INTO randomword  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RandomWordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -883,7 +883,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getRandomWordQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM RandomWord   
+				FROM randomword   
 				WHERE 1=1
 					<cfif RandomWordID NEQ "" AND IsNumeric(RandomWordID)>AND RandomWordID = #RandomWordID#</cfif>
 					<cfif RandomWordID_IN NEQ "">AND RandomWordID IN(#trim(RandomWordID_IN)#)</cfif>
@@ -960,5 +960,7 @@
 
 	
 </cfcomponent>
+
+
 
 

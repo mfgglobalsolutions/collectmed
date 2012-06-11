@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "NoteID") AND stValues.NoteID NEQ 0>
 				<cfquery name="qGetNote" datasource="#trim(arguments.ds)#">
 			  		SELECT NoteID,ClientID,ObjectID,InstanceID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Note  
+					FROM note  
 					WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.NoteID#" /> 
 				</cfquery>		
 				<cfif qGetNote.Recordcount LTE 0>
@@ -275,5 +275,6 @@
 		
 		
 </cfcomponent>
+
 
 

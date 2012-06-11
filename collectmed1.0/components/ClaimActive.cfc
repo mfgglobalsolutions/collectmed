@@ -72,7 +72,7 @@
 			<cfif StructKeyExists(stValues, "ClaimID") AND stValues.ClaimID NEQ 0>
 				<cfquery name="qGetClaim" datasource="#trim(variables.ds)#">
 			  		SELECT ClaimID,InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode,DateCreated
-					FROM Claim  
+					FROM claim  
 					WHERE ClaimID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClaimID#" /> 
 				</cfquery>		
 				<cfif qGetClaim.Recordcount LTE 0>
@@ -627,7 +627,7 @@
 	
 		<cfquery name="qGetClaim" datasource="#trim(variables.ds)#">
 	  		SELECT ClaimID,InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode,DateCreated
-			FROM Claim  
+			FROM claim  
 			WHERE ClaimID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimID)#" /> 
 		</cfquery>
 		
@@ -670,7 +670,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim" datasource="#trim(variables.ds)#">
-				INSERT INTO Claim (InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,InactiveCode)
+				INSERT INTO claim (InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localInterchangeClaimID)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localClientAssignedClaimID) NEQ "" AND trim(localClientAssignedClaimID) NEQ "@@" AND trim(localClientAssignedClaimID) NEQ "NULL">						
@@ -856,7 +856,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim" datasource="#trim(variables.ds)#">
-				UPDATE Claim  SET
+				UPDATE claim  SET
 					
 					InterchangeClaimID =						
 						<cfqueryparam value="#trim(localInterchangeClaimID)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -1007,7 +1007,7 @@
 
 		<cfquery name="qDeleteClaim" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Claim
+			FROM claim
 			WHERE ClaimID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClaimID())#" /> 
 		</cfquery>
 
@@ -1029,5 +1029,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

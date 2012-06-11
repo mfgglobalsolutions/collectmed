@@ -446,7 +446,7 @@
 	
 		<cfquery name="qGetSystemUserMessage" datasource="#trim(request.datasource)#">
 	  		SELECT SystemUserMessageID,UsersID,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM SystemUserMessage  
+			FROM systemusermessage  
 			WHERE SystemUserMessageID = #trim(arguments.SystemUserMessageID)# 
 		</cfquery>
 		
@@ -810,7 +810,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO SystemUserMessage  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SystemUserMessageID ">
+				<cfset sqlStatement = "INSERT INTO systemusermessage  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SystemUserMessageID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -978,7 +978,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getSystemUserMessageQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM SystemUserMessage   
+				FROM systemusermessage   
 				WHERE 1=1
 					<cfif SystemUserMessageID NEQ "" AND IsNumeric(SystemUserMessageID)>AND SystemUserMessageID = #SystemUserMessageID#</cfif>
 					<cfif SystemUserMessageID_IN NEQ "">AND SystemUserMessageID IN(#trim(SystemUserMessageID_IN)#)</cfif>
@@ -1061,5 +1061,7 @@
 
 	
 </cfcomponent>
+
+
 
 

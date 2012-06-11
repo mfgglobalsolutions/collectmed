@@ -207,8 +207,8 @@
 						
 			<cfquery name="PatientIns" datasource="paclient_#ClientID#">
 				SELECT pic.recordID, pic.Deductible, pic.GroupName, pic.GroupNumber, ic.InsuranceCompanyDBA, pic.InsuranceCompanyID, ic.InsuranceCompanyName, pic.PayPercentage, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity,  pic.PolicyHoldersDOB AS PolicyHoldersDOB, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersSex, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyNumber, pic.PrimSecTer, pic.Relationship, ic.EntityID AS Z_ICEntityID
-				FROM PatientInsuranceCompany pic
-				INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+				FROM patientinsurancecompany pic
+				INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 				WHERE  pic.patientID = #trim(patientID)# AND pic.Active = 1 
 				Order By  pic.PrimSecTer
 			</cfquery> 
@@ -221,7 +221,7 @@
 					<cfquery name="getVerifications" datasource="paclient_#ClientID#">
 						SELECT vpi.VerificationPatientInsuranceID, vpi.DateCreated AS DateCreated, vpi.VerificationDateAS VerificationDate, vpi.VerificationTime,
 						CONCAT(vu.FName, ' ', vu.LName) AS Fullname, vpi.VerificationRepFName, vpi.VerificationRepLName, vpi.VerificationHaveInsFromDateAS VerificationHaveInsFromDate, vpi.VerificationHaveInsToDateAS VerificationHaveInsToDate						 
-						FROM VerificationPatientInsurance vpi		
+						FROM verificationpatientinsurance vpi		
 						LEFT JOIN view_UserAccountParameters vu on vpi.UsersID = vu.UsersID			
 						WHERE vpi.picID = #trim(recordID)# AND vpi.Active = 1
 						ORDER BY vpi.DateCreated DESC				
@@ -426,8 +426,8 @@
 			<cfsavecontent variable="sqlStatement">			
 				<cfoutput>
 					SELECT p.EntityID, p.PatientID, e.PrefixName, e.FName, LEFT(e.Mname, 1) AS Mname, e.LName, e.SSN, e.DOB as DOB, e.Sex, e.Weight, e.HeightinInches, e.MaritalStatus <!---, a.addressline1, a.addressline2, City, StateID, sli.ItemNameDisplay, ZipCode--->   
-					FROM Patient p
-					INNER JOIN Entity e ON p.EntityID = e.EntityID				
+					FROM patient p
+					INNER JOIN entity e ON p.EntityID = e.EntityID				
 					WHERE 1 =1 
 					<cfif LName NEQ "">
 						AND e.LName LIKE '#trim(LName)#%'
@@ -636,8 +636,8 @@
 					<cfif isNumeric(InsuranceCompanyID)>
 						,pic.PolicyNumber
 					</cfif>	
-					FROM Patient p
-					INNER JOIN Entity e ON p.EntityID = e.EntityID
+					FROM patient p
+					INNER JOIN entity e ON p.EntityID = e.EntityID
 					<cfif isNumeric(InsuranceCompanyID)>
 						LEFT JOIN PatientInsuranceCompany pic ON pic.PatientID = p.PatientID AND pic.InsuranceCompanyID = #trim(InsuranceCompanyID)#
 					</cfif>				
@@ -697,3 +697,7 @@
 </cfcomponent>
 
 	
+
+
+
+

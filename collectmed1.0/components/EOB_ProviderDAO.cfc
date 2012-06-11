@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_Provider" datasource="#trim(arguments.ds)#">
-				INSERT INTO EOB_Provider (ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode)
+				INSERT INTO eob_provider (ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localProviderID) NEQ "" AND trim(localProviderID) NEQ "@@" AND trim(localProviderID) NEQ "NULL">						
 						<cfqueryparam value="#trim(localProviderID)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_Provider" datasource="#trim(arguments.ds)#">
-				UPDATE EOB_Provider  SET
+				UPDATE eob_provider  SET
 					
 					ProviderID =	
 					<cfif trim(localProviderID) NEQ "" AND trim(localProviderID) NEQ "@@" AND trim(localProviderID) NEQ "NULL">						
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteEOB_Provider" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EOB_Provider
+			FROM eob_provider
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getrecordID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetEOB_Provider" datasource="#trim(arguments.ds)#">
 	  		SELECT recordID,ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_Provider  
+			FROM eob_provider  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

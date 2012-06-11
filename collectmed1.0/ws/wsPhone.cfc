@@ -207,7 +207,7 @@
 			</cfif>			
 						
 			<cfquery name="updatePhone" datasource="PAClient_#trim(ClientID)#">
-				UPDATE Phone
+				UPDATE phone
 				SET dateModified = now()
 				<cfif IsNumeric(PhoneTypeID)>, PhoneTypeID = #trim(PhoneTypeID)#</cfif> 
 				<cfif trim(PhoneNumber) NEQ "" AND trim(PhoneNumber) NEQ "@@">, PhoneNumber = '#trim(PhoneNumber)#'</cfif>						

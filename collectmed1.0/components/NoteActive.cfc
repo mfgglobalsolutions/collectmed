@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "NoteID") AND stValues.NoteID NEQ 0>
 				<cfquery name="qGetNote" datasource="#trim(variables.ds)#">
 			  		SELECT NoteID,ClientID,ObjectID,InstanceID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Note  
+					FROM note  
 					WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.NoteID#" /> 
 				</cfquery>		
 				<cfif qGetNote.Recordcount LTE 0>
@@ -291,7 +291,7 @@
 	
 		<cfquery name="qGetNote" datasource="#trim(variables.ds)#">
 	  		SELECT NoteID,ClientID,ObjectID,InstanceID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Note  
+			FROM note  
 			WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.NoteID)#" /> 
 		</cfquery>
 		
@@ -320,7 +320,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateNote" datasource="#trim(variables.ds)#">
-				INSERT INTO Note (ClientID,ObjectID,InstanceID,Note,InactiveCode)
+				INSERT INTO note (ClientID,ObjectID,InstanceID,Note,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localObjectID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -411,7 +411,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateNote" datasource="#trim(variables.ds)#">
-				UPDATE Note  SET
+				UPDATE note  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -472,7 +472,7 @@
 
 		<cfquery name="qDeleteNote" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Note
+			FROM note
 			WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getNoteID())#" /> 
 		</cfquery>
 
@@ -494,5 +494,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

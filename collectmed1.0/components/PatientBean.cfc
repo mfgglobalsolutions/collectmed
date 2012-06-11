@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "PatientID") AND stValues.PatientID NEQ 0>
 				<cfquery name="qGetPatient" datasource="#trim(arguments.ds)#">
 			  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-					FROM Patient  
+					FROM patient  
 					WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PatientID#" /> 
 				</cfquery>		
 				<cfif qGetPatient.Recordcount LTE 0>
@@ -267,5 +267,6 @@
 		
 		
 </cfcomponent>
+
 
 

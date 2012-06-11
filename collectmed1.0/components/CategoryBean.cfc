@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "CategoryID") AND stValues.CategoryID NEQ 0>
 				<cfquery name="qGetCategory" datasource="#trim(arguments.ds)#">
 			  		SELECT CategoryID,SiteID,CategoryName,CategoryURL,CategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-					FROM Category  
+					FROM category  
 					WHERE CategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.CategoryID#" /> 
 				</cfquery>		
 				<cfif qGetCategory.Recordcount LTE 0>

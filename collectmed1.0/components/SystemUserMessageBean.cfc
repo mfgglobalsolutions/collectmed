@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "SystemUserMessageID") AND stValues.SystemUserMessageID NEQ 0>
 				<cfquery name="qGetSystemUserMessage" datasource="#trim(arguments.ds)#">
 			  		SELECT SystemUserMessageID,UsersID,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM SystemUserMessage  
+					FROM systemusermessage  
 					WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.SystemUserMessageID#" /> 
 				</cfquery>		
 				<cfif qGetSystemUserMessage.Recordcount LTE 0>
@@ -249,5 +249,6 @@
 		
 		
 </cfcomponent>
+
 
 

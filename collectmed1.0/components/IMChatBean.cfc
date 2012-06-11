@@ -54,7 +54,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetIMChat" datasource="#trim(arguments.ds)#">
 			  		SELECT RecordID,UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode,DateCreated,DateModified
-					FROM IMChat  
+					FROM imchat  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetIMChat.Recordcount LTE 0>
@@ -437,5 +437,6 @@
 		
 		
 </cfcomponent>
+
 
 

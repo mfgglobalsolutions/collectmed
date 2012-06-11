@@ -243,7 +243,7 @@
 <!------------------------------------------------------------------>
 <!--- Build the SQL statement.                                   --->
 <!------------------------------------------------------------------>	
-	<cfset sqlStatement = "INSERT INTO Debug  (#columnsToInsert#) VALUES(#columnValues#)">	
+	<cfset sqlStatement = "INSERT INTO debug  (#columnsToInsert#) VALUES(#columnValues#)">	
 
 	
 		
@@ -325,3 +325,4 @@
 	</cftry>
 	
 	
+

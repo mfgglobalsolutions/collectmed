@@ -40,7 +40,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getClientEntities" datasource="#trim(request.datasource)#">
 		SELECT EntityID, LName + ', ' +  FNAme AS eobFullname
-		FROM Entity
+		FROM entity
 		WHERE ClientID = #trim(session.ClientID)# AND ObjectTypeID = 3
 	</cfquery>		
 	
@@ -51,7 +51,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getClientPatients" datasource="#trim(request.datasource)#">
 		SELECT e.EntityID, e.LName + ', ' +  e.FNAme AS patientFullname, p.patientID 
-		FROM Entity e INNER JOIN Patient p ON e.entityID = p.entityID
+		FROM entity e INNER JOIN patient p ON e.entityID = p.entityID
 		WHERE e.ClientID = #trim(session.ClientID)# AND e.ObjectTypeID = 2
 	</cfquery>		
 	
@@ -489,3 +489,4 @@
 	</cfoutput>
 	
 		
+

@@ -36,7 +36,7 @@
 			<cfif StructKeyExists(stValues, "ClientProviderID") AND stValues.ClientProviderID NEQ 0>
 				<cfquery name="qGetClientProvider" datasource="#trim(arguments.ds)#">
 			  		SELECT ClientProviderID,ClientID,ProviderID,Active,InactiveCode,DateCreated,DateModified
-					FROM ClientProvider  
+					FROM clientprovider  
 					WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClientProviderID#" /> 
 				</cfquery>		
 				<cfif qGetClientProvider.Recordcount LTE 0>
@@ -223,5 +223,6 @@
 		
 		
 </cfcomponent>
+
 
 

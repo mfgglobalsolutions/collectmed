@@ -490,7 +490,7 @@
 	
 		<cfquery name="qGetProcedureOpenClose" datasource="#trim(request.datasource)#">
 	  		SELECT ProcedureOpenCloseID,ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM ProcedureOpenClose  
+			FROM procedureopenclose  
 			WHERE ProcedureOpenCloseID = #trim(arguments.ProcedureOpenCloseID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO ProcedureOpenClose  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ProcedureOpenCloseID ">
+				<cfset sqlStatement = "INSERT INTO procedureopenclose  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ProcedureOpenCloseID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedureOpenCloseQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM ProcedureOpenClose   
+				FROM procedureopenclose   
 				WHERE 1=1
 					<cfif ProcedureOpenCloseID NEQ "" AND IsNumeric(ProcedureOpenCloseID)>AND ProcedureOpenCloseID = #ProcedureOpenCloseID#</cfif>
 					<cfif ProcedureOpenCloseID_IN NEQ "">AND ProcedureOpenCloseID IN(#trim(ProcedureOpenCloseID_IN)#)</cfif>
@@ -1116,5 +1116,7 @@
 
 	
 </cfcomponent>
+
+
 
 

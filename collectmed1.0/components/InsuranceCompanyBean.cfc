@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "InsuranceCompanyID") AND stValues.InsuranceCompanyID NEQ 0>
 				<cfquery name="qGetInsuranceCompany" datasource="#trim(arguments.ds)#">
 			  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-					FROM InsuranceCompany  
+					FROM insurancecompany  
 					WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.InsuranceCompanyID#" /> 
 				</cfquery>		
 				<cfif qGetInsuranceCompany.Recordcount LTE 0>
@@ -315,5 +315,6 @@
 		
 		
 </cfcomponent>
+
 
 

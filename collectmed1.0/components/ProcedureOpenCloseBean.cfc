@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "ProcedureOpenCloseID") AND stValues.ProcedureOpenCloseID NEQ 0>
 				<cfquery name="qGetProcedureOpenClose" datasource="#trim(arguments.ds)#">
 			  		SELECT ProcedureOpenCloseID,ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM ProcedureOpenClose  
+					FROM procedureopenclose  
 					WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ProcedureOpenCloseID#" /> 
 				</cfquery>		
 				<cfif qGetProcedureOpenClose.Recordcount LTE 0>
@@ -275,5 +275,6 @@
 		
 		
 </cfcomponent>
+
 
 

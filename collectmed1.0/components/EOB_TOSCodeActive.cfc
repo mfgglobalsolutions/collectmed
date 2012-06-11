@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetEOB_TOSCode" datasource="#trim(variables.ds)#">
 			  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_TOSCode  
+					FROM eob_toscode  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_TOSCode.Recordcount LTE 0>
@@ -235,7 +235,7 @@
 	
 		<cfquery name="qGetEOB_TOSCode" datasource="#trim(variables.ds)#">
 	  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_TOSCode  
+			FROM eob_toscode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -262,7 +262,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_TOSCode" datasource="#trim(variables.ds)#">
-				INSERT INTO EOB_TOSCode (Code,Description,InactiveCode)
+				INSERT INTO eob_toscode (Code,Description,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localDescription) NEQ "" AND trim(localDescription) NEQ "@@" AND trim(localDescription) NEQ "NULL">						
@@ -343,7 +343,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_TOSCode" datasource="#trim(variables.ds)#">
-				UPDATE EOB_TOSCode  SET
+				UPDATE eob_toscode  SET
 					
 					Code =						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -394,7 +394,7 @@
 
 		<cfquery name="qDeleteEOB_TOSCode" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EOB_TOSCode
+			FROM eob_toscode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getRecordID())#" /> 
 		</cfquery>
 
@@ -416,5 +416,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

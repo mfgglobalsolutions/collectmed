@@ -408,7 +408,7 @@
 	
 		<cfquery name="qGetClientProvider" datasource="#trim(request.datasource)#">
 	  		SELECT ClientProviderID,ClientID,ProviderID,Active,InactiveCode,DateCreated,DateModified
-			FROM ClientProvider  
+			FROM clientprovider  
 			WHERE ClientProviderID = #trim(arguments.ClientProviderID)# 
 		</cfquery>
 		
@@ -767,7 +767,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO ClientProvider  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClientProviderID ">
+				<cfset sqlStatement = "INSERT INTO clientprovider  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClientProviderID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -932,7 +932,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClientProviderQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM ClientProvider   
+				FROM clientprovider   
 				WHERE 1=1
 					<cfif ClientProviderID NEQ "" AND IsNumeric(ClientProviderID)>AND ClientProviderID = #ClientProviderID#</cfif>
 					<cfif ClientProviderID_IN NEQ "">AND ClientProviderID IN(#trim(ClientProviderID_IN)#)</cfif>
@@ -1012,5 +1012,7 @@
 
 	
 </cfcomponent>
+
+
 
 

@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetEOB_MEDICARE_CLAIMMODIFIERCode" datasource="#trim(arguments.ds)#">
 			  		SELECT RecordID,StandardListItemID,Modifier,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_MEDICARE_CLAIMMODIFIERCode  
+					FROM eob_medicare_claimmodifiercode  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_MEDICARE_CLAIMMODIFIERCode.Recordcount LTE 0>
@@ -245,5 +245,6 @@
 		
 		
 </cfcomponent>
+
 
 

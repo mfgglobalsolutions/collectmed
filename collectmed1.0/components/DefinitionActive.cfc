@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "DefinitionID") AND stValues.DefinitionID NEQ 0>
 				<cfquery name="qGetDefinition" datasource="#trim(variables.ds)#">
 			  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
-					FROM Definition  
+					FROM definition  
 					WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.DefinitionID#" /> 
 				</cfquery>		
 				<cfif qGetDefinition.Recordcount LTE 0>
@@ -235,7 +235,7 @@
 	
 		<cfquery name="qGetDefinition" datasource="#trim(variables.ds)#">
 	  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
-			FROM Definition  
+			FROM definition  
 			WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.DefinitionID)#" /> 
 		</cfquery>
 		
@@ -262,7 +262,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateDefinition" datasource="#trim(variables.ds)#">
-				INSERT INTO Definition (Title,Definition,InactiveCode)
+				INSERT INTO definition (Title,Definition,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localTitle)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localDefinition) NEQ "" AND trim(localDefinition) NEQ "@@" AND trim(localDefinition) NEQ "NULL">						
@@ -343,7 +343,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateDefinition" datasource="#trim(variables.ds)#">
-				UPDATE Definition  SET
+				UPDATE definition  SET
 					
 					Title =						
 						<cfqueryparam value="#trim(localTitle)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -394,7 +394,7 @@
 
 		<cfquery name="qDeleteDefinition" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Definition
+			FROM definition
 			WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getDefinitionID())#" /> 
 		</cfquery>
 
@@ -416,5 +416,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

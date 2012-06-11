@@ -54,7 +54,7 @@
 			<cfif StructKeyExists(stValues, "AddressID") AND stValues.AddressID NEQ 0>
 				<cfquery name="qGetAddress" datasource="#trim(variables.ds)#">
 			  		SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-					FROM Address  
+					FROM address  
 					WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.AddressID#" /> 
 				</cfquery>		
 				<cfif qGetAddress.Recordcount LTE 0>
@@ -401,7 +401,7 @@
 	
 		<cfquery name="qGetAddress" datasource="#trim(variables.ds)#">
 	  		SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-			FROM Address  
+			FROM address  
 			WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.AddressID)#" /> 
 		</cfquery>
 		
@@ -435,7 +435,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateAddress" datasource="#trim(variables.ds)#">
-				INSERT INTO Address (SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,InactiveCode)
+				INSERT INTO address (SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -569,7 +569,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateAddress" datasource="#trim(variables.ds)#">
-				UPDATE Address  SET
+				UPDATE address  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -673,7 +673,7 @@
 
 		<cfquery name="qDeleteAddress" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Address
+			FROM address
 			WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getAddressID())#" /> 
 		</cfquery>
 
@@ -704,7 +704,7 @@
 					SELECT a.AddressID, a.SiteID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, a.Active, a.DateCreated, a.Attention,  
 					sli2.ItemNameDisplay AS AddressType, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr,
 					ea.IsDefault
-					FROM EntityAddress ea INNER JOIN Address a ON ea.AddressID = a.AddressID
+					FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID
 					INNER JOIN pa_master.StandardListItem sli ON a.stateID = sli.StandardListItemID		
 					INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
 					WHERE ea.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
@@ -737,13 +737,13 @@
 				
 				<cfquery name="getEntityAddress" datasource="#trim(variables.ds)#">
 					SELECT * 
-					FROM EntityAddress  
+					FROM entityaddress  
 					WHERE EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" /> 
 					AND AddressID = <cfqueryparam value="#trim(arguments.AddressID)#" cfsqltype="CF_SQL_INTEGER" />			
 				</cfquery>		
 				<cfif getEntityAddress.recordCount LTE 0>
 					<cfquery name="insertEntityAddress" datasource="#trim(variables.ds)#">
-						INSERT INTO EntityAddress  (EntityID, AddressID)
+						INSERT INTO entityaddress  (EntityID, AddressID)
 						VALUES(
 							<cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />, 
 							<cfqueryparam value="#trim(arguments.AddressID)#" cfsqltype="CF_SQL_INTEGER" />
@@ -770,13 +770,13 @@
 			<cftry>			
 							
 				<cfquery name="archiveEntityAddress" datasource="#trim(variables.ds)#">
-					UPDATE EntityAddress 
+					UPDATE entityaddress 
 					SET Active = 0, InactiveCode = 68
 					WHERE AddressID = <cfqueryparam value="#trim(arguments.AddressID)#" cfsqltype="CF_SQL_INTEGER" />	
 				</cfquery>	
 						
 				<cfquery name="archiveAddress" datasource="#trim(variables.ds)#">
-					UPDATE Address 
+					UPDATE address 
 					SET Active = 0, InactiveCode = 68
 					WHERE AddressID = <cfqueryparam value="#trim(arguments.AddressID)#" cfsqltype="CF_SQL_INTEGER" />
 				</cfquery>
@@ -794,5 +794,10 @@
 		
 		
 </cfcomponent>
+
+
+
+
+
 
 

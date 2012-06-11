@@ -91,7 +91,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getWorkGroups" datasource="#trim(request.datasource)#">
 		SELECT COUNT(uwg.WorkGroupID) as NumOfUsers, wg.WorkGroupID, wg.WorkGroupName
-		FROM WorkGroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID		
+		FROM workgroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID		
 		GROUP BY uwg.WorkGroupID, wg.WorkGroupID, wg.WorkGroupName		
 	</cfquery>
 		
@@ -167,3 +167,4 @@
 	</cf_gcBorderedTable>
 	
 	
+

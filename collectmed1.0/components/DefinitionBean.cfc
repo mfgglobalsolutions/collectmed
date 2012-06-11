@@ -36,7 +36,7 @@
 			<cfif StructKeyExists(stValues, "DefinitionID") AND stValues.DefinitionID NEQ 0>
 				<cfquery name="qGetDefinition" datasource="#trim(arguments.ds)#">
 			  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
-					FROM Definition  
+					FROM definition  
 					WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.DefinitionID#" /> 
 				</cfquery>		
 				<cfif qGetDefinition.Recordcount LTE 0>
@@ -219,5 +219,6 @@
 		
 		
 </cfcomponent>
+
 
 

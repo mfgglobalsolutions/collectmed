@@ -95,31 +95,31 @@
 	</cfloop>--->
 	
 	<!---<cfquery name="delFile14" datasource="#request.datasource#">
-		DELETE FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT
+		DELETE FROM claim_medicare_supplemental_amount
 	</cfquery>	
 		
 	<cfquery name="delFile13" datasource="#request.datasource#">
-		DELETE FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT
+		DELETE FROM procedure_medicare_supplemental_amount
 	</cfquery>		
 	
 	<cfquery name="delFile12" datasource="#request.datasource#">
-		DELETE FROM Procedure_MEDICARE_REMARK_CODE
+		DELETE FROM procedure_medicare_remark_code
 	</cfquery>	
 	
 	<cfquery name="delFile11" datasource="#request.datasource#">
-		DELETE FROM ProcedureOpenClose
+		DELETE FROM procedureopenclose
 	</cfquery>
 	
 	<cfquery name="delFile9" datasource="#request.datasource#">
-		DELETE FROM Procedure_MEDICARE_CLAIMADJUSTMENT
+		DELETE FROM procedure_medicare_claimadjustment
 	</cfquery>
 		
 	<cfquery name="delFile9" datasource="#request.datasource#">
-		DELETE FROM Procedure_MEDICARE_MODIFIER
+		DELETE FROM procedure_medicare_modifier
 	</cfquery>	
 
 	<cfquery name="delFile8" datasource="#request.datasource#">
-		DELETE FROM Claim_MEDICARE_MOA
+		DELETE FROM claim_medicare_moa 
 	</cfquery>	
 	
 	<cfquery name="delFile7" datasource="#request.datasource#">
@@ -127,27 +127,36 @@
 	</cfquery>	
 		
 	<cfquery name="delFile6" datasource="#request.datasource#">
-		DELETE FROM Claim WHERE ClaimID > 3
+		DELETE FROM claim WHERE ClaimID > 3
 	</cfquery>	
 	
 	<cfquery name="delFile2" datasource="#request.datasource#">
-		DELETE FROM Entity WHERE EntityID > 195
+		DELETE FROM entity WHERE EntityID > 195
 	</cfquery>	
 	
 	<cfquery name="delFile3" datasource="#request.datasource#">
-		DELETE FROM Patient WHERE PatientID > 102
+		DELETE FROM patient WHERE PatientID > 102
 	</cfquery>	
 	
 	<cfquery name="delFile4" datasource="#request.datasource#">
-		DELETE FROM Interchange
+		DELETE FROM interchange
 	</cfquery>	--->
 	<!---
 	<cfquery name="delFile" datasource="#request.datasource#">
-		DELETE FROM File
+		DELETE FROM file
 	</cfquery>	
 	
 	<cfquery name="delFile5" datasource="#request.datasource#">
-		DELETE FROM FileProcess
+		DELETE FROM fileprocess
 	</cfquery>	
 	
 	--->
+
+
+
+
+
+
+
+
+

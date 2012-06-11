@@ -71,7 +71,7 @@
 			DELETE FROM pa_master.UsersRole  WHERE usersID = #trim(usersID)# 
 		</cfquery>		
 		<cfquery name="deleteUserRoles" datasource="#trim(request.datasource)#">
-			DELETE FROM UsersRole  WHERE usersID = #trim(usersID)# 
+			DELETE FROM usersrole  WHERE usersID = #trim(usersID)# 
 		</cfquery>		
 		
 		<cfquery name="getAllMASTERRoles" datasource="#trim(request.datasource)#">
@@ -82,7 +82,7 @@
 		
 		<cfquery name="getAllCLIENTRoles" datasource="#trim(request.datasource)#">
 			SELECT RoleID
-			FROM Role					
+			FROM role					
 		</cfquery>							
 		<cfset clientRoles = valueList(getAllCLIENTRoles.RoleID)>
 		
@@ -91,7 +91,7 @@
 			<cfif ListFind(clientRoles, trim(i))>
 				
 				<cfquery name="insertAdministratorUserRole" datasource="#trim(request.datasource)#">
-					INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
+					INSERT INTO usersrole  (UsersID, SiteID, RoleID)
 					VALUES(#trim(usersID)#, #trim(request.Site.getSiteID())#, #trim(i)#)
 				</cfquery>	
 					
@@ -234,7 +234,7 @@
 			<cfif NOT IsNumeric(phoneDBID)> 						
 													
 				<cfquery name="insertPhoneNumber" datasource="#trim(request.datasource)#">
-					INSERT INTO Phone  (PhoneTypeID, PhoneNumber, PhoneExtension)
+					INSERT INTO phone  (PhoneTypeID, PhoneNumber, PhoneExtension)
 					VALUES(#trim(PhoneTypeID)#, '#trim(PhoneNumberE)#', '#trim(PhoneExtensionE)#');
 					SELECT LAST_INSERT_ID() AS phoneID 
 				</cfquery>
@@ -250,7 +250,7 @@
 			<cfelse>
 			
 				<cfquery name="updatePhoneNumber" datasource="#trim(request.datasource)#">
-					UPDATE Phone 
+					UPDATE phone 
 					SET 
 						PhoneTypeID = #trim(PhoneTypeID)#, 
 						PhoneNumber = '#trim(PhoneNumberE)#', 
@@ -279,7 +279,7 @@
 		</cfloop>
 					
 		<cfquery name="deleteOldEmailAddresses" datasource="#trim(request.datasource)#">
-			DELETE FROM EmailAddress 
+			DELETE FROM emailaddress 
 			WHERE EntityID = #trim(EntityID)# <cfif emailAddressDBIDs NEQ ""> AND EmailAddressID NOT IN(#trim(emailAddressDBIDs)#)</cfif>	
 		</cfquery>
 		
@@ -303,7 +303,7 @@
 			<cfif NOT IsNumeric(emailAddressDBID)> 						
 																
 				<cfquery name="insertEmailAddress" datasource="#trim(request.datasource)#">
-					INSERT INTO EmailAddress  (EntityID, EmailTypeID, Email, IsDefault)
+					INSERT INTO emailaddress  (EntityID, EmailTypeID, Email, IsDefault)
 					VALUES(#trim(EntityID)#, #trim(EmailTypeID)#, '#trim(EmailAddress)#', #trim(IsDefault)#);
 					SELECT LAST_INSERT_ID() AS emailaddressID 
 				</cfquery>
@@ -313,7 +313,7 @@
 			<cfelse>
 			
 				<cfquery name="updateEmailAddress" datasource="#trim(request.datasource)#">
-					UPDATE EmailAddress 
+					UPDATE emailaddress 
 					SET EntityID = #trim(EntityID)#, EmailTypeID = #trim(EmailTypeID)#, Email = '#trim(EmailAddress)#', IsDefault = #trim(IsDefault)# 
 					WHERE EmailAddressID = #trim(emailAddressDBID)#					
 				</cfquery>
@@ -333,7 +333,7 @@
 		<!--- log them out and force them to log back in.                                    --->
 		<!-------------------------------------------------------------------------------------->
 		<cfquery name="invalidateUsersCurrentLoginsession" datasource="#trim(request.datasource)#">
-			UPDATE usersSession 
+			UPDATE userssession 
 			SET Active = 0, InactiveCode = 68
 			WHERE usersID = #trim(usersID)# 
 		</cfquery>
@@ -354,3 +354,12 @@
 <cflocation addtoken="No" url="appAdminUsers.cfm?msg=#URLEncodedFormat(trim(msg))#">
 
 	
+
+
+
+
+
+
+
+
+

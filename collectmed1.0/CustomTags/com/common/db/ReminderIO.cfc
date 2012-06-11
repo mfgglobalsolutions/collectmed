@@ -572,7 +572,7 @@
 	
 		<cfquery name="qGetReminder" datasource="#trim(request.datasource)#">
 	  		SELECT ReminderID,UsersID,ObjectID,InstanceID,showDate,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Reminder  
+			FROM reminder  
 			WHERE ReminderID = #trim(arguments.ReminderID)# 
 		</cfquery>
 		
@@ -948,7 +948,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Reminder  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ReminderID ">
+				<cfset sqlStatement = "INSERT INTO reminder  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ReminderID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1125,7 +1125,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getReminderQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Reminder   
+				FROM reminder   
 				WHERE 1=1
 					<cfif ReminderID NEQ "" AND IsNumeric(ReminderID)>AND ReminderID = #ReminderID#</cfif>
 					<cfif ReminderID_IN NEQ "">AND ReminderID IN(#trim(ReminderID_IN)#)</cfif>
@@ -1217,5 +1217,7 @@
 
 	
 </cfcomponent>
+
+
 
 

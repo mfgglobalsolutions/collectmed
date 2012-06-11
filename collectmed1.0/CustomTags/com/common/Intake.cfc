@@ -17,14 +17,14 @@
 		
 		<cfquery name="getIntakeClientID" datasource="PAClient_#trim(ClientID)#">
 			SELECT ClientID
-			FROM Intake  
+			FROM intake  
 			WHERE IntakeID = #trim(IntakeID)#
 		</cfquery>
 			
 		<cfif getIntakeClientID.Recordcount EQ 1 AND getIntakeClientID.ClientID EQ clientID> 
 		
 			<cfquery name="insertAssignment" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO IntakeAssignment  (IntakeID, UserID, AssignorID, Note)
+				INSERT INTO intakeassignment  (IntakeID, UserID, AssignorID, Note)
 				VALUES(#trim(IntakeID)#, #trim(UsersID)#, #trim(assignorID)#, '#trim(Note)#')				
 			</cfquery>		
 			
@@ -45,14 +45,14 @@
 
 		<cfquery name="getUserID" datasource="PAClient_#trim(ClientID)#">
 			SELECT UserID
-			FROM IntakeAssignment 
+			FROM intakeassignment 
 			WHERE IntakeID = #arguments.IntakeID# 
 			ORDER BY DateCreated DESC
 			LIMIT 1
 		</cfquery>
 		
 		<cfquery name="updateIntake" datasource="PAClient_#trim(ClientID)#">			
-			UPDATE Intake 
+			UPDATE intake 
 			SET AssignedToUserID = #getUserID.UserID#
 			WHERE IntakeID = #arguments.IntakeID#
 		</cfquery>		
@@ -79,7 +79,7 @@
 			<!-------------------------------------------------------------------------------------->	
 			<cfquery name="getIntakeGroup" datasource="PAClient_#trim(ClientID)#">
 				SELECT WorkGroupID
-				FROM WorkGroup
+				FROM workgroup
 				WHERE WorkGroupName = 'Intake Manager'
 			</cfquery>
 			
@@ -87,8 +87,8 @@
 			
 				<cfquery name="getAssignedIntakes" datasource="PAClient_#trim(ClientID)#">
 					SELECT AssignedToUserID, Count(IntakeID) AS NumberOfIntakes
-					FROM Intake
-					WHERE AssignedToUserID IN (SELECT UsersID FROM UsersWorkGroup   WHERE WorkGroupID = #trim(getIntakeGroup.WorkGroupID)#) 
+					FROM intake
+					WHERE AssignedToUserID IN (SELECT UsersID FROM usersworkgroup   WHERE WorkGroupID = #trim(getIntakeGroup.WorkGroupID)#) 
 					AND Active = 1 AND ClosingInvoiceNumber IS NULL
 					--Looking to see who has more intakes currently assigned counting the ClosingInvoiceNumber
 					--AND (Active = 1 OR ClosingInvoiceNumber IS NOT NULL)		
@@ -160,7 +160,7 @@
 		<cfquery name="getAdminInfo" datasource="PA_Client#trim(arguments.clientID)#">						
 			SELECT u.UsersID, E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
 			FROM pa_master.Users AS u 
-			INNER JOIN Entity AS E ON u.EntityID = E.EntityID 
+			INNER JOIN entity AS E ON u.EntityID = E.EntityID 
 			WHERE E.EntityID = (SELECT AdministratorEntityID FROM pa_master.[Client] WHERE ClientID = #trim(arguments.clientID)#)
 		</cfquery>
 		
@@ -4445,7 +4445,7 @@ i.primaryInsuranceNameTBox, i.primaryPolicyNumberTBox, i.primaryGroupNumberTBox,
 
 <cfquery name="qGetIntake" datasource="#request.datasource#">
 	  		SELECT IntakeID,ClientID,AssignedToUserID,hidden_Step,hidden_UsersID,hidden_TimeStart,OPTION_1_CBox_Delivery,OPTION_1_CBox_Pickup,OPTION_1_CBox_Repair,OPTION_1_CBox_Switch,OPTION_1_CBox_Existing,OPTION_2_CBox_Other,OPTION_2_CBox_Hospice,OPTION_2_CBox_Hospital,otherTBox,hospiceTBox,OPTION_3_CBox_Medicare,OPTION_3_CBox_PrivateInsurance,OPTION_3_CBox_Medicaid,OPTION_3_CBox_PrivatePay,hospitalTBox,DischargeDateMM,DischargeDateDD,DischargeDateYY,typeOfPay_Radio,callerFNameTBox,callerMInitialTBox,callerLNameTBox,callerPhoneTBox,patientFNameTBox,patientMInitialTBox,patientLNameTBox,roomNumberTBox,bedNumberTBox,patientAddressTBox,patientCityTBox,patientStateTBox,patientZipTBox,patientPhoneTBox,patientDOBMM,patientDOBDD,patientDOBYY,OPTION_3a_CBox_PatientSexMale,OPTION_3a_CBox_PatientSexFemale,patientSSNTBox,patientHeightFeet,patientHeightInches,patientWeightTBox,alternateContactFNameTBox,alternateContactMInitialTBox,alternateContactLNameTBox,alternateContactRelationshipTBox,alternateContactPhoneTBox,alternateContactWorkPhoneTBox,hcpcCode1TBox,hcpcQty1TBox,hcpcProduct1TBox,hcpcDX1TBox,hcpcDiagnosis1TBox,hcpcCost1TBox,hcpcLengthOfNeedYear1TBox,hcpcLengthOfNeedMonth1TBox,hcpcCode2TBox,hcpcQty2TBox,hcpcProduct2TBox,hcpcDX2TBox,hcpcDiagnosis2TBox,hcpcCost2TBox,hcpcLengthOfNeedYear2TBox,hcpcLengthOfNeedMonth2TBox,hcpcCode3TBox,hcpcQty3TBox,hcpcProduct3TBox,hcpcDX3TBox,hcpcDiagnosis3TBox,hcpcCost3TBox,hcpcLengthOfNeedYear3TBox,hcpcLengthOfNeedMonth3TBox,hcpcCode4TBox,hcpcQty4TBox,hcpcProduct4TBox,hcpcDX4TBox,hcpcDiagnosis4TBox,hcpcCost4TBox,hcpcLengthOfNeedYear4TBox,hcpcLengthOfNeedMonth4TBox,hcpcCode5TBox,hcpcQty5TBox,hcpcProduct5TBox,hcpcDX5TBox,hcpcDiagnosis5TBox,hcpcCost5TBox,hcpcLengthOfNeedYear5TBox,hcpcLengthOfNeedMonth5TBox,hcpcCode6TBox,hcpcQty6TBox,hcpcProduct6TBox,hcpcDX6TBox,hcpcDiagnosis6TBox,hcpcCost6TBox,hcpcLengthOfNeedYear6TBox,hcpcLengthOfNeedMonth6TBox,hcpcCode7TBox,hcpcQty7TBox,hcpcProduct7TBox,hcpcDX7TBox,hcpcDiagnosis7TBox,hcpcCost7TBox,hcpcLengthOfNeedYear7TBox,hcpcLengthOfNeedMonth7TBox,hcpcCode8TBox,hcpcQty8TBox,hcpcProduct8TBox,hcpcDX8TBox,hcpcDiagnosis8TBox,hcpcCost8TBox,hcpcLengthOfNeedYear8TBox,hcpcLengthOfNeedMonth8TBox,hcpcCode9TBox,hcpcQty9TBox,hcpcProduct9TBox,hcpcDX9TBox,hcpcDiagnosis9TBox,hcpcCost9TBox,hcpcLengthOfNeedYear9TBox,hcpcLengthOfNeedMonth9TBox,hcpcCode10TBox,hcpcQty10TBox,hcpcProduct10TBox,hcpcDX10TBox,hcpcDiagnosis10TBox,hcpcCost10TBox,hcpcLengthOfNeedYear10TBox,hcpcLengthOfNeedMonth10TBox,primaryInsuranceNameTBox,secondaryInsuranceNameTBox,primaryPolicyNumberTBox,secondaryPolicyNumberTBox,primaryGroupNumberTBox,secondaryGroupNumberTBox,primaryPhoneNumberTBox,secondaryPhoneNumberTBox,poNumberTBox,creditCardTypeTBox,creditCardNumberTBox,ccDateMM,ccDateDD,ccDateYY,orderingPhysicianFNameTBox,orderingPhysicianMInitialTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,orderingPhysicianUPINTBox,orderingPhysicianFaxTBox,orderingPhysicianAddressTBox,orderingPhysicianCityTBox,orderingPhysicianStateTBox,orderingPhysicianZipTBox,OPTION_13_CBox_PastEquipmentYes,OPTION_13_CBox_PastEquipmentNo,Equipment1TypeTBox,Equipment1RentPurchasedSelect,Equipment1FromMM,Equipment1FromDD,Equipment1FromYY,Equipment1ToMM,Equipment1ToDD,Equipment1ToYY,Equipment1SupplierNameTBox,Equipment1SupplierTelephoneTBox,Equipment2TypeTBox,Equipment2RentPurchasedSelect,Equipment2FromMM,Equipment2FromDD,Equipment2FromYY,Equipment2ToMM,Equipment2ToDD,Equipment2ToYY,Equipment2SupplierNameTBox,Equipment2SupplierTelephoneTBox,Equipment3TypeTBox,Equipment3RentPurchasedSelect,Equipment3FromMM,Equipment3FromDD,Equipment3FromYY,Equipment3ToMM,Equipment3ToDD,Equipment3ToYY,Equipment3SupplierNameTBox,Equipment3SupplierTelephoneTBox,Equipment4TypeTBox,Equipment4RentPurchasedSelect,Equipment4FromMM,Equipment4FromDD,Equipment4FromYY,Equipment4ToMM,Equipment4ToDD,Equipment4ToYY,Equipment4SupplierNameTBox,Equipment4SupplierTelephoneTBox,Equipment5TypeTBox,Equipment5RentPurchasedSelect,Equipment5FromMM,Equipment5FromDD,Equipment5FromYY,Equipment5ToMM,Equipment5ToDD,Equipment5ToYY,Equipment5SupplierNameTBox,Equipment5SupplierTelephoneTBox,OPTION_14_CBox_OxygenPAo2,OPTION_14_CBox_OxygenSAo2,OPTION_14_CBox_OxygenSPo2,OxygenPAO2TBox,OxygenSAO2TBox,CPAPStudy_CBox,CPAPStudyNote,OxygenSPO2TBox,CPAPStudyOnFile_CBox,CPAPStudyOnFileNote,LabTestDateMM,LabTestDateDD,LabTestDateYY,CPAPStudyPerformedAt,LabTestFacilityTBox,CPAPStudyPerformedAt2,CPAPStudyPerformedAt3,ClosingInvoiceNumber,Printed,Active,InactiveCode,DateCreated,DateModified,primaryInsuranceNameTBox, primaryPolicyNumberTBox, primaryGroupNumberTBox, primaryPhoneNumberTBox, primaryFaxNumberTBox, primarySendToAddress1TBox, primarySendToAddress2TBox, primarySendToCityTBox, primarySendToStateTBox, primarySendToZipCodeTBox, primaryEffectiveDateMM, primaryEffectiveDateDD, primaryEffectiveDateYY, primaryPolicyHolderFNameTBox, primaryPolicyHolderMInitialTBox, primaryPolicyHolderLNameTBox, primaryHoldersDOBMM, primaryHoldersDOBDD, primaryHoldersDOBYY, primaryPolicyHolderEmployerTBox, primaryNoteTBox, primaryVerificationRepFNameTBox, primaryVerificationRepLNameTBox, primaryVerificationDateMM, primaryVerificationDateDD, primaryVerificationDateYY, primaryVerificationTimeTBox, primaryVerificationHaveInsFromMM, primaryVerificationHaveInsFromDD, primaryVerificationHaveInsFromYY, primaryVerificationHaveInsToMM, primaryVerificationHaveInsToDD, primaryVerificationHaveInsToYY, primaryCBox_VerificationHaveInsYes, primaryCBox_VerificationHaveInsNo, primaryCBox_VerificationHaveDMECovYes, primaryCBox_VerificationHaveDMECovNo, primaryCBox_VerificationDeductibleYes, primaryCBox_VerificationDeductibleNo, primaryVerificationDeductibleAmountTBox, primaryVerificationDeductibleAmountMetTBox, primaryVerificationPercentagePayAfterDeductibleTBox, primaryCBox_VerificationPPOPolicyYes, primaryCBox_VerificationPPOPolicyNo, primaryVerificationAuthNumberTBox, primaryCBox_VerificationPriorAuthYes, primaryCBox_VerificationPriorAuthNo, primaryVerificationAuthPhoneNumberTBox, primaryCBox_VerificationLifetimeBenefitMetYes, primaryCBox_VerificationLifetimeBenefitMetNo, primaryCBox_MedicareSupplementYes, primaryCBox_MedicareSupplementNo, primaryCBox_CoordinateBenefitsYes, primaryCBox_CoordinateBenefitsNo, primaryCBox_PaidMedicareDeductibleYes, primaryCBox_PaidMedicareDeductibleNo, primaryVerificationTypeBasePlanTBox, primaryCBox_VerificationMedicaidPlanMQMB, primaryCBox_VerificationMedicaidPlanQMB, primaryCBox_VerificationMedicaidPlanTraditional, secondaryInsuranceNameTBox, secondaryPolicyNumberTBox, secondaryGroupNumberTBox, secondaryPhoneNumberTBox, secondaryFaxNumberTBox, secondarySendToAddress1TBox, secondarySendToAddress2TBox, secondarySendToCityTBox, secondarySendToStateTBox, secondarySendToZipCodeTBox, secondaryEffectiveDateMM, secondaryEffectiveDateDD, secondaryEffectiveDateYY, secondaryPolicyHolderFNameTBox, secondaryPolicyHolderMInitialTBox, secondaryPolicyHolderLNameTBox, secondaryHoldersDOBMM, secondaryHoldersDOBDD, secondaryHoldersDOBYY, secondaryPolicyHolderEmployerTBox, secondaryNoteTBox, secondaryVerificationRepFNameTBox, secondaryVerificationRepLNameTBox, secondaryVerificationDateMM, secondaryVerificationDateDD, secondaryVerificationDateYY, secondaryVerificationTimeTBox, secondaryVerificationHaveInsFromMM, secondaryVerificationHaveInsFromDD, secondaryVerificationHaveInsFromYY, secondaryVerificationHaveInsToMM, secondaryVerificationHaveInsToDD, secondaryVerificationHaveInsToYY, secondaryCBox_VerificationHaveInsYes, secondaryCBox_VerificationHaveInsNo, secondaryCBox_VerificationHaveDMECovYes, secondaryCBox_VerificationHaveDMECovNo, secondaryCBox_VerificationDeductibleYes, secondaryCBox_VerificationDeductibleNo, secondaryVerificationDeductibleAmountTBox, secondaryVerificationDeductibleAmountMetTBox, secondaryVerificationPercentagePayAfterDeductibleTBox, secondaryCBox_VerificationPPOPolicyYes, secondaryCBox_VerificationPPOPolicyNo, secondaryVerificationAuthNumberTBox, secondaryCBox_VerificationPriorAuthYes, secondaryCBox_VerificationPriorAuthNo, secondaryVerificationAuthPhoneNumberTBox, secondaryCBox_VerificationLifetimeBenefitMetYes, secondaryCBox_VerificationLifetimeBenefitMetNo, secondaryCBox_MedicareSupplementYes, secondaryCBox_MedicareSupplementNo, secondaryCBox_CoordinateBenefitsYes, secondaryCBox_CoordinateBenefitsNo, secondaryCBox_PaidMedicareDeductibleYes, secondaryCBox_PaidMedicareDeductibleNo, secondaryVerificationTypeBasePlanTBox, secondaryCBox_VerificationMedicaidPlanMQMB, secondaryCBox_VerificationMedicaidPlanQMB, secondaryCBox_VerificationMedicaidPlanTraditional, tertiaryInsuranceNameTBox, tertiaryPolicyNumberTBox, tertiaryGroupNumberTBox, tertiaryPhoneNumberTBox, tertiaryFaxNumberTBox, tertiarySendToAddress1TBox, tertiarySendToAddress2TBox, tertiarySendToCityTBox, tertiarySendToStateTBox, tertiarySendToZipCodeTBox, tertiaryEffectiveDateMM, tertiaryEffectiveDateDD, tertiaryEffectiveDateYY, tertiaryPolicyHolderFNameTBox, tertiaryPolicyHolderMInitialTBox, tertiaryPolicyHolderLNameTBox, tertiaryHoldersDOBMM, tertiaryHoldersDOBDD, tertiaryHoldersDOBYY, tertiaryPolicyHolderEmployerTBox, tertiaryNoteTBox, tertiaryVerificationRepFNameTBox, tertiaryVerificationRepLNameTBox, tertiaryVerificationDateMM, tertiaryVerificationDateDD, tertiaryVerificationDateYY, tertiaryVerificationTimeTBox, tertiaryVerificationHaveInsFromMM, tertiaryVerificationHaveInsFromDD, tertiaryVerificationHaveInsFromYY, tertiaryVerificationHaveInsToMM, tertiaryVerificationHaveInsToDD, tertiaryVerificationHaveInsToYY, tertiaryCBox_VerificationHaveInsYes, tertiaryCBox_VerificationHaveInsNo, tertiaryCBox_VerificationHaveDMECovYes, tertiaryCBox_VerificationHaveDMECovNo, tertiaryCBox_VerificationDeductibleYes, tertiaryCBox_VerificationDeductibleNo, tertiaryVerificationDeductibleAmountTBox, tertiaryVerificationDeductibleAmountMetTBox, tertiaryVerificationPercentagePayAfterDeductibleTBox, tertiaryCBox_VerificationPPOPolicyYes, tertiaryCBox_VerificationPPOPolicyNo, tertiaryVerificationAuthNumberTBox, tertiaryCBox_VerificationPriorAuthYes, tertiaryCBox_VerificationPriorAuthNo, tertiaryVerificationAuthPhoneNumberTBox, tertiaryCBox_VerificationLifetimeBenefitMetYes, tertiaryCBox_VerificationLifetimeBenefitMetNo, tertiaryCBox_MedicareSupplementYes, tertiaryCBox_MedicareSupplementNo, tertiaryCBox_CoordinateBenefitsYes, tertiaryCBox_CoordinateBenefitsNo, tertiaryCBox_PaidMedicareDeductibleYes, tertiaryCBox_PaidMedicareDeductibleNo, tertiaryVerificationTypeBasePlanTBox, tertiaryCBox_VerificationMedicaidPlanMQMB, tertiaryCBox_VerificationMedicaidPlanQMB, tertiaryCBox_VerificationMedicaidPlanTraditional
-			FROM Intake  
+			FROM intake  
 			WHERE IntakeID = #trim(arguments.IntakeID)# 
 		</cfquery>
 		
@@ -4461,9 +4461,9 @@ i.primaryInsuranceNameTBox, i.primaryPolicyNumberTBox, i.primaryGroupNumberTBox,
 			
 		<cfquery name="qGetIntake" datasource="#request.datasource#">
 		SELECT i.IntakeID, i.ClientID, i.InactiveCode, i.printed, i.AssignedTouserID,i.DateCreated, i.hidden_Step, i.otherTBox, i.hidden_UsersID, i.hidden_TimeStart, IFNULL(i.OPTION_1_CBox_Delivery, 0) AS OPTION_1_CBox_Delivery, 	IFNULL(i.OPTION_1_CBox_Pickup, 0) AS OPTION_1_CBox_Pickup, IFNULL(i.OPTION_1_CBox_Repair, 0) AS OPTION_1_CBox_Repair, 	IFNULL(i.OPTION_1_CBox_Switch, 0) AS OPTION_1_CBox_Switch, IFNULL(i.OPTION_1_CBox_Existing, 0) AS OPTION_1_CBox_Existing, 	IFNULL(i.OPTION_2_CBox_Other, 0) AS OPTION_2_CBox_Other, IFNULL(i.OPTION_2_CBox_Hospice, 0) AS OPTION_2_CBox_Hospice, 	IFNULL(i.OPTION_2_CBox_Hospital, 0) AS OPTION_2_CBox_Hospital, i.hospiceTBox, IFNULL(i.OPTION_3_CBox_Medicare, 0) AS 	OPTION_3_CBox_Medicare, IFNULL(i.OPTION_3_CBox_PrivateInsurance, 0) AS OPTION_3_CBox_PrivateInsurance, IFNULL(i.OPTION_3_CBox_Medicaid, 	0) AS OPTION_3_CBox_Medicaid, IFNULL(i.OPTION_3_CBox_PrivatePay, 0) AS OPTION_3_CBox_PrivatePay, i.hospitalTBox, i.DischargeDateMM, 	i.DischargeDateDD, i.DischargeDateYY, i.typeOfPay_Radio, i.callerFNameTBox, i.callerMInitialTBox, i.callerLNameTBox, i.callerPhoneTBox, i.roomNumberTBox,  i.bedNumberTBox,i.alternateContactFNameTBox, i.alternateContactMInitialTBox, i.alternateContactLNameTBox, i.alternateContactRelationshipTBox, i.alternateContactPhoneTBox, i.alternateContactWorkPhoneTBox, i.poNumberTBox, i.creditCardTypeTBox, i.creditCardNumberTBox, i.ccDateMM, i.ccDateDD, i.ccDateYY, i.orderingPhysicianFNameTBox, i.orderingPhysicianMInitialTBox, i.orderingPhysicianLNameTBox, i.orderingPhysicianPhoneTBox, i.orderingPhysicianUPINTBox, i.orderingPhysicianFaxTBox, i.orderingPhysicianAddressTBox, i.orderingPhysicianCityTBox, i.orderingPhysicianStateTBox, i.orderingPhysicianZipTBox, IFNULL(i.OPTION_13_CBox_PastEquipmentYes, 0) AS OPTION_13_CBox_PastEquipmentYes, IFNULL(i.OPTION_13_CBox_PastEquipmentNo, 0) AS OPTION_13_CBox_PastEquipmentNo, i.Equipment1TypeTBox, i.Equipment1RentPurchasedSelect, i.Equipment1FromMM, i.Equipment1FromDD, i.Equipment1FromYY, i.Equipment1ToMM, i.Equipment1ToDD, i.Equipment1ToYY, i.Equipment1SupplierNameTBox, i.Equipment1SupplierTelephoneTBox, i.Equipment2TypeTBox, i.Equipment2RentPurchasedSelect, i.Equipment2FromMM, i.Equipment2FromDD, i.Equipment2FromYY, i.Equipment2ToMM, i.Equipment2ToDD, i.Equipment2ToYY, i.Equipment2SupplierNameTBox, i.Equipment2SupplierTelephoneTBox, 	i.Equipment3TypeTBox, i.Equipment3RentPurchasedSelect, i.Equipment3FromMM, i.Equipment3FromDD, i.Equipment3FromYY, i.Equipment3ToMM, i.Equipment3ToDD, i.Equipment3ToYY, i.Equipment3SupplierNameTBox, i.Equipment3SupplierTelephoneTBox, i.Equipment4TypeTBox, i.Equipment4RentPurchasedSelect, i.Equipment4FromMM, i.Equipment4FromDD, i.Equipment4FromYY, i.Equipment4ToMM, i.Equipment4ToDD, i.Equipment4ToYY, i.Equipment4SupplierNameTBox, i.Equipment4SupplierTelephoneTBox, i.Equipment5TypeTBox, i.Equipment5RentPurchasedSelect, i.Equipment5FromMM, i.Equipment5FromDD, i.Equipment5FromYY, i.Equipment5ToMM, i.Equipment5ToDD, i.Equipment5ToYY, i.Equipment5SupplierNameTBox, i.Equipment5SupplierTelephoneTBox, IFNULL(i.OPTION_14_CBox_OxygenPAo2, 0) AS OPTION_14_CBox_OxygenPAo2, IFNULL(i.OPTION_14_CBox_OxygenSAo2, 0) AS OPTION_14_CBox_OxygenSAo2, IFNULL(i.OPTION_14_CBox_OxygenSPo2, 0) AS OPTION_14_CBox_OxygenSPo2, i.OxygenPAO2TBox, i.OxygenSAO2TBox, IFNULL(i.CPAPStudy_CBox, 0) AS CPAPStudy_CBox, i.CPAPStudyNote, i.OxygenSPO2TBox, IFNULL(i.CPAPStudyOnFile_CBox, 0) AS CPAPStudyOnFile_CBox, i.CPAPStudyOnFileNote, i.LabTestDateMM, i.LabTestDateDD, i.LabTestDateYY, i.CPAPStudyPerformedAt, i.LabTestFacilityTBox, i.CPAPStudyPerformedAt2, i.CPAPStudyPerformedAt3, i.Equipment1NoteTBox, i.Equipment2NoteTBox, i.Equipment3NoteTBox, i.Equipment4NoteTBox, i.Equipment5NoteTBox, i.active, i.closingInvoiceNumber			
-		FROM Intake i 
+		FROM intake i 
 		WHERE i.intakeID = #trim(arguments.intakeID)#		
-		</cfquery>	<!---INNER JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID		--->
+		</cfquery>	<!---INNER JOIN intakehcpc ih ON i.intakeID = ih.IntakeID		--->
 		
 		<cfif qGetIntake.Recordcount LTE 0>
 			<cf_gcGeneralErrorTemplate				
@@ -5147,3 +5147,10 @@ i.primaryInsuranceNameTBox, i.primaryPolicyNumberTBox, i.primaryGroupNumberTBox,
 		--->
 
 		
+
+
+
+
+
+
+

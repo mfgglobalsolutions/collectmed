@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "EntityTSID") AND stValues.EntityTSID NEQ 0>
 				<cfquery name="qGetEntityTS" datasource="#trim(variables.ds)#">
 			  		SELECT EntityTSID,EntityID,ColM,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EntityTS  
+					FROM entityts  
 					WHERE EntityTSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EntityTSID#" /> 
 				</cfquery>		
 				<cfif qGetEntityTS.Recordcount LTE 0>
@@ -287,7 +287,7 @@
 	
 		<cfquery name="qGetEntityTS" datasource="#trim(variables.ds)#">
 	  		SELECT EntityTSID,EntityID,ColM,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityTS  
+			FROM entityts  
 			WHERE EntityTSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EntityTSID)#" /> 
 		</cfquery>
 		
@@ -316,7 +316,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityTS" datasource="#trim(variables.ds)#">
-				INSERT INTO EntityTS (EntityID,ColM,ColR,InactiveCode)
+				INSERT INTO entityts (EntityID,ColM,ColR,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,	
 					<cfif trim(localColM) NEQ "" AND trim(localColM) NEQ "@@" AND trim(localColM) NEQ "NULL">						
@@ -406,7 +406,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityTS" datasource="#trim(variables.ds)#">
-				UPDATE EntityTS  SET
+				UPDATE entityts  SET
 					
 					EntityID =						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -467,7 +467,7 @@
 
 		<cfquery name="qDeleteEntityTS" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EntityTS
+			FROM entityts
 			WHERE EntityTSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getEntityTSID())#" /> 
 		</cfquery>
 
@@ -489,5 +489,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

@@ -38,7 +38,7 @@
 		
 			<cfquery name="qSearch"	 datasource="#variables.instance.datasource.getDSName()#">
 				SELECT VerificationFileID,InsuranceCompanyID,UsersID,xmlFileID,Active,InactiveCode,DateCreated,DateModified
-				FROM VerificationFile
+				FROM verificationfile
 				WHERE 1 = 1
 				<cfif NOT structIsEmpty(arguments.filter)>				
 					<cfif structKeyExists(arguments.filter, "VerificationFileID")>				
@@ -90,5 +90,6 @@
 		
 	
 </cfcomponent>
+
 
 

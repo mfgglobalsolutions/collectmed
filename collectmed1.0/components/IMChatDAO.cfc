@@ -32,7 +32,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateIMChat" datasource="#trim(arguments.ds)#">
-				INSERT INTO IMChat (UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode)
+				INSERT INTO imchat (UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersIDFrom)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localFromActive)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -167,7 +167,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateIMChat" datasource="#trim(arguments.ds)#">
-				UPDATE IMChat  SET
+				UPDATE imchat  SET
 					
 					UsersIDFrom =						
 						<cfqueryparam value="#trim(localUsersIDFrom)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -269,7 +269,7 @@
 
 		<cfquery name="qDeleteIMChat" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM IMChat
+			FROM imchat
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -289,7 +289,7 @@
 	
 		<cfquery name="qGetIMChat" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IMChat  
+			FROM imchat  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -312,5 +312,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

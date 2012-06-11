@@ -71,7 +71,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_MEDICARE_PROCEDURECode" datasource="#trim(arguments.ds)#">
-				INSERT INTO EOB_MEDICARE_PROCEDURECode (HCPC,SeqNum,RIC,LongDescription,ShortDescription,PI1,PI2,PI3,PI4,MPI,CIM1,CIM2,CIM3,MCM1,MCM2,MCM3,Statute,LabCert1,LabCert2,LabCert3,LabCert4,LabCert5,LabCert6,LabCert7,LabCert8,XRef1,XRef2,XRef3,XRef4,XRef5,Coverage,ASCPayGrp,ASCPayGrpEffDate,MOGPayGrp,MOGPayInd,MOGEffDate,ProcNote,BETOS,FILLER,TOS1,TOS2,TOS3,TOS4,TOS5,AnestBaseUnits,CodeAddDate,ActionEffDate,TermDate,ActionCode,Filler1,Active,InactiveCode)
+				INSERT INTO eob_medicare_procedurecode (HCPC,SeqNum,RIC,LongDescription,ShortDescription,PI1,PI2,PI3,PI4,MPI,CIM1,CIM2,CIM3,MCM1,MCM2,MCM3,Statute,LabCert1,LabCert2,LabCert3,LabCert4,LabCert5,LabCert6,LabCert7,LabCert8,XRef1,XRef2,XRef3,XRef4,XRef5,Coverage,ASCPayGrp,ASCPayGrpEffDate,MOGPayGrp,MOGPayInd,MOGEffDate,ProcNote,BETOS,FILLER,TOS1,TOS2,TOS3,TOS4,TOS5,AnestBaseUnits,CodeAddDate,ActionEffDate,TermDate,ActionCode,Filler1,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localHCPC)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localSeqNum) NEQ "" AND trim(localSeqNum) NEQ "@@" AND trim(localSeqNum) NEQ "NULL">						
@@ -491,7 +491,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_MEDICARE_PROCEDURECode" datasource="#trim(arguments.ds)#">
-				UPDATE EOB_MEDICARE_PROCEDURECode  SET
+				UPDATE eob_medicare_procedurecode  SET
 					
 					HCPC =						
 						<cfqueryparam value="#trim(localHCPC)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -878,7 +878,7 @@
 
 		<cfquery name="qDeleteEOB_MEDICARE_PROCEDURECode" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EOB_MEDICARE_PROCEDURECode
+			FROM eob_medicare_procedurecode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -898,7 +898,7 @@
 	
 		<cfquery name="qGetEOB_MEDICARE_PROCEDURECode" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,HCPC,SeqNum,RIC,LongDescription,ShortDescription,PI1,PI2,PI3,PI4,MPI,CIM1,CIM2,CIM3,MCM1,MCM2,MCM3,Statute,LabCert1,LabCert2,LabCert3,LabCert4,LabCert5,LabCert6,LabCert7,LabCert8,XRef1,XRef2,XRef3,XRef4,XRef5,Coverage,ASCPayGrp,ASCPayGrpEffDate,MOGPayGrp,MOGPayInd,MOGEffDate,ProcNote,BETOS,FILLER,TOS1,TOS2,TOS3,TOS4,TOS5,AnestBaseUnits,CodeAddDate,ActionEffDate,TermDate,ActionCode,Filler1,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_MEDICARE_PROCEDURECode  
+			FROM eob_medicare_procedurecode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -921,5 +921,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

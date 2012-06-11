@@ -28,7 +28,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePageHit" datasource="#trim(arguments.ds)#">
-				INSERT INTO PageHit (PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode)
+				INSERT INTO pagehit (PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localPageID))>						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -151,7 +151,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePageHit" datasource="#trim(arguments.ds)#">
-				UPDATE PageHit  SET
+				UPDATE pagehit  SET
 					
 					PageID =				
 					<cfif IsNumeric(trim(localPageID))>						
@@ -241,7 +241,7 @@
 
 		<cfquery name="qDeletePageHit" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM PageHit
+			FROM pagehit
 			WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getPageHitID())#" /> 
 		</cfquery>
 
@@ -261,7 +261,7 @@
 	
 		<cfquery name="qGetPageHit" datasource="#trim(arguments.ds)#">
 	  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
-			FROM PageHit  
+			FROM pagehit  
 			WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageHitID)#" /> 
 		</cfquery>
 		
@@ -284,5 +284,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

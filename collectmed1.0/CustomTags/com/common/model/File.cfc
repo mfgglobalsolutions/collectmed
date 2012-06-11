@@ -477,7 +477,7 @@
 		
 			<cfquery name="getFileFromDBByName" datasource="#trim(arguments.datasource)#">
 				SELECT FileID
-				FROM File  
+				FROM file  
 				WHERE ServerFile = '#trim(fileName)#'
 			</cfquery>
 			
@@ -500,5 +500,6 @@
 		
 	
 </cfcomponent>
+
 
 

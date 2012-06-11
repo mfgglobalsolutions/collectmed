@@ -40,7 +40,7 @@
 
 <cfquery name="checkExistsClient" datasource="pa_master">
 	SELECT clientID
-	FROM Client  
+	FROM client  
 	WHERE ClientID > 1094
 </cfquery>
 
@@ -49,4 +49,5 @@
 	<cfoutput>[#clientID#]<br></cfoutput>
 	
 </CFLOOP>
+
 

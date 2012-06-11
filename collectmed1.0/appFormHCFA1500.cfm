@@ -181,7 +181,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getPatientID" datasource="#trim(request.datasource)#">
 			SELECT p.PatientID
-			FROM Patient p
+			FROM patient p
 			WHERE p.EntityID = #trim(request.thisClaim.getEntityID())#
 		</cfquery>
 						
@@ -338,7 +338,7 @@
 				c.DueDate, c.FacilityCode, c.CrossoverNameLastorOrganizationName3, 		
 				u.usersID, e.FName As userFName, e.LName AS userLName, TIMESTAMPDIFF(day, c.DateCreated, now()) AS days, 
 				p.PatientID, c.HICNumber, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
-				FROM Claim c 
+				FROM claim c 
 				LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
 				LEFT JOIN Entity e ON u.EntityID = e.EntityID
 				LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
@@ -1724,7 +1724,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[1])#
 					</cfquery>
 					
@@ -1806,7 +1806,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[2])#
 					</cfquery>
 					
@@ -1889,7 +1889,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[3])#
 					</cfquery>
 					
@@ -1973,7 +1973,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[4])#
 					</cfquery>
 					
@@ -2055,7 +2055,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[5])#
 					</cfquery>
 						
@@ -2137,7 +2137,7 @@
 					
 					<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 						SELECT e.Modifier, e.Description
-						FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+						FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 						WHERE p.ProcedureID = #trim(getProcedures.ProcedureID[5])#
 					</cfquery>
 						
@@ -2268,7 +2268,7 @@
 					<!-------------------------------------------------------------------------------------->										
 					<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 						SELECT s.ItemNameDisplay, p.* 
-						FROM Procedure_MEDICARE_CLAIMADJUSTMENT p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+						FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 						WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 					</cfquery>
 					
@@ -2480,5 +2480,8 @@
 </cfoutput>
 
 <cfsetting showdebugoutput="No">
+
+
+
 
 

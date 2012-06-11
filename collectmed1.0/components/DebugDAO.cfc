@@ -22,7 +22,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateDebug" datasource="#trim(arguments.ds)#">
-				INSERT INTO Debug (referenceID,Note,TS,tesst)
+				INSERT INTO debug (referenceID,Note,TS,tesst)
 				VALUES (	
 					<cfif trim(localreferenceID) NEQ "" AND trim(localreferenceID) NEQ "@@" AND trim(localreferenceID) NEQ "NULL">						
 						<cfqueryparam value="#trim(localreferenceID)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateDebug" datasource="#trim(arguments.ds)#">
-				UPDATE Debug  SET
+				UPDATE debug  SET
 					
 					referenceID =	
 					<cfif trim(localreferenceID) NEQ "" AND trim(localreferenceID) NEQ "@@" AND trim(localreferenceID) NEQ "NULL">						
@@ -155,7 +155,7 @@
 
 		<cfquery name="qDeleteDebug" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Debug
+			FROM debug
 			WHERE DebugID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getDebugID())#" /> 
 		</cfquery>
 
@@ -175,7 +175,7 @@
 	
 		<cfquery name="qGetDebug" datasource="#trim(arguments.ds)#">
 	  		SELECT DebugID,referenceID,Note,TS,tesst
-			FROM Debug  
+			FROM debug  
 			WHERE DebugID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.DebugID)#" /> 
 		</cfquery>
 		
@@ -198,5 +198,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

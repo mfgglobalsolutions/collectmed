@@ -86,7 +86,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<cfquery name="getEntityRecord" datasource="#trim(request.datasource)#">
 		SELECT EntityID
-		FROM Entity
+		FROM entity
 		WHERE EntityID = #trim(accesscontrol.EntityID)# AND FName = '#trim(FName)#' AND LName = '#trim(LName)#'
 	</cfquery>		
 	

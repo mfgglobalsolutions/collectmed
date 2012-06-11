@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "TaskAssignmentID") AND stValues.TaskAssignmentID NEQ 0>
 				<cfquery name="qGetTaskAssignment" datasource="#trim(variables.ds)#">
 			  		SELECT TaskAssignmentID,TaskID,UsersID,DateCreated,AssignorID,Note
-					FROM TaskAssignment  
+					FROM taskassignment  
 					WHERE TaskAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.TaskAssignmentID#" /> 
 				</cfquery>		
 				<cfif qGetTaskAssignment.Recordcount LTE 0>
@@ -217,7 +217,7 @@
 	
 		<cfquery name="qGetTaskAssignment" datasource="#trim(variables.ds)#">
 	  		SELECT TaskAssignmentID,TaskID,UsersID,DateCreated,AssignorID,Note
-			FROM TaskAssignment  
+			FROM taskassignment  
 			WHERE TaskAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.TaskAssignmentID)#" /> 
 		</cfquery>
 		
@@ -243,7 +243,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateTaskAssignment" datasource="#trim(variables.ds)#">
-				INSERT INTO TaskAssignment (TaskID,UsersID,AssignorID,Note)
+				INSERT INTO taskassignment (TaskID,UsersID,AssignorID,Note)
 				VALUES (						
 						<cfqueryparam value="#trim(localTaskID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -323,7 +323,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateTaskAssignment" datasource="#trim(variables.ds)#">
-				UPDATE TaskAssignment  SET
+				UPDATE taskassignment  SET
 					
 					TaskID =						
 						<cfqueryparam value="#trim(localTaskID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -367,7 +367,7 @@
 
 		<cfquery name="qDeleteTaskAssignment" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM TaskAssignment
+			FROM taskassignment
 			WHERE TaskAssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getTaskAssignmentID())#" /> 
 		</cfquery>
 
@@ -389,5 +389,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "recordID") AND stValues.recordID NEQ 0>
 				<cfquery name="qGetEntityPhone" datasource="#trim(arguments.ds)#">
 			  		SELECT recordID,EntityID,PhoneID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EntityPhone  
+					FROM entityphone  
 					WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.recordID#" /> 
 				</cfquery>		
 				<cfif qGetEntityPhone.Recordcount LTE 0>

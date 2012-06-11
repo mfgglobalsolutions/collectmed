@@ -712,7 +712,7 @@
 	
 		<cfquery name="qGetIMChat" datasource="#trim(request.datasource)#">
 	  		SELECT RecordID,UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IMChat  
+			FROM imchat  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -1101,7 +1101,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO IMChat  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO imchat  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1293,7 +1293,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getIMChatQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM IMChat   
+				FROM imchat   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -1400,5 +1400,7 @@
 
 	
 </cfcomponent>
+
+
 
 

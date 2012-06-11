@@ -99,7 +99,7 @@
 			
 			<cfquery name="insuranceCompanies" datasource="#trim(request.datasource)#">
 				SELECT  IC.InsuranceCompanyID, IC.InsuranceCompanyName, A.AddressLine1, A.AddressLine2, A.City, sli.ItemNameDisplay AS State, A.ZipCode
-				FROM InsuranceCompany IC 
+				FROM insurancecompany IC 
 				LEFT JOIN EntityAddress EA ON IC.EntityID = EA.EntityID
 				LEFT JOIN ADDRESS A ON EA.AddressID = A.AddressID  
 				LEFT JOIN pa_master.StandardListItem sli ON A.StateID = sli.StandardListItemID
@@ -154,3 +154,4 @@
 	</cfif>		
 	
 	
+

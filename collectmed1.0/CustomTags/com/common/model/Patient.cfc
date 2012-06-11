@@ -154,8 +154,8 @@
 								
 			<cfquery name="getPatients" datasource="PAClient_#trim(ClientID)#">								
 				SELECT p.EntityID, p.PatientID, e.FName, e.Mname, e.LName, e.SSN, e.DOB, e.Sex, e.Weight, e.HeightInInches, e.MaritalStatus 				
-				FROM Patient p
-				INNER JOIN Entity e ON p.EntityID = e.EntityID						
+				FROM patient p
+				INNER JOIN entity e ON p.EntityID = e.EntityID						
 				WHERE p.PatientID IN (#trim(arguments.PatientIDs)#)					
 			</cfquery>
 			
@@ -175,5 +175,7 @@
 		
 	
 </cfcomponent>
+
+
 
 

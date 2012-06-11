@@ -64,7 +64,7 @@
 			<cfif StructKeyExists(stValues, "ClientID") AND stValues.ClientID NEQ 0>
 				<cfquery name="qGetClient" datasource="#trim(variables.ds)#">
 			  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
-					FROM Client  
+					FROM client  
 					WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClientID#" /> 
 				</cfquery>		
 				<cfif qGetClient.Recordcount LTE 0>
@@ -523,7 +523,7 @@
 	
 		<cfquery name="qGetClient" datasource="#trim(variables.ds)#">
 	  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
-			FROM Client  
+			FROM client  
 			WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClientID)#" /> 
 		</cfquery>
 		
@@ -562,7 +562,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClient" datasource="#trim(variables.ds)#">
-				INSERT INTO Client (ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,SettingsXML,InactiveCode)
+				INSERT INTO client (ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,SettingsXML,InactiveCode)
 				VALUES (	
 					<cfif trim(localClientName) NEQ "" AND trim(localClientName) NEQ "@@" AND trim(localClientName) NEQ "NULL">						
 						<cfqueryparam value="#trim(localClientName)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -726,7 +726,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClient" datasource="#trim(variables.ds)#">
-				UPDATE Client  SET
+				UPDATE client  SET
 					
 					ClientName =	
 					<cfif trim(localClientName) NEQ "" AND trim(localClientName) NEQ "@@" AND trim(localClientName) NEQ "NULL">						
@@ -865,7 +865,7 @@
 
 		<cfquery name="qDeleteClient" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Client
+			FROM client
 			WHERE ClientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClientID())#" /> 
 		</cfquery>
 
@@ -896,7 +896,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="checkExistsClient" datasource="#trim(variables.ds)#">
 				SELECT clientID
-				FROM Client  
+				FROM client  
 				WHERE lower(ClientName) = '#LCase(trim(arguments.clientName))#'
 			</cfquery>
 			
@@ -991,5 +991,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

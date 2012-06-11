@@ -23,7 +23,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClientProvider" datasource="#trim(arguments.ds)#">
-				INSERT INTO ClientProvider (ClientID,ProviderID,Active,InactiveCode)
+				INSERT INTO clientprovider (ClientID,ProviderID,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localProviderID)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -103,7 +103,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClientProvider" datasource="#trim(arguments.ds)#">
-				UPDATE ClientProvider  SET
+				UPDATE clientprovider  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -150,7 +150,7 @@
 
 		<cfquery name="qDeleteClientProvider" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM ClientProvider
+			FROM clientprovider
 			WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClientProviderID())#" /> 
 		</cfquery>
 
@@ -170,7 +170,7 @@
 	
 		<cfquery name="qGetClientProvider" datasource="#trim(arguments.ds)#">
 	  		SELECT ClientProviderID,ClientID,ProviderID,Active,InactiveCode,DateCreated,DateModified
-			FROM ClientProvider  
+			FROM clientprovider  
 			WHERE ClientProviderID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClientProviderID)#" /> 
 		</cfquery>
 		
@@ -193,5 +193,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

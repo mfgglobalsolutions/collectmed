@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePageRole" datasource="#trim(arguments.ds)#">
-				INSERT INTO PageRole (PageID,RoleID,SiteID,Active,InactiveCode)
+				INSERT INTO pagerole (PageID,RoleID,SiteID,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localRoleID)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePageRole" datasource="#trim(arguments.ds)#">
-				UPDATE PageRole  SET
+				UPDATE pagerole  SET
 					
 					PageID =						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -157,7 +157,7 @@
 
 		<cfquery name="qDeletePageRole" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM PageRole
+			FROM pagerole
 			WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getPageRoleID())#" /> 
 		</cfquery>
 
@@ -177,7 +177,7 @@
 	
 		<cfquery name="qGetPageRole" datasource="#trim(arguments.ds)#">
 	  		SELECT PageRoleID,PageID,RoleID,SiteID,Active,InactiveCode,DateCreated,DateModified
-			FROM PageRole  
+			FROM pagerole  
 			WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageRoleID)#" /> 
 		</cfquery>
 		
@@ -200,5 +200,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

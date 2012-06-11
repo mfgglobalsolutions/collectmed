@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateLog" datasource="#trim(arguments.ds)#">
-				INSERT INTO Log (Code,IPaddress,LogText,Active,InactiveCode)
+				INSERT INTO log (Code,IPaddress,LogText,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localCode))>						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateLog" datasource="#trim(arguments.ds)#">
-				UPDATE Log  SET
+				UPDATE log  SET
 					
 					Code =				
 					<cfif IsNumeric(trim(localCode))>						
@@ -181,7 +181,7 @@
 
 		<cfquery name="qDeleteLog" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Log
+			FROM log
 			WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getLogID())#" /> 
 		</cfquery>
 
@@ -201,7 +201,7 @@
 	
 		<cfquery name="qGetLog" datasource="#trim(arguments.ds)#">
 	  		SELECT LogID,Code,IPaddress,LogText,Active,InactiveCode,DateCreated,DateModified
-			FROM Log  
+			FROM log  
 			WHERE LogID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.LogID)#" /> 
 		</cfquery>
 		
@@ -224,5 +224,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

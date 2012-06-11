@@ -41,7 +41,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(arguments.ds)#">
-				INSERT INTO Procedure_MEDICARE_CLAIMADJUSTMENT (ProcedureID,ClaimAdjustmentGroupCode1,ClaimAdjustmentReasonCode2,MonetaryAmount3,Quantity4,ClaimAdjustmentReasonCode5,MonetaryAmount6,Quantity7,ClaimAdjustmentReasonCode8,MonetaryAmount9,Quantity10,ClaimAdjustmentReasonCode11,MonetaryAmount12,Quantity13,ClaimAdjustmentReasonCode14,MonetaryAmount15,Quantity16,ClaimAdjustmentReasonCode17,MonetaryAmount18,Quantity19,Active,InactiveCode)
+				INSERT INTO procedure_medicare_claimadjustment (ProcedureID,ClaimAdjustmentGroupCode1,ClaimAdjustmentReasonCode2,MonetaryAmount3,Quantity4,ClaimAdjustmentReasonCode5,MonetaryAmount6,Quantity7,ClaimAdjustmentReasonCode8,MonetaryAmount9,Quantity10,ClaimAdjustmentReasonCode11,MonetaryAmount12,Quantity13,ClaimAdjustmentReasonCode14,MonetaryAmount15,Quantity16,ClaimAdjustmentReasonCode17,MonetaryAmount18,Quantity19,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localClaimAdjustmentGroupCode1)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -239,7 +239,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(arguments.ds)#">
-				UPDATE Procedure_MEDICARE_CLAIMADJUSTMENT  SET
+				UPDATE procedure_medicare_claimadjustment  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -404,7 +404,7 @@
 
 		<cfquery name="qDeleteProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Procedure_MEDICARE_CLAIMADJUSTMENT
+			FROM procedure_medicare_claimadjustment
 			WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getProcedure_MEDICARE_CLAIMADJUSTMENTID())#" /> 
 		</cfquery>
 
@@ -424,7 +424,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(arguments.ds)#">
 	  		SELECT Procedure_MEDICARE_CLAIMADJUSTMENTID,ProcedureID,ClaimAdjustmentGroupCode1,ClaimAdjustmentReasonCode2,MonetaryAmount3,Quantity4,ClaimAdjustmentReasonCode5,MonetaryAmount6,Quantity7,ClaimAdjustmentReasonCode8,MonetaryAmount9,Quantity10,ClaimAdjustmentReasonCode11,MonetaryAmount12,Quantity13,ClaimAdjustmentReasonCode14,MonetaryAmount15,Quantity16,ClaimAdjustmentReasonCode17,MonetaryAmount18,Quantity19,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_CLAIMADJUSTMENT  
+			FROM procedure_medicare_claimadjustment  
 			WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Procedure_MEDICARE_CLAIMADJUSTMENTID)#" /> 
 		</cfquery>
 		
@@ -447,5 +447,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

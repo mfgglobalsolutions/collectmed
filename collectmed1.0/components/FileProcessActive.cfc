@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "FileProcessID") AND stValues.FileProcessID NEQ 0>
 				<cfquery name="qGetFileProcess" datasource="#trim(variables.ds)#">
 			  		SELECT FileProcessID,FileID,StatusID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM FileProcess  
+					FROM fileprocess  
 					WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.FileProcessID#" /> 
 				</cfquery>		
 				<cfif qGetFileProcess.Recordcount LTE 0>
@@ -265,7 +265,7 @@
 	
 		<cfquery name="qGetFileProcess" datasource="#trim(variables.ds)#">
 	  		SELECT FileProcessID,FileID,StatusID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM FileProcess  
+			FROM fileprocess  
 			WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.FileProcessID)#" /> 
 		</cfquery>
 		
@@ -293,7 +293,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateFileProcess" datasource="#trim(variables.ds)#">
-				INSERT INTO FileProcess (FileID,Note,InactiveCode)
+				INSERT INTO fileprocess (FileID,Note,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,	
 					<cfif trim(localNote) NEQ "" AND trim(localNote) NEQ "@@" AND trim(localNote) NEQ "NULL">						
@@ -376,7 +376,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateFileProcess" datasource="#trim(variables.ds)#">
-				UPDATE FileProcess  SET
+				UPDATE fileprocess  SET
 					
 					FileID =						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -430,7 +430,7 @@
 
 		<cfquery name="qDeleteFileProcess" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM FileProcess
+			FROM fileprocess
 			WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getFileProcessID())#" /> 
 		</cfquery>
 
@@ -452,5 +452,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

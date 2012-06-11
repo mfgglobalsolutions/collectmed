@@ -26,7 +26,7 @@
 				
 				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
 					SELECT p.PatientID, e.entityID
-					FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE p.PatientID = '#trim(patientID)#'
 				</cfquery>
 							
@@ -53,7 +53,7 @@
 					
 				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
 					SELECT p.PatientID, e.entityID
-					FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE e.clientID = #trim(clientID)# AND (e.FName = '#trim(FName)#' OR e.FName = '#LEFT(trim(FName), 1)#') AND e.LName = '#trim(LName)#' 
 					<cfif MName NEQ "">	AND e.MName = '#trim(MName)#' </cfif>
 					<cfif DOB NEQ ""> AND e.DOB BETWEEN '#DateFormat(trim(DOB), "YYYY-MM-DD")#' AND '#DateFormat(trim(DOB), "YYYY-MM-DD")# 23:59:59.997'</cfif>
@@ -108,7 +108,7 @@
 							
 				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
 					SELECT p.PatientID, e.entityID
-					FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE p.ClaimSubmitterIdentifier = '#trim(ClaimSubmitterIdentifier)#'
 				</cfquery>
 								
@@ -190,8 +190,8 @@
 		
 			<cfquery name="getInsComs" datasource="#trim(request.datasource)#">
 				SELECT pic.InsuranceCompanyID, pic.PrimSecTer, pic.PolicyNumber, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersDOB, pic.PolicyHoldersSex, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.GroupNumber, pic.GroupName, pic.Relationship, pic.Deductible, pic.PayPercentage, ic.InsuranceCompanyName
-				FROM PatientInsuranceCompany pic
-				INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+				FROM patientinsurancecompany pic
+				INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 				WHERE pic.patientID = #trim(patientID)#
 				Order By pic.PrimSecTer 
 			</cfquery>			
@@ -222,7 +222,7 @@
 			
 			<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
 				SELECT e.LName + ', ' + e.FName AS Fullname
-				FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+				FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 				WHERE p.PatientID = '#trim(patientID)#'
 			</cfquery>
 			
@@ -261,8 +261,8 @@
 						
 			<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">								
 				SELECT p.EntityID, p.PatientID, e.FName, e.Mname, e.LName, e.SSN, e.DOB, e.Sex, e.Weight, e.HeightInInches, e.MaritalStatus 				
-				FROM Patient p
-				INNER JOIN Entity e ON p.EntityID = e.EntityID						
+				FROM patient p
+				INNER JOIN entity e ON p.EntityID = e.EntityID						
 				WHERE p.PatientID = '#trim(PatientID)#'					
 			</cfquery>
 			
@@ -349,3 +349,6 @@
 --->
 
 		
+
+
+

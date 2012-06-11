@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "recordID") AND stValues.recordID NEQ 0>
 				<cfquery name="qGetEOB_Provider" datasource="#trim(variables.ds)#">
 			  		SELECT recordID,ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_Provider  
+					FROM eob_provider  
 					WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.recordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_Provider.Recordcount LTE 0>
@@ -287,7 +287,7 @@
 	
 		<cfquery name="qGetEOB_Provider" datasource="#trim(variables.ds)#">
 	  		SELECT recordID,ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_Provider  
+			FROM eob_provider  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -316,7 +316,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_Provider" datasource="#trim(variables.ds)#">
-				INSERT INTO EOB_Provider (ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,InactiveCode)
+				INSERT INTO eob_provider (ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,InactiveCode)
 				VALUES (	
 					<cfif trim(localProviderID) NEQ "" AND trim(localProviderID) NEQ "@@" AND trim(localProviderID) NEQ "NULL">						
 						<cfqueryparam value="#trim(localProviderID)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -407,7 +407,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_Provider" datasource="#trim(variables.ds)#">
-				UPDATE EOB_Provider  SET
+				UPDATE eob_provider  SET
 					
 					ProviderID =	
 					<cfif trim(localProviderID) NEQ "" AND trim(localProviderID) NEQ "@@" AND trim(localProviderID) NEQ "NULL">						
@@ -468,7 +468,7 @@
 
 		<cfquery name="qDeleteEOB_Provider" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EOB_Provider
+			FROM eob_provider
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getrecordID())#" /> 
 		</cfquery>
 
@@ -490,5 +490,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

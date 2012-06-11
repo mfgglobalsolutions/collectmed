@@ -137,8 +137,8 @@
 		<cfsavecontent variable="sqlStatement">			
 			<cfoutput>
 				SELECT d.EntityID, d.DoctorID, d.Upin, e.PrefixName, e.FName, e.Mname, e.LName <!---, a.addressline1, a.addressline2, City, StateID, sli.ItemNameDisplay, ZipCode--->   
-				FROM Doctor d
-				INNER JOIN Entity e ON d.EntityID = e.EntityID				
+				FROM doctor d
+				INNER JOIN entity e ON d.EntityID = e.EntityID				
 				WHERE 1 =1 
 				<cfif form.LName NEQ "">
 					AND e.LName LIKE '%#trim(form.LName)#%'
@@ -216,3 +216,5 @@
 	</cfif>		
 	
 	
+
+

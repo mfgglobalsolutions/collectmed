@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM VerificationPatientInsurance
+			FROM verificationpatientinsurance
 			WHERE VerificationPatientInsuranceID = <cfqueryparam value="#arguments.VerificationPatientInsurance.getVerificationPatientInsuranceID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateVerificationPatientInsurance" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO VerificationPatientInsurance (usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode)
+				INSERT INTO verificationpatientinsurance (usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(arguments.VerificationPatientInsurance.getusersID())#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(arguments.VerificationPatientInsurance.getpicID())#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -248,7 +248,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateVerificationPatientInsurance" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE VerificationPatientInsurance  SET
+				UPDATE verificationpatientinsurance  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					usersID =						
@@ -443,7 +443,7 @@
 
 		<cfquery name="qDeleteVerificationPatientInsurance" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM VerificationPatientInsurance
+			FROM verificationpatientinsurance
 			WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationPatientInsuranceID)#" /> 
 		</cfquery>
 
@@ -462,7 +462,7 @@
 	
 		<cfquery name="qGetVerificationPatientInsurance" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-			FROM VerificationPatientInsurance  
+			FROM verificationpatientinsurance  
 			WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationPatientInsuranceID)#" /> 
 		</cfquery>
 		
@@ -559,5 +559,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

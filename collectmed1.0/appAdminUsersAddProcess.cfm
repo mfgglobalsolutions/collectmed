@@ -60,7 +60,7 @@
 			<!--- Start the insert of the new user account.                                      --->
 			<!-------------------------------------------------------------------------------------->
 			<cfquery name="insertNewUser" datasource="#trim(request.datasource)#">
-				INSERT INTO Entity  (SiteID, ClientID, ObjectTypeID, FName, MName, LName)
+				INSERT INTO entity  (SiteID, ClientID, ObjectTypeID, FName, MName, LName)
 				VALUES(#trim(request.Site.getSiteID())#, '#trim(session.clientID)#', 2, '#trim(form.NewUserFName)#', '#trim(form.NewUserMName)#', '#trim(form.NewUserLName)#');
 				SELECT LAST_INSERT_ID() AS newUserID 
 			</cfquery>			
@@ -69,7 +69,7 @@
 			
 			
 			<cfquery name="insertAddress" datasource="#trim(request.datasource)#">
-				INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
+				INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
 				VALUES(#trim(form.NewUsersHiddenAddressTypeID)#, '#trim(form.NewUsersHiddenAddressLine1)#', '#trim(form.NewUsersHiddenAddressLine2)#', '#trim(form.NewUsersHiddenAddressCity)#', #trim(form.NewUsersHiddenAddressStateID)#, '#trim(form.NewUsersHiddenAddressZipCode)#');
 				SELECT LAST_INSERT_ID() AS addressID 
 			</cfquery>
@@ -77,7 +77,7 @@
 			<cfset addressID = insertAddress.addressID>
 			
 			<cfquery name="insertEntityAddress" datasource="#trim(request.datasource)#">
-				INSERT INTO EntityAddress  (EntityID, AddressID, IsDefault)
+				INSERT INTO entityaddress  (EntityID, AddressID, IsDefault)
 				VALUES(#trim(newUserID)#, '#trim(addressID)#', 1)				
 			</cfquery>	
 			
@@ -108,7 +108,7 @@
 			<cfloop list="#form.RolesToAssociate#" index="i">
 				
 				<cfquery name="insertAdministratorUserRole" datasource="#trim(request.datasource)#">
-					INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
+					INSERT INTO usersrole  (UsersID, SiteID, RoleID)
 					VALUES(#trim(insertNewUserAccount.usersID)#, #trim(request.Site.getSiteID())#, #trim(i)#)
 				</cfquery>		
 			
@@ -130,7 +130,7 @@
 					<cfset thisGroupID = ListLast(i, "_")>
 					
 					<cfquery name="insertRecord" datasource="#trim(request.datasource)#">
-						INSERT INTO UsersWorkGroup (UsersID, WorkGroupID)
+						INSERT INTO usersworkgroup (UsersID, WorkGroupID)
 						VALUES(#trim(insertNewUserAccount.usersID)#, #trim(thisGroupID)#)
 					</cfquery>							
 					
@@ -146,7 +146,7 @@
 			
 			<cfquery name="checkEmailAddress" datasource="#request.datasource#">
 				SELECT Email
-				FROM EmailAddress  
+				FROM emailaddress  
 				WHERE Email = '#trim(NewUserEmailAddress)#'
 			</cfquery>
 			
@@ -155,7 +155,7 @@
 			</cfif>
 						
 			<cfquery name="insertNewUserEmail" datasource="#trim(request.datasource)#">
-				INSERT INTO EmailAddress  (EntityID, EmailTypeID, Email, IsDefault)
+				INSERT INTO emailaddress  (EntityID, EmailTypeID, Email, IsDefault)
 				VALUES(#trim(newUserID)#, 82, '#trim(NewUserEmailAddress)#', 1);
 				SELECT LAST_INSERT_ID() AS emailID 
 			</cfquery>
@@ -173,7 +173,7 @@
 			</cfif>
 			
 			<cfquery name="insertNewUserPhone" datasource="#trim(request.datasource)#">
-				INSERT INTO Phone  (phoneNumber, phoneExtension, PhoneTypeID)
+				INSERT INTO phone  (phoneNumber, phoneExtension, PhoneTypeID)
 				VALUES('#trim(NewUserPhoneNumber)#', '#trim(form.NewUserPhoneNumberExtension)#', 74);
 				SELECT LAST_INSERT_ID() AS phoneID 
 			</cfquery>
@@ -181,7 +181,7 @@
 			<cfset newUserPhoneID = insertNewUserPhone.phoneID>	
 			
 			<cfquery name="insertNewUserEntityPhone" datasource="#trim(request.datasource)#">
-				INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+				INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 				VALUES(#trim(newUserID)#, '#trim(newUserPhoneID)#', 1)				
 			</cfquery>
 			
@@ -232,3 +232,11 @@
 		
 	
 			
+
+
+
+
+
+
+
+

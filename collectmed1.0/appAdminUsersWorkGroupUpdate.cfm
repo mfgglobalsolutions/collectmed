@@ -35,7 +35,7 @@
 				
 				<cfquery name="getWorkGroup" datasource="#trim(request.datasource)#">
 					SELECT WorkGroupID, WorkGroupName
-					FROM WorkGroup 
+					FROM workgroup 
 					WHERE WorkGroupID = #trim(WorkGroupID)#					
 				</cfquery>
 				
@@ -47,7 +47,7 @@
 				<!--- delete the users of this group.                                                --->
 				<!-------------------------------------------------------------------------------------->		
 				<cfquery name="delUsersWorkGroup" datasource="#trim(request.datasource)#">
-					DELETE FROM UsersWorkGroup 
+					DELETE FROM usersworkgroup 
 					WHERE WorkGroupID = #trim(WorkGroupID)# 		
 				</cfquery>
 				
@@ -61,7 +61,7 @@
 						<cfset thisUsersID = ListLast(i, "_")>
 						
 						<cfquery name="insertRecord" datasource="#trim(request.datasource)#">
-							INSERT INTO UsersWorkGroup (UsersID, WorkGroupID)
+							INSERT INTO usersworkgroup (UsersID, WorkGroupID)
 							VALUES(#trim(thisUsersID)#, #trim(WorkGroupID)#)
 						</cfquery>							
 						
@@ -104,3 +104,5 @@
 		
 		
 	
+
+

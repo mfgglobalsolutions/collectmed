@@ -1147,7 +1147,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_CLAIMADJUSTMENT" datasource="#trim(request.datasource)#">
 	  		SELECT Procedure_MEDICARE_CLAIMADJUSTMENTID,ProcedureID,ClaimAdjustmentGroupCode1,ClaimAdjustmentReasonCode2,MonetaryAmount3,Quantity4,ClaimAdjustmentReasonCode5,MonetaryAmount6,Quantity7,ClaimAdjustmentReasonCode8,MonetaryAmount9,Quantity10,ClaimAdjustmentReasonCode11,MonetaryAmount12,Quantity13,ClaimAdjustmentReasonCode14,MonetaryAmount15,Quantity16,ClaimAdjustmentReasonCode17,MonetaryAmount18,Quantity19,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_CLAIMADJUSTMENT  
+			FROM procedure_medicare_claimadjustment  
 			WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID = #trim(arguments.Procedure_MEDICARE_CLAIMADJUSTMENTID)# 
 		</cfquery>
 		
@@ -1596,7 +1596,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Procedure_MEDICARE_CLAIMADJUSTMENT  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_CLAIMADJUSTMENTID ">
+				<cfset sqlStatement = "INSERT INTO procedure_medicare_claimadjustment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_CLAIMADJUSTMENTID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1815,7 +1815,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedure_MEDICARE_CLAIMADJUSTMENTQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Procedure_MEDICARE_CLAIMADJUSTMENT   
+				FROM procedure_medicare_claimadjustment   
 				WHERE 1=1
 					<cfif Procedure_MEDICARE_CLAIMADJUSTMENTID NEQ "" AND IsNumeric(Procedure_MEDICARE_CLAIMADJUSTMENTID)>AND Procedure_MEDICARE_CLAIMADJUSTMENTID = #Procedure_MEDICARE_CLAIMADJUSTMENTID#</cfif>
 					<cfif Procedure_MEDICARE_CLAIMADJUSTMENTID_IN NEQ "">AND Procedure_MEDICARE_CLAIMADJUSTMENTID IN(#trim(Procedure_MEDICARE_CLAIMADJUSTMENTID_IN)#)</cfif>
@@ -1949,5 +1949,7 @@
 
 	
 </cfcomponent>
+
+
 
 

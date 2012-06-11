@@ -20,7 +20,7 @@
 			<cfset message = "There is an issue with Patient Accounts table.">													
 			<cfinvoke component="com.common.db.EmailAddressIO" method="getEmailAddressQuery" returnVariable="EAQuery" fields="Email" EmailAddressID="#trim(SupportEmailAddressID)#">
 			<cfset EmailAddress = application.beanFactory.getBean('globalFooter').GlobalFooterD(trim(EAQuery.Email)) />
-			<cf_gcSendEmail	from="#trim(EmailAddress)#" to="#trim(EmailAddress)#" jsubject="Mulitple entries in Patient IMMEDIATE ATTENTION REQUIRED." message="<strong>User Note:</strong><br>#trim(Message)#<br><br><strong>Admin Note:</strong><br> There is an issue with more than one patient ID record with the same insuranceID.<br><br>QUERY ATTEMPTED: SELECT patientID FROM Patient   WHERE InsuranceID =">	
+			<cf_gcSendEmail	from="#trim(EmailAddress)#" to="#trim(EmailAddress)#" jsubject="Mulitple entries in Patient IMMEDIATE ATTENTION REQUIRED." message="<strong>User Note:</strong><br>#trim(Message)#<br><br><strong>Admin Note:</strong><br> There is an issue with more than one patient ID record with the same insuranceID.<br><br>QUERY ATTEMPTED: SELECT patientID FROM patient   WHERE InsuranceID =">	
 			<cfthrow message="#trim(message)#">	
 		
 	

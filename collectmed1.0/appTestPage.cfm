@@ -1,5 +1,7 @@
 http://www.adobe.com/cfusion/event/index.cfm?event=set_registered&id=2044432&loc=en_us
 
+
+
 <cfset ds = "paclient_1084">
 <cfset tableList = "Address,Phone,InsuranceCompany">
 <cfloop list="#tableList#" index="table">
@@ -247,15 +249,15 @@ http://www.adobe.com/cfusion/event/index.cfm?event=set_registered&id=2044432&loc
 	</cfloop>
 </cfif> 
 <cfquery name="delTests" datasource="PAClient_#session.Client.getClientID()#">
-	DELETE FROM File where fileID > 3045
+	DELETE FROM file where fileID > 3045
 </cfquery>
 
 <cfquery name="delTests" datasource="PAClient_#session.Client.getClientID()#">
-	DELETE FROM VerificationPatientInsurance
+	DELETE FROM verificationpatientinsurance
 	WHERE  VerificationPatientInsuranceID > 2840
 </cfquery>
 <cfquery name="delTests" datasource="PAClient_#session.Client.getClientID()#">
-	DELETE FROM VerificationPatientInsuranceElectronic
+	DELETE FROM verificationpatientinsuranceelectronic
 </cfquery>
 --->
 
@@ -718,10 +720,10 @@ $(document).ready(function() {
 
 <!--- 
 SELECT pat.PatientID AS Expr1, pic.*
-FROM Patient pat 
-INNER JOIN PatientInsuranceCompany pic ON pat.PatientID = pic.PatientID 
-INNER JOIN Intake inta ON pic.PatientID = inta.patientID
-INNER JOIN VerificationPatientInsurance vpi ON vpi.picID = pic.recordID
+FROM patient pat 
+INNER JOIN patientinsurancecompany pic ON pat.PatientID = pic.PatientID 
+INNER JOIN intake inta ON pic.PatientID = inta.patientID
+INNER JOIN verificationpatientinsurance vpi ON vpi.picID = pic.recordID
 WHERE pic.InsuranceCompanyID = 44584
 ORDER BY pat.DateCreated DESC
 
@@ -788,3 +790,10 @@ restartGatewayInstance --->
 <cfabort> --->
 
  --->
+
+
+
+
+
+
+

@@ -7,7 +7,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getAllUnassigned" datasource="#request.datasource#">
 		SELECT *
-		FROM Claim  
+		FROM claim  
 		WHERE ClientID = 1084 AND Active = 1
 		AND ClaimStatusCode NOT IN(189)	
 		AND AssignedToUserID IS NULL	

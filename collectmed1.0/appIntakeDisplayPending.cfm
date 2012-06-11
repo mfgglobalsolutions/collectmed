@@ -8,7 +8,7 @@
 	<cfquery name="getPendingIntakes" datasource="#trim(request.datasource)#">
 		SELECT CONCAT(patientFName, ' ', LEFT(patientLName, 9)) AS patientName,RecordID,UsersID,Active,DateCreated,DateModified,
 		TIMESTAMPDIFF(hour, DateCreated, now()) AS hours
-		FROM IntakeAutoSave		
+		FROM intakeautosave		
 		WHERE UsersID = #session.user.getUsersID()# AND Active = 1
 		ORDER BY DateCreated						
 	</cfquery>

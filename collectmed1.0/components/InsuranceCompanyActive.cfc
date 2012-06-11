@@ -48,7 +48,7 @@
 			<cfif StructKeyExists(stValues, "InsuranceCompanyID") AND stValues.InsuranceCompanyID NEQ 0>
 				<cfquery name="qGetInsuranceCompany" datasource="#trim(variables.ds)#">
 			  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-					FROM InsuranceCompany  
+					FROM insurancecompany  
 					WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.InsuranceCompanyID#" /> 
 				</cfquery>		
 				<cfif qGetInsuranceCompany.Recordcount LTE 0>
@@ -331,7 +331,7 @@
 	
 		<cfquery name="qGetInsuranceCompany" datasource="#trim(variables.ds)#">
 	  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-			FROM InsuranceCompany  
+			FROM insurancecompany  
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 		
@@ -362,7 +362,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateInsuranceCompany" datasource="#trim(variables.ds)#">
-				INSERT INTO InsuranceCompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,InactiveCode)
+				INSERT INTO insurancecompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localClientID))>						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -475,7 +475,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateInsuranceCompany" datasource="#trim(variables.ds)#">
-				UPDATE InsuranceCompany  SET
+				UPDATE insurancecompany  SET
 					
 					ClientID =				
 					<cfif IsNumeric(trim(localClientID))>						
@@ -558,7 +558,7 @@
 
 		<cfquery name="qDeleteInsuranceCompany" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getInsuranceCompanyID())#" /> 
 		</cfquery>
 
@@ -580,5 +580,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

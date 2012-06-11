@@ -116,7 +116,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<cfsavecontent variable="sqlStatement">
 			<cfoutput>
-				UPDATE Intake
+				UPDATE intake
 				SET
 					dateModified = now()
 										
@@ -275,7 +275,7 @@
 		<!--- If an IntakeHCPC record does not exist we have to create one.                  --->
 		<!-------------------------------------------------------------------------------------->
 		<cfquery name="checkIntakeHCPC" datasource="#trim(request.datasource)#">
-			SELECT IntakeID FROM IntakeHCPC WHERE intakeID = #trim(form.intakeID)#
+			SELECT IntakeID FROM intakehcpc WHERE intakeID = #trim(form.intakeID)#
 		</cfquery>
 		<cfif checkIntakeHCPC.RecordCount LTE 0>
 			<cfquery name="insertIntakeHCPC" datasource="#trim(request.datasource)#">
@@ -286,7 +286,7 @@
 			
 		<cfsavecontent variable="sqlStatementHCPC">
 			<cfoutput>
-				UPDATE IntakeHCPC
+				UPDATE intakehcpc
 				SET
 					dateModified = now()
 					<cfif IsDefined("form.HCPCCODE1TBOX")>,HCPCCODE1TBOX = <cfif form.HCPCCODE1TBOX NEQ "">'#REQUEST.mssqlReplaceSingleQuote(trim(form.HCPCCODE1TBOX))#'<cfelse>NULL</cfif></cfif>
@@ -2285,7 +2285,7 @@
 			orderingPhysicianFNameTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,orderingPhysicianUPINTBox,
 			orderingPhysicianFaxTBox,orderingPhysicianAddressTBox,orderingPhysicianCityTBox,orderingPhysicianStateTBox,
 			orderingPhysicianZipTBox
-			FROM Intake
+			FROM intake
 			WHERE IntakeID = #trim(intakeID)#
 		</cfquery>
 		
@@ -2350,7 +2350,7 @@
 
 		<cfif upgrade>
 			<cfquery name="updateThisIntake" datasource="#trim(request.datasource)#">
-				UPDATE Intake SET InactiveCode = NULL
+				UPDATE intake SET InactiveCode = NULL
 				WHERE IntakeID = #trim(intakeID)#
 			</cfquery>
 		</cfif>
@@ -2396,7 +2396,7 @@
 		</cfif>	
 		
 		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net" bcc="gcruz@eobmanager.net" 
-			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/update INTAKE failed."
+			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/UPDATE intake failed."
 			message="#intakeIDNote#<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p></p>">
 
 		<cf_gcGeneralErrorTemplate
@@ -2409,4 +2409,8 @@
 
 
 </cftry>
+
+
+
+
 

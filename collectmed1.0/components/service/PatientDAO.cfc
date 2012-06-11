@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM Patient
+			FROM patient
 			WHERE PatientID = <cfqueryparam value="#arguments.Patient.getPatientID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePatient" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO Patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode)
+				INSERT INTO patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.Patient.getEntityID()))>						
 						<cfqueryparam value="#trim(arguments.Patient.getEntityID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -156,7 +156,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdatePatient" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE Patient  SET
+				UPDATE patient  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					EntityID =				
@@ -219,7 +219,7 @@
 
 		<cfquery name="qDeletePatient" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM Patient
+			FROM patient
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PatientID)#" /> 
 		</cfquery>
 
@@ -238,7 +238,7 @@
 	
 		<cfquery name="qGetPatient" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-			FROM Patient  
+			FROM patient  
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PatientID)#" /> 
 		</cfquery>
 		
@@ -335,5 +335,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -1085,7 +1085,7 @@
 	
 		<cfquery name="qGetClaim" datasource="#trim(request.datasource)#">
 	  		SELECT ClaimID,InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode,DateCreated
-			FROM Claim  
+			FROM claim  
 			WHERE ClaimID = #trim(arguments.ClaimID)# 
 		</cfquery>
 		
@@ -1503,7 +1503,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Claim  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimID ">
+				<cfset sqlStatement = "INSERT INTO claim  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1716,7 +1716,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaimQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Claim   
+				FROM claim   
 				WHERE 1=1
 					<cfif ClaimID NEQ "" AND IsNumeric(ClaimID)>AND ClaimID = #ClaimID#</cfif>
 					<cfif ClaimID_IN NEQ "">AND ClaimID IN(#trim(ClaimID_IN)#)</cfif>
@@ -1844,5 +1844,6 @@
 
 	
 </cfcomponent>
+
 
 

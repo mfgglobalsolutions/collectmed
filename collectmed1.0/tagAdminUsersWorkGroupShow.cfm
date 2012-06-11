@@ -30,7 +30,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getWorkGroup" datasource="#trim(request.datasource)#">
 		SELECT COUNT(uwg.WorkGroupID) as NumOfUsers, wg.WorkGroupID, wg.WorkGroupName
-		FROM WorkGroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID
+		FROM workgroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID
 		WHERE wg.WorkGroupID = #trim(WorkGroupID)#
 		GROUP BY uwg.WorkGroupID, wg.WorkGroupID, wg.WorkGroupName		
 	</cfquery>
@@ -45,7 +45,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getWorkGroups" datasource="#trim(request.datasource)#">
 		SELECT UsersID
-		FROM UsersWorkGroup  
+		FROM usersworkgroup  
 		WHERE WorkGroupID = #trim(WorkGroupID)# 		
 	</cfquery>
 	
@@ -119,3 +119,4 @@
 		    	</cfloop>  
 			</table>				
 		</cfoutput>--->
+

@@ -24,12 +24,12 @@
 			<!-------------------------------------------------------------------------------------->
 			<cfquery name="getClientsEntities" datasource="#trim(request.datasource)#">
 				SELECT <cfif distinct>DISTINCT</cfif> e.EntityID, CONCAT(e.FName, ' ', e.LName) AS Fullname, u.UsersID, u.active
-				FROM Entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+				FROM entity e LEFT JOIN pa_master.users u ON e.EntityID = u.EntityID
 				<cfif haveRoleList NEQ "">
-					LEFT JOIN UsersRole ur ON u.UsersID = ur.UsersID
-					LEFT JOIN pa_master.UsersRole mur ON u.UsersID = mur.UsersID
+					LEFT JOIN usersrole ur ON u.UsersID = ur.UsersID
+					LEFT JOIN pa_master.usersrole mur ON u.UsersID = mur.UsersID
 				</cfif>
-				WHERE e.EntityID IN (SELECT EntityID FROM Entity WHERE ClientID = #trim(clientID)#) AND ObjectTypeID = 2
+				WHERE e.EntityID IN (SELECT EntityID FROM entity WHERE ClientID = #trim(clientID)#) AND ObjectTypeID = 2
 				<cfif haveRoleList NEQ "">					
 					AND (ur.RoleID IN(#trim(haveRoleList)#) OR mur.RoleID IN(#trim(haveRoleList)#))  
 				</cfif>
@@ -50,11 +50,11 @@
 			</cfquery>
 			<!---<cfquery name="getClientsEntities" datasource="#trim(request.datasource)#">
 				SELECT <cfif distinct>DISTINCT</cfif> e.EntityID, CONCAT(e.FName, ' ', e.LName) AS Fullname, u.UsersID, u.active
-				FROM Entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+				FROM entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
 				<cfif haveRoleList NEQ "">
 					LEFT JOIN UsersRole ur ON u.UsersID = ur.UsersID
 				</cfif>
-				WHERE e.EntityID IN (SELECT EntityID FROM Entity WHERE ClientID = #trim(clientID)#) AND ObjectTypeID = 2
+				WHERE e.EntityID IN (SELECT EntityID FROM entity WHERE ClientID = #trim(clientID)#) AND ObjectTypeID = 2
 				<cfif haveRoleList NEQ "">
 					AND ur.RoleID IN(#trim(haveRoleList)#) 
 				</cfif>
@@ -103,7 +103,7 @@
 			
 			<cfquery name="getEntityID" datasource="pa_master">
 				SELECT EntityID 
-				FROM Client	
+				FROM client	
 				WHERE ClientID = #trim(ClientID)#				
 			</cfquery>
 			
@@ -150,122 +150,122 @@
 			<cftransaction>
 
 				<cfquery name="delNote" datasource="#trim(request.datasource)#">
-					DELETE FROM Note WHERE clientID = #trim(ClientID)#
+					DELETE FROM note WHERE clientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delFileProcess" datasource="#trim(request.datasource)#">
-					DELETE FROM FileProcess WHERE FileID IN( SELECT FileID FROM File WHERE clientID = #trim(ClientID)# )
+					DELETE FROM fileprocess WHERE FileID IN( SELECT FileID FROM File WHERE clientID = #trim(ClientID)# )
 				</cfquery>
 				
 				<cfquery name="delFile" datasource="#trim(request.datasource)#">
-					DELETE FROM File WHERE clientID = #trim(ClientID)#
+					DELETE FROM file WHERE clientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delInterchange" datasource="#trim(request.datasource)#">
-					DELETE FROM Interchange WHERE clientID = #trim(ClientID)#
+					DELETE FROM interchange WHERE clientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delProcedureOpenClose" datasource="#trim(request.datasource)#">
-					DELETE FROM ProcedureOpenClose WHERE ProcedureID IN( SELECT ProcedureID FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM Claim WHERE clientID = #trim(ClientID)# ) )
+					DELETE FROM procedureopenclose WHERE ProcedureID IN( SELECT procedureid FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM claim WHERE clientID = #trim(ClientID)# ) )
 				</cfquery>
 				
 				<cfquery name="delProcedureEOPScode" datasource="#trim(request.datasource)#">
-					DELETE FROM ProcedureEOPScode WHERE ProcedureID IN( SELECT ProcedureID FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM Claim WHERE clientID = #trim(ClientID)# ) )
+					DELETE FROM procedureeopscode WHERE ProcedureID IN( SELECT procedureid FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM claim WHERE clientID = #trim(ClientID)# ) )
 				</cfquery>
 				
 				<cfquery name="delProcedureEOBcode" datasource="#trim(request.datasource)#">
-					DELETE FROM ProcedureEOBcode WHERE ProcedureID IN( SELECT ProcedureID FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM Claim WHERE clientID = #trim(ClientID)# ) )
+					DELETE FROM procedureeobcode WHERE ProcedureID IN( SELECT procedureid FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM claim WHERE clientID = #trim(ClientID)# ) )
 				</cfquery>
 				
 				<cfquery name="delProcedure" datasource="#trim(request.datasource)#">
-					DELETE FROM [Procedure] WHERE ClaimID IN ( SELECT ClaimID FROM Claim WHERE clientID = #trim(ClientID)# )
+					DELETE FROM [procedure] WHERE ClaimID IN ( SELECT ClaimID FROM claim WHERE clientID = #trim(ClientID)# )
 				</cfquery>
 				
 				<cfquery name="delClaimAssignment" datasource="#trim(request.datasource)#">
-					DELETE FROM ClaimAssignment WHERE ClaimID IN( SELECT ClaimID FROM Claim WHERE clientID = #trim(ClientID)# )
+					DELETE FROM claimassignment WHERE ClaimID IN( SELECT ClaimID FROM claim WHERE clientID = #trim(ClientID)# )
 				</cfquery>
 				
 				<cfquery name="delClaim" datasource="#trim(request.datasource)#">
-					DELETE FROM Claim WHERE ClientID = #trim(ClientID)#
+					DELETE FROM claim WHERE ClientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delEntityRS" datasource="#trim(request.datasource)#">
-					DELETE FROM EntityRS
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM entityrs
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delEntitySS" datasource="#trim(request.datasource)#">
-					DELETE FROM EntitySS
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM entityss
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delEntityTS" datasource="#trim(request.datasource)#">
-					DELETE FROM EntityTS
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM entityts
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delEntityAddress" datasource="#trim(request.datasource)#">
-					DELETE FROM EntityAddress
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM entityaddress
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delAddress" datasource="#trim(request.datasource)#">
-					Delete FROM Address
-					WHERE AddressID IN(	Select AddressID FROM EntityAddress WHERE EntityID IN( Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)# ) )
+					Delete FROM address
+					WHERE AddressID IN(	Select AddressID FROM entityaddress WHERE EntityID IN( Select EntityID FROM entity WHERE ClientID = #trim(ClientID)# ) )
 				</cfquery>
 				
 				<cfquery name="delEntityPhone" datasource="#trim(request.datasource)#">
-					DELETE FROM EntityPhone
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM entityphone
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delPhone" datasource="#trim(request.datasource)#">
-					Delete FROM Phone 
-					WHERE PhoneID IN( Select PhoneID FROM EntityPhone WHERE EntityID IN( Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)# ) )
+					Delete FROM phone 
+					WHERE PhoneID IN( Select PhoneID FROM entityphone WHERE EntityID IN( Select EntityID FROM entity WHERE ClientID = #trim(ClientID)# ) )
 				</cfquery>
 				
 				<cfquery name="delEmailAddress" datasource="#trim(request.datasource)#">
-					DELETE FROM EmailAddress
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM emailaddress
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delReminder" datasource="#trim(request.datasource)#">
-					DELETE FROM Reminder
-					WHERE UsersID IN(Select UsersID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM reminder
+					WHERE UsersID IN(Select UsersID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delPatient" datasource="#trim(request.datasource)#">
-					DELETE FROM Patient
-					WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#)
+					DELETE FROM patient
+					WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#)
 				</cfquery>
 				
 				<cfquery name="delUsersWorkGroup" datasource="#trim(request.datasource)#">
-					DELETE FROM UsersWorkGroup
-					WHERE UsersID IN(SELECT UsersID FROM pa_master.Users WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#))
+					DELETE FROM usersworkgroup
+					WHERE UsersID IN(SELECT UsersID FROM pa_master.users WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#))
 				</cfquery>
 				
 				<cfquery name="delUsersSession" datasource="#trim(request.datasource)#">
-					DELETE FROM UsersSession
-					WHERE UsersID IN(SELECT UsersID FROM pa_master.Users WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#))
+					DELETE FROM userssession
+					WHERE UsersID IN(SELECT UsersID FROM pa_master.users WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#))
 				</cfquery>
 				
 				<cfquery name="delUsersRole" datasource="#trim(request.datasource)#">
-					DELETE FROM UsersRole
-					WHERE UsersID IN(SELECT UsersID FROM pa_master.Users WHERE EntityID IN(Select EntityID FROM Entity WHERE ClientID = #trim(ClientID)#))
+					DELETE FROM usersrole
+					WHERE UsersID IN(SELECT UsersID FROM pa_master.users WHERE EntityID IN(Select EntityID FROM entity WHERE ClientID = #trim(ClientID)#))
 				</cfquery>
 				
 				<cfquery name="delUsers" datasource="#trim(request.datasource)#">
-					DELETE FROM pa_master.Users
+					DELETE FROM pa_master.users
 					WHERE ClientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delEntity" datasource="#trim(request.datasource)#">
-					DELETE FROM Entity
-					WHERE EntityID = (SELECT EntityID FROM pa_master.Client WHERE ClientID = #trim(ClientID)#) OR ClientID = #trim(ClientID)#
+					DELETE FROM entity
+					WHERE EntityID = (SELECT EntityID FROM pa_master.client WHERE ClientID = #trim(ClientID)#) OR ClientID = #trim(ClientID)#
 				</cfquery>
 				
 				<cfquery name="delClient" datasource="#trim(request.datasource)#">
-					DELETE FROM pa_master.Client WHERE ClientID = #trim(ClientID)#
+					DELETE FROM pa_master.client WHERE ClientID = #trim(ClientID)#
 				</cfquery>
 				
 				
@@ -297,7 +297,7 @@
 			
 			<cfquery name="getEmail" datasource="pa_master">
 				SELECT SupportEmailID
-				FROM Client  
+				FROM client  
 				WHERE ClientID = #trim(ClientID)#
 			</cfquery>
 									
@@ -330,7 +330,7 @@
 			
 			<cfquery name="getEmail" datasource="pa_master">
 				SELECT SupportEmailID
-				FROM Client  
+				FROM client  
 				WHERE ClientID = #trim(ClientID)#
 			</cfquery>
 									
@@ -338,7 +338,7 @@
 				
 				<cfquery name="getEmailAddress" datasource="PAClient_#trim(ClientID)#">
 					SELECT Email
-					FROM EmailAddress  
+					FROM emailaddress  
 					WHERE emailAddressID = #trim(getEmail.SupportEmailID)#
 				</cfquery>	
 				
@@ -378,7 +378,7 @@
 			
 			<cfquery name="getXML" datasource="pa_master">
 				SELECT SettingsXML
-				FROM Client	
+				FROM client	
 				WHERE ClientID = #trim(ClientID)#				
 			</cfquery>
 			
@@ -404,3 +404,4 @@
 </cfcomponent>
 
 	
+

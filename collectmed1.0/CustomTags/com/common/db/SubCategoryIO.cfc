@@ -493,7 +493,7 @@
 	
 		<cfquery name="qGetSubCategory" datasource="#trim(request.datasource)#">
 	  		SELECT SubCategoryID,CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM SubCategory  
+			FROM subcategory  
 			WHERE SubCategoryID = #trim(arguments.SubCategoryID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO SubCategory  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SubCategoryID ">
+				<cfset sqlStatement = "INSERT INTO subcategory  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS SubCategoryID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getSubCategoryQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM SubCategory   
+				FROM subcategory   
 				WHERE 1=1
 					<cfif SubCategoryID NEQ "" AND IsNumeric(SubCategoryID)>AND SubCategoryID = #SubCategoryID#</cfif>
 					<cfif SubCategoryID_IN NEQ "">AND SubCategoryID IN(#trim(SubCategoryID_IN)#)</cfif>
@@ -1116,5 +1116,7 @@
 
 	
 </cfcomponent>
+
+
 
 

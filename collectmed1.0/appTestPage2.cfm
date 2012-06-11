@@ -72,7 +72,7 @@
 					<cfquery name="getPatient" datasource="PaClient_1084">
 						SELECT pic.RecordID, pic.PatientID, pic.InsuranceCompanyID, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersDOB, 
 						pat.EntityID, ent.EntityID, ent.FName, ent.LName, ent.DOB
-						FROM PatientInsuranceCompany as pic
+						FROM patientinsurancecompany as pic
 						JOIN Patient as pat ON pic.PatientID = pat.PatientID
 						JOIN Entity as ent ON pat.EntityID = ent.EntityID
 						WHERE pic.PolicyNumber = '#trim(COLUMN_4)#'
@@ -209,7 +209,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 			<cfset variables.thisSubRoute = "">
 			<cfset variables.thisRoute = A_ROUTE>
 			<cfquery name="insertRoute" datasource="PAClient_1084">
-				INSERT INTO Route (UserID, Name) VALUES(55, '#variables.thisRoute#');
+				INSERT INTO route (UserID, Name) VALUES(55, '#variables.thisRoute#');
 				SELECT LAST_INSERT_ID() AS newRouteID
 			</cfquery>
 			<br><br><font color="red">#insertRoute.newRouteID# #variables.thisRoute#</font><br>
@@ -219,7 +219,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfif>		
 		<cfif NOT G_IsRoute>	
 			<cfquery name="insertRoutePatient" datasource="PAClient_1084">
-				INSERT INTO RoutePatient(RouteID, SubRoute, PatientID, FName, LName, City, IDtext, SuppliesText)
+				INSERT INTO routePatient(RouteID, SubRoute, PatientID, FName, LName, City, IDtext, SuppliesText)
 				VALUES(#insertRoute.newRouteID#, '#variables.thisSubRoute#', '#H_PatientID#', '#trim(B_COLUMN_2)#', '#trim(C_COLUMN_1)#', '#D_COLUMN_3#', '#E_COLUMN_4#', '#F_COLUMN_5#')
 			</cfquery>						
 			[#insertRoute.newRouteID#], [#variables.thisSubRoute#], [#H_PatientID#], [#D_COLUMN_3#], [#E_COLUMN_4#], [#LEFT(F_COLUMN_5, 5)#]<br>						
@@ -393,7 +393,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 <cfset newPageTitle = "Verification Create">
 <cfquery name="getPage" datasource="PA_MASTER">
 	SELECT PageID, PageName
-	FROM Page
+	FROM page
 	WHERE PageName = '#trim(newPageName)#'
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
@@ -417,7 +417,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 <cfset newPageTitle = "Verification View">
 <cfquery name="getPage" datasource="PA_MASTER">
 	SELECT PageID, PageName
-	FROM Page
+	FROM page
 	WHERE PageName = '#trim(newPageName)#'
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
@@ -441,7 +441,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 <cfset newPageTitle = "Verification Process">
 <cfquery name="getPage" datasource="PA_MASTER">
 	SELECT PageID, PageName
-	FROM Page
+	FROM page
 	WHERE PageName = '#trim(newPageName)#'
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
@@ -496,7 +496,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 				
 		<cfquery name="getThisIns" datasource="PAClient_1084">
 			SELECT InsuranceCompanyID, InsuranceCompanyName 
-			FROM InsuranceCompany 
+			FROM insurancecompany 
 			WHERE insuranceCompanyName LIKE '#trim(thisName)#' 		
 			ORDER BY InsuranceCompanyID 	
 		</cfquery>
@@ -507,8 +507,8 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		
 			<cfquery name="searchForAddress" datasource="PAClient_1084">
 				SELECT ic.InsuranceCompanyID, ic.InsuranceCompanyName, ic.EntityID
-				FROM InsuranceCompany ic 
-				INNER JOIN EntityAddress ea ON ic.EntityID = ea.EntityID
+				FROM insurancecompany ic 
+				INNER JOIN entityaddress ea ON ic.EntityID = ea.EntityID
 				WHERE ic.InsuranceCompanyID = #thisICID#
 			</cfquery>	
 			
@@ -524,18 +524,18 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfif>
 		
 		<cfquery name="tempDeActiveInsuranceCompany" datasource="PAClient_1084">
-			UPDATE InsuranceCompany
+			UPDATE insurancecompany
 			SET Active = 0
 			WHERE InsuranceCompanyID IN(#valueListgetThisInsInsuranceCompanyIDs#)
 		</cfquery>	
 		
 		<cfquery name="tempActiveInsuranceCompany" datasource="PAClient_1084">
-			UPDATE InsuranceCompany
+			UPDATE insurancecompany
 			SET Active = 1		
 			WHERE InsuranceCompanyID = #thisIDToSet#
 		</cfquery>	
 		<cfquery name="tempPatientInsuranceCompany" datasource="PAClient_1084">
-			UPDATE PatientInsuranceCompany
+			UPDATE patientinsurancecompany
 			SET InsuranceCompanyID = #thisIDToSet#
 			WHERE InsuranceCompanyID IN(#valueListgetThisInsInsuranceCompanyIDs#)
 		</cfquery>		
@@ -583,7 +583,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 	<cfquery name="getPage" datasource="PA_MASTER">
 		SELECT PageID, PageName
-		FROM Page
+		FROM page
 		WHERE PageName = '#trim(newPageName)#'
 	</cfquery>
 
@@ -670,22 +670,22 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 
 <cfquery name="delFiles" datasource="PAClient_1084">
-	DELETE FROM FILE
+	DELETE FROM file
 	where datecreated >= '2009-05-01'
 
-	DELETE FROM INTERCHANGE
+	DELETE FROM interchange
 	where datecreated >= '2009-05-01'
 
-	DELETE FROM CLAIM
+	DELETE FROM claim
 	where datecreated >= '2009-05-01'
 
-	DELETE FROM PATIENT
+	DELETE FROM patient
 	where datecreated >= '2009-05-01'
 
-	DELETE FROM Entity
+	DELETE FROM entity
 	where datecreated >= '2009-05-01'
 
-	DELETE FROM Claim_ProcessXMLToDB
+	DELETE FROM claim_processxmltodb
 	where datecreated >= '2009-05-01'
 </cfquery>
 
@@ -851,19 +851,19 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 <cffile action="DELETE" file="C:\EOBManager\paFMS\1084\2009\5\5\1\835_2009097_9664.XML">
 
 <cfquery name="delFiles" datasource="PAClient_1084">
-	DELETE FROM FILE
+	DELETE FROM file
 	where datecreated >= '2009-05-04'
 
-	DELETE FROM INTERCHANGE
+	DELETE FROM interchange
 	where datecreated >= '2009-05-04'
 
-	DELETE FROM CLAIM
+	DELETE FROM claim
 	where datecreated >= '2009-05-04'
 
-	DELETE FROM PATIENT
+	DELETE FROM patient
 	where datecreated >= '2009-05-04'
 
-	DELETE FROM Entity
+	DELETE FROM entity
 	where datecreated >= '2009-05-04'
 </cfquery>--->
 
@@ -1464,7 +1464,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 <cfquery name="getIDs" datasource="PAClient_1084">
 	SELECT EntityID, SSN
-	FROM Entity
+	FROM entity
 	WHERE SSN IS NOT NULL AND LEN(SSN) < 20
 </cfquery>
 
@@ -1474,7 +1474,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		<cfset SSN2 = REQUEST.formatSSN(trim(SSN))>
 		<cfset SSNE = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(SSN2)) />
 		<cfquery name="updateChanged" datasource="PAClient_1084">
-			UPDATE Entity
+			UPDATE entity
 			SET SSN = '#trim(SSNE)#'
 			WHERE EntityID = #trim(EntityID)#
 		</cfquery>
@@ -1482,14 +1482,14 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		<cfoutput><font color="red">#trim(SSN2)# : #trim(SSNE)# [<cfif SSN2 eq SSND>MATCHED<cfelse>NOT</cfif>]</font><br></cfoutput>			--->
 	<cfelseif NOT findnocase("-", trim(SSN))>
 		<cfquery name="updateNull" datasource="PAClient_1084">
-			UPDATE Entity
+			UPDATE entity
 			SET SSN = NULL
 			WHERE EntityID = #trim(EntityID)#
 		</cfquery>
 	<cfelse>
 		<cfset SSNE = application.beanFactory.getBean('globalFooter').GlobalFooterD(trim(SSN)) />
 		<cfquery name="updateRecord" datasource="PAClient_1084">
-			UPDATE Entity
+			UPDATE entity
 			SET SSN = '#trim(SSNE)#'
 			WHERE EntityID = #trim(EntityID)#
 		</cfquery>
@@ -1506,12 +1506,12 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 <!---<cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
-	FROM PageROLE WHERE RoleID = 4
+	FROM pagerole WHERE RoleID = 4
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
 		<cfquery name="getThisRole" datasource="pa_master">
-			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 7
+			SELECT * FROM pagerole WHERE PageID = #pageID# AND RoleID = 7
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
@@ -1524,12 +1524,12 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 </cfoutput>
 <cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
-	FROM PageROLE WHERE RoleID = 3
+	FROM pagerole WHERE RoleID = 3
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
 		<cfquery name="getThisRole" datasource="pa_master">
-			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 6
+			SELECT * FROM pagerole WHERE PageID = #pageID# AND RoleID = 6
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
@@ -1542,12 +1542,12 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 </cfoutput>
 <cfquery name="getRolePageIDs" datasource="pa_master">
 	SELECT DISTINCT PageID
-	FROM PageROLE WHERE RoleID = 2
+	FROM pagerole WHERE RoleID = 2
 </cfquery>
 <cfoutput>
 	<cfloop query="getRolePageIDs">
 		<cfquery name="getThisRole" datasource="pa_master">
-			SELECT * FROM PageRole WHERE PageID = #pageID# AND RoleID = 5
+			SELECT * FROM pagerole WHERE PageID = #pageID# AND RoleID = 5
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
@@ -1572,8 +1572,8 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 Add missing pageids into page roles for roles 1 and 8
 <cfquery name="getPageIDs" datasource="pa_master">
 	SELECT DISTINCT PAGEID
-	FROM Page
-	WHERE PageID NOT IN(SELECT DISTINCT PAGEID FROM PageROLE WHERE ROLEID IN(1,8))
+	FROM page
+	WHERE PageID NOT IN(SELECT DISTINCT PAGEID FROM pagerole WHERE ROLEID IN(1,8))
 </cfquery>
 
 <cfset pageids = valuelist(getPageIDs.PAGEID)>
@@ -1755,7 +1755,7 @@ Add missing pageids into page roles for roles 1 and 8
 
 <!--- Change List --->
 <cfquery name="updNew" datasource="PA_MASTER">
-	UPDATE StandardList
+	UPDATE standardlist
 	SET ListName = 'Relationship'
 	WHERE StandardListID = 22
 </cfquery>
@@ -2173,7 +2173,7 @@ Other
 
 <!---
 <cfquery name="DeactivatePatientInsuranceCompany" datasource="PAClient_#trim(ClientID)#">
-					UPDATE PatientInsuranceCompany
+					UPDATE patientinsurancecompany
 					SET Active = 0, PrimSecTer = NULL
 					WHERE PatientID = #trim(patientID)# AND <cfif IsNumeric(InsuranceCompanyID)>InsuranceCompanyID = #trim(InsuranceCompanyID)#<cfelseif IsNumeric(recordID)>recordID = #trim(recordID)#</cfif>
 				</cfquery>
@@ -2449,7 +2449,7 @@ Other
 
 <cfquery name="getPatientIDs" datasource="PAClient_1084">
 	SELECT DISTINCT PatientID
-	FROM PatientInsuranceCompany
+	FROM patientinsurancecompany
 </cfquery>
 
 
@@ -2459,7 +2459,7 @@ Other
 
 	<cfquery name="getRecs" datasource="PAClient_1084">
 		SELECT recordID, PatientID, InsuranceCompanyID, PrimSecTer, PolicyNumber
-		FROM PatientInsuranceCompany
+		FROM patientinsurancecompany
 		WHERE PatientID = #PatientID#
 		ORDER BY PrimSecTer, PolicyNumber, InsuranceCompanyID, PatientID
 	</cfquery>
@@ -2474,11 +2474,11 @@ Other
 
 			<cfloop query="getRecs">
 				<cfquery name="tempUp" datasource="PAClient_1084">
-					UPDATE PatientInsuranceCompany
+					UPDATE patientinsurancecompany
 					SET primSecTer = #getRecs.CurrentRow#
 					WHERE recordID = #getRecs.recordID#
 				</cfquery>
-				<cfoutput>UPDATE PatientInsuranceCompany SET primSecTer = #getRecs.CurrentRow# WHERE recordID = #getRecs.recordID#<br></cfoutput>
+				<cfoutput>UPDATE patientinsurancecompany SET primSecTer = #getRecs.CurrentRow# WHERE recordID = #getRecs.recordID#<br></cfoutput>
 			</cfloop>
 			<cfdump var="#getRecs#">
 
@@ -2844,7 +2844,7 @@ Other
 
 <cfquery name="tempGet" datasource="PAClient_1084">
 	SELECT     PrimaryPolicyNumberTBox, intakeID
-	FROM       Intake
+	FROM intake
 </cfquery>
 
 
@@ -2856,7 +2856,7 @@ Other
 
 	<cfquery name="getIns" datasource="PAClient_1084">
 		SELECT     DateCreated AS Expr1, *
-		FROM         PatientInsuranceCompany
+		FROM patientinsurancecompany
 		WHERE     PolicyNumber = '#trim(PrimaryPolicyNumberTBox)#'
 	</cfquery>
 
@@ -3069,7 +3069,7 @@ Other
 
 <cfquery name="getIn" datasource="PAClient_1084">
 Select IntakeID, PatientID, PatientAddressID, PatientPhoneID, _patientFNameTBox, _patientMInitialTBox, _patientLNameTBox, _patientAddressTBox, _patientCityTBox, _patientStateTBox, _patientZipTBox, _patientPhoneTBox, _patientDOBMM, _patientDOBDD, _patientDOBYY, _OPTION_3a_CBox_PatientSexMale, _OPTION_3a_CBox_PatientSexFemale, _patientSSNTBox, _patientHeightFeet, _patientHeightInches, _patientWeightTBox
-from intake
+FROM intake
 WHERE IntakeID IN(289,318)
 </cfquery>
 
@@ -3160,7 +3160,7 @@ WHERE IntakeID IN(289,318)
 
 		<cfif IsNumeric(PatientID2) AND IsNumeric(AddressID) AND IsNumeric(PhoneID)>
 			<cfquery name="updateIntake" datasource="PAClient_1084">
-				UPDATE Intake
+				UPDATE intake
 				SET PatientID = #trim(PatientID2)#, PatientAddressID = #trim(AddressID)#, PatientPhoneID = #PhoneID#
 				WHERE IntakeID = #trim(intakeID)#
 			</cfquery>
@@ -3202,7 +3202,7 @@ WHERE IntakeID IN(289,318)
 <cfsetting requestTimeOut = "900">
 
 <cfquery name="updateIntake2" datasource="PAClient_1084">
-	UPDATE Intake
+	UPDATE intake
 	SET patientStateTBox = 'Texas'
 	WHERE patientStateTBox IS NOT NULL
 </cfquery>
@@ -3210,7 +3210,7 @@ WHERE IntakeID IN(289,318)
 
 <cfquery name="getIn" datasource="PAClient_1084">
 Select IntakeID, PatientID, PatientAddressID, PatientPhoneID, patientFNameTBox, patientMInitialTBox, patientLNameTBox, patientAddressTBox, patientCityTBox, patientStateTBox, patientZipTBox, patientPhoneTBox, patientDOBMM, patientDOBDD, patientDOBYY, OPTION_3a_CBox_PatientSexMale, OPTION_3a_CBox_PatientSexFemale, patientSSNTBox, patientHeightFeet, patientHeightInches, patientWeightTBox
-from intake
+FROM intake
 </cfquery>
 
 <cfset DOB = "">
@@ -3250,7 +3250,7 @@ from intake
 
 			<cfquery name="getSS" datasource="PAClient_1084">
 				Select e.EntityID, p.PatientID
-				FROM Entity e JOIN Patient p ON p.EntityID = e.EntityID
+				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID
 				WHERE e.SSN = '#patientSSNTBox#'
 			</cfquery>
 
@@ -3266,7 +3266,7 @@ from intake
 		<cfif NOT IsQuery(getPatient) AND getPatient EQ 0 AND PatientID EQ "" AND EntityID EQ "">
 			<cfquery name="getName" datasource="PAClient_1084">
 				Select e.EntityID, p.PatientID
-				FROM Entity e JOIN Patient p ON p.EntityID = e.EntityID
+				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID
 				WHERE (e.FName = '#trim(getIn.patientFNameTBox)#' OR e.FName = '#LEFT(trim(getIn.patientFNameTBox), 1)#') AND e.LName = '#trim(getIn.patientLNameTBox)#'
 				AND e.SSN IS NULL AND e.DOB IS NULL
 			</cfquery>
@@ -3382,7 +3382,7 @@ from intake
 
 		<cfif IsNumeric(PatientID2) AND IsNumeric(AddressID) AND IsNumeric(PhoneID)>
 			<cfquery name="updateIntake" datasource="PAClient_1084">
-				UPDATE Intake
+				UPDATE intake
 				SET PatientID = #trim(PatientID2)#, PatientAddressID = #trim(AddressID)#, PatientPhoneID = #PhoneID#
 				WHERE IntakeID = #trim(intakeID)#
 			</cfquery>
@@ -3461,7 +3461,7 @@ from intake
 <!---<cfquery name="qGetIntake" datasource="#request.datasource#">
 		SELECT i.IntakeID, i.ClientID, i.InactiveCode, i.printed, i.AssignedTouserID,i.DateCreated, i.hidden_Step, i.otherTBox, i.hidden_UsersID, i.hidden_TimeStart, IFNULL(i.OPTION_1_CBox_Delivery, 0) AS OPTION_1_CBox_Delivery, 	IFNULL(i.OPTION_1_CBox_Pickup, 0) AS OPTION_1_CBox_Pickup, IFNULL(i.OPTION_1_CBox_Repair, 0) AS OPTION_1_CBox_Repair, 	IFNULL(i.OPTION_1_CBox_Switch, 0) AS OPTION_1_CBox_Switch, IFNULL(i.OPTION_1_CBox_Existing, 0) AS OPTION_1_CBox_Existing, 	IFNULL(i.OPTION_2_CBox_Other, 0) AS OPTION_2_CBox_Other, IFNULL(i.OPTION_2_CBox_Hospice, 0) AS OPTION_2_CBox_Hospice, 	IFNULL(i.OPTION_2_CBox_Hospital, 0) AS OPTION_2_CBox_Hospital, i.hospiceTBox, IFNULL(i.OPTION_3_CBox_Medicare, 0) AS 	OPTION_3_CBox_Medicare, IFNULL(i.OPTION_3_CBox_PrivateInsurance, 0) AS OPTION_3_CBox_PrivateInsurance, IFNULL(i.OPTION_3_CBox_Medicaid, 	0) AS OPTION_3_CBox_Medicaid, IFNULL(i.OPTION_3_CBox_PrivatePay, 0) AS OPTION_3_CBox_PrivatePay, i.hospitalTBox, i.DischargeDateMM, 	i.DischargeDateDD, i.DischargeDateYY, i.typeOfPay_Radio, i.callerFNameTBox, i.callerMInitialTBox, i.callerLNameTBox, i.callerPhoneTBox, i.patientFNameTBox, i.patientMInitialTBox, i.patientLNameTBox, i.roomNumberTBox, i.bedNumberTBox, 	i.patientAddressTBox, i.patientCityTBox, i.patientStateTBox, i.patientZipTBox, i.patientPhoneTBox, i.patientDOBMM, i.patientDOBDD, i.patientDOBYY, i.patientSSNTBox,  i.patientHeightInches, i.patientWeightTBox, i.alternateContactFNameTBox, i.alternateContactMInitialTBox, i.alternateContactLNameTBox, i.alternateContactRelationshipTBox, i.alternateContactPhoneTBox, i.alternateContactWorkPhoneTBox, i.poNumberTBox, i.creditCardTypeTBox, i.creditCardNumberTBox, i.ccDateMM, i.ccDateDD, i.ccDateYY, i.orderingPhysicianFNameTBox, i.orderingPhysicianMInitialTBox, i.orderingPhysicianLNameTBox, i.orderingPhysicianPhoneTBox, i.orderingPhysicianUPINTBox, i.orderingPhysicianFaxTBox, i.orderingPhysicianAddressTBox, i.orderingPhysicianCityTBox, i.orderingPhysicianStateTBox, i.orderingPhysicianZipTBox, IFNULL(i.OPTION_13_CBox_PastEquipmentYes, 0) AS OPTION_13_CBox_PastEquipmentYes, IFNULL(i.OPTION_13_CBox_PastEquipmentNo, 0) AS OPTION_13_CBox_PastEquipmentNo, i.Equipment1TypeTBox, i.Equipment1RentPurchasedSelect, i.Equipment1FromMM, i.Equipment1FromDD, i.Equipment1FromYY, i.Equipment1ToMM, i.Equipment1ToDD, i.Equipment1ToYY, i.Equipment1SupplierNameTBox, i.Equipment1SupplierTelephoneTBox, i.Equipment2TypeTBox, i.Equipment2RentPurchasedSelect, i.Equipment2FromMM, i.Equipment2FromDD, i.Equipment2FromYY, i.Equipment2ToMM, i.Equipment2ToDD, i.Equipment2ToYY, i.Equipment2SupplierNameTBox, i.Equipment2SupplierTelephoneTBox, 	i.Equipment3TypeTBox, i.Equipment3RentPurchasedSelect, i.Equipment3FromMM, i.Equipment3FromDD, i.Equipment3FromYY, i.Equipment3ToMM, i.Equipment3ToDD, i.Equipment3ToYY, i.Equipment3SupplierNameTBox, i.Equipment3SupplierTelephoneTBox, i.Equipment4TypeTBox, i.Equipment4RentPurchasedSelect, i.Equipment4FromMM, i.Equipment4FromDD, i.Equipment4FromYY, i.Equipment4ToMM, i.Equipment4ToDD, i.Equipment4ToYY, i.Equipment4SupplierNameTBox, i.Equipment4SupplierTelephoneTBox, i.Equipment5TypeTBox, i.Equipment5RentPurchasedSelect, i.Equipment5FromMM, i.Equipment5FromDD, i.Equipment5FromYY, i.Equipment5ToMM, i.Equipment5ToDD, i.Equipment5ToYY, i.Equipment5SupplierNameTBox, i.Equipment5SupplierTelephoneTBox, IFNULL(i.OPTION_14_CBox_OxygenPAo2, 0) AS OPTION_14_CBox_OxygenPAo2, IFNULL(i.OPTION_14_CBox_OxygenSAo2, 0) AS OPTION_14_CBox_OxygenSAo2, IFNULL(i.OPTION_14_CBox_OxygenSPo2, 0) AS OPTION_14_CBox_OxygenSPo2, i.OxygenPAO2TBox, i.OxygenSAO2TBox, IFNULL(i.CPAPStudy_CBox, 0) AS CPAPStudy_CBox, i.CPAPStudyNote, i.OxygenSPO2TBox, IFNULL(i.CPAPStudyOnFile_CBox, 0) AS CPAPStudyOnFile_CBox, i.CPAPStudyOnFileNote, i.LabTestDateMM, i.LabTestDateDD, i.LabTestDateYY, i.CPAPStudyPerformedAt, i.LabTestFacilityTBox, i.CPAPStudyPerformedAt2, i.CPAPStudyPerformedAt3, IFNULL(i.OPTION_3a_CBox_PatientSexFemale, 0) AS OPTION_3a_CBox_PatientSexFemale, IFNULL(i.OPTION_3a_CBox_PatientSexMale, 0) AS OPTION_3a_CBox_PatientSexMale, i.Equipment1NoteTBox, i.Equipment2NoteTBox, i.Equipment3NoteTBox, i.Equipment4NoteTBox, i.Equipment5NoteTBox, i.primaryInsuranceNameTBox, i.primaryPolicyNumberTBox, i.primaryGroupNumberTBox, i.primaryPhoneNumberTBox, i.primaryEffectiveDateMM, i.primaryEffectiveDateDD, i.primaryEffectiveDateYY, i.primaryPolicyHolderFNameTBox, i.primaryPolicyHolderMInitialTBox, i.primaryPolicyHolderLNameTBox, i.primaryHoldersDOBMM, i.primaryHoldersDOBDD, i.primaryHoldersDOBYY, i.primaryPolicyHolderEmployerTBox, i.primaryNoteTBox, i.primaryVerificationRepFNameTBox, i.primaryVerificationRepLNameTBox, i.primaryVerificationDateMM, i.primaryVerificationDateDD, i.primaryVerificationDateYY, i.primaryVerificationTimeTBox, i.primaryVerificationHaveInsFromMM, i.primaryVerificationHaveInsFromDD, i.primaryVerificationHaveInsFromYY, i.primaryVerificationHaveInsToMM, i.primaryVerificationHaveInsToDD, i.primaryVerificationHaveInsToYY, IFNULL(i.primaryCBox_VerificationHaveInsYes, 0) AS primaryCBox_VerificationHaveInsYes, IFNULL(i.primaryCBox_VerificationHaveInsNo, 0) AS primaryCBox_VerificationHaveInsNo, IFNULL(i.primaryCBox_VerificationHaveDMECovYes, 0) AS primaryCBox_VerificationHaveDMECovYes, IFNULL(i.primaryCBox_VerificationHaveDMECovNo, 0) AS primaryCBox_VerificationHaveDMECovNo, IFNULL(i.primaryCBox_VerificationDeductibleYes, 0) AS primaryCBox_VerificationDeductibleYes, IFNULL(i.primaryCBox_VerificationDeductibleNo, 0) AS primaryCBox_VerificationDeductibleNo, i.primaryVerificationDeductibleAmountTBox, i.primaryVerificationDeductibleAmountMetTBox, i.primaryVerificationPercentagePayAfterDeductibleTBox, IFNULL(i.primaryCBox_VerificationPPOPolicyYes, 0) AS primaryCBox_VerificationPPOPolicyYes, IFNULL(i.primaryCBox_VerificationPPOPolicyNo, 0) AS primaryCBox_VerificationPPOPolicyNo, i.primaryVerificationAuthNumberTBox, IFNULL(i.primaryCBox_VerificationPriorAuthYes, 0) AS primaryCBox_VerificationPriorAuthYes, IFNULL(i.primaryCBox_VerificationPriorAuthNo, 0) AS primaryCBox_VerificationPriorAuthNo, i.primaryVerificationAuthPhoneNumberTBox, IFNULL(i.primaryCBox_VerificationLifetimeBenefitMetYes, 0) AS primaryCBox_VerificationLifetimeBenefitMetYes, IFNULL(i.primaryCBox_VerificationLifetimeBenefitMetNo, 0) AS primaryCBox_VerificationLifetimeBenefitMetNo, IFNULL(i.primaryCBox_MedicareSupplementYes, 0) AS primaryCBox_MedicareSupplementYes, IFNULL(i.primaryCBox_MedicareSupplementNo, 0) AS primaryCBox_MedicareSupplementNo, IFNULL(i.primaryCBox_CoordinateBenefitsYes, 0) AS primaryCBox_CoordinateBenefitsYes, IFNULL(i.primaryCBox_CoordinateBenefitsNo, 0) AS primaryCBox_CoordinateBenefitsNo, IFNULL(i.primaryCBox_PaidMedicareDeductibleYes, 0) AS primaryCBox_PaidMedicareDeductibleYes, IFNULL(i.primaryCBox_PaidMedicareDeductibleNo, 0) AS primaryCBox_PaidMedicareDeductibleNo, i.primaryVerificationTypeBasePlanTBox, IFNULL(i.primaryCBox_VerificationMedicaidPlanMQMB, 0) AS primaryCBox_VerificationMedicaidPlanMQMB, IFNULL(i.primaryCBox_VerificationMedicaidPlanQMB, 0) AS primaryCBox_VerificationMedicaidPlanQMB, IFNULL(i.primaryCBox_VerificationMedicaidPlanTraditional, 0) AS primaryCBox_VerificationMedicaidPlanTraditional, i.secondaryInsuranceNameTBox, i.secondaryPolicyNumberTBox, i.secondaryGroupNumberTBox, i.secondaryPhoneNumberTBox, i.secondaryEffectiveDateMM, i.secondaryEffectiveDateDD, i.secondaryEffectiveDateYY, i.secondaryPolicyHolderFNameTBox, i.secondaryPolicyHolderMInitialTBox, i.secondaryPolicyHolderLNameTBox, i.secondaryHoldersDOBMM, i.secondaryHoldersDOBDD, i.secondaryHoldersDOBYY, i.secondaryPolicyHolderEmployerTBox, i.secondaryNoteTBox, i.secondaryVerificationRepFNameTBox, i.secondaryVerificationRepLNameTBox, i.secondaryVerificationDateMM, i.secondaryVerificationDateDD, i.secondaryVerificationDateYY, i.secondaryVerificationTimeTBox, i.secondaryVerificationHaveInsFromMM, i.secondaryVerificationHaveInsFromDD, i.secondaryVerificationHaveInsFromYY, i.secondaryVerificationHaveInsToMM, i.secondaryVerificationHaveInsToDD, i.secondaryVerificationHaveInsToYY, IFNULL(i.secondaryCBox_VerificationHaveInsYes, 0) AS secondaryCBox_VerificationHaveInsYes, IFNULL(i.secondaryCBox_VerificationHaveInsNo, 0) AS secondaryCBox_VerificationHaveInsNo, IFNULL(i.secondaryCBox_VerificationHaveDMECovYes, 0) AS secondaryCBox_VerificationHaveDMECovYes, IFNULL(i.secondaryCBox_VerificationHaveDMECovNo, 0) AS secondaryCBox_VerificationHaveDMECovNo, IFNULL(i.secondaryCBox_VerificationDeductibleYes, 0) AS secondaryCBox_VerificationDeductibleYes, IFNULL(i.secondaryCBox_VerificationDeductibleNo, 0) AS secondaryCBox_VerificationDeductibleNo, i.secondaryVerificationDeductibleAmountTBox, i.secondaryVerificationDeductibleAmountMetTBox, i.secondaryVerificationPercentagePayAfterDeductibleTBox, IFNULL(i.secondaryCBox_VerificationPPOPolicyYes, 0) AS secondaryCBox_VerificationPPOPolicyYes, IFNULL(i.secondaryCBox_VerificationPPOPolicyNo, 0) AS secondaryCBox_VerificationPPOPolicyNo, i.secondaryVerificationAuthNumberTBox, IFNULL(i.secondaryCBox_VerificationPriorAuthYes, 0) AS secondaryCBox_VerificationPriorAuthYes, IFNULL(i.secondaryCBox_VerificationPriorAuthNo, 0) AS secondaryCBox_VerificationPriorAuthNo, i.secondaryVerificationAuthPhoneNumberTBox, IFNULL(i.secondaryCBox_VerificationLifetimeBenefitMetYes, 0) AS secondaryCBox_VerificationLifetimeBenefitMetYes, IFNULL(i.secondaryCBox_VerificationLifetimeBenefitMetNo, 0) AS secondaryCBox_VerificationLifetimeBenefitMetNo, IFNULL(i.secondaryCBox_MedicareSupplementYes, 0) AS secondaryCBox_MedicareSupplementYes, IFNULL(i.secondaryCBox_MedicareSupplementNo, 0) AS secondaryCBox_MedicareSupplementNo, IFNULL(i.secondaryCBox_CoordinateBenefitsYes, 0) AS secondaryCBox_CoordinateBenefitsYes, IFNULL(i.secondaryCBox_CoordinateBenefitsNo, 0) AS secondaryCBox_CoordinateBenefitsNo, IFNULL(i.secondaryCBox_PaidMedicareDeductibleYes, 0) AS secondaryCBox_PaidMedicareDeductibleYes, IFNULL(i.secondaryCBox_PaidMedicareDeductibleNo, 0) AS secondaryCBox_PaidMedicareDeductibleNo, i.secondaryVerificationTypeBasePlanTBox, IFNULL(i.secondaryCBox_VerificationMedicaidPlanMQMB, 0) AS secondaryCBox_VerificationMedicaidPlanMQMB, IFNULL(i.secondaryCBox_VerificationMedicaidPlanQMB, 0) AS secondaryCBox_VerificationMedicaidPlanQMB, IFNULL(i.secondaryCBox_VerificationMedicaidPlanTraditional, 0) AS secondaryCBox_VerificationMedicaidPlanTraditional, i.tertiaryInsuranceNameTBox, i.tertiaryPolicyNumberTBox, i.tertiaryGroupNumberTBox, i.tertiaryPhoneNumberTBox, i.tertiaryEffectiveDateMM, i.tertiaryEffectiveDateDD, i.tertiaryEffectiveDateYY, i.tertiaryPolicyHolderFNameTBox, i.tertiaryPolicyHolderMInitialTBox, i.tertiaryPolicyHolderLNameTBox, i.tertiaryHoldersDOBMM, i.tertiaryHoldersDOBDD, i.tertiaryHoldersDOBYY, i.tertiaryPolicyHolderEmployerTBox, i.tertiaryNoteTBox, i.tertiaryVerificationRepFNameTBox, i.tertiaryVerificationRepLNameTBox, i.tertiaryVerificationDateMM, i.tertiaryVerificationDateDD, i.tertiaryVerificationDateYY, i.tertiaryVerificationTimeTBox, i.tertiaryVerificationHaveInsFromMM, i.tertiaryVerificationHaveInsFromDD, i.tertiaryVerificationHaveInsFromYY, i.tertiaryVerificationHaveInsToMM, i.tertiaryVerificationHaveInsToDD, i.tertiaryVerificationHaveInsToYY, IFNULL(i.tertiaryCBox_VerificationHaveInsYes, 0) AS tertiaryCBox_VerificationHaveInsYes, IFNULL(i.tertiaryCBox_VerificationHaveInsNo, 0) AS tertiaryCBox_VerificationHaveInsNo, IFNULL(i.tertiaryCBox_VerificationHaveDMECovYes, 0) AS tertiaryCBox_VerificationHaveDMECovYes, IFNULL(i.tertiaryCBox_VerificationHaveDMECovNo, 0) AS tertiaryCBox_VerificationHaveDMECovNo, IFNULL(i.tertiaryCBox_VerificationDeductibleYes, 0) AS tertiaryCBox_VerificationDeductibleYes, IFNULL(i.tertiaryCBox_VerificationDeductibleNo, 0) AS tertiaryCBox_VerificationDeductibleNo, i.tertiaryVerificationDeductibleAmountTBox, i.tertiaryVerificationDeductibleAmountMetTBox, i.tertiaryVerificationPercentagePayAfterDeductibleTBox, IFNULL(i.tertiaryCBox_VerificationPPOPolicyYes, 0) AS tertiaryCBox_VerificationPPOPolicyYes, IFNULL(i.tertiaryCBox_VerificationPPOPolicyNo, 0) AS tertiaryCBox_VerificationPPOPolicyNo, i.tertiaryVerificationAuthNumberTBox, IFNULL(i.tertiaryCBox_VerificationPriorAuthYes, 0) AS tertiaryCBox_VerificationPriorAuthYes, IFNULL(i.tertiaryCBox_VerificationPriorAuthNo, 0) AS tertiaryCBox_VerificationPriorAuthNo, i.tertiaryVerificationAuthPhoneNumberTBox, IFNULL(i.tertiaryCBox_VerificationLifetimeBenefitMetYes, 0) AS tertiaryCBox_VerificationLifetimeBenefitMetYes, IFNULL(i.tertiaryCBox_VerificationLifetimeBenefitMetNo, 0) AS tertiaryCBox_VerificationLifetimeBenefitMetNo, IFNULL(i.tertiaryCBox_MedicareSupplementYes, 0) AS tertiaryCBox_MedicareSupplementYes, IFNULL(i.tertiaryCBox_MedicareSupplementNo, 0) AS tertiaryCBox_MedicareSupplementNo, IFNULL(i.tertiaryCBox_CoordinateBenefitsYes, 0) AS tertiaryCBox_CoordinateBenefitsYes, IFNULL(i.tertiaryCBox_CoordinateBenefitsNo, 0) AS tertiaryCBox_CoordinateBenefitsNo, IFNULL(i.tertiaryCBox_PaidMedicareDeductibleYes, 0) AS tertiaryCBox_PaidMedicareDeductibleYes, IFNULL(i.tertiaryCBox_PaidMedicareDeductibleNo, 0) AS tertiaryCBox_PaidMedicareDeductibleNo, i.tertiaryVerificationTypeBasePlanTBox, IFNULL(i.tertiaryCBox_VerificationMedicaidPlanMQMB, 0) AS tertiaryCBox_VerificationMedicaidPlanMQMB, IFNULL(i.tertiaryCBox_VerificationMedicaidPlanQMB, 0) AS tertiaryCBox_VerificationMedicaidPlanQMB, IFNULL(tertiaryCBox_VerificationMedicaidPlanTraditional, 0) AS tertiaryCBox_VerificationMedicaidPlanTraditional, i.primaryFaxNumberTBox, i.primarySendToAddress1TBox, i.primarySendToAddress2TBox, i.primarySendToCityTBox, i.primarySendToStateTBox, i.primarySendToZipCodeTBox, i.secondaryFaxNumberTBox, i.secondarySendToAddress1TBox, i.secondarySendToAddress2TBox, i.secondarySendToCityTBox, i.secondarySendToStateTBox, i.secondarySendToZipCodeTBox, i.tertiaryFaxNumberTBox, i.tertiarySendToAddress1TBox, i.tertiarySendToAddress2TBox, i.tertiarySendToCityTBox, i.tertiarySendToStateTBox, i.tertiarySendToZipCodeTBox, i.active, i.closingInvoiceNumber,
 		ih.hcpcCode1TBox, ih.hcpcQty1TBox, ih.hcpcProduct1TBox, ih.hcpcCost1TBox, ih.hcpcDX1TBox, ih.hcpcDiagnosis1TBox, ih.hcpcLengthOfNeedYear1TBox, ih.hcpcLengthOfNeedMonth1TBox, ih.hcpcCode2TBox, ih.hcpcQty2TBox, ih.hcpcProduct2TBox, ih.hcpcCost2TBox, ih.hcpcDX2TBox, ih.hcpcDiagnosis2TBox, ih.hcpcLengthOfNeedYear2TBox, ih.hcpcLengthOfNeedMonth2TBox, ih.hcpcCode3TBox, ih.hcpcQty3TBox, ih.hcpcProduct3TBox, ih.hcpcCost3TBox, ih.hcpcDX3TBox, ih.hcpcDiagnosis3TBox, ih.hcpcLengthOfNeedYear3TBox, ih.hcpcLengthOfNeedMonth3TBox, ih.hcpcCode4TBox, ih.hcpcQty4TBox, ih.hcpcProduct4TBox, ih.hcpcCost4TBox, ih.hcpcDX4TBox, ih.hcpcDiagnosis4TBox, ih.hcpcLengthOfNeedYear4TBox, ih.hcpcLengthOfNeedMonth4TBox, ih.hcpcCode5TBox, ih.hcpcQty5TBox, ih.hcpcProduct5TBox, ih.hcpcCost5TBox, ih.hcpcDX5TBox, ih.hcpcDiagnosis5TBox, ih.hcpcLengthOfNeedYear5TBox, ih.hcpcLengthOfNeedMonth5TBox, ih.hcpcCode6TBox, ih.hcpcQty6TBox, ih.hcpcProduct6TBox, ih.hcpcCost6TBox, ih.hcpcDX6TBox, ih.hcpcDiagnosis6TBox, ih.hcpcLengthOfNeedYear6TBox, ih.hcpcLengthOfNeedMonth6TBox, ih.hcpcCode7TBox, ih.hcpcQty7TBox, ih.hcpcProduct7TBox, ih.hcpcCost7TBox, ih.hcpcDX7TBox, ih.hcpcDiagnosis7TBox, ih.hcpcLengthOfNeedYear7TBox, ih.hcpcLengthOfNeedMonth7TBox, ih.hcpcCode8TBox, ih.hcpcQty8TBox, ih.hcpcProduct8TBox, ih.hcpcCost8TBox, ih.hcpcDX8TBox, ih.hcpcDiagnosis8TBox, ih.hcpcLengthOfNeedYear8TBox, ih.hcpcLengthOfNeedMonth8TBox, ih.hcpcCode9TBox, ih.hcpcQty9TBox, ih.hcpcProduct9TBox, ih.hcpcCost9TBox, ih.hcpcDX9TBox, ih.hcpcDiagnosis9TBox, ih.hcpcLengthOfNeedYear9TBox, ih.hcpcLengthOfNeedMonth9TBox, ih.hcpcCode10TBox, ih.hcpcQty10TBox, ih.hcpcProduct10TBox, ih.hcpcCost10TBox, ih.hcpcDX10TBox, ih.hcpcDiagnosis10TBox, ih.hcpcLengthOfNeedYear10TBox, ih.hcpcLengthOfNeedMonth10TBox, ih.hcpcCode11TBox, ih.hcpcQty11TBox, ih.hcpcProduct11TBox, ih.hcpcCost11TBox, ih.hcpcDX11TBox, ih.hcpcDiagnosis11TBox, ih.hcpcLengthOfNeedYear11TBox, ih.hcpcLengthOfNeedMonth11TBox, ih.hcpcCode12TBox, ih.hcpcQty12TBox, ih.hcpcProduct12TBox, ih.hcpcCost12TBox, ih.hcpcDX12TBox, ih.hcpcDiagnosis12TBox, ih.hcpcLengthOfNeedYear12TBox, ih.hcpcLengthOfNeedMonth12TBox, ih.hcpcCode13TBox, ih.hcpcQty13TBox, ih.hcpcProduct13TBox, ih.hcpcCost13TBox, ih.hcpcDX13TBox, ih.hcpcDiagnosis13TBox, ih.hcpcLengthOfNeedYear13TBox, ih.hcpcLengthOfNeedMonth13TBox, ih.hcpcCode14TBox, ih.hcpcQty14TBox, ih.hcpcProduct14TBox, ih.hcpcCost14TBox, ih.hcpcDX14TBox, ih.hcpcDiagnosis14TBox, ih.hcpcLengthOfNeedYear14TBox, ih.hcpcLengthOfNeedMonth14TBox, ih.hcpcCode15TBox, ih.hcpcQty15TBox, ih.hcpcProduct15TBox, ih.hcpcCost15TBox, ih.hcpcDX15TBox, ih.hcpcDiagnosis15TBox, ih.hcpcLengthOfNeedYear15TBox, ih.hcpcLengthOfNeedMonth15TBox, ih.hcpcCode16TBox, ih.hcpcQty16TBox, ih.hcpcProduct16TBox, ih.hcpcCost16TBox, ih.hcpcDX16TBox, ih.hcpcDiagnosis16TBox, ih.hcpcLengthOfNeedYear16TBox, ih.hcpcLengthOfNeedMonth16TBox, ih.hcpcCode17TBox, ih.hcpcQty17TBox, ih.hcpcProduct17TBox, ih.hcpcCost17TBox, ih.hcpcDX17TBox, ih.hcpcDiagnosis17TBox, ih.hcpcLengthOfNeedYear17TBox, ih.hcpcLengthOfNeedMonth17TBox, ih.hcpcCode18TBox, ih.hcpcQty18TBox, ih.hcpcProduct18TBox, ih.hcpcCost18TBox, ih.hcpcDX18TBox, ih.hcpcDiagnosis18TBox, ih.hcpcLengthOfNeedYear18TBox, ih.hcpcLengthOfNeedMonth18TBox, ih.hcpcCode19TBox, ih.hcpcQty19TBox, ih.hcpcProduct19TBox, ih.hcpcCost19TBox, ih.hcpcDX19TBox, ih.hcpcDiagnosis19TBox, ih.hcpcLengthOfNeedYear19TBox, ih.hcpcLengthOfNeedMonth19TBox, ih.hcpcCode20TBox, ih.hcpcQty20TBox, ih.hcpcProduct20TBox, ih.hcpcCost20TBox, ih.hcpcDX20TBox, ih.hcpcDiagnosis20TBox, ih.hcpcLengthOfNeedYear20TBox, ih.hcpcLengthOfNeedMonth20TBox, ih.hcpcCode21TBox, ih.hcpcQty21TBox, ih.hcpcProduct21TBox, ih.hcpcCost21TBox, ih.hcpcDX21TBox, ih.hcpcDiagnosis21TBox, ih.hcpcLengthOfNeedYear21TBox, ih.hcpcLengthOfNeedMonth21TBox, ih.hcpcCode22TBox, ih.hcpcQty22TBox, ih.hcpcProduct22TBox, ih.hcpcCost22TBox, ih.hcpcDX22TBox, ih.hcpcDiagnosis22TBox, ih.hcpcLengthOfNeedYear22TBox, ih.hcpcLengthOfNeedMonth22TBox, ih.hcpcCode23TBox, ih.hcpcQty23TBox, ih.hcpcProduct23TBox, ih.hcpcCost23TBox, ih.hcpcDX23TBox, ih.hcpcDiagnosis23TBox, ih.hcpcLengthOfNeedYear23TBox, ih.hcpcLengthOfNeedMonth23TBox, ih.hcpcCode24TBox, ih.hcpcQty24TBox, ih.hcpcProduct24TBox, ih.hcpcCost24TBox, ih.hcpcDX24TBox, ih.hcpcDiagnosis24TBox, ih.hcpcLengthOfNeedYear24TBox, ih.hcpcLengthOfNeedMonth24TBox, ih.hcpcCode25TBox, ih.hcpcQty25TBox, ih.hcpcProduct25TBox, ih.hcpcCost25TBox, ih.hcpcDX25TBox, ih.hcpcDiagnosis25TBox, ih.hcpcLengthOfNeedYear25TBox, ih.hcpcLengthOfNeedMonth25TBox, ih.hcpcCode26TBox, ih.hcpcQty26TBox, ih.hcpcProduct26TBox, ih.hcpcCost26TBox, ih.hcpcDX26TBox, ih.hcpcDiagnosis26TBox, ih.hcpcLengthOfNeedYear26TBox, ih.hcpcLengthOfNeedMonth26TBox, ih.hcpcCode27TBox, ih.hcpcQty27TBox, ih.hcpcProduct27TBox, ih.hcpcCost27TBox, ih.hcpcDX27TBox, ih.hcpcDiagnosis27TBox, ih.hcpcLengthOfNeedYear27TBox, ih.hcpcLengthOfNeedMonth27TBox, ih.hcpcCode28TBox, ih.hcpcQty28TBox, ih.hcpcProduct28TBox, ih.hcpcCost28TBox, ih.hcpcDX28TBox, ih.hcpcDiagnosis28TBox, ih.hcpcLengthOfNeedYear28TBox, ih.hcpcLengthOfNeedMonth28TBox, ih.hcpcCode29TBox, ih.hcpcQty29TBox, ih.hcpcProduct29TBox, ih.hcpcCost29TBox, ih.hcpcDX29TBox, ih.hcpcDiagnosis29TBox, ih.hcpcLengthOfNeedYear29TBox, ih.hcpcLengthOfNeedMonth29TBox, ih.hcpcCode30TBox, ih.hcpcQty30TBox, ih.hcpcProduct30TBox, ih.hcpcCost30TBox, ih.hcpcDX30TBox, ih.hcpcDiagnosis30TBox, ih.hcpcLengthOfNeedYear30TBox, ih.hcpcLengthOfNeedMonth30TBox, ih.hcpcCode31TBox, ih.hcpcQty31TBox, ih.hcpcProduct31TBox, ih.hcpcCost31TBox, ih.hcpcDX31TBox, ih.hcpcDiagnosis31TBox, ih.hcpcLengthOfNeedYear31TBox, ih.hcpcLengthOfNeedMonth31TBox, ih.hcpcCode32TBox, ih.hcpcQty32TBox, ih.hcpcProduct32TBox, ih.hcpcCost32TBox, ih.hcpcDX32TBox, ih.hcpcDiagnosis32TBox, ih.hcpcLengthOfNeedYear32TBox, ih.hcpcLengthOfNeedMonth32TBox, ih.hcpcCode33TBox, ih.hcpcQty33TBox, ih.hcpcProduct33TBox, ih.hcpcCost33TBox, ih.hcpcDX33TBox, ih.hcpcDiagnosis33TBox, ih.hcpcLengthOfNeedYear33TBox, ih.hcpcLengthOfNeedMonth33TBox, ih.hcpcCode34TBox, ih.hcpcQty34TBox, ih.hcpcProduct34TBox, ih.hcpcCost34TBox, ih.hcpcDX34TBox, ih.hcpcDiagnosis34TBox, ih.hcpcLengthOfNeedYear34TBox, ih.hcpcLengthOfNeedMonth34TBox, ih.hcpcCode35TBox, ih.hcpcQty35TBox, ih.hcpcProduct35TBox, ih.hcpcCost35TBox, ih.hcpcDX35TBox, ih.hcpcDiagnosis35TBox, ih.hcpcLengthOfNeedYear35TBox, ih.hcpcLengthOfNeedMonth35TBox, ih.hcpcCode36TBox, ih.hcpcQty36TBox, ih.hcpcProduct36TBox, ih.hcpcCost36TBox, ih.hcpcDX36TBox, ih.hcpcDiagnosis36TBox, ih.hcpcLengthOfNeedYear36TBox, ih.hcpcLengthOfNeedMonth36TBox, ih.hcpcCode37TBox, ih.hcpcQty37TBox, ih.hcpcProduct37TBox, ih.hcpcCost37TBox, ih.hcpcDX37TBox, ih.hcpcDiagnosis37TBox, ih.hcpcLengthOfNeedYear37TBox, ih.hcpcLengthOfNeedMonth37TBox, ih.hcpcCode38TBox, ih.hcpcQty38TBox, ih.hcpcProduct38TBox, ih.hcpcCost38TBox, ih.hcpcDX38TBox, ih.hcpcDiagnosis38TBox, ih.hcpcLengthOfNeedYear38TBox, ih.hcpcLengthOfNeedMonth38TBox, ih.hcpcCode39TBox, ih.hcpcQty39TBox, ih.hcpcProduct39TBox, ih.hcpcCost39TBox, ih.hcpcDX39TBox, ih.hcpcDiagnosis39TBox, ih.hcpcLengthOfNeedYear39TBox, ih.hcpcLengthOfNeedMonth39TBox, ih.hcpcCode40TBox, ih.hcpcQty40TBox, ih.hcpcProduct40TBox, ih.hcpcCost40TBox, ih.hcpcDX40TBox, ih.hcpcDiagnosis40TBox, ih.hcpcLengthOfNeedYear40TBox, ih.hcpcLengthOfNeedMonth40TBox
-		FROM Intake i INNER JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID
+		FROM intake i INNER JOIN intakehcpc ih ON i.intakeID = ih.IntakeID
 		</cfquery>
 
 
@@ -3765,12 +3765,12 @@ from intake
 
 
 <cfquery name="getIntakes" datasource="PAClient_1084">
-	SELECT * FROM INTAKE
+	SELECT * FROM intake
 </cfquery>
 
 <cfloop query="getIntakes">
 	<cfquery name="tempIns" datasource="PAClient_1084">
-		INSERT INTO IntakeHCPC (IntakeID, hcpcCode1TBox, hcpcQty1TBox, hcpcProduct1TBox, hcpcDX1TBox, hcpcDiagnosis1TBox, hcpcCost1TBox, hcpcCode2TBox, hcpcQty2TBox, hcpcProduct2TBox, hcpcDX2TBox, hcpcDiagnosis2TBox, hcpcCost2TBox, hcpcCode3TBox, hcpcQty3TBox, hcpcProduct3TBox, hcpcDX3TBox, hcpcDiagnosis3TBox, hcpcCost3TBox, hcpcCode4TBox, hcpcQty4TBox, hcpcProduct4TBox, hcpcDX4TBox, hcpcDiagnosis4TBox,	hcpcCost4TBox, hcpcCode5TBox, hcpcQty5TBox, hcpcProduct5TBox, hcpcDX5TBox, hcpcDiagnosis5TBox,	hcpcCost5TBox, hcpcCode6TBox, hcpcQty6TBox, hcpcProduct6TBox, hcpcDX6TBox, hcpcDiagnosis6TBox, hcpcCost6TBox, hcpcCode7TBox, hcpcQty7TBox, hcpcProduct7TBox, hcpcDX7TBox, hcpcDiagnosis7TBox, hcpcCost7TBox, hcpcCode8TBox, hcpcQty8TBox, hcpcProduct8TBox, hcpcDX8TBox, hcpcDiagnosis8TBox, hcpcCost8TBox, hcpcCode9TBox, hcpcQty9TBox, hcpcProduct9TBox, hcpcDX9TBox, hcpcDiagnosis9TBox, hcpcCost9TBox, hcpcCode10TBox, hcpcQty10TBox, hcpcProduct10TBox, hcpcDX10TBox, hcpcDiagnosis10TBox, hcpcCost10TBox)
+		INSERT INTO intakehcpc (IntakeID, hcpcCode1TBox, hcpcQty1TBox, hcpcProduct1TBox, hcpcDX1TBox, hcpcDiagnosis1TBox, hcpcCost1TBox, hcpcCode2TBox, hcpcQty2TBox, hcpcProduct2TBox, hcpcDX2TBox, hcpcDiagnosis2TBox, hcpcCost2TBox, hcpcCode3TBox, hcpcQty3TBox, hcpcProduct3TBox, hcpcDX3TBox, hcpcDiagnosis3TBox, hcpcCost3TBox, hcpcCode4TBox, hcpcQty4TBox, hcpcProduct4TBox, hcpcDX4TBox, hcpcDiagnosis4TBox,	hcpcCost4TBox, hcpcCode5TBox, hcpcQty5TBox, hcpcProduct5TBox, hcpcDX5TBox, hcpcDiagnosis5TBox,	hcpcCost5TBox, hcpcCode6TBox, hcpcQty6TBox, hcpcProduct6TBox, hcpcDX6TBox, hcpcDiagnosis6TBox, hcpcCost6TBox, hcpcCode7TBox, hcpcQty7TBox, hcpcProduct7TBox, hcpcDX7TBox, hcpcDiagnosis7TBox, hcpcCost7TBox, hcpcCode8TBox, hcpcQty8TBox, hcpcProduct8TBox, hcpcDX8TBox, hcpcDiagnosis8TBox, hcpcCost8TBox, hcpcCode9TBox, hcpcQty9TBox, hcpcProduct9TBox, hcpcDX9TBox, hcpcDiagnosis9TBox, hcpcCost9TBox, hcpcCode10TBox, hcpcQty10TBox, hcpcProduct10TBox, hcpcDX10TBox, hcpcDiagnosis10TBox, hcpcCost10TBox)
 		VALUES(#trim(IntakeID)#, <cfif hcpcCode1TBox EQ "">NULL<cfelse>'#trim(hcpcCode1TBox)#'</cfif>, <cfif hcpcQty1TBox EQ "">NULL<cfelse>'#trim(hcpcQty1TBox)#'</cfif>, <cfif hcpcProduct1TBox EQ "">NULL<cfelse>'#trim(hcpcProduct1TBox)#'</cfif>, <cfif hcpcDX1TBox EQ "">NULL<cfelse>'#trim(hcpcDX1TBox)#'</cfif>, <cfif hcpcDiagnosis1TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis1TBox)#'</cfif>, <cfif hcpcCost1TBox EQ "">NULL<cfelse>'#trim(hcpcCost1TBox)#'</cfif>, <cfif hcpcCode2TBox EQ "">NULL<cfelse>'#trim(hcpcCode2TBox)#'</cfif>, <cfif hcpcQty2TBox EQ "">NULL<cfelse>'#trim(hcpcQty2TBox)#'</cfif>, <cfif hcpcProduct2TBox EQ "">NULL<cfelse>'#trim(hcpcProduct2TBox)#'</cfif>, <cfif hcpcDX2TBox EQ "">NULL<cfelse>'#trim(hcpcDX2TBox)#'</cfif>, <cfif hcpcDiagnosis2TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis2TBox)#'</cfif>, <cfif hcpcCost2TBox EQ "">NULL<cfelse>'#trim(hcpcCost2TBox)#'</cfif>, <cfif hcpcCode3TBox EQ "">NULL<cfelse>'#trim(hcpcCode3TBox)#'</cfif>, <cfif hcpcQty3TBox EQ "">NULL<cfelse>'#trim(hcpcQty3TBox)#'</cfif>, <cfif hcpcProduct3TBox EQ "">NULL<cfelse>'#trim(hcpcProduct3TBox)#'</cfif>, <cfif hcpcDX3TBox EQ "">NULL<cfelse>'#trim(hcpcDX3TBox)#'</cfif>, <cfif hcpcDiagnosis3TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis3TBox)#'</cfif>, <cfif hcpcCost3TBox EQ "">NULL<cfelse>'#trim(hcpcCost3TBox)#'</cfif>, <cfif hcpcCode4TBox EQ "">NULL<cfelse>'#trim(hcpcCode4TBox)#'</cfif>, <cfif hcpcQty4TBox EQ "">NULL<cfelse>'#trim(hcpcQty4TBox)#'</cfif>, <cfif hcpcProduct4TBox EQ "">NULL<cfelse>'#trim(hcpcProduct4TBox)#'</cfif>, <cfif hcpcDX4TBox EQ "">NULL<cfelse>'#trim(hcpcDX4TBox)#'</cfif>, <cfif hcpcDiagnosis4TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis4TBox)#'</cfif>, <cfif hcpcCost4TBox EQ "">NULL<cfelse>'#trim(hcpcCost4TBox)#'</cfif>, <cfif hcpcCode5TBox EQ "">NULL<cfelse>'#trim(hcpcCode5TBox)#'</cfif>, <cfif hcpcQty5TBox EQ "">NULL<cfelse>'#trim(hcpcQty5TBox)#'</cfif>, <cfif hcpcProduct5TBox EQ "">NULL<cfelse>'#trim(hcpcProduct5TBox)#'</cfif>, <cfif hcpcDX5TBox EQ "">NULL<cfelse>'#trim(hcpcDX5TBox)#'</cfif>, <cfif hcpcDiagnosis5TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis5TBox)#'</cfif>, <cfif hcpcCost5TBox EQ "">NULL<cfelse>'#trim(hcpcCost5TBox)#'</cfif>, <cfif hcpcCode6TBox EQ "">NULL<cfelse>'#trim(hcpcCode6TBox)#'</cfif>, <cfif hcpcQty6TBox EQ "">NULL<cfelse>'#trim(hcpcQty6TBox)#'</cfif>, <cfif hcpcProduct6TBox EQ "">NULL<cfelse>'#trim(hcpcProduct6TBox)#'</cfif>, <cfif hcpcDX6TBox EQ "">NULL<cfelse>'#trim(hcpcDX6TBox)#'</cfif>, <cfif hcpcDiagnosis6TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis6TBox)#'</cfif>, <cfif hcpcCost6TBox EQ "">NULL<cfelse>'#trim(hcpcCost6TBox)#'</cfif>, <cfif hcpcCode7TBox EQ "">NULL<cfelse>'#trim(hcpcCode7TBox)#'</cfif>, <cfif hcpcQty7TBox EQ "">NULL<cfelse>'#trim(hcpcQty7TBox)#'</cfif>, <cfif hcpcProduct7TBox EQ "">NULL<cfelse>'#trim(hcpcProduct7TBox)#'</cfif>, <cfif hcpcDX7TBox EQ "">NULL<cfelse>'#trim(hcpcDX7TBox)#'</cfif>, <cfif hcpcDiagnosis7TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis7TBox)#'</cfif>, <cfif hcpcCost7TBox EQ "">NULL<cfelse>'#trim(hcpcCost7TBox)#'</cfif>, <cfif hcpcCode8TBox EQ "">NULL<cfelse>'#trim(hcpcCode8TBox)#'</cfif>, <cfif hcpcQty8TBox EQ "">NULL<cfelse>'#trim(hcpcQty8TBox)#'</cfif>, <cfif hcpcProduct8TBox EQ "">NULL<cfelse>'#trim(hcpcProduct8TBox)#'</cfif>, <cfif hcpcDX8TBox EQ "">NULL<cfelse>'#trim(hcpcDX8TBox)#'</cfif>, <cfif hcpcDiagnosis8TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis8TBox)#'</cfif>, <cfif hcpcCost8TBox EQ "">NULL<cfelse>'#trim(hcpcCost8TBox)#'</cfif>, <cfif hcpcCode9TBox EQ "">NULL<cfelse>'#trim(hcpcCode9TBox)#'</cfif>, <cfif hcpcQty9TBox EQ "">NULL<cfelse>'#trim(hcpcQty9TBox)#'</cfif>, <cfif hcpcProduct9TBox EQ "">NULL<cfelse>'#trim(hcpcProduct9TBox)#'</cfif>, <cfif hcpcDX9TBox EQ "">NULL<cfelse>'#trim(hcpcDX9TBox)#'</cfif>, <cfif hcpcDiagnosis9TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis9TBox)#'</cfif>, <cfif hcpcCost9TBox EQ "">NULL<cfelse>'#trim(hcpcCost9TBox)#'</cfif>, <cfif hcpcCode10TBox EQ "">NULL<cfelse>'#trim(hcpcCode10TBox)#'</cfif>, <cfif hcpcQty10TBox EQ "">NULL<cfelse>'#trim(hcpcQty10TBox)#'</cfif>, <cfif hcpcProduct10TBox EQ "">NULL<cfelse>'#trim(hcpcProduct10TBox)#'</cfif>, <cfif hcpcDX10TBox EQ "">NULL<cfelse>'#trim(hcpcDX10TBox)#'</cfif>, <cfif hcpcDiagnosis10TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis10TBox)#'</cfif>, <cfif hcpcCost10TBox EQ "">NULL<cfelse>'#trim(hcpcCost10TBox)#'</cfif>)
 	</cfquery>
 </cfloop>
@@ -3784,12 +3784,12 @@ from intake
 
 
 <cfquery name="getQuotes" datasource="PAClient_1084">
-	SELECT * FROM QUOTE
+	SELECT * FROM quote
 </cfquery>
 
 <cfloop query="getQuotes">
 	<cfquery name="tempIns" datasource="PAClient_1084">
-		INSERT INTO QUOTEHCPC (QuoteID, hcpcCode1TBox, hcpcQty1TBox, hcpcProduct1TBox, hcpcDX1TBox, hcpcDiagnosis1TBox, hcpcCost1TBox, hcpcCode2TBox, hcpcQty2TBox, hcpcProduct2TBox, hcpcDX2TBox, hcpcDiagnosis2TBox, hcpcCost2TBox, hcpcCode3TBox, hcpcQty3TBox, hcpcProduct3TBox, hcpcDX3TBox, hcpcDiagnosis3TBox, hcpcCost3TBox, hcpcCode4TBox, hcpcQty4TBox, hcpcProduct4TBox, hcpcDX4TBox, hcpcDiagnosis4TBox,	hcpcCost4TBox, hcpcCode5TBox, hcpcQty5TBox, hcpcProduct5TBox, hcpcDX5TBox, hcpcDiagnosis5TBox,	hcpcCost5TBox, hcpcCode6TBox, hcpcQty6TBox, hcpcProduct6TBox, hcpcDX6TBox, hcpcDiagnosis6TBox, hcpcCost6TBox, hcpcCode7TBox, hcpcQty7TBox, hcpcProduct7TBox, hcpcDX7TBox, hcpcDiagnosis7TBox, hcpcCost7TBox, hcpcCode8TBox, hcpcQty8TBox, hcpcProduct8TBox, hcpcDX8TBox, hcpcDiagnosis8TBox, hcpcCost8TBox, hcpcCode9TBox, hcpcQty9TBox, hcpcProduct9TBox, hcpcDX9TBox, hcpcDiagnosis9TBox, hcpcCost9TBox, hcpcCode10TBox, hcpcQty10TBox, hcpcProduct10TBox, hcpcDX10TBox, hcpcDiagnosis10TBox, hcpcCost10TBox)
+		INSERT INTO quotehcpc (QuoteID, hcpcCode1TBox, hcpcQty1TBox, hcpcProduct1TBox, hcpcDX1TBox, hcpcDiagnosis1TBox, hcpcCost1TBox, hcpcCode2TBox, hcpcQty2TBox, hcpcProduct2TBox, hcpcDX2TBox, hcpcDiagnosis2TBox, hcpcCost2TBox, hcpcCode3TBox, hcpcQty3TBox, hcpcProduct3TBox, hcpcDX3TBox, hcpcDiagnosis3TBox, hcpcCost3TBox, hcpcCode4TBox, hcpcQty4TBox, hcpcProduct4TBox, hcpcDX4TBox, hcpcDiagnosis4TBox,	hcpcCost4TBox, hcpcCode5TBox, hcpcQty5TBox, hcpcProduct5TBox, hcpcDX5TBox, hcpcDiagnosis5TBox,	hcpcCost5TBox, hcpcCode6TBox, hcpcQty6TBox, hcpcProduct6TBox, hcpcDX6TBox, hcpcDiagnosis6TBox, hcpcCost6TBox, hcpcCode7TBox, hcpcQty7TBox, hcpcProduct7TBox, hcpcDX7TBox, hcpcDiagnosis7TBox, hcpcCost7TBox, hcpcCode8TBox, hcpcQty8TBox, hcpcProduct8TBox, hcpcDX8TBox, hcpcDiagnosis8TBox, hcpcCost8TBox, hcpcCode9TBox, hcpcQty9TBox, hcpcProduct9TBox, hcpcDX9TBox, hcpcDiagnosis9TBox, hcpcCost9TBox, hcpcCode10TBox, hcpcQty10TBox, hcpcProduct10TBox, hcpcDX10TBox, hcpcDiagnosis10TBox, hcpcCost10TBox)
 		VALUES(#trim(quoteID)#, <cfif hcpcCode1TBox EQ "">NULL<cfelse>'#trim(hcpcCode1TBox)#'</cfif>, <cfif hcpcQty1TBox EQ "">NULL<cfelse>'#trim(hcpcQty1TBox)#'</cfif>, <cfif hcpcProduct1TBox EQ "">NULL<cfelse>'#trim(hcpcProduct1TBox)#'</cfif>, <cfif hcpcDX1TBox EQ "">NULL<cfelse>'#trim(hcpcDX1TBox)#'</cfif>, <cfif hcpcDiagnosis1TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis1TBox)#'</cfif>, <cfif hcpcCost1TBox EQ "">NULL<cfelse>'#trim(hcpcCost1TBox)#'</cfif>, <cfif hcpcCode2TBox EQ "">NULL<cfelse>'#trim(hcpcCode2TBox)#'</cfif>, <cfif hcpcQty2TBox EQ "">NULL<cfelse>'#trim(hcpcQty2TBox)#'</cfif>, <cfif hcpcProduct2TBox EQ "">NULL<cfelse>'#trim(hcpcProduct2TBox)#'</cfif>, <cfif hcpcDX2TBox EQ "">NULL<cfelse>'#trim(hcpcDX2TBox)#'</cfif>, <cfif hcpcDiagnosis2TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis2TBox)#'</cfif>, <cfif hcpcCost2TBox EQ "">NULL<cfelse>'#trim(hcpcCost2TBox)#'</cfif>, <cfif hcpcCode3TBox EQ "">NULL<cfelse>'#trim(hcpcCode3TBox)#'</cfif>, <cfif hcpcQty3TBox EQ "">NULL<cfelse>'#trim(hcpcQty3TBox)#'</cfif>, <cfif hcpcProduct3TBox EQ "">NULL<cfelse>'#trim(hcpcProduct3TBox)#'</cfif>, <cfif hcpcDX3TBox EQ "">NULL<cfelse>'#trim(hcpcDX3TBox)#'</cfif>, <cfif hcpcDiagnosis3TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis3TBox)#'</cfif>, <cfif hcpcCost3TBox EQ "">NULL<cfelse>'#trim(hcpcCost3TBox)#'</cfif>, <cfif hcpcCode4TBox EQ "">NULL<cfelse>'#trim(hcpcCode4TBox)#'</cfif>, <cfif hcpcQty4TBox EQ "">NULL<cfelse>'#trim(hcpcQty4TBox)#'</cfif>, <cfif hcpcProduct4TBox EQ "">NULL<cfelse>'#trim(hcpcProduct4TBox)#'</cfif>, <cfif hcpcDX4TBox EQ "">NULL<cfelse>'#trim(hcpcDX4TBox)#'</cfif>, <cfif hcpcDiagnosis4TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis4TBox)#'</cfif>, <cfif hcpcCost4TBox EQ "">NULL<cfelse>'#trim(hcpcCost4TBox)#'</cfif>, <cfif hcpcCode5TBox EQ "">NULL<cfelse>'#trim(hcpcCode5TBox)#'</cfif>, <cfif hcpcQty5TBox EQ "">NULL<cfelse>'#trim(hcpcQty5TBox)#'</cfif>, <cfif hcpcProduct5TBox EQ "">NULL<cfelse>'#trim(hcpcProduct5TBox)#'</cfif>, <cfif hcpcDX5TBox EQ "">NULL<cfelse>'#trim(hcpcDX5TBox)#'</cfif>, <cfif hcpcDiagnosis5TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis5TBox)#'</cfif>, <cfif hcpcCost5TBox EQ "">NULL<cfelse>'#trim(hcpcCost5TBox)#'</cfif>, <cfif hcpcCode6TBox EQ "">NULL<cfelse>'#trim(hcpcCode6TBox)#'</cfif>, <cfif hcpcQty6TBox EQ "">NULL<cfelse>'#trim(hcpcQty6TBox)#'</cfif>, <cfif hcpcProduct6TBox EQ "">NULL<cfelse>'#trim(hcpcProduct6TBox)#'</cfif>, <cfif hcpcDX6TBox EQ "">NULL<cfelse>'#trim(hcpcDX6TBox)#'</cfif>, <cfif hcpcDiagnosis6TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis6TBox)#'</cfif>, <cfif hcpcCost6TBox EQ "">NULL<cfelse>'#trim(hcpcCost6TBox)#'</cfif>, <cfif hcpcCode7TBox EQ "">NULL<cfelse>'#trim(hcpcCode7TBox)#'</cfif>, <cfif hcpcQty7TBox EQ "">NULL<cfelse>'#trim(hcpcQty7TBox)#'</cfif>, <cfif hcpcProduct7TBox EQ "">NULL<cfelse>'#trim(hcpcProduct7TBox)#'</cfif>, <cfif hcpcDX7TBox EQ "">NULL<cfelse>'#trim(hcpcDX7TBox)#'</cfif>, <cfif hcpcDiagnosis7TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis7TBox)#'</cfif>, <cfif hcpcCost7TBox EQ "">NULL<cfelse>'#trim(hcpcCost7TBox)#'</cfif>, <cfif hcpcCode8TBox EQ "">NULL<cfelse>'#trim(hcpcCode8TBox)#'</cfif>, <cfif hcpcQty8TBox EQ "">NULL<cfelse>'#trim(hcpcQty8TBox)#'</cfif>, <cfif hcpcProduct8TBox EQ "">NULL<cfelse>'#trim(hcpcProduct8TBox)#'</cfif>, <cfif hcpcDX8TBox EQ "">NULL<cfelse>'#trim(hcpcDX8TBox)#'</cfif>, <cfif hcpcDiagnosis8TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis8TBox)#'</cfif>, <cfif hcpcCost8TBox EQ "">NULL<cfelse>'#trim(hcpcCost8TBox)#'</cfif>, <cfif hcpcCode9TBox EQ "">NULL<cfelse>'#trim(hcpcCode9TBox)#'</cfif>, <cfif hcpcQty9TBox EQ "">NULL<cfelse>'#trim(hcpcQty9TBox)#'</cfif>, <cfif hcpcProduct9TBox EQ "">NULL<cfelse>'#trim(hcpcProduct9TBox)#'</cfif>, <cfif hcpcDX9TBox EQ "">NULL<cfelse>'#trim(hcpcDX9TBox)#'</cfif>, <cfif hcpcDiagnosis9TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis9TBox)#'</cfif>, <cfif hcpcCost9TBox EQ "">NULL<cfelse>'#trim(hcpcCost9TBox)#'</cfif>, <cfif hcpcCode10TBox EQ "">NULL<cfelse>'#trim(hcpcCode10TBox)#'</cfif>, <cfif hcpcQty10TBox EQ "">NULL<cfelse>'#trim(hcpcQty10TBox)#'</cfif>, <cfif hcpcProduct10TBox EQ "">NULL<cfelse>'#trim(hcpcProduct10TBox)#'</cfif>, <cfif hcpcDX10TBox EQ "">NULL<cfelse>'#trim(hcpcDX10TBox)#'</cfif>, <cfif hcpcDiagnosis10TBox EQ "">NULL<cfelse>'#trim(hcpcDiagnosis10TBox)#'</cfif>, <cfif hcpcCost10TBox EQ "">NULL<cfelse>'#trim(hcpcCost10TBox)#'</cfif>)
 	</cfquery>
 </cfloop>
@@ -3994,7 +3994,7 @@ GO
 <!---
 <cfquery name="get1088IDs" datasource="PAClient_1084">
  SELECT p.PatientID as pPatientID, p.ClaimSubmitterIdentifier AS pClientPatientID, p.NM1IdentificationCode9, p.AccountNumber, e.EntityID AS pEntityID, e.Fname AS pFname, e.Lname AS pLname
- FROM Entity e INNER JOIN Patient p ON e.EntityID = p.EntityID
+ FROM entity e INNER JOIN patient p ON e.EntityID = p.EntityID
 </cfquery>
 <table border=1 cellpadding=3 cellspacing=0>
  <th>Entity ID</th>
@@ -4052,7 +4052,7 @@ GO
 
 			<cfquery name="getPatient" datasource="#trim(request.datasource)#">
 				SELECT PatientID
-				FROM Patient
+				FROM patient
 				WHERE ClaimSubmitterIdentifier = '#trim(Unique)#'
 			</cfquery>
 
@@ -4060,7 +4060,7 @@ GO
 				<cfif IsQuery(getPatient) AND getPatient.RecordCount EQ 1 AND IsNumeric(getPatient.PatientID)>
 					<cfif trim(AccountNumber) NEQ "NULL">
 						<cfquery name="insPatient" datasource="#trim(request.datasource)#">
-							UPDATE Patient
+							UPDATE patient
 							SET AccountNumber = '#trim(AccountNumber)#', NM1IdentificationCode9 = '#trim(AccountNumber)#', dateModified = now()
 							WHERE PatientID = #getPatient.PatientID#
 						</cfquery>
@@ -4121,7 +4121,7 @@ GO
 <!---
 <cfquery name="get1088IDs" datasource="PAClient_1084">
  SELECT p.PatientID as pPatientID, p.ClaimSubmitterIdentifier AS pClientPatientID, e.EntityID AS pEntityID, e.Fname AS pFname, e.Lname AS pLname
- FROM Entity e INNER JOIN Patient p ON e.EntityID = p.EntityID
+ FROM entity e INNER JOIN patient p ON e.EntityID = p.EntityID
 </cfquery>
 <table border=1 cellpadding=3 cellspacing=0>
  <th>Entity ID</th>
@@ -4151,21 +4151,21 @@ GO
 <!--------------------------------------------------------------------------------------->
 <!---<cfquery name="get1088IDs" datasource="PAClient_1088">
 	SELECT p.PatientID as pPatientID, p.ClientPatientID AS pClientPatientID, e.EntityID AS pEntityID, e.Fname AS pFname, e.Lname AS pLname
-	FROM Entity e INNER JOIN Patient p ON e.EntityID = p.EntityID
+	FROM entity e INNER JOIN patient p ON e.EntityID = p.EntityID
 </cfquery>
 
 
 <cfloop query="get1088IDs">
 
 	<cfquery name="get1084s" datasource="PAClient_1084">
-		UPDATE Patient
+		UPDATE patient
 		SET ClaimSubmitterIdentifier = '#pClientPatientID#', dateModified = now()
 		WHERE PatientID = #trim(pPatientID)#
 	</cfquery>
 
 	<cfquery name="get1084s" datasource="PAClient_1084">
 		SELECT p.patientID, p.ClaimSubmitterIdentifier, e.entityID, e.FName, e.LName
-		FROM entity e INNER JOIN Patient p ON e.entityID = p.entityID
+		FROM entity e INNER JOIN patient p ON e.entityID = p.entityID
 		WHERE PatientID = #trim(pPatientID)#
 	</cfquery>
 
@@ -4177,12 +4177,12 @@ GO
 
 Test case
 SELECT p.PatientID as pPatientID, p.ClaimSubmitterIdentifier AS pClientPatientID, e.EntityID AS pEntityID, e.Fname AS pFname, e.Lname AS pLname
-FROM Entity e INNER JOIN Patient p ON e.EntityID = p.EntityID
+FROM entity e INNER JOIN patient p ON e.EntityID = p.EntityID
 WHERE LName = 'Guajardo' AND FName = 'Luis'
 
 
 SELECT p.PatientID as pPatientID, p.ClientPatientID AS pClientPatientID, e.EntityID AS pEntityID, e.Fname AS pFname, e.Lname AS pLname
-FROM Entity e INNER JOIN Patient p ON e.EntityID = p.EntityID
+FROM entity e INNER JOIN patient p ON e.EntityID = p.EntityID
 WHERE LName = 'Guajardo' AND FName = 'Luis'
 
 72922	05013	131579	Luis	Guajardo
@@ -4207,7 +4207,7 @@ WHERE LName = 'Guajardo' AND FName = 'Luis'
 	<cfloop query="getPatientsTable">
 
 		<cfquery name="updatePatientsTable" datasource="#request.datasource#">
-			UPDATE Patient
+			UPDATE patient
 			SET dateModified = now()
 			<cfif entityID NEQ "">, entityIDTemp = #trim(entityID)#</cfif>
 			<cfif AccountNumber NEQ "">, clientAccountNumber = '#trim(AccountNumber)#'</cfif>
@@ -4462,7 +4462,7 @@ WHERE LName = 'Guajardo' AND FName = 'Luis'
 
 					<cfquery name="getEntity" datasource="#trim(request.datasource)#">
 						SELECT entityID
-						FROM Entity
+						FROM entity
 						WHERE ClientID = 1084 AND  ObjectTypeID = 3 AND  Fname <cfif First EQ "NULL">IS NULL<cfelse> = '#trim(First)#'</cfif> AND  Mname <cfif Middle EQ "NULL">IS NULL<cfelse> = '#trim(Middle)#'</cfif> AND  Lname <cfif Last EQ "NULL">IS NULL<cfelse> = '#trim(Last)#'</cfif> AND  DOB <cfif dobDate EQ "NULL">IS NULL<cfelse>= #trim(dobDate)#</cfif> AND  Sex <cfif Sex EQ "NULL">IS NULL<cfelse>= #trim(Sex)#</cfif> AND  SSN <cfif SSN EQ "NULL">IS NULL<cfelse> = '#trim(SSN)#'</cfif> AND  MaritalStatus <cfif trim(MaritalStatus) EQ "NULL">IS NULL<cfelse> = #trim(MaritalStatus)#</cfif>
 					</cfquery>
 
@@ -4472,7 +4472,7 @@ WHERE LName = 'Guajardo' AND FName = 'Luis'
 
 						<cfquery name="getPatient" datasource="#trim(request.datasource)#">
 							SELECT PatientID
-							FROM Patient
+							FROM patient
 							WHERE ClaimSubmitterIdentifier = #trim(ClaimSubmitterIdentifier_102)# AND  EntityID = #trim(EntityID)#
 						</cfquery>
 
@@ -4483,7 +4483,7 @@ WHERE LName = 'Guajardo' AND FName = 'Luis'
 						<cfif IsQuery(getPatient) AND IsNumeric(getPatient.PatientID)>
 							<cfif DezineAcctNo_13 NEQ "NULL">
 								<!---<cfquery name="insPatient" datasource="#trim(request.datasource)#">--->
-									UPDATE Patient
+									UPDATE patient
 									SET AccountNumber = '#trim(DezineAcctNo_13)#', IdentificationCode9 = '#trim(DezineAcctNo_13)#'
 									WHERE patientID = #getPatient.PatientID#	<br><br>
 								<!---</cfquery>	--->
@@ -4566,14 +4566,14 @@ WHERE LName = 'Guajardo' AND FName = 'Luis'
 <!---
 <cfquery name="tempGet" datasource="#request.datasource#">
 SELECT *
-FROM Claim_ProcessXMLToDB
+FROM claim_processxmltodb
 WHERE (PatientID = 76954)
 AND Claim_ProcessXMLToDBID NOT IN(8601,8670,8671,8672,8886,8887,8899,8900,8901,8902,8904,8905,8936,8937,8938,8939,9047,9048,9050,9052,9054,9057,9081,9096,9097,9098,9099,9234,9235,9236,9237)
 </cfquery>
 
 <cfquery name="getClaimIDs" datasource="#request.datasource#">
 SELECT Claim_ProcessXMLToDB.Claim_ProcessXMLToDBID, Claim_ProcessXMLToDB.interchangeClaimID, Claim.ClaimID
-FROM Claim_ProcessXMLToDB INNER JOIN Claim ON Claim_ProcessXMLToDB.interchangeClaimID = Claim.InterchangeClaimID
+FROM claim_processxmltodb INNER JOIN claim ON Claim_ProcessXMLToDB.interchangeClaimID = Claim.InterchangeClaimID
 WHERE (Claim_ProcessXMLToDB.PatientID = 76954) AND (Claim_ProcessXMLToDB.Claim_ProcessXMLToDBID NOT IN (8601, 8670, 8671, 8672, 8886, 8887, 8899, 8900, 8901, 8902, 8904, 8905, 8936, 8937, 8938, 8939, 9047, 9048, 9050, 9052, 9054, 9057, 9081, 9096, 9097, 9098, 9099, 9234, 9235, 9236, 9237))
 </cfquery>
 
@@ -4597,7 +4597,7 @@ WHERE (Claim_ProcessXMLToDB.PatientID = 76954) AND (Claim_ProcessXMLToDB.Claim_P
 		<cfoutput>#patientFName# [#patientMiddleName#] #patientLName#</cfoutput>
 
 		<cfquery name="getName" datasource="#request.datasource#">
-			SELECT entityID FROM Entity WHERE ObjectTypeID = 3 AND Fname = '#trim(patientFName)#' AND Lname = '#trim(patientLName)#'
+			SELECT entityID FROM entity WHERE ObjectTypeID = 3 AND Fname = '#trim(patientFName)#' AND Lname = '#trim(patientLName)#'
 		</cfquery>
 
 		<cfif getname.recordcount EQ 1>
@@ -4973,14 +4973,14 @@ http://www.hibcc.org/
 
 <!---
 SELECT     ClosingInvoiceNumber AS Expr1, Active AS Expr2, *
-FROM         Intake
+FROM intake
 WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 --->
 
 <!---
 <cfquery name="getIntakes" datasource="#trim(request.datasource)#">
 	SELECT IntakeID, closingInvoiceNumber, Active
-	FROM Intake
+	FROM intake
 </cfquery>
 
 <cfset request.intakeNote = CreateObject("component","com.common.Note")>
@@ -4993,7 +4993,7 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 		<cfoutput>#IntakeID#, #closingInvoiceNumber#, #Active#<br></cfoutput>
 
 		<cfquery name="Intakes" datasource="#trim(request.datasource)#">
-			UPDATE Intake
+			UPDATE intake
 			set closingInvoiceNumber = NULL, Active = 0
 			WHERE IntakeID = #trim(IntakeID)#
 		</cfquery>
@@ -5012,7 +5012,7 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 		<cfoutput>NOT NULL #IntakeID#, #closingInvoiceNumber#, #Active#<br></cfoutput>
 
 		<cfquery name="Intakes" datasource="#trim(request.datasource)#">
-			UPDATE Intake
+			UPDATE intake
 			set Active = 1
 			WHERE IntakeID = #trim(IntakeID)#
 		</cfquery>
@@ -5072,12 +5072,12 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 
 <!---<cfquery name="getIntakesTimeSpan" datasource="PAClient_1084">
 	SELECT i.IntakeID AS intakeID, i.patientFNameTBox, i.PatientLNameTBox, i.assignedToUserID, i.DateModified, TIMESTAMPDIFF(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName
-	FROM Intake i
+	FROM intake i
 	JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
 	WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 	UNION
 	SELECT i.IntakeID AS intakeID, i.patientFNameTBox, i.PatientLNameTBox, i.assignedToUserID, i.DateCreated, TIMESTAMPDIFF(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName
-	FROM Intake i
+	FROM intake i
 	JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
 	WHERE i.Active = 1 AND i.DateModified IS NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 </cfquery>
@@ -5318,3 +5318,26 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 
 
 --->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

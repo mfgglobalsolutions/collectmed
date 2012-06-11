@@ -364,7 +364,7 @@
 	
 		<cfquery name="qGetProcedureEOBcode" datasource="#trim(request.datasource)#">
 	  		SELECT ClaimEOBCodeID,ProcedureID,EOBCode,Status,ClosingUserID,CloseDate
-			FROM ProcedureEOBcode  
+			FROM procedureeobcode  
 			WHERE ClaimEOBCodeID = #trim(arguments.ClaimEOBCodeID)# 
 		</cfquery>
 		
@@ -724,7 +724,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO ProcedureEOBcode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimEOBCodeID ">
+				<cfset sqlStatement = "INSERT INTO procedureeobcode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimEOBCodeID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -886,7 +886,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedureEOBcodeQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM ProcedureEOBcode   
+				FROM procedureeobcode   
 				WHERE 1=1
 					<cfif ClaimEOBCodeID NEQ "" AND IsNumeric(ClaimEOBCodeID)>AND ClaimEOBCodeID = #ClaimEOBCodeID#</cfif>
 					<cfif ClaimEOBCodeID_IN NEQ "">AND ClaimEOBCodeID IN(#trim(ClaimEOBCodeID_IN)#)</cfif>
@@ -963,5 +963,7 @@
 
 	
 </cfcomponent>
+
+
 
 

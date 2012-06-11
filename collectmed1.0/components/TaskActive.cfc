@@ -54,7 +54,7 @@
 			<cfif StructKeyExists(stValues, "TaskID") AND stValues.TaskID NEQ 0>
 				<cfquery name="qGetTask" datasource="#trim(variables.ds)#">
 			  		SELECT TaskID,ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Task  
+					FROM task  
 					WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.TaskID#" /> 
 				</cfquery>		
 				<cfif qGetTask.Recordcount LTE 0>
@@ -421,7 +421,7 @@
 	
 		<cfquery name="qGetTask" datasource="#trim(variables.ds)#">
 	  		SELECT TaskID,ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Task  
+			FROM task  
 			WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.TaskID)#" /> 
 		</cfquery>
 		
@@ -455,7 +455,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateTask" datasource="#trim(variables.ds)#">
-				INSERT INTO Task (ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,InactiveCode)
+				INSERT INTO task (ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localCreatorID))>						
@@ -585,7 +585,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateTask" datasource="#trim(variables.ds)#">
-				UPDATE Task  SET
+				UPDATE task  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -685,7 +685,7 @@
 
 		<cfquery name="qDeleteTask" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Task
+			FROM task
 			WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getTaskID())#" /> 
 		</cfquery>
 
@@ -707,5 +707,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

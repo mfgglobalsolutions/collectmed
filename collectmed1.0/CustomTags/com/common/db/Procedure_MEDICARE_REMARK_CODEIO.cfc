@@ -453,7 +453,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_REMARK_CODE" datasource="#trim(request.datasource)#">
 	  		SELECT Procedure_MEDICARE_REMARK_CODEID,ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_REMARK_CODE  
+			FROM procedure_medicare_remark_code  
 			WHERE Procedure_MEDICARE_REMARK_CODEID = #trim(arguments.Procedure_MEDICARE_REMARK_CODEID)# 
 		</cfquery>
 		
@@ -814,7 +814,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Procedure_MEDICARE_REMARK_CODE  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_REMARK_CODEID ">
+				<cfset sqlStatement = "INSERT INTO procedure_medicare_remark_code  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_REMARK_CODEID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -982,7 +982,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedure_MEDICARE_REMARK_CODEQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Procedure_MEDICARE_REMARK_CODE   
+				FROM procedure_medicare_remark_code   
 				WHERE 1=1
 					<cfif Procedure_MEDICARE_REMARK_CODEID NEQ "" AND IsNumeric(Procedure_MEDICARE_REMARK_CODEID)>AND Procedure_MEDICARE_REMARK_CODEID = #Procedure_MEDICARE_REMARK_CODEID#</cfif>
 					<cfif Procedure_MEDICARE_REMARK_CODEID_IN NEQ "">AND Procedure_MEDICARE_REMARK_CODEID IN(#trim(Procedure_MEDICARE_REMARK_CODEID_IN)#)</cfif>
@@ -1065,5 +1065,7 @@
 
 	
 </cfcomponent>
+
+
 
 

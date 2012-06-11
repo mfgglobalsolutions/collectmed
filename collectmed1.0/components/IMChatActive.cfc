@@ -58,7 +58,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetIMChat" datasource="#trim(variables.ds)#">
 			  		SELECT RecordID,UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode,DateCreated,DateModified
-					FROM IMChat  
+					FROM imchat  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetIMChat.Recordcount LTE 0>
@@ -453,7 +453,7 @@
 	
 		<cfquery name="qGetIMChat" datasource="#trim(variables.ds)#">
 	  		SELECT RecordID,UsersIDFrom,FromActive,UsersIDTo,ToActive,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IMChat  
+			FROM imchat  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -489,7 +489,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateIMChat" datasource="#trim(variables.ds)#">
-				INSERT INTO IMChat (UsersIDFrom,UsersIDTo,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,InactiveCode)
+				INSERT INTO imchat (UsersIDFrom,UsersIDTo,UsersIDJoined1,Joined1Active,UsersIDJoined2,Joined2Active,UsersIDJoined3,Joined3Active,IMChatXML,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersIDFrom)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localUsersIDTo)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -619,7 +619,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateIMChat" datasource="#trim(variables.ds)#">
-				UPDATE IMChat  SET
+				UPDATE imchat  SET
 					
 					UsersIDFrom =						
 						<cfqueryparam value="#trim(localUsersIDFrom)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -721,7 +721,7 @@
 
 		<cfquery name="qDeleteIMChat" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM IMChat
+			FROM imchat
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getRecordID())#" /> 
 		</cfquery>
 
@@ -743,5 +743,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

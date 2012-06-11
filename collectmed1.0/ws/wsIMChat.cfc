@@ -122,7 +122,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
 				SELECT FName, LName 
-				FROM view_UserAccountParameters 
+				FROM view_useraccountparameters 
 				WHERE UsersID = #trim(UsersID)#
 			</cfquery>			
 						
@@ -178,7 +178,7 @@
 				<!-------------------------------------------------------------------------------------->			
 				<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
 					SELECT FName, LName 
-					FROM view_UserAccountParameters 
+					FROM view_useraccountparameters 
 					WHERE UsersID = #trim(UsersID)#
 				</cfquery>
 				

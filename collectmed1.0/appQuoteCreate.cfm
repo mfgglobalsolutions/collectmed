@@ -12,7 +12,7 @@
 
 		<cfquery name="getQuote" datasource="#trim(request.datasource)#">
 			SELECT q.*, qh.*
-			FROM Quote q INNER JOIN QuoteHCPC qh ON q.QuoteID = qh.QuoteID
+			FROM quote q INNER JOIN quotehcpc qh ON q.QuoteID = qh.QuoteID
 			WHERE q.QuoteID = #trim(form.quoteID)#
 		</cfquery>
 
@@ -1109,7 +1109,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<cfsavecontent variable="sqlStatement">
 			<cfoutput>
-				UPDATE Quote
+				UPDATE quote
 				SET
 					dateModified = now()
 					<cfif IsDefined("form.callerFNameTBox")>,callerFNameTBox = <cfif form.callerFNameTBox NEQ "">'#REQUEST.mssqlReplaceSingleQuote(trim(form.callerFNameTBox))#'<cfelse>NULL</cfif></cfif>
@@ -1161,7 +1161,7 @@
 		
 		<cfsavecontent variable="sqlStatementHCPC">
 			<cfoutput>
-				UPDATE QuoteHCPC
+				UPDATE quotehcpc
 				SET
 					dateModified = now()
 					<cfif IsDefined("form.HCPCCODE1TBOX")>,HCPCCODE1TBOX = <cfif form.HCPCCODE1TBOX NEQ "">'#REQUEST.mssqlReplaceSingleQuote(trim(form.HCPCCODE1TBOX))#'<cfelse>NULL</cfif></cfif>
@@ -2230,7 +2230,7 @@
 			logtext="<p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p> #PreserveSingleQuotes(sqlStatement)#">
 
 		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net"
-			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/update QUOTE failed."
+			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/UPDATE quote failed."
 			message="<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p></p>">
 
 		<cf_gcGeneralErrorTemplate
@@ -2243,4 +2243,8 @@
 
 
 </cftry>
+
+
+
+
 

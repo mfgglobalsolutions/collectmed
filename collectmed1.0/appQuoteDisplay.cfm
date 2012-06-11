@@ -8,7 +8,7 @@
 	<cfquery name="getQuotes" datasource="#trim(request.datasource)#">
 		SELECT CONCAT(patientFNameTBox, ' ', LEFT(patientLNameTBox, 9)) AS patientName, QuoteID, hidden_UsersID, Active, DateCreated, DateModified,
 		timestampdiff(hour, DateCreated, NOW()) AS hours
-		FROM Quote	
+		FROM quote	
 		WHERE Active = 1				
 		ORDER BY DateCreated 			
 	</cfquery>
@@ -109,7 +109,7 @@
 								
 								<cfquery name="getCreatorName" datasource="#trim(request.datasource)#">
 									SELECT FName, LName 
-									FROM view_UserAccountParameters 
+									FROM view_useraccountparameters 
 									WHERE UsersID = #trim(hidden_UsersID)#
 								</cfquery>
 															
@@ -175,3 +175,5 @@
 	</cfoutput>
 		
 					
+
+

@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM VerificationFile
+			FROM verificationfile
 			WHERE VerificationFileID = <cfqueryparam value="#arguments.VerificationFile.getVerificationFileID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateVerificationFile" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO VerificationFile (InsuranceCompanyID,UsersID,xmlFileID,Active,InactiveCode)
+				INSERT INTO verificationfile (InsuranceCompanyID,UsersID,xmlFileID,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(arguments.VerificationFile.getInsuranceCompanyID()))>						
 						<cfqueryparam value="#trim(arguments.VerificationFile.getInsuranceCompanyID())#" cfsqltype="CF_SQL_INTEGER" />							
@@ -151,7 +151,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateVerificationFile" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE VerificationFile  SET
+				UPDATE verificationfile  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					InsuranceCompanyID =				
@@ -207,7 +207,7 @@
 
 		<cfquery name="qDeleteVerificationFile" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM VerificationFile
+			FROM verificationfile
 			WHERE VerificationFileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationFileID)#" /> 
 		</cfquery>
 
@@ -226,7 +226,7 @@
 	
 		<cfquery name="qGetVerificationFile" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT VerificationFileID,InsuranceCompanyID,UsersID,xmlFileID,Active,InactiveCode,DateCreated,DateModified
-			FROM VerificationFile  
+			FROM verificationfile  
 			WHERE VerificationFileID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationFileID)#" /> 
 		</cfquery>
 		
@@ -323,5 +323,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

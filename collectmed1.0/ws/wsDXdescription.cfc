@@ -17,7 +17,7 @@
 						
 			<cfquery name="getDXDescription" datasource="pa_master">
 				SELECT Description 
-				FROM EOB_MEDICARE_DXCode
+				FROM eob_medicare_dxcode
 				WHERE Code = '#trim(Code)#'
 			</cfquery>
 									

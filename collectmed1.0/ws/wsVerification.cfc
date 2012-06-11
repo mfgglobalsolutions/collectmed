@@ -33,7 +33,7 @@
 				v.VerificationPaidMedicareDeductible, v.VerificationMedicaidPlan, v.VerificationTypeBasePlan,
 				v.Active, v.InactiveCode, v.DateCreated AS DateCreated, v.DateModified,
 				CONCAT(vuap.FName, ' ', vuap.LName) AS verifiedByName
-				FROM VerificationPatientInsurance v  
+				FROM verificationpatientinsurance v  
 				JOIN view_UserAccountParameters vuap ON v.UsersID = vuap.UsersID
 				WHERE v.VerificationPatientInsuranceID = #trim(vpiID)#					
 			</cfquery>	

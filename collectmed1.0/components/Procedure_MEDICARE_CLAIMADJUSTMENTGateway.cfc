@@ -60,7 +60,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT Procedure_MEDICARE_CLAIMADJUSTMENTID
-			FROM Procedure_MEDICARE_CLAIMADJUSTMENT
+			FROM procedure_medicare_claimadjustment
 			WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID IN(#trim(arguments.idList)#) 
 		</cfquery>
 
@@ -89,7 +89,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT #trim(arguments.fieldList)#
-			FROM Procedure_MEDICARE_CLAIMADJUSTMENT
+			FROM procedure_medicare_claimadjustment
 			WHERE Procedure_MEDICARE_CLAIMADJUSTMENTID IN(#trim(arguments.idList)#) 
 			LIMIT 100
 		</cfquery>
@@ -114,5 +114,6 @@
 	<!---End_Custom_Functions--->			
 	
 </cfcomponent>
+
 
 

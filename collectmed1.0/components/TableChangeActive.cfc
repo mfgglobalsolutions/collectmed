@@ -46,7 +46,7 @@
 			<cfif StructKeyExists(stValues, "ChangeID") AND stValues.ChangeID NEQ 0>
 				<cfquery name="qGetTableChange" datasource="#trim(variables.ds)#">
 			  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
-					FROM TableChange  
+					FROM tablechange  
 					WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ChangeID#" /> 
 				</cfquery>		
 				<cfif qGetTableChange.Recordcount LTE 0>
@@ -301,7 +301,7 @@
 	
 		<cfquery name="qGetTableChange" datasource="#trim(variables.ds)#">
 	  		SELECT ChangeID,Datasource,Tablename,ColumnName,ChangeScript,Error,Active,InactiveCode,DateCreated,DateModified
-			FROM TableChange  
+			FROM tablechange  
 			WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ChangeID)#" /> 
 		</cfquery>
 		
@@ -331,7 +331,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateTableChange" datasource="#trim(variables.ds)#">
-				INSERT INTO TableChange (Datasource,Tablename,ColumnName,ChangeScript,Error,InactiveCode)
+				INSERT INTO tablechange (Datasource,Tablename,ColumnName,ChangeScript,Error,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localDatasource)#" cfsqltype="CF_SQL_VARCHAR" />,						
 						<cfqueryparam value="#trim(localTablename)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -421,7 +421,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateTableChange" datasource="#trim(variables.ds)#">
-				UPDATE TableChange  SET
+				UPDATE tablechange  SET
 					
 					Datasource =						
 						<cfqueryparam value="#trim(localDatasource)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -481,7 +481,7 @@
 
 		<cfquery name="qDeleteTableChange" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM TableChange
+			FROM tablechange
 			WHERE ChangeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getChangeID())#" /> 
 		</cfquery>
 
@@ -503,5 +503,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

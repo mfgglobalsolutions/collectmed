@@ -326,7 +326,7 @@
 	<cfif IsDefined("form.EntityID") AND form.EntityID NEQ "">
 		<cfquery name="getClientEntities" datasource="#trim(request.datasource)#">
 			SELECT EntityID, CONCAT(FName, ' ', LName) AS eobFullname
-			FROM Entity
+			FROM entity
 			WHERE ClientID = #trim(session.ClientID)# AND ObjectTypeID = 3
 			AND EntityID IN(#trim(form.EntityID)#)
 		</cfquery>	
@@ -341,7 +341,7 @@
 	<cfif IsDefined("form.AssignedToUserID") AND form.AssignedToUserID NEQ "">
 		<cfquery name="getClientEntities" datasource="#trim(request.datasource)#">
 			SELECT e.EntityID, CONCAT(e.FName, ' ', e.LName) AS eobFullname 
-			FROM Entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+			FROM entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
 			WHERE e.ClientID = #trim(session.ClientID)# AND e.ObjectTypeID = 2
 			AND u.usersID IN(#trim(form.AssignedToUserID)#)			
 		</cfquery>	
@@ -402,7 +402,7 @@
 				<cfsavecontent variable="sqlStatement">			
 					SELECT DISTINCT c.ClaimID, c.InterchangeClaimID, c.claimType, c.EntityID, c.InterchangeID, c.assignedToUserID, c.Active, c.InactiveCode, c.DateCreated, c.DueDate, u.usersID, e.FName As userFName, e.LName AS userLName, TIMESTAMPDIFF(day, c.DateCreated, now()) AS days
 					, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
-					FROM Claim c 
+					FROM claim c 
 					LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
 					LEFT JOIN Entity e ON u.EntityID = e.EntityID
 					LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
@@ -944,7 +944,7 @@
 									<!---Show Claim Assignments--->
 									<cfquery name="getAssignments" datasource="#trim(request.datasource)#">
 										SELECT ca.UserID, ca.AssignorID, ca.DateCreated AS AssignmentDateCreated, ca.Note, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
-										FROM ClaimAssignment ca 
+										FROM claimassignment ca 
 										JOIN view_UserAccountParameters vuap ON ca.UserID = vuap.UsersID
 										WHERE ca.ClaimID = #trim(ClaimID)#
 										ORDER BY ca.DateCreated DESC
@@ -956,7 +956,7 @@
 										
 										<cfquery name="getByAssignmentName" datasource="#trim(request.datasource)#">
 											SELECT CONCAT(FName, ' ', LName) AS AssignorFullname 
-											FROM view_UserAccountParameters 
+											FROM view_useraccountparameters 
 											WHERE UsersID = #trim(AssignorID)#
 										</cfquery>
 										
@@ -1075,3 +1075,4 @@
 <!---<cfdump var="#variables#" expand="no">--->
 <cfdump var="#form#" expand="no">		
 --->	
+

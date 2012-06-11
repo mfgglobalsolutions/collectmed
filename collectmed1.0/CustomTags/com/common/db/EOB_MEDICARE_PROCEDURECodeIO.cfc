@@ -2508,7 +2508,7 @@
 	
 		<cfquery name="qGetEOB_MEDICARE_PROCEDURECode" datasource="pa_master">
 	  		SELECT RecordID,HCPC,SeqNum,RIC,LongDescription,ShortDescription,PI1,PI2,PI3,PI4,MPI,CIM1,CIM2,CIM3,MCM1,MCM2,MCM3,Statute,LabCert1,LabCert2,LabCert3,LabCert4,LabCert5,LabCert6,LabCert7,LabCert8,XRef1,XRef2,XRef3,XRef4,XRef5,Coverage,ASCPayGrp,ASCPayGrpEffDate,MOGPayGrp,MOGPayInd,MOGEffDate,ProcNote,BETOS,FILLER,TOS1,TOS2,TOS3,TOS4,TOS5,AnestBaseUnits,CodeAddDate,ActionEffDate,TermDate,ActionCode,Filler1,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_MEDICARE_PROCEDURECode  
+			FROM eob_medicare_procedurecode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -2960,7 +2960,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_MEDICARE_PROCEDURECode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO eob_medicare_procedurecode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -3269,7 +3269,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEOB_MEDICARE_PROCEDURECodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EOB_MEDICARE_PROCEDURECode   
+				FROM eob_medicare_procedurecode   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -3493,5 +3493,7 @@
 
 	
 </cfcomponent>
+
+
 
 

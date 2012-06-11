@@ -444,7 +444,7 @@
 								<!---<cfloop query="verifications">
 									<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
 										SELECT CONCAT(FName, ' ', LName) AS Fullname 
-										FROM view_UserAccountParameters 
+										FROM view_useraccountparameters 
 										WHERE UsersID = #trim(UsersID)#
 									</cfquery>									
 									<tr onclick="showVerification(#trim(VerificationPatientInsuranceID)#);" style="cursor:hand" onmouseover="this.style.backgroundColor='DCE3EB'" onmouseout="this.style.backgroundColor='FFFFFF'">

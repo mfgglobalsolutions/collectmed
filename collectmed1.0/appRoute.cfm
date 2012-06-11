@@ -393,8 +393,8 @@
 											    	<cfset PatientIns = "">
 													<cfquery name="PatientIns" datasource="PAClient_#session.ClientID#">
 														SELECT pic.recordID, pic.Deductible, pic.GroupName, pic.GroupNumber, ic.InsuranceCompanyDBA, pic.InsuranceCompanyID, ic.InsuranceCompanyName, pic.PayPercentage, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity,  pic.PolicyHoldersDOB AS PolicyHoldersDOB, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersSex, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyNumber, pic.PrimSecTer, pic.Relationship, ic.EntityID AS Z_ICEntityID
-														FROM PatientInsuranceCompany pic
-														INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+														FROM patientinsurancecompany pic
+														INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 														WHERE  pic.patientID = #PatientID# AND pic.Active = 1 
 														Order By  pic.PrimSecTer
 													</cfquery> 
@@ -410,7 +410,7 @@
 																<cfquery name="getVerifications" datasource="PAClient_#session.ClientID#">
 																	SELECT vpi.VerificationPatientInsuranceID, vpi.DateCreated AS DateCreated, vpi.VerificationDate AS VerificationDate, vpi.VerificationTime,
 																	CONCAT(vu.FName, ' ', vu.LName) AS Fullname, vpi.VerificationRepFName, vpi.VerificationRepLName, vpi.VerificationHaveInsFromDate AS VerificationHaveInsFromDate, vpi.VerificationHaveInsToDate AS VerificationHaveInsToDate						 
-																	FROM VerificationPatientInsurance vpi		
+																	FROM verificationpatientinsurance vpi		
 																	LEFT JOIN view_UserAccountParameters vu on vpi.UsersID = vu.UsersID			
 																	WHERE vpi.picID = #trim(recordID)# AND vpi.Active = 1
 																	ORDER BY vpi.DateCreated DESC				
@@ -535,6 +535,9 @@
 
 	
 	
+
+
+
 
 
 

@@ -29,7 +29,7 @@
 		
 		<cfquery name="getClaimClientID" datasource="#trim(request.datasource)#">
 			SELECT ClientID, statusID 
-			FROM Claim 
+			FROM claim 
 			WHERE ClaimID = #trim(ClaimID)#
 		</cfquery>
 		
@@ -38,7 +38,7 @@
 		<!-------------------------------------------------------------------------------------->		
 		<cfif NOT IsNumeric(getClaimClientID.statusID)>
 			<cfquery name="updateClaim" datasource="#trim(request.datasource)#">
-				UPDATE Claim 
+				UPDATE claim 
 				SET statusID = 194
 				WHERE ClaimID = #trim(ClaimID)#
 			</cfquery>			
@@ -48,7 +48,7 @@
 		<cfif getClaimClientID.Recordcount EQ 1 AND getClaimClientID.ClientID EQ clientID> 
 		
 			<cfquery name="insertAssignment" datasource="#trim(request.datasource)#">
-				INSERT INTO ClaimAssignment  (ClaimID, UserID, AssignorID, Note)
+				INSERT INTO claimassignment  (ClaimID, UserID, AssignorID, Note)
 				VALUES(#trim(ClaimID)#, #trim(UsersID)#, #trim(assignorID)#, '#trim(Note)#')				
 			</cfquery>		
 			
@@ -67,14 +67,14 @@
 		
 		<cfquery name="getClaimAssignedToUsersID" datasource="#trim(request.datasource)#">
 			SELECT UserID
-			FROM ClaimAssignment 
+			FROM claimassignment 
 			WHERE claimID = #arguments.claimID# 
 			ORDER BY DateCreated DESC
 			LIMIT 1
 		</cfquery>
 		
 		<cfquery name="UpdateClaimAssignedToUsersID" datasource="#trim(request.datasource)#">	
-			UPDATE Claim 
+			UPDATE claim 
 			SET AssignedToUserID = #getClaimAssignedToUsersID.UserID#
 			WHERE ClaimID = #arguments.claimID#
 		</cfquery>
@@ -204,14 +204,14 @@
 		
 		<cfquery name="getStatusID" datasource="#trim(request.datasource)#">	
 			SELECT statusID
-			FROM ClaimStatus
+			FROM claimstatus
 			WHERE ClaimID = #arguments.ClaimID# 
 			ORDER BY DateCreated DESC
 			LIMIT 1
 		</cfquery>
 		
 		<cfquery name="UpdateClaim" datasource="#trim(request.datasource)#">		 
-			UPDATE Claim
+			UPDATE claim
 			SET statusID = #getStatusID.statusID#
 			WHERE ClaimID = #arguments.ClaimID#
 		</cfquery>	
@@ -232,7 +232,7 @@
 				
 		<cfquery name="getClaim" datasource="#trim(request.datasource)#">
 			SELECT StatusID	
-			FROM ClaimStatus
+			FROM claimstatus
 			WHERE ClaimID = #trim(ClaimID)# AND usersID = #trim(usersID)#		
 			Order by DateCreated DESC
 		</cfquery>
@@ -277,7 +277,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getClaimStatus" datasource="#trim(request.datasource)#">
 			SELECT  sli.ItemNameDisplay, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname, fs.note, fs.dateCreated
-			FROM ClaimStatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
+			FROM claimstatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
 			LEFT JOIN pa_master.StandardListItem sli ON fs.statusID = sli.StandardListItemID
 			WHERE fs.ClaimID = #trim(ClaimID)#
 			ORDER BY  fs.DateCreated #trim(orderby)#	
@@ -294,3 +294,5 @@
 </cfcomponent>
 
 	
+
+

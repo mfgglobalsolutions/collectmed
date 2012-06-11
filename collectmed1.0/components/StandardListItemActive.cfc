@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "StandardListItemID") AND stValues.StandardListItemID NEQ 0>
 				<cfquery name="qGetStandardListItem" datasource="#trim(variables.ds)#">
 			  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
-					FROM StandardListItem  
+					FROM standardlistitem  
 					WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.StandardListItemID#" /> 
 				</cfquery>		
 				<cfif qGetStandardListItem.Recordcount LTE 0>
@@ -283,7 +283,7 @@
 	
 		<cfquery name="qGetStandardListItem" datasource="#trim(variables.ds)#">
 	  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
-			FROM StandardListItem  
+			FROM standardlistitem  
 			WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.StandardListItemID)#" /> 
 		</cfquery>
 		
@@ -312,7 +312,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateStandardListItem" datasource="#trim(variables.ds)#">
-				INSERT INTO StandardListItem (ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,InactiveCode)
+				INSERT INTO standardlistitem (ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,InactiveCode)
 				VALUES (	
 					<cfif trim(localExternalListItemID) NEQ "" AND trim(localExternalListItemID) NEQ "@@" AND trim(localExternalListItemID) NEQ "NULL">						
 						<cfqueryparam value="#trim(localExternalListItemID)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -403,7 +403,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateStandardListItem" datasource="#trim(variables.ds)#">
-				UPDATE StandardListItem  SET
+				UPDATE standardlistitem  SET
 					
 					ExternalListItemID =	
 					<cfif trim(localExternalListItemID) NEQ "" AND trim(localExternalListItemID) NEQ "@@" AND trim(localExternalListItemID) NEQ "NULL">						
@@ -464,7 +464,7 @@
 
 		<cfquery name="qDeleteStandardListItem" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM StandardListItem
+			FROM standardlistitem
 			WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getStandardListItemID())#" /> 
 		</cfquery>
 
@@ -493,7 +493,7 @@
 				
 				<cfquery name="getState" datasource="#trim(variables.ds)#">
 					SELECT StandardListItemID
-					FROM StandardListItem
+					FROM standardlistitem
 					WHERE ItemDescription = <cfqueryparam value="#trim(arguments.Description)#" cfsqltype="CF_SQL_VARCHAR" /> 
 					OR ItemNameDisplay = <cfqueryparam value="#trim(arguments.Display)#" cfsqltype="CF_SQL_VARCHAR" /> 
 				</cfquery>
@@ -517,5 +517,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

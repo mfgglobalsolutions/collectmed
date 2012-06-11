@@ -22,7 +22,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaimStatus" datasource="#trim(arguments.ds)#">
-				INSERT INTO ClaimStatus (ClaimID,StatusID,UsersID,Note)
+				INSERT INTO claimstatus (ClaimID,StatusID,UsersID,Note)
 				VALUES (						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localStatusID)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -100,7 +100,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaimStatus" datasource="#trim(arguments.ds)#">
-				UPDATE ClaimStatus  SET
+				UPDATE claimstatus  SET
 					
 					ClaimID =						
 						<cfqueryparam value="#trim(localClaimID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -140,7 +140,7 @@
 
 		<cfquery name="qDeleteClaimStatus" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM ClaimStatus
+			FROM claimstatus
 			WHERE ClaimStatusID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaimStatusID())#" /> 
 		</cfquery>
 
@@ -160,7 +160,7 @@
 	
 		<cfquery name="qGetClaimStatus" datasource="#trim(arguments.ds)#">
 	  		SELECT ClaimStatusID,ClaimID,StatusID,UsersID,DateCreated,Note
-			FROM ClaimStatus  
+			FROM claimstatus  
 			WHERE ClaimStatusID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimStatusID)#" /> 
 		</cfquery>
 		
@@ -183,5 +183,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -426,7 +426,7 @@
 	
 		<cfquery name="qGetStandardListItem" datasource="pa_master">
 	  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
-			FROM StandardListItem  
+			FROM standardlistitem  
 			WHERE StandardListItemID = #trim(arguments.StandardListItemID)# 
 		</cfquery>
 		
@@ -789,7 +789,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO StandardListItem  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS StandardListItemID ">
+				<cfset sqlStatement = "INSERT INTO standardlistitem  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS StandardListItemID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -960,7 +960,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getStandardListItemQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM StandardListItem   
+				FROM standardlistitem   
 				WHERE 1=1
 					<cfif StandardListItemID NEQ "" AND IsNumeric(StandardListItemID)>AND StandardListItemID = #StandardListItemID#</cfif>
 					<cfif StandardListItemID_IN NEQ "">AND StandardListItemID IN(#trim(StandardListItemID_IN)#)</cfif>
@@ -1046,5 +1046,7 @@
 
 	
 </cfcomponent>
+
+
 
 

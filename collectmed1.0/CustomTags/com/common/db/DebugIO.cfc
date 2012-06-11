@@ -326,7 +326,7 @@
 	
 		<cfquery name="qGetDebug" datasource="#trim(request.datasource)#">
 	  		SELECT DebugID,referenceID,Note,TS,tesst
-			FROM Debug  
+			FROM debug  
 			WHERE DebugID = #trim(arguments.DebugID)# 
 		</cfquery>
 		
@@ -678,7 +678,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Debug  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS DebugID ">
+				<cfset sqlStatement = "INSERT INTO debug  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS DebugID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -837,7 +837,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getDebugQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Debug   
+				FROM debug   
 				WHERE 1=1
 					<cfif DebugID NEQ "" AND IsNumeric(DebugID)>AND DebugID = #DebugID#</cfif>
 					<cfif DebugID_IN NEQ "">AND DebugID IN(#trim(DebugID_IN)#)</cfif>
@@ -911,5 +911,7 @@
 
 	
 </cfcomponent>
+
+
 
 

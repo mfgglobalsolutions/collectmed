@@ -248,7 +248,7 @@
 					<cfset State = ListGetAt(AddressString, 5, "|")>
 					<cfquery name="getState" datasource="pa_master">
 						SELECT StandardListItemID
-						FROM StandardListItem
+						FROM standardlistitem
 						WHERE ItemDescription = '#trim(State)#' OR ItemNameDisplay = '#trim(State)#'
 					</cfquery>
 					<cfif getState.RecordCount EQ 1>
@@ -260,7 +260,7 @@
 			</cfif>			
 						
 			<cfquery name="updateAddress" datasource="PAClient_#trim(ClientID)#">
-				UPDATE Address
+				UPDATE address
 				SET dateModified = now()
 				<cfif IsNumeric(AddressTypeID)>, AddressTypeID = #trim(AddressTypeID)#</cfif> 
 				<cfif trim(AddressLine1) NEQ "" AND trim(AddressLine1) NEQ "@@">, AddressLine1 = '#trim(AddressLine1)#'</cfif>
@@ -328,7 +328,7 @@
 					<cfset State = ListGetAt(AddressString, 5, "|")>
 					<cfquery name="getState" datasource="pa_master">
 						SELECT StandardListItemID
-						FROM StandardListItem
+						FROM standardlistitem
 						WHERE ItemDescription = '#trim(State)#' OR ItemNameDisplay = '#trim(State)#'
 					</cfquery>
 					<cfif getState.RecordCount EQ 1>
@@ -386,3 +386,4 @@
 </cfcomponent>
 
 	
+

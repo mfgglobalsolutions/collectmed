@@ -30,7 +30,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateTask" datasource="#trim(arguments.ds)#">
-				INSERT INTO Task (ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode)
+				INSERT INTO task (ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,				
 					<cfif IsNumeric(trim(localCreatorID))>						
@@ -163,7 +163,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateTask" datasource="#trim(arguments.ds)#">
-				UPDATE Task  SET
+				UPDATE task  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -263,7 +263,7 @@
 
 		<cfquery name="qDeleteTask" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Task
+			FROM task
 			WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getTaskID())#" /> 
 		</cfquery>
 
@@ -283,7 +283,7 @@
 	
 		<cfquery name="qGetTask" datasource="#trim(arguments.ds)#">
 	  		SELECT TaskID,ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Task  
+			FROM task  
 			WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.TaskID)#" /> 
 		</cfquery>
 		
@@ -306,5 +306,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

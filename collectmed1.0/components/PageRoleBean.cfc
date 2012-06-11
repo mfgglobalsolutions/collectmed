@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "PageRoleID") AND stValues.PageRoleID NEQ 0>
 				<cfquery name="qGetPageRole" datasource="#trim(arguments.ds)#">
 			  		SELECT PageRoleID,PageID,RoleID,SiteID,Active,InactiveCode,DateCreated,DateModified
-					FROM PageRole  
+					FROM pagerole  
 					WHERE PageRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageRoleID#" /> 
 				</cfquery>		
 				<cfif qGetPageRole.Recordcount LTE 0>
@@ -253,5 +253,6 @@
 		
 		
 </cfcomponent>
+
 
 

@@ -142,7 +142,7 @@
 
 					<cfquery name="getClaimID" datasource="#trim(request.datasource)#">
 						SELECT ClaimID
-						FROM Claim  
+						FROM claim  
 						WHERE InterchangeClaimID = '#trim(thisNewClaimID)#'
 					</cfquery>
 

@@ -28,7 +28,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getEntityID" datasource="#trim(request.datasource)#">
 		SELECT EntityID
-		FROM pa_master.Client WHERE ClientID = #trim(session.ClientID)# AND Active = 1
+		FROM pa_master.client WHERE ClientID = #trim(session.ClientID)# AND Active = 1
 	</cfquery>	
 	
 	<cfset EntityID = getEntityID.EntityID>
@@ -75,7 +75,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getAllUsersCCs" datasource="#trim(request.datasource)#">
 		SELECT EntityRSID, ColM, ColE, ColL, ColI, ColA, ColC, ColR, IsDefault 
-		FROM EntityRS
+		FROM entityrs
 		WHERE EntityID = #trim(EntityID)# AND Active = 1
 	</cfquery>
 	
@@ -121,7 +121,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getClientInformation" datasource="#trim(request.datasource)#">	
 		SELECT ClientID,ClientName,ClientDBA,EntityID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo 
-		FROM pa_master.Client  
+		FROM pa_master.client  
 		WHERE ClientID = #trim(session.ClientID)# AND Active = 1
 	</cfquery>  		
 	
@@ -132,7 +132,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getClientAddresses" datasource="#trim(request.datasource)#">
 		SELECT a.AddressID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, ea.IsDefault
-		FROM Address a INNER JOIN EntityAddress ea ON a.AddressID = ea.AddressID
+		FROM address a INNER JOIN entityaddress ea ON a.AddressID = ea.AddressID
 		WHERE ea.EntityID = #trim(EntityID)# AND ea.Active = 1 AND a.Active = 1
 	</cfquery>
 	
@@ -143,8 +143,8 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getAllClientEmailAddresses" datasource="#trim(request.datasource)#">
 		SELECT e.FName, e.LName, ea.emailAddressID, ea.email, ea.emailTypeID, ea.IsDefault
-		FROM Entity e INNER JOIN EmailAddress ea ON e.EntityID = ea.EntityID 
-		WHERE e.EntityID IN (SELECT EntityID FROM Entity WHERE Active = 1 AND ClientID = #trim(session.clientID)#) AND e.EntityID != #trim(EntityID)# AND e.Active = 1 AND ea.Active = 1
+		FROM entity e INNER JOIN emailaddress ea ON e.EntityID = ea.EntityID 
+		WHERE e.EntityID IN (SELECT EntityID FROM entity WHERE Active = 1 AND ClientID = #trim(session.clientID)#) AND e.EntityID != #trim(EntityID)# AND e.Active = 1 AND ea.Active = 1
 	</cfquery>
 	
 	
@@ -154,7 +154,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getCompanyEmailAddresses" datasource="#trim(request.datasource)#">
 		SELECT e.FName, e.LName, ea.emailAddressID, ea.email, ea.emailTypeID, ea.IsDefault
-		FROM Entity e INNER JOIN EmailAddress ea ON e.EntityID = ea.EntityID 
+		FROM entity e INNER JOIN emailaddress ea ON e.EntityID = ea.EntityID 
 		WHERE e.EntityID = #trim(EntityID)# AND e.Active = 1 AND ea.Active = 1
 	</cfquery>	
 	
@@ -165,9 +165,9 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getCompanyPhoneNumbers"  datasource="#trim(request.datasource)#">
 		SELECT p.PhoneID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, ep.IsDefault, s.ItemNameDisplay
-		FROM Phone p 
-		INNER JOIN EntityPhone ep ON p.Phoneid = ep.PhoneID
-		LEFT OUTER JOIN pa_master.StandardListItem s ON p.PhoneTypeID = s.StandardListItemID
+		FROM phone p 
+		INNER JOIN entityphone ep ON p.Phoneid = ep.PhoneID
+		LEFT OUTER JOIN pa_master.standardlistitem s ON p.PhoneTypeID = s.StandardListItemID
 		WHERE ep.EntityID = #trim(EntityID)# AND p.Active = 1 AND ep.Active = 1 AND s.Active = 1
 	</cfquery>			
 	
@@ -178,7 +178,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getEntityInformation" datasource="#trim(request.datasource)#">
 		SELECT EntityID, SiteID, ClientID, ObjectTypeID, Fname, Mname, Lname, DOB
-		FROM Entity  
+		FROM entity  
 		WHERE EntityID = #trim(EntityID)# AND Active = 1
 	</cfquery>
 	
@@ -2423,7 +2423,7 @@
 											
 											<cfquery name="getSS" datasource="#trim(request.datasource)#">
 												SELECT EntityID, ColM, ColE, ColR, IsDefault
-												FROM EntitySS
+												FROM entityss
 												WHERE EntityID = #trim(EntityID)# AND Active = 1
 											</cfquery>
 											
@@ -2507,7 +2507,7 @@
 											
 											<cfquery name="getTS" datasource="#trim(request.datasource)#">
 												SELECT EntityID, ColM, ColR, IsDefault
-												FROM EntityTS
+												FROM entityts
 												WHERE EntityID = #trim(EntityID)# AND Active = 1
 											</cfquery>
 											
@@ -2516,7 +2516,7 @@
 											<cfif getTS.ColM EQ 0>					
 												<cfquery name="getInvoiceEmailID" datasource="#trim(request.datasource)#">
 													SELECT EmailAddressID
-													FROM EmailAddress
+													FROM emailaddress
 													WHERE EmailAddressID = #trim(ColR)# AND Active = 1
 												</cfquery>																																	
 											<cfelse>
@@ -2526,7 +2526,7 @@
 											<cfif getTS.ColM EQ 1>											
 												<cfquery name="getInvoiceAddressID" datasource="#trim(request.datasource)#">
 													SELECT a.AddressID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, s.ItemNameDisplay AS State
-													FROM Address a LEFT OUTER JOIN pa_master.StandardListItem s ON a.StateID = s.StandardListItemID
+													FROM address a LEFT OUTER JOIN pa_master.standardlistitem s ON a.StateID = s.StandardListItemID
 													WHERE a.AddressID = #trim(ColR)# AND a.Active = 1 AND s.Active = 1
 												</cfquery>	
 												<cfif getInvoiceAddressID.RecordCount EQ 1>
@@ -2896,3 +2896,7 @@
 	</cfoutput>	
 	
 	
+
+
+
+

@@ -32,7 +32,7 @@
 			<cfif StructKeyExists(stValues, "Claim_MEDICARE_MOAID") AND stValues.Claim_MEDICARE_MOAID NEQ 0>
 				<cfquery name="qGetClaim_MEDICARE_MOA" datasource="#trim(arguments.ds)#">
 			  		SELECT Claim_MEDICARE_MOAID,ClaimID,ReimbursementRate,MOACode,DateCreated
-					FROM Claim_MEDICARE_MOA  
+					FROM claim_medicare_moa  
 					WHERE Claim_MEDICARE_MOAID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Claim_MEDICARE_MOAID#" /> 
 				</cfquery>		
 				<cfif qGetClaim_MEDICARE_MOA.Recordcount LTE 0>

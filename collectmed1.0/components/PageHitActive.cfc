@@ -50,7 +50,7 @@
 			<cfif StructKeyExists(stValues, "PageHitID") AND stValues.PageHitID NEQ 0>
 				<cfquery name="qGetPageHit" datasource="#trim(variables.ds)#">
 			  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
-					FROM PageHit  
+					FROM pagehit  
 					WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageHitID#" /> 
 				</cfquery>		
 				<cfif qGetPageHit.Recordcount LTE 0>
@@ -357,7 +357,7 @@
 	
 		<cfquery name="qGetPageHit" datasource="#trim(variables.ds)#">
 	  		SELECT PageHitID,PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,Active,InactiveCode,DateCreated,DateModified
-			FROM PageHit  
+			FROM pagehit  
 			WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PageHitID)#" /> 
 		</cfquery>
 		
@@ -389,7 +389,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePageHit" datasource="#trim(variables.ds)#">
-				INSERT INTO PageHit (PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,InactiveCode)
+				INSERT INTO pagehit (PageID,SiteID,UsersID,IPAddress,BrowserType,BrowserVersion,OperatingSystem,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localPageID))>						
 						<cfqueryparam value="#trim(localPageID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -509,7 +509,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePageHit" datasource="#trim(variables.ds)#">
-				UPDATE PageHit  SET
+				UPDATE pagehit  SET
 					
 					PageID =				
 					<cfif IsNumeric(trim(localPageID))>						
@@ -599,7 +599,7 @@
 
 		<cfquery name="qDeletePageHit" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM PageHit
+			FROM pagehit
 			WHERE PageHitID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getPageHitID())#" /> 
 		</cfquery>
 
@@ -621,5 +621,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

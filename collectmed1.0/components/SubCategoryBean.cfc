@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "SubCategoryID") AND stValues.SubCategoryID NEQ 0>
 				<cfquery name="qGetSubCategory" datasource="#trim(arguments.ds)#">
 			  		SELECT SubCategoryID,CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-					FROM SubCategory  
+					FROM subcategory  
 					WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.SubCategoryID#" /> 
 				</cfquery>		
 				<cfif qGetSubCategory.Recordcount LTE 0>
@@ -271,5 +271,6 @@
 		
 		
 </cfcomponent>
+
 
 

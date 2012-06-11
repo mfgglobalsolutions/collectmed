@@ -60,7 +60,7 @@
 			<cfif StructKeyExists(stValues, "PageID") AND stValues.PageID NEQ 0>
 				<cfquery name="qGetPage" datasource="#trim(arguments.ds)#">
 			  		SELECT PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified
-					FROM Page  
+					FROM page  
 					WHERE PageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.PageID#" /> 
 				</cfquery>		
 				<cfif qGetPage.Recordcount LTE 0>
@@ -499,5 +499,6 @@
 		
 		
 </cfcomponent>
+
 
 

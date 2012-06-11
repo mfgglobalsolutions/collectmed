@@ -1511,8 +1511,8 @@
 			 	
 				<cfquery name="getCorporateAddresses" datasource="#trim(request.datasource)#">
 					SELECT a.AddressID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, ea.IsDefault
-					FROM Address a INNER JOIN EntityAddress ea ON a.AddressID = ea.AddressID
-					WHERE ea.EntityID = (SELECT EntityID FROM pa_master.Client   WHERE ClientID = #trim(session.clientID)#) AND ea.Active = 1 AND a.Active = 1		
+					FROM address a INNER JOIN entityaddress ea ON a.AddressID = ea.AddressID
+					WHERE ea.EntityID = (SELECT EntityID FROM pa_master.client   WHERE ClientID = #trim(session.clientID)#) AND ea.Active = 1 AND a.Active = 1		
 				</cfquery>	
 	
 				<cfloop query="getCorporateAddresses">

@@ -158,7 +158,7 @@
 			
 			<cfquery name="getPatient" datasource="PAClient_#trim(session.clientID)#">
 				SELECT p.PatientID, p.AccountNumber, e.entityID, e.FName, e.MName, e.LName 
-				FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+				FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 				WHERE e.clientID = #trim(session.clientID)# AND (e.FName = '#trim(FName)#' OR e.FName = '#LEFT(trim(FName), 1)#') AND e.LName = '#trim(LName)#' 
 				<cfif MName NEQ "">	AND e.MName = '#trim(MName)#' </cfif>
 			</cfquery>	
@@ -308,7 +308,7 @@
 										<cfif isDefined("form.showAllPatients") and form.showAllPatients>
 											<cfquery name="getPatients" datasource="PAClient_#trim(session.clientID)#">
 												SELECT p.PatientID, p.AccountNumber, e.entityID, e.FName, e.MName, e.LName 
-												FROM Patient p   INNER JOIN Entity e ON p.EntityID = e.EntityID
+												FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 												WHERE e.active = 1 AND p.active = 1
 												ORDER BY e.LName 
 											</cfquery>	
@@ -438,3 +438,5 @@
 	</cfif>		
 	
 	
+
+

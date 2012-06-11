@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateFileProcess" datasource="#trim(arguments.ds)#">
-				INSERT INTO FileProcess (FileID,StatusID,Note,Active,InactiveCode)
+				INSERT INTO fileprocess (FileID,StatusID,Note,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localStatusID)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -111,7 +111,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateFileProcess" datasource="#trim(arguments.ds)#">
-				UPDATE FileProcess  SET
+				UPDATE fileprocess  SET
 					
 					FileID =						
 						<cfqueryparam value="#trim(localFileID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -165,7 +165,7 @@
 
 		<cfquery name="qDeleteFileProcess" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM FileProcess
+			FROM fileprocess
 			WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getFileProcessID())#" /> 
 		</cfquery>
 
@@ -185,7 +185,7 @@
 	
 		<cfquery name="qGetFileProcess" datasource="#trim(arguments.ds)#">
 	  		SELECT FileProcessID,FileID,StatusID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM FileProcess  
+			FROM fileprocess  
 			WHERE FileProcessID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.FileProcessID)#" /> 
 		</cfquery>
 		
@@ -208,5 +208,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

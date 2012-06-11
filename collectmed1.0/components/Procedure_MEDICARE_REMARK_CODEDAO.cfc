@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure_MEDICARE_REMARK_CODE" datasource="#trim(arguments.ds)#">
-				INSERT INTO Procedure_MEDICARE_REMARK_CODE (ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode)
+				INSERT INTO procedure_medicare_remark_code (ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localQualifierCode)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure_MEDICARE_REMARK_CODE" datasource="#trim(arguments.ds)#">
-				UPDATE Procedure_MEDICARE_REMARK_CODE  SET
+				UPDATE procedure_medicare_remark_code  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -157,7 +157,7 @@
 
 		<cfquery name="qDeleteProcedure_MEDICARE_REMARK_CODE" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Procedure_MEDICARE_REMARK_CODE
+			FROM procedure_medicare_remark_code
 			WHERE Procedure_MEDICARE_REMARK_CODEID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getProcedure_MEDICARE_REMARK_CODEID())#" /> 
 		</cfquery>
 
@@ -177,7 +177,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_REMARK_CODE" datasource="#trim(arguments.ds)#">
 	  		SELECT Procedure_MEDICARE_REMARK_CODEID,ProcedureID,QualifierCode,IndustryCode,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_REMARK_CODE  
+			FROM procedure_medicare_remark_code  
 			WHERE Procedure_MEDICARE_REMARK_CODEID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Procedure_MEDICARE_REMARK_CODEID)#" /> 
 		</cfquery>
 		
@@ -200,5 +200,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

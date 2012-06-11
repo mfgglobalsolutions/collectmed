@@ -36,7 +36,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetEOB_MEDICARE_REMITTANCEADVICEREMARKCode" datasource="#trim(arguments.ds)#">
 			  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_MEDICARE_REMITTANCEADVICEREMARKCode  
+					FROM eob_medicare_remittanceadviceremarkcode  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_MEDICARE_REMITTANCEADVICEREMARKCode.Recordcount LTE 0>
@@ -219,5 +219,6 @@
 		
 		
 </cfcomponent>
+
 
 

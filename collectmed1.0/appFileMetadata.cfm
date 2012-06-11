@@ -33,7 +33,7 @@
 	
 	<cfquery name="getUploaderName" datasource="#trim(request.datasource)#">
 		SELECT FName + '&nbsp;' + LName AS Fullname 
-		FROM view_UserAccountParameters 
+		FROM view_useraccountparameters 
 		WHERE UsersID = #trim(request.File.getUsersID())#
 	</cfquery>
 											
@@ -210,20 +210,20 @@
 											
 											<cfquery name="getNumOfClaims" datasource="#request.datasource#">
 												SELECT Count(InterchangeID) AS numOf
-												FROM Claim_ProcessXMLToDB
+												FROM claim_processxmltodb
 												WHERE InterchangeID = #trim(getInterchange.InterchangeID)# 
 											</cfquery>
 											
 											<cfquery name="getBadClaims" datasource="#request.datasource#">
 												SELECT *
-												FROM Claim_ProcessXMLToDB
+												FROM claim_processxmltodb
 												WHERE InterchangeID = #trim(getInterchange.InterchangeID)# 
 												AND Active = 1
 											</cfquery>											
 											
 											<cfquery name="getClaims" datasource="#request.datasource#">
 												SELECT DISTINCT c.ClaimID, c.InterchangeClaimID, c.claimType, c.EntityID, c.InterchangeID, c.assignedToUserID, c.Active, c.InactiveCode, c.DateCreated, u.usersID, e.FName As userFName, e.LName AS userLName, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
-												FROM Claim c 
+												FROM claim c 
 												LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
 												LEFT JOIN Entity e ON u.EntityID = e.EntityID
 												LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID

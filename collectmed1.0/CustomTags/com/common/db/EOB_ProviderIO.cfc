@@ -493,7 +493,7 @@
 	
 		<cfquery name="qGetEOB_Provider" datasource="pa_master">
 	  		SELECT recordID,ProviderID,ProviderName,ProviderMainAddressID,ProviderMainPhoneID,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_Provider  
+			FROM eob_provider  
 			WHERE recordID = #trim(arguments.recordID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_Provider  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
+				<cfset sqlStatement = "INSERT INTO eob_provider  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEOB_ProviderQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EOB_Provider   
+				FROM eob_provider   
 				WHERE 1=1
 					<cfif recordID NEQ "" AND IsNumeric(recordID)>AND recordID = #recordID#</cfif>
 					<cfif recordID_IN NEQ "">AND recordID IN(#trim(recordID_IN)#)</cfif>
@@ -1116,5 +1116,7 @@
 
 	
 </cfcomponent>
+
+
 
 

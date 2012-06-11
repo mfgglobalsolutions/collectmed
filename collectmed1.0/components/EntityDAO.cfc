@@ -37,7 +37,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntity" datasource="#trim(arguments.ds)#">
-				INSERT INTO Entity (SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode)
+				INSERT INTO entity (SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -219,7 +219,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntity" datasource="#trim(arguments.ds)#">
-				UPDATE Entity  SET
+				UPDATE entity  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -368,7 +368,7 @@
 
 		<cfquery name="qDeleteEntity" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Entity
+			FROM entity
 			WHERE EntityID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getEntityID())#" /> 
 		</cfquery>
 
@@ -388,7 +388,7 @@
 	
 		<cfquery name="qGetEntity" datasource="#trim(arguments.ds)#">
 	  		SELECT EntityID,SiteID,ClientID,ObjectTypeID,PrefixName,Fname,Mname,Lname,SuffixName,DOB,Sex,SSN,MaritalStatus,EmployerID,Languages,Weight,HeightInInches,Active,InactiveCode,DateCreated,DateModified
-			FROM Entity  
+			FROM entity  
 			WHERE EntityID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EntityID)#" /> 
 		</cfquery>
 		
@@ -411,5 +411,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

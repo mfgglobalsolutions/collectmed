@@ -496,7 +496,7 @@
 	
 		<cfquery name="qGetPatient" datasource="#trim(request.datasource)#">
 	  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-			FROM Patient  
+			FROM patient  
 			WHERE PatientID = #trim(arguments.PatientID)# 
 		</cfquery>
 		
@@ -859,7 +859,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Patient  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PatientID ">
+				<cfset sqlStatement = "INSERT INTO patient  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS PatientID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1030,7 +1030,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getPatientQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Patient   
+				FROM patient   
 				WHERE 1=1
 					<cfif PatientID NEQ "" AND IsNumeric(PatientID)>AND PatientID = #PatientID#</cfif>
 					<cfif PatientID_IN NEQ "">AND PatientID IN(#trim(PatientID_IN)#)</cfif>
@@ -1116,5 +1116,7 @@
 
 	
 </cfcomponent>
+
+
 
 

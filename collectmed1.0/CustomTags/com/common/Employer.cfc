@@ -14,7 +14,7 @@
 			
 			<cfquery name="checkExistsEmployer" datasource="#trim(request.datasource)#">
 				SELECT em.EmployerID
-				FROM Employer em
+				FROM employer em
 				WHERE em.EmployerName = '#trim(EmployerName)#'
 			</cfquery>
 						
@@ -188,7 +188,7 @@
 			
 			<cfquery name="getEmployer" datasource="#trim(request.datasource)#">
 				SELECT EmployerID, EmployerName, EmployerDBA, EntityID
-				FROM Employer
+				FROM employer
 				WHERE Active = 1
 			</cfquery>
 						

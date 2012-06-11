@@ -13,7 +13,7 @@
 		<cfargument name="instanceID" required="yes" type="numeric">
 				
 		<cfquery name="checkObject" datasource="pa_master">
-			Select objectName FROM Object WHERE ObjectID = #trim(objectID)# AND ObjectID NOT IN(1)
+			Select objectName FROM object WHERE ObjectID = #trim(objectID)# AND ObjectID NOT IN(1)
 		</cfquery>
 		
 		<cfif checkObject.RecordCount EQ 1>
@@ -110,7 +110,7 @@
 			<!--- Add the note into the Database.                                                --->
 			<!-------------------------------------------------------------------------------------->	
 			<cfquery name="addNote" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO NOTE  (ClientID, ObjectID, InstanceID, Note)
+				INSERT INTO note  (ClientID, ObjectID, InstanceID, Note)
 				VALUES(#trim(ClientID)#, #trim(ObjectID)#, #trim(InstanceID)#, '<note><entry><UserID></UserID><UserFName></UserFName><UserLName></UserLName><EntryDate></EntryDate><EntryTime></EntryTime><EntryNote></EntryNote><NewClaimID></NewClaimID></entry></note>');	
 				SELECT LAST_INSERT_ID() AS noteID 
 			</cfquery>
@@ -143,7 +143,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getNoteQuery" datasource="PAClient_#trim(ClientID)#">
 			SELECT NoteID, ClientID, ObjectID, InstanceID, Note, Active, DateCreated
-			FROM Note  
+			FROM note  
 			WHERE NoteID = #trim(NoteID)#	
 		</cfquery>
 			
@@ -193,7 +193,7 @@
 		</cfscript>
 			
 		<cfquery name="updateNote" datasource="PAClient_#trim(ClientID)#">
-			UPDATE NOTE 
+			UPDATE note 
 			SET NOTE = '#trim(getNote)#', DateModified = now()
 			WHERE noteID = #trim(NoteID)#
 		</cfquery>	
@@ -234,7 +234,7 @@
 			<cfset noteXML.note.entry[numberOfNotes].EntryNote.xmlText = trim(noteEntry)>	
 				
 			<cfquery name="updateNote" datasource="PAClient_#trim(ClientID)#">
-				UPDATE NOTE 
+				UPDATE note 
 				SET NOTE = '#trim(noteXML)#', DateModified = now()
 				WHERE noteID = #trim(NoteID)#
 			</cfquery>
@@ -285,7 +285,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getNote" datasource="PAClient_#trim(ClientID)#">
 			SELECT NoteID
-			FROM Note  
+			FROM note  
 			WHERE objectID = #trim(objectID)# AND instanceID = #trim(instanceID)#		
 		</cfquery>
 			
@@ -319,7 +319,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getAllNotes" datasource="PAClient_#trim(ClientID)#">
 			SELECT NoteID
-			FROM Note  
+			FROM note  
 			WHERE objectID = #trim(objectID)# AND instanceID = #trim(instanceID)#
 			Order by DateCreated #trim(orderascdesc)#		
 		</cfquery>
@@ -405,3 +405,6 @@
 </cfcomponent>
 
 	
+
+
+

@@ -84,7 +84,7 @@
 			<cfif StructKeyExists(stValues, "VerificationPatientInsuranceID") AND stValues.VerificationPatientInsuranceID NEQ 0>
 				<cfquery name="qGetVerificationPatientInsurance" datasource="#trim(variables.ds)#">
 			  		SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-					FROM VerificationPatientInsurance  
+					FROM verificationpatientinsurance  
 					WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.VerificationPatientInsuranceID#" /> 
 				</cfquery>		
 				<cfif qGetVerificationPatientInsurance.Recordcount LTE 0>
@@ -739,7 +739,7 @@
 	
 		<cfquery name="qGetVerificationPatientInsurance" datasource="#trim(variables.ds)#">
 	  		SELECT VerificationPatientInsuranceID,usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,Active,InactiveCode,DateCreated,DateModified
-			FROM VerificationPatientInsurance  
+			FROM verificationpatientinsurance  
 			WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationPatientInsuranceID)#" /> 
 		</cfquery>
 		
@@ -788,7 +788,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateVerificationPatientInsurance" datasource="#trim(variables.ds)#">
-				INSERT INTO VerificationPatientInsurance (usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,InactiveCode)
+				INSERT INTO verificationpatientinsurance (usersID,picID,VerificationRepFName,VerificationRepLName,VerificationDate,VerificationTime,VerificationHaveIns,VerificationHaveInsFromDate,VerificationHaveInsToDate,VerificationHaveDMECov,VerificationDeductible,VerificationDeductibleAmount,VerificationDeductibleAmountMet,VerificationPPOPolicy,VerificationPercentagePayAfterDeductible,VerificationPriorAuth,VerificationAuthNumber,VerificationLifetimeBenefitMet,VerificationAuthPhoneNumber,VerificationMedicareSupplement,VerificationCoordinateBenefits,VerificationPaidMedicareDeductible,VerificationMedicaidPlan,VerificationTypeBasePlan,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localusersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localpicID)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -1019,7 +1019,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateVerificationPatientInsurance" datasource="#trim(variables.ds)#">
-				UPDATE VerificationPatientInsurance  SET
+				UPDATE verificationpatientinsurance  SET
 					
 					usersID =						
 						<cfqueryparam value="#trim(localusersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -1220,7 +1220,7 @@
 
 		<cfquery name="qDeleteVerificationPatientInsurance" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM VerificationPatientInsurance
+			FROM verificationpatientinsurance
 			WHERE VerificationPatientInsuranceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getVerificationPatientInsuranceID())#" /> 
 		</cfquery>
 
@@ -1242,5 +1242,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

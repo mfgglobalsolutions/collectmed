@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "StandardListItemID") AND stValues.StandardListItemID NEQ 0>
 				<cfquery name="qGetStandardListItem" datasource="#trim(arguments.ds)#">
 			  		SELECT StandardListItemID,ExternalListItemID,ItemNameDisplay,ItemDescription,ListID,Active,InactiveCode,DateCreated,DateModified
-					FROM StandardListItem  
+					FROM standardlistitem  
 					WHERE StandardListItemID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.StandardListItemID#" /> 
 				</cfquery>		
 				<cfif qGetStandardListItem.Recordcount LTE 0>
@@ -267,5 +267,6 @@
 		
 		
 </cfcomponent>
+
 
 

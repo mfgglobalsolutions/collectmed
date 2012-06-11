@@ -30,7 +30,7 @@
 			<cfif StructKeyExists(stValues, "UsersWorkGroupID") AND stValues.UsersWorkGroupID NEQ 0>
 				<cfquery name="qGetUsersWorkGroup" datasource="#trim(arguments.ds)#">
 			  		SELECT UsersWorkGroupID,UsersID,WorkGroupID,DateCreated
-					FROM UsersWorkGroup  
+					FROM usersworkgroup  
 					WHERE UsersWorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.UsersWorkGroupID#" /> 
 				</cfquery>		
 				<cfif qGetUsersWorkGroup.Recordcount LTE 0>
@@ -153,5 +153,6 @@
 		
 		
 </cfcomponent>
+
 
 

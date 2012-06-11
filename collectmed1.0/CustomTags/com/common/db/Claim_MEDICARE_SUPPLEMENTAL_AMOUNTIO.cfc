@@ -447,7 +447,7 @@
 	
 		<cfquery name="qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(request.datasource)#">
 	  		SELECT Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID,ClaimID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-			FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  
+			FROM claim_medicare_supplemental_amount  
 			WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = #trim(arguments.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID)# 
 		</cfquery>
 		
@@ -667,7 +667,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  SET #columnsToUpdate# WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = #trim(variables.instance.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID)#">
+				<cfset sqlStatement = "UPDATE claim_medicare_supplemental_amount  SET #columnsToUpdate# WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = #trim(variables.instance.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -814,7 +814,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID ">
+				<cfset sqlStatement = "INSERT INTO claim_medicare_supplemental_amount  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -982,7 +982,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaim_MEDICARE_SUPPLEMENTAL_AMOUNTQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT   
+				FROM claim_medicare_supplemental_amount   
 				WHERE 1=1
 					<cfif Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID NEQ "" AND IsNumeric(Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID)>AND Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = #Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID#</cfif>
 					<cfif Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID_IN NEQ "">AND Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID IN(#trim(Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID_IN)#)</cfif>

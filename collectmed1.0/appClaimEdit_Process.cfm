@@ -38,7 +38,7 @@
 			<cfset thisProcedureID = ListLast(i, "_")>
 			
 			<cfquery name="InsertProcedureOpenClose" datasource="#trim(request.datasource)#">
-				INSERT INTO ProcedureOpenClose (ProcedureID, OpenOrClose, UsersID)
+				INSERT INTO procedureopenclose (ProcedureID, OpenOrClose, UsersID)
 				VALUES(#trim(thisProcedureID)#, 0, #trim(session.user.getUsersID())#)
 			</cfquery>						
 			

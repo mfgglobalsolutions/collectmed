@@ -29,7 +29,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateDoctor" datasource="#trim(arguments.ds)#">
-				INSERT INTO Doctor (EntityID,ClientDoctorID,DoctorCategory,UPIN,MedicareNumber,MedicaidNumber,GroupName,SpecialInstructions,Active,InactiveCode)
+				INSERT INTO doctor (EntityID,ClientDoctorID,DoctorCategory,UPIN,MedicareNumber,MedicaidNumber,GroupName,SpecialInstructions,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localEntityID))>						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -159,7 +159,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateDoctor" datasource="#trim(arguments.ds)#">
-				UPDATE Doctor  SET
+				UPDATE doctor  SET
 					
 					EntityID =				
 					<cfif IsNumeric(trim(localEntityID))>						
@@ -256,7 +256,7 @@
 
 		<cfquery name="qDeleteDoctor" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Doctor
+			FROM doctor
 			WHERE DoctorID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getDoctorID())#" /> 
 		</cfquery>
 
@@ -276,7 +276,7 @@
 	
 		<cfquery name="qGetDoctor" datasource="#trim(arguments.ds)#">
 	  		SELECT DoctorID,EntityID,ClientDoctorID,DoctorCategory,UPIN,MedicareNumber,MedicaidNumber,GroupName,SpecialInstructions,Active,InactiveCode,DateCreated,DateModified
-			FROM Doctor  
+			FROM doctor  
 			WHERE DoctorID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.DoctorID)#" /> 
 		</cfquery>
 		
@@ -299,5 +299,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

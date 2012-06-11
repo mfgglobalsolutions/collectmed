@@ -11,7 +11,7 @@
 <!--- Get all the clientIDs that will be run against.                                --->
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getClientIDs" datasource="pa_master">
-		SELECT ClientID FROM Client
+		SELECT ClientID FROM client
 	</cfquery>
 	
 	<cfset clientIDs = valuelist(getClientIDs.ClientID)>
@@ -73,3 +73,4 @@
 	</cfmail>
 		
 	
+

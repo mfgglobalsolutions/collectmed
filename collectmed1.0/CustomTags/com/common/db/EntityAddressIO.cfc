@@ -449,7 +449,7 @@
 	
 		<cfquery name="qGetEntityAddress" datasource="#trim(request.datasource)#">
 	  		SELECT recordID,EntityID,AddressID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityAddress  
+			FROM entityaddress  
 			WHERE recordID = #trim(arguments.recordID)# 
 		</cfquery>
 		
@@ -813,7 +813,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EntityAddress  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
+				<cfset sqlStatement = "INSERT INTO entityaddress  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS recordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -981,7 +981,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntityAddressQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM EntityAddress   
+				FROM entityaddress   
 				WHERE 1=1
 					<cfif recordID NEQ "" AND IsNumeric(recordID)>AND recordID = #recordID#</cfif>
 					<cfif recordID_IN NEQ "">AND recordID IN(#trim(recordID_IN)#)</cfif>
@@ -1064,5 +1064,7 @@
 
 	
 </cfcomponent>
+
+
 
 

@@ -100,7 +100,7 @@
 			<cfif StructKeyExists(stValues, "SiteID") AND stValues.SiteID NEQ 0>
 				<cfquery name="qGetSite" datasource="#trim(arguments.ds)#">
 			  		SELECT SiteID,ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode,DateCreated,DateModified
-					FROM Site  
+					FROM site  
 					WHERE SiteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.SiteID#" /> 
 				</cfquery>		
 				<cfif qGetSite.Recordcount LTE 0>
@@ -967,5 +967,6 @@
 		
 		
 </cfcomponent>
+
 
 

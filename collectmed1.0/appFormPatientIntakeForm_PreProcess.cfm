@@ -113,8 +113,8 @@
 		SELECT i.IntakeID,i.AssignedToUserID,i.hidden_Step,hidden_UsersID, i.orderingPhysicianFNameTBox, i.orderingPhysicianLNameTBox, i.orderingPhysicianPhoneTBox, i.DateCreated, 
 		e.LName AS patientLNameTBox, e.FName AS patientFNameTBox,		
 		ih.*
-		FROM Intake i 
-		INNER JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID
+		FROM intake i 
+		INNER JOIN intakehcpc ih ON i.intakeID = ih.IntakeID
 		LEFT JOIN Patient p ON i.PatientID = p.PatientID
 		LEFT JOIN Entity e ON e.EntityID = p.EntityID
 		LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID		
@@ -222,7 +222,7 @@
 		
 		<cfquery name="getCreatedByName" datasource="#trim(request.datasource)#">
 			SELECT CONCAT(FName, ' ', LName) AS creatorFullname 
-			FROM view_UserAccountParameters 
+			FROM view_useraccountparameters 
 			WHERE UsersID = #trim(hidden_UsersID)#
 		</cfquery>
 		
@@ -336,3 +336,5 @@
 			</table>	
 		</form>
 	</cfoutput>
+
+

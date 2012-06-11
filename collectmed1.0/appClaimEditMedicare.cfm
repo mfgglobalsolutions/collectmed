@@ -186,7 +186,7 @@
 		</cfquery>
 		
 		<cfquery name="UPdateUserAccount" datasource="#request.datasource#">
-			UPDATE Users
+			UPDATE users
 			SET Active = 0
 			WHERE UsersID = #session.User.getusersID()#
 		</cfquery>	
@@ -417,7 +417,7 @@
 		c.DueDate, c.FacilityCode, c.CrossoverNameLastorOrganizationName3, 		
 		u.usersID, e.FName As userFName, e.LName AS userLName, TIMESTAMPDIFF(day, c.DateCreated, now()) AS days, 
 		p.PatientID, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName, c.HICNumber
-		FROM Claim c 
+		FROM claim c 
 		LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
 		LEFT JOIN Entity e ON u.EntityID = e.EntityID
 		LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
@@ -434,7 +434,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getMOA" datasource="#trim(request.datasource)#">
 		SELECT e.Code AS MOACode, e.Description AS MOADescription
-		FROM Claim_MEDICARE_MOA cmm INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON cmm.MOACode = e.RecordID
+		FROM claim_medicare_moa cmm INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON cmm.MOACode = e.RecordID
 		WHERE cmm.ClaimID = #trim(claimID)# AND cmm.MOACode IS NOT NULL
 		ORDER BY cmm.DateCreated ASC
 	</cfquery>
@@ -446,7 +446,7 @@
 <!-------------------------------------------------------------------------------------->																		
 	<cfquery name="getClaimInterestAmount" datasource="#trim(request.datasource)#">
 		SELECT s.ItemNameDisplay, c.* 
-		FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT c INNER JOIN pa_master.StandardListItem s ON c.QualifierCode = s.StandardListItemID
+		FROM claim_medicare_supplemental_amount c INNER JOIN pa_master.StandardListItem s ON c.QualifierCode = s.StandardListItemID
 		WHERE c.QualifierCode = 158 AND c.ClaimID = #trim(claimID)#
 	</cfquery>
 	
@@ -562,7 +562,7 @@
 				<!---Show Claim Assignments--->
 				<cfquery name="getAssignments" datasource="#trim(request.datasource)#">
 					SELECT ca.UserID, ca.AssignorID, ca.DateCreated AS AssignmentDateCreated, ca.Note, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
-					FROM ClaimAssignment ca 
+					FROM claimassignment ca 
 					JOIN view_UserAccountParameters vuap ON ca.UserID = vuap.UsersID
 					WHERE ca.ClaimID = #trim(request.thisClaim.getClaimID())#
 					ORDER BY ca.DateCreated DESC
@@ -574,7 +574,7 @@
 					
 					<cfquery name="getByAssignmentName" datasource="#trim(request.datasource)#">
 						SELECT CONCAT(FName, ' ', LName) AS AssignorFullname 
-						FROM view_UserAccountParameters 
+						FROM view_useraccountparameters 
 						WHERE UsersID = #trim(AssignorID)#
 					</cfquery>
 					
@@ -678,7 +678,7 @@
 																						
 											<cfquery name="getSimiliarClaims" datasource="#request.datasource#">
 												SELECT ClaimID AS simClaimID, interchangeClaimID
-												FROM Claim 
+												FROM claim 
 												WHERE InterchangeClaimID LIKE '#MID(trim(getClaimDetails.InterchangeClaimID), 1, evaluate(len(trim(getClaimDetails.InterchangeClaimID)) - 1))#%'											
 											</cfquery>
 																					
@@ -722,7 +722,7 @@
 												<!-------------------------------------------------------------------------------------->									
 												<cfquery name="getOpenClose" datasource="#trim(request.Datasource)#">
 													SELECT OpenOrClose, UsersID, DateCreated, Note 	
-													FROM ProcedureOpenClose  
+													FROM procedureopenclose  
 													WHERE ProcedureID = #trim(ProcedureID)#
 													Order BY DateCreated DESC
 												</cfquery>
@@ -733,7 +733,7 @@
 														
 														<cfquery name="getByAssignmentName" datasource="#trim(request.datasource)#">
 															SELECT CONCAT(FName, ' ', LName) AS OpenCloseFullname 
-															FROM view_UserAccountParameters 
+															FROM view_useraccountparameters 
 															WHERE UsersID = #trim(UsersID)#
 														</cfquery>
 														
@@ -771,7 +771,7 @@
 												<!-------------------------------------------------------------------------------------->																		
 												<cfquery name="getProcedureDeductLateFee" datasource="#trim(request.datasource)#">
 													SELECT s.ItemNameDisplay, p.* 
-													FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT p INNER JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID
+													FROM procedure_medicare_supplemental_amount p INNER JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID
 													WHERE p.QualifierCode = 144 AND p.ProcedureID = #trim(ProcedureID)# 
 												</cfquery>
 												
@@ -791,7 +791,7 @@
 																													
 												<cfquery name="getProcedureCOs" datasource="#trim(request.datasource)#">
 													SELECT s.ItemNameDisplay, p.* 
-													FROM Procedure_MEDICARE_CLAIMADJUSTMENT p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+													FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 													WHERE p.ClaimAdjustmentGroupCode1 = 103 AND p.ProcedureID = #trim(ProcedureID)# 
 												</cfquery>
 																			
@@ -826,7 +826,7 @@
 												
 												<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 													SELECT s.ItemNameDisplay, p.* 
-													FROM Procedure_MEDICARE_CLAIMADJUSTMENT p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+													FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 													WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 												</cfquery>
 												
@@ -904,7 +904,7 @@
 													<!-------------------------------------------------------------------------------------->										
 													<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 														SELECT e.Modifier, e.Description
-														FROM Procedure_MEDICARE_MODIFIER p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+														FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
 														WHERE p.ProcedureID = #trim(ProcedureID)#
 													</cfquery>
 													
@@ -936,7 +936,7 @@
 													<!-------------------------------------------------------------------------------------->										
 													<cfquery name="getProcedureAmounts" datasource="#trim(request.datasource)#">
 														SELECT SUM(p.MonetaryAmount2) AS ProcedureAmounts 
-														FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT p LEFT JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID 
+														FROM procedure_medicare_supplemental_amount p LEFT JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID 
 														WHERE p.ProcedureID = #trim(ProcedureID)# AND p.QualifierCode = 142 <!---142 is the  list id for allowed-actual--->
 													</cfquery>
 													
@@ -983,7 +983,7 @@
 													<!-------------------------------------------------------------------------------------->										
 													<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 														SELECT s.ItemNameDisplay, p.* 
-														FROM Procedure_MEDICARE_CLAIMADJUSTMENT p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+														FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 														WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 													</cfquery>
 													
@@ -1100,7 +1100,7 @@
 												<cfset remarkIndustryCodes = "">
 												<cfquery name="getRemarks" datasource="#trim(request.datasource)#">
 													SELECT e.Code AS IndustryCode, e.Description AS IndustryCodeDescription
-													FROM Procedure_MEDICARE_REMARK_CODE pmrc INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON pmrc.IndustryCode = e.RecordID
+													FROM procedure_medicare_remark_code pmrc INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON pmrc.IndustryCode = e.RecordID
 													WHERE pmrc.ProcedureID = #trim(ProcedureID)# 								
 												</cfquery>
 												
@@ -1329,3 +1329,9 @@
 	</cfoutput>
 	
 	
+
+
+
+
+
+

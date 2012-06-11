@@ -103,7 +103,7 @@
 		<!------------------------------------------------------------------>					
 			<cfquery name="getPageRoles" datasource="pa_master">
 				SELECT RoleID
-				FROM PageRole
+				FROM pagerole
 				WHERE PageID=#pageID# AND SiteID=#request.Site.getSiteID()#
 			</cfquery>	
 			
@@ -372,5 +372,6 @@
 	</cf_gcBorderedTable>
 	
 </cfif>
+
 
 

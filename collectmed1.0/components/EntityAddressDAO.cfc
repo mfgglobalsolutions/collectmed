@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityAddress" datasource="#trim(arguments.ds)#">
-				INSERT INTO EntityAddress (EntityID,AddressID,IsDefault,Active,InactiveCode)
+				INSERT INTO entityaddress (EntityID,AddressID,IsDefault,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localAddressID)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityAddress" datasource="#trim(arguments.ds)#">
-				UPDATE EntityAddress  SET
+				UPDATE entityaddress  SET
 					
 					EntityID =						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -157,7 +157,7 @@
 
 		<cfquery name="qDeleteEntityAddress" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EntityAddress
+			FROM entityaddress
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getrecordID())#" /> 
 		</cfquery>
 
@@ -177,7 +177,7 @@
 	
 		<cfquery name="qGetEntityAddress" datasource="#trim(arguments.ds)#">
 	  		SELECT recordID,EntityID,AddressID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityAddress  
+			FROM entityaddress  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -200,5 +200,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

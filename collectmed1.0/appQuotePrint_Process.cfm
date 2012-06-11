@@ -68,13 +68,13 @@
 	
 	<cfquery name="getQuoteHCPCID" datasource="#request.datasource#">
 		SELECT QuoteHCPCID
-		FROM QuoteHCPC
+		FROM quotehcpc
 		WHERE QuoteID = #trim(quoteID)#
 	</cfquery>
 	
 	<cfquery name="request.QuoteHCPC" datasource="#request.datasource#">
 		SELECT *
-		FROM QuoteHCPC
+		FROM quotehcpc
 		WHERE QuoteHCPCID = #trim(getQuoteHCPCID.quoteHCPCID)#
 	</cfquery>
 
@@ -646,7 +646,7 @@
 			<cfset newPrinted = ListAppend(request.Quote.getPrinted(), "#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(session.User.getUsersID())#|#trim(session.Entity.getFName())# #trim(session.Entity.getLName())#|#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(finalFileName)#")>
 			
 			<cfquery name="updateQuote" datasource="#request.datasource#">
-				UPDATE Quote
+				UPDATE quote
 				SET printed = '#trim(newPrinted)#'
 				WHERE QuoteID = #trim(quoteID)#
 			</cfquery>
@@ -677,3 +677,5 @@
 	<!---<cfoutput>#CoverSheetPrintVariable#</cfoutput>	
 	<br><br><br><br><br><br><br><br><br><br><br>
 	<cfoutput>#QuotePrintVariable#</cfoutput>--->
+
+

@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateIntakeAutoSave" datasource="#trim(arguments.ds)#">
-				INSERT INTO IntakeAutoSave (UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode)
+				INSERT INTO intakeautosave (UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localPatientFName)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -115,7 +115,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateIntakeAutoSave" datasource="#trim(arguments.ds)#">
-				UPDATE IntakeAutoSave  SET
+				UPDATE intakeautosave  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -172,7 +172,7 @@
 
 		<cfquery name="qDeleteIntakeAutoSave" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM IntakeAutoSave
+			FROM intakeautosave
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -192,7 +192,7 @@
 	
 		<cfquery name="qGetIntakeAutoSave" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IntakeAutoSave  
+			FROM intakeautosave  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -215,5 +215,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -27,7 +27,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateInsuranceCompany" datasource="#trim(arguments.ds)#">
-				INSERT INTO InsuranceCompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode)
+				INSERT INTO insurancecompany (ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localClientID))>						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -143,7 +143,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateInsuranceCompany" datasource="#trim(arguments.ds)#">
-				UPDATE InsuranceCompany  SET
+				UPDATE insurancecompany  SET
 					
 					ClientID =				
 					<cfif IsNumeric(trim(localClientID))>						
@@ -226,7 +226,7 @@
 
 		<cfquery name="qDeleteInsuranceCompany" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM InsuranceCompany
+			FROM insurancecompany
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getInsuranceCompanyID())#" /> 
 		</cfquery>
 
@@ -246,7 +246,7 @@
 	
 		<cfquery name="qGetInsuranceCompany" datasource="#trim(arguments.ds)#">
 	  		SELECT InsuranceCompanyID,ClientID,OCNANumber,InsuranceCompanyName,InsuranceCompanyDBA,EntityID,InsuranceCompanyURL,Active,InactiveCode,DateCreated,DateModified
-			FROM InsuranceCompany  
+			FROM insurancecompany  
 			WHERE InsuranceCompanyID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.InsuranceCompanyID)#" /> 
 		</cfquery>
 		
@@ -269,5 +269,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

@@ -323,7 +323,7 @@
 	
 		<cfquery name="qGetClaim_MEDICARE_MOA" datasource="#trim(request.datasource)#">
 	  		SELECT Claim_MEDICARE_MOAID,ClaimID,ReimbursementRate,MOACode,DateCreated
-			FROM Claim_MEDICARE_MOA  
+			FROM claim_medicare_moa  
 			WHERE Claim_MEDICARE_MOAID = #trim(arguments.Claim_MEDICARE_MOAID)# 
 		</cfquery>
 		
@@ -531,7 +531,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Claim_MEDICARE_MOA  SET #columnsToUpdate# WHERE Claim_MEDICARE_MOAID = #trim(variables.instance.Claim_MEDICARE_MOAID)#">
+				<cfset sqlStatement = "UPDATE claim_medicare_moa  SET #columnsToUpdate# WHERE Claim_MEDICARE_MOAID = #trim(variables.instance.Claim_MEDICARE_MOAID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -678,7 +678,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Claim_MEDICARE_MOA  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_MEDICARE_MOAID ">
+				<cfset sqlStatement = "INSERT INTO claim_medicare_moa  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Claim_MEDICARE_MOAID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -837,7 +837,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaim_MEDICARE_MOAQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Claim_MEDICARE_MOA   
+				FROM claim_medicare_moa   
 				WHERE 1=1
 					<cfif Claim_MEDICARE_MOAID NEQ "" AND IsNumeric(Claim_MEDICARE_MOAID)>AND Claim_MEDICARE_MOAID = #Claim_MEDICARE_MOAID#</cfif>
 					<cfif Claim_MEDICARE_MOAID_IN NEQ "">AND Claim_MEDICARE_MOAID IN(#trim(Claim_MEDICARE_MOAID_IN)#)</cfif>

@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "SystemUserMessageID") AND stValues.SystemUserMessageID NEQ 0>
 				<cfquery name="qGetSystemUserMessage" datasource="#trim(variables.ds)#">
 			  		SELECT SystemUserMessageID,UsersID,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM SystemUserMessage  
+					FROM systemusermessage  
 					WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.SystemUserMessageID#" /> 
 				</cfquery>		
 				<cfif qGetSystemUserMessage.Recordcount LTE 0>
@@ -265,7 +265,7 @@
 	
 		<cfquery name="qGetSystemUserMessage" datasource="#trim(variables.ds)#">
 	  		SELECT SystemUserMessageID,UsersID,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM SystemUserMessage  
+			FROM systemusermessage  
 			WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.SystemUserMessageID)#" /> 
 		</cfquery>
 		
@@ -293,7 +293,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateSystemUserMessage" datasource="#trim(variables.ds)#">
-				INSERT INTO SystemUserMessage (UsersID,Note,InactiveCode)
+				INSERT INTO systemusermessage (UsersID,Note,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localNote)#" cfsqltype="CF_SQL_VARCHAR" />,				
@@ -372,7 +372,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateSystemUserMessage" datasource="#trim(variables.ds)#">
-				UPDATE SystemUserMessage  SET
+				UPDATE systemusermessage  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -422,7 +422,7 @@
 
 		<cfquery name="qDeleteSystemUserMessage" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM SystemUserMessage
+			FROM systemusermessage
 			WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getSystemUserMessageID())#" /> 
 		</cfquery>
 
@@ -444,5 +444,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

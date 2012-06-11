@@ -446,7 +446,7 @@
 	
 		<cfquery name="qGetUsersRole" datasource="pa_master">
 	  		SELECT UsersRoleID,UsersID,SiteID,RoleID,Active,InactiveCode,DateCreated,DateModified
-			FROM UsersRole  
+			FROM usersrole  
 			WHERE UsersRoleID = #trim(arguments.UsersRoleID)# 
 		</cfquery>
 		
@@ -813,7 +813,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO UsersRole  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersRoleID ">
+				<cfset sqlStatement = "INSERT INTO usersrole  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS UsersRoleID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -981,7 +981,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getUsersRoleQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM UsersRole   
+				FROM usersrole   
 				WHERE 1=1
 					<cfif UsersRoleID NEQ "" AND IsNumeric(UsersRoleID)>AND UsersRoleID = #UsersRoleID#</cfif>
 					<cfif UsersRoleID_IN NEQ "">AND UsersRoleID IN(#trim(UsersRoleID_IN)#)</cfif>
@@ -1064,5 +1064,7 @@
 
 	
 </cfcomponent>
+
+
 
 

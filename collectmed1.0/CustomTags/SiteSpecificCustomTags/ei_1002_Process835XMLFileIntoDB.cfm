@@ -461,7 +461,7 @@
 						from="#trim(EAQuery.Email)#"
 						to="#trim(EAQuery.Email)#"
 						subject="Mulitple entries in Patient IMMEDIATE ATTENTION REQUIRED."
-						message="<strong>User Note:</strong><br>#trim(Message)#<br><br><strong>Admin Note:</strong><br> There is an issue with more than one patient ID record with the same insuranceID.<br><br>QUERY ATTEMPTED: SELECT patientID FROM Patient   WHERE InsuranceID = #trim(thisInsuranceID)#	">	
+						message="<strong>User Note:</strong><br>#trim(Message)#<br><br><strong>Admin Note:</strong><br> There is an issue with more than one patient ID record with the same insuranceID.<br><br>QUERY ATTEMPTED: SELECT patientID FROM patient   WHERE InsuranceID = #trim(thisInsuranceID)#	">	
 						
 					<cfthrow message="#trim(message)#">	
 												 
@@ -931,3 +931,4 @@
 			
 			
 			
+

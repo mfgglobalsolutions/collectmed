@@ -71,7 +71,7 @@
 					
 					<cfquery name="checkTableChange" datasource="pa_master">
 						SELECT ChangeID 
-						FROM TableChange 
+						FROM tablechange 
 						WHERE Datasource = '#trim(j)#' 
 						AND TableName = '#trim(tableName)#'
 						AND ColumnName = '#trim(ColumnName)#'
@@ -81,7 +81,7 @@
 					<cfif checkTableChange.RecordCount LTE 0> 
 						
 						<cfquery name="insertTableChange" datasource="pa_master">
-							INSERT INTO TableChange (Datasource, TableName, ColumnName, ChangeScript) 
+							INSERT INTO tablechange (Datasource, TableName, ColumnName, ChangeScript) 
 							VALUES('#trim(j)#', '#trim(tableName)#', '#trim(ColumnName)#', '#trim(i)#')
 						</cfquery>
 					
@@ -119,7 +119,7 @@
 <!-------------------------------------------------------------------------------------->
 <cfquery name="getUpdatesTableChange" datasource="pa_master">
 	SELECT * 
-	FROM TableChange 
+	FROM tablechange 
 	WHERE Active = 1 AND InactiveCode IS NULL	
 </cfquery>
 
@@ -141,7 +141,7 @@
 		</cfquery>
 		
 		<cfquery name="UpdateChangeTableActive" datasource="pa_master">
-			UPDATE TableChange
+			UPDATE tablechange
 			SET Active = 0, InactiveCode = 68, dateModified = now()
 			WHERE ChangeID = #trim(ChangeID)#
 		</cfquery>
@@ -149,7 +149,7 @@
 		<cfcatch type="Any">
 			
 			<cfquery name="UpdateChangeTableError" datasource="pa_master">
-				UPDATE TableChange
+				UPDATE tablechange
 				SET Error = '#CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail# #DateFormat(NOW(), "mm/dd/yyyy")# #TimeFormat(NOW(), "hh:mm:ss tt")# | #trim(Error)#'      
 				WHERE ChangeID = #trim(ChangeID)#
 			</cfquery>
@@ -233,3 +233,5 @@ This script basically checks for the existence of the FavoriteColorId column on 
 	</cfloop>
 
 --->
+
+

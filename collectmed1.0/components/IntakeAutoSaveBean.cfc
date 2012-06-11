@@ -40,7 +40,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetIntakeAutoSave" datasource="#trim(arguments.ds)#">
 			  		SELECT RecordID,UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode,DateCreated,DateModified
-					FROM IntakeAutoSave  
+					FROM intakeautosave  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetIntakeAutoSave.Recordcount LTE 0>
@@ -267,5 +267,6 @@
 		
 		
 </cfcomponent>
+
 
 

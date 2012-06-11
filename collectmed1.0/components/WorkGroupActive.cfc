@@ -66,7 +66,7 @@
 			<cfif StructKeyExists(stValues, "WorkGroupID") AND stValues.WorkGroupID NEQ 0>
 				<cfquery name="qGetWorkGroup" datasource="#trim(variables.ds)#">
 			  		SELECT WorkGroupID,ClientID,WorkGroupName,DateCreated,DateModified,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd
-					FROM WorkGroup  
+					FROM workgroup  
 					WHERE WorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.WorkGroupID#" /> 
 				</cfquery>		
 				<cfif qGetWorkGroup.Recordcount LTE 0>
@@ -577,7 +577,7 @@
 	
 		<cfquery name="qGetWorkGroup" datasource="#trim(variables.ds)#">
 	  		SELECT WorkGroupID,ClientID,WorkGroupName,DateCreated,DateModified,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd
-			FROM WorkGroup  
+			FROM workgroup  
 			WHERE WorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.WorkGroupID)#" /> 
 		</cfquery>
 		
@@ -617,7 +617,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateWorkGroup" datasource="#trim(variables.ds)#">
-				INSERT INTO WorkGroup (ClientID,WorkGroupName,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd)
+				INSERT INTO workgroup (ClientID,WorkGroupName,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd)
 				VALUES (				
 					<cfif IsNumeric(trim(localClientID))>						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -794,7 +794,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateWorkGroup" datasource="#trim(variables.ds)#">
-				UPDATE WorkGroup  SET
+				UPDATE workgroup  SET
 					
 					ClientID =				
 					<cfif IsNumeric(trim(localClientID))>						
@@ -940,7 +940,7 @@
 
 		<cfquery name="qDeleteWorkGroup" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM WorkGroup
+			FROM workgroup
 			WHERE WorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getWorkGroupID())#" /> 
 		</cfquery>
 
@@ -962,5 +962,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

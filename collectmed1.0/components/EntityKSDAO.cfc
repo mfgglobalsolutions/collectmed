@@ -27,7 +27,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityKS" datasource="#trim(arguments.ds)#">
-				INSERT INTO EntityKS (ColM,ColE,ColL,ColI,ColA,ColC,Active,InactiveCode)
+				INSERT INTO entityks (ColM,ColE,ColL,ColI,ColA,ColC,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localColM) NEQ "" AND trim(localColM) NEQ "@@" AND trim(localColM) NEQ "NULL">						
 						<cfqueryparam value="#trim(localColM)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -143,7 +143,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityKS" datasource="#trim(arguments.ds)#">
-				UPDATE EntityKS  SET
+				UPDATE entityks  SET
 					
 					ColM =	
 					<cfif trim(localColM) NEQ "" AND trim(localColM) NEQ "@@" AND trim(localColM) NEQ "NULL">						
@@ -226,7 +226,7 @@
 
 		<cfquery name="qDeleteEntityKS" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EntityKS
+			FROM entityks
 			WHERE EntityKSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getEntityKSID())#" /> 
 		</cfquery>
 
@@ -246,7 +246,7 @@
 	
 		<cfquery name="qGetEntityKS" datasource="#trim(arguments.ds)#">
 	  		SELECT EntityKSID,ColM,ColE,ColL,ColI,ColA,ColC,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityKS  
+			FROM entityks  
 			WHERE EntityKSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EntityKSID)#" /> 
 		</cfquery>
 		
@@ -269,5 +269,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

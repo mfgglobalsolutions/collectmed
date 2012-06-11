@@ -364,7 +364,7 @@
 	
 		<cfquery name="qGetClaimStatus" datasource="#trim(request.datasource)#">
 	  		SELECT ClaimStatusID,ClaimID,StatusID,UsersID,DateCreated,Note
-			FROM ClaimStatus  
+			FROM claimstatus  
 			WHERE ClaimStatusID = #trim(arguments.ClaimStatusID)# 
 		</cfquery>
 		
@@ -724,7 +724,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO ClaimStatus  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimStatusID ">
+				<cfset sqlStatement = "INSERT INTO claimstatus  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClaimStatusID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -886,7 +886,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClaimStatusQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM ClaimStatus   
+				FROM claimstatus   
 				WHERE 1=1
 					<cfif ClaimStatusID NEQ "" AND IsNumeric(ClaimStatusID)>AND ClaimStatusID = #ClaimStatusID#</cfif>
 					<cfif ClaimStatusID_IN NEQ "">AND ClaimStatusID IN(#trim(ClaimStatusID_IN)#)</cfif>
@@ -963,5 +963,7 @@
 
 	
 </cfcomponent>
+
+
 
 

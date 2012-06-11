@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "recordID") AND stValues.recordID NEQ 0>
 				<cfquery name="qGetEntityAddress" datasource="#trim(variables.ds)#">
 			  		SELECT recordID,EntityID,AddressID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-					FROM EntityAddress  
+					FROM entityaddress  
 					WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.recordID#" /> 
 				</cfquery>		
 				<cfif qGetEntityAddress.Recordcount LTE 0>
@@ -265,7 +265,7 @@
 	
 		<cfquery name="qGetEntityAddress" datasource="#trim(variables.ds)#">
 	  		SELECT recordID,EntityID,AddressID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityAddress  
+			FROM entityaddress  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -293,7 +293,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityAddress" datasource="#trim(variables.ds)#">
-				INSERT INTO EntityAddress (EntityID,AddressID,InactiveCode)
+				INSERT INTO entityaddress (EntityID,AddressID,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localAddressID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -372,7 +372,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityAddress" datasource="#trim(variables.ds)#">
-				UPDATE EntityAddress  SET
+				UPDATE entityaddress  SET
 					
 					EntityID =						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -422,7 +422,7 @@
 
 		<cfquery name="qDeleteEntityAddress" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EntityAddress
+			FROM entityaddress
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getrecordID())#" /> 
 		</cfquery>
 
@@ -451,13 +451,13 @@
 			<cftry>			
 				
 				<cfquery name="setDefaults" datasource="#trim(variables.ds)#">
-					UPDATE EntityAddress 
+					UPDATE entityaddress 
 					SET IsDefault = 0
 					WHERE EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />   					
 				</cfquery>		
 				
 				<cfquery name="setDefault" datasource="#trim(variables.ds)#">
-					UPDATE EntityAddress 
+					UPDATE entityaddress 
 					SET IsDefault = 1
 					WHERE EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" /> 
 					AND AddressID = <cfqueryparam value="#trim(arguments.AddressID)#" cfsqltype="CF_SQL_INTEGER" /> 					
@@ -477,5 +477,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

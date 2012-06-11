@@ -27,7 +27,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim_ProcessXMLToDB" datasource="#trim(arguments.ds)#">
-				INSERT INTO Claim_ProcessXMLToDB (InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode)
+				INSERT INTO claim_processxmltodb (InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localInterchangeID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localClaimXML)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -135,7 +135,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim_ProcessXMLToDB" datasource="#trim(arguments.ds)#">
-				UPDATE Claim_ProcessXMLToDB  SET
+				UPDATE claim_processxmltodb  SET
 					
 					InterchangeID =						
 						<cfqueryparam value="#trim(localInterchangeID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -210,7 +210,7 @@
 
 		<cfquery name="qDeleteClaim_ProcessXMLToDB" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Claim_ProcessXMLToDB
+			FROM claim_processxmltodb
 			WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaim_ProcessXMLToDBID())#" /> 
 		</cfquery>
 
@@ -230,7 +230,7 @@
 	
 		<cfquery name="qGetClaim_ProcessXMLToDB" datasource="#trim(arguments.ds)#">
 	  		SELECT Claim_ProcessXMLToDBID,InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode,DateCreated,DateModified
-			FROM Claim_ProcessXMLToDB  
+			FROM claim_processxmltodb  
 			WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Claim_ProcessXMLToDBID)#" /> 
 		</cfquery>
 		

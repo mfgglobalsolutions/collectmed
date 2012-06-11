@@ -23,7 +23,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_TOSCode" datasource="#trim(arguments.ds)#">
-				INSERT INTO EOB_TOSCode (Code,Description,Active,InactiveCode)
+				INSERT INTO eob_toscode (Code,Description,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localDescription) NEQ "" AND trim(localDescription) NEQ "@@" AND trim(localDescription) NEQ "NULL">						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_TOSCode" datasource="#trim(arguments.ds)#">
-				UPDATE EOB_TOSCode  SET
+				UPDATE eob_toscode  SET
 					
 					Code =						
 						<cfqueryparam value="#trim(localCode)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -158,7 +158,7 @@
 
 		<cfquery name="qDeleteEOB_TOSCode" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EOB_TOSCode
+			FROM eob_toscode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -178,7 +178,7 @@
 	
 		<cfquery name="qGetEOB_TOSCode" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_TOSCode  
+			FROM eob_toscode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -201,5 +201,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

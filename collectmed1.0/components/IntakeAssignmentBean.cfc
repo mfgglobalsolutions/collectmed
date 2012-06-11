@@ -34,7 +34,7 @@
 			<cfif StructKeyExists(stValues, "INTAKE_AssignmentID") AND stValues.INTAKE_AssignmentID NEQ 0>
 				<cfquery name="qGetIntakeAssignment" datasource="#trim(arguments.ds)#">
 			  		SELECT INTAKE_AssignmentID,IntakeID,UserID,DateCreated,AssignorID,Note
-					FROM IntakeAssignment  
+					FROM intakeassignment  
 					WHERE INTAKE_AssignmentID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.INTAKE_AssignmentID#" /> 
 				</cfquery>		
 				<cfif qGetIntakeAssignment.Recordcount LTE 0>
@@ -201,5 +201,6 @@
 		
 		
 </cfcomponent>
+
 
 

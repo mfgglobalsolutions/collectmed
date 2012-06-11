@@ -38,8 +38,8 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getCorporateAddresses" datasource="#trim(request.datasource)#">
 		SELECT a.AddressID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, ea.IsDefault
-		FROM Address AS a   INNER JOIN EntityAddress AS ea ON a.AddressID = ea.AddressID
-		WHERE ea.EntityID = (SELECT EntityID FROM pa_master.Client   WHERE ClientID = #trim(session.clientID)#)
+		FROM address AS a   INNER JOIN entityaddress AS ea ON a.AddressID = ea.AddressID
+		WHERE ea.EntityID = (SELECT EntityID FROM pa_master.client   WHERE ClientID = #trim(session.clientID)#)
 	</cfquery>		
 	
 	

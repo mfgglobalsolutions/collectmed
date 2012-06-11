@@ -36,7 +36,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateWorkGroup" datasource="#trim(arguments.ds)#">
-				INSERT INTO WorkGroup (ClientID,WorkGroupName,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd)
+				INSERT INTO workgroup (ClientID,WorkGroupName,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd)
 				VALUES (				
 					<cfif IsNumeric(trim(localClientID))>						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -215,7 +215,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateWorkGroup" datasource="#trim(arguments.ds)#">
-				UPDATE WorkGroup  SET
+				UPDATE workgroup  SET
 					
 					ClientID =				
 					<cfif IsNumeric(trim(localClientID))>						
@@ -361,7 +361,7 @@
 
 		<cfquery name="qDeleteWorkGroup" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM WorkGroup
+			FROM workgroup
 			WHERE WorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getWorkGroupID())#" /> 
 		</cfquery>
 
@@ -381,7 +381,7 @@
 	
 		<cfquery name="qGetWorkGroup" datasource="#trim(arguments.ds)#">
 	  		SELECT WorkGroupID,ClientID,WorkGroupName,DateCreated,DateModified,Description,MondayStart,MondayEnd,TuesdayStart,TuesdayEnd,WednesdayStart,WednesdayEnd,ThursdayStart,ThursdayEnd,FridayStart,FridayEnd,SaturdayStart,SaturdayEnd,SundayStart,SundayEnd
-			FROM WorkGroup  
+			FROM workgroup  
 			WHERE WorkGroupID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.WorkGroupID)#" /> 
 		</cfquery>
 		
@@ -404,5 +404,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

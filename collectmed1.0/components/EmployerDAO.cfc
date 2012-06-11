@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEmployer" datasource="#trim(arguments.ds)#">
-				INSERT INTO Employer (EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode)
+				INSERT INTO employer (EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localEmployerName) NEQ "" AND trim(localEmployerName) NEQ "@@" AND trim(localEmployerName) NEQ "NULL">						
 						<cfqueryparam value="#trim(localEmployerName)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -127,7 +127,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEmployer" datasource="#trim(arguments.ds)#">
-				UPDATE Employer  SET
+				UPDATE employer  SET
 					
 					EmployerName =	
 					<cfif trim(localEmployerName) NEQ "" AND trim(localEmployerName) NEQ "@@" AND trim(localEmployerName) NEQ "NULL">						
@@ -196,7 +196,7 @@
 
 		<cfquery name="qDeleteEmployer" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Employer
+			FROM employer
 			WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getEmployerID())#" /> 
 		</cfquery>
 
@@ -216,7 +216,7 @@
 	
 		<cfquery name="qGetEmployer" datasource="#trim(arguments.ds)#">
 	  		SELECT EmployerID,EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode,DateCreated,DateModified
-			FROM Employer  
+			FROM employer  
 			WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EmployerID)#" /> 
 		</cfquery>
 		
@@ -239,5 +239,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

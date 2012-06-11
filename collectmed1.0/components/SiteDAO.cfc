@@ -55,7 +55,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateSite" datasource="#trim(arguments.ds)#">
-				INSERT INTO Site (ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode)
+				INSERT INTO site (ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localApplicationName) NEQ "" AND trim(localApplicationName) NEQ "@@" AND trim(localApplicationName) NEQ "NULL">						
 						<cfqueryparam value="#trim(localApplicationName)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -367,7 +367,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateSite" datasource="#trim(arguments.ds)#">
-				UPDATE Site  SET
+				UPDATE site  SET
 					
 					ApplicationName =	
 					<cfif trim(localApplicationName) NEQ "" AND trim(localApplicationName) NEQ "@@" AND trim(localApplicationName) NEQ "NULL">						
@@ -646,7 +646,7 @@
 
 		<cfquery name="qDeleteSite" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Site
+			FROM site
 			WHERE SiteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getSiteID())#" /> 
 		</cfquery>
 
@@ -666,7 +666,7 @@
 	
 		<cfquery name="qGetSite" datasource="#trim(arguments.ds)#">
 	  		SELECT SiteID,ApplicationName,SiteName,Directory,URLDomains,SessionTimeout,SupportEmailAddressID,AdministratorEmailID,AdministratorPhoneID,MainPhoneNumberID,CompanyLogo,Align,BgColor,Font,FontSize,FontColor,LoginPage,TextBoxBackgroundColor,TitleHeaderColor,TitleFontColor,FooterFileName,HeaderBackgroundColor,HeaderBorder,HeaderBorderColor,HeaderFileName,HeaderHeight,LeftNavigationFontColor,LeftNavigationFontSize,LeftNavigationBorder,LeftTemplateFileName,LeftNavigationBorderColor,RightTemplateFileName,RightNavigationBorder,RightTableBackgroundColor,RightNavigationBorderColor,Active,InactiveCode,DateCreated,DateModified
-			FROM Site  
+			FROM site  
 			WHERE SiteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.SiteID)#" /> 
 		</cfquery>
 		
@@ -689,5 +689,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

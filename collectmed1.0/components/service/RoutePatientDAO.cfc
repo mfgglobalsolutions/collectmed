@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM RoutePatient
+			FROM routepatient
 			WHERE RoutePatientID = <cfqueryparam value="#arguments.RoutePatient.getRoutePatientID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateRoutePatient" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO RoutePatient (RouteID,SubRoute,PatientID,FName,LName,City,IDtext,SuppliesText,Checked,Active,InactiveCode)
+				INSERT INTO routepatient (RouteID,SubRoute,PatientID,FName,LName,City,IDtext,SuppliesText,Checked,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(arguments.RoutePatient.getRouteID())#" cfsqltype="CF_SQL_INTEGER" />,	
 					<cfif trim(arguments.RoutePatient.getSubRoute()) NEQ "" AND trim(arguments.RoutePatient.getSubRoute()) NEQ "@@" AND trim(arguments.RoutePatient.getSubRoute()) NEQ "NULL">						
@@ -173,7 +173,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateRoutePatient" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE RoutePatient  SET
+				UPDATE routepatient  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					RouteID =						
@@ -263,7 +263,7 @@
 
 		<cfquery name="qDeleteRoutePatient" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM RoutePatient
+			FROM routepatient
 			WHERE RoutePatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RoutePatientID)#" /> 
 		</cfquery>
 
@@ -282,7 +282,7 @@
 	
 		<cfquery name="qGetRoutePatient" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT RoutePatientID,RouteID,SubRoute,PatientID,FName,LName,City,IDtext,SuppliesText,Checked,Active,InactiveCode,DateCreated,DateModified
-			FROM RoutePatient  
+			FROM routepatient  
 			WHERE RoutePatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RoutePatientID)#" /> 
 		</cfquery>
 		
@@ -379,5 +379,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

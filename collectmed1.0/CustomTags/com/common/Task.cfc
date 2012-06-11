@@ -28,7 +28,7 @@
 		
 		<cfquery name="getTaskClientID" datasource="#trim(request.datasource)#">
 			SELECT ClientID 
-			FROM Task 
+			FROM task 
 			WHERE TaskID = #trim(TaskID)#
 		</cfquery>
 		
@@ -36,7 +36,7 @@
 		<cfif getTaskClientID.Recordcount EQ 1 AND getTaskClientID.ClientID EQ clientID> 
 		
 			<cfquery name="insertAssignment" datasource="#trim(request.datasource)#">
-				INSERT INTO TaskAssignment (TaskID, UsersID, AssignorID, Note)
+				INSERT INTO taskassignment (TaskID, UsersID, AssignorID, Note)
 				VALUES(#trim(TaskID)#, #trim(UsersID)#, #trim(assignorID)#, '#trim(Note)#')				
 			</cfquery>		
 			
@@ -56,14 +56,14 @@
 
 		<cfquery name="getID" datasource="#trim(request.datasource)#">
 			SELECT UsersID
-			FROM TaskAssignment 
+			FROM taskassignment 
 			WHERE TaskID = #arguments.TaskID#
 			ORDER BY DateCreated DESC
 			LIMIT 1
 		</cfquery>
 		
 		<cfquery name="updateTask" datasource="#trim(request.datasource)#">
-			UPDATE Task 
+			UPDATE task 
 			SET AssignedToUserID = #getID.UsersID#
 			WHERE TaskID = #arguments.TaskID#
 		</cfquery>
@@ -105,14 +105,14 @@
 		
 		<cfquery name="getStatusID" datasource="#trim(request.datasource)#">
 			SELECT statusID
-			FROM TaskStatus 
+			FROM taskstatus 
 			WHERE TaskID = #arguments.TaskID# 
 			ORDER BY DateCreated DESC
 			LIMIT 1
 		</cfquery>
 			
 		<cfquery name="updateTask" datasource="#trim(request.datasource)#">	
-			UPDATE Task
+			UPDATE task
 			SET statusID = #getStatusID.StatusID#
 			WHERE TaskID = #arguments.TaskID#
 		</cfquery>
@@ -183,7 +183,7 @@
 		</cfscript>
 			
 		<cfquery name="updateTask" datasource="#trim(request.datasource)#">
-			UPDATE TASK SET Note = '#trim(getTask)#'
+			UPDATE task SET Note = '#trim(getTask)#'
 			WHERE taskID = #trim(TaskID)#
 		</cfquery>	
 														
@@ -231,7 +231,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTask" datasource="#trim(request.datasource)#">
 			SELECT TaskID
-			FROM Task 
+			FROM task 
 			WHERE objectID = #trim(objectID)# AND instanceID = #trim(instanceID)#		
 		</cfquery>
 			
@@ -259,7 +259,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTask" datasource="#trim(request.datasource)#">
 			SELECT StatusID	
-			FROM TaskStatus
+			FROM taskstatus
 			WHERE TaskID = #trim(taskID)# AND usersID = #trim(usersID)#		
 			Order by DateCreated DESC
 		</cfquery>
@@ -303,7 +303,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTaskStatus" datasource="#trim(request.datasource)#">
 			SELECT  sli.ItemNameDisplay, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname, fs.note, fs.dateCreated
-			FROM TaskStatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
+			FROM taskstatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
 			LEFT JOIN pa_master.StandardListItem sli ON fs.statusID = sli.StandardListItemID
 			WHERE fs.taskID = #trim(taskID)#
 			ORDER BY  fs.DateCreated #trim(orderby)#	
@@ -329,7 +329,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTaskAssignor" datasource="#trim(request.datasource)#">
 			SELECT AssignorID, vuap.FName AS assignorFName, vuap.LName AS assignorLName
-			FROM TaskAssignment ta JOIN view_UserAccountParameters vuap ON ta.AssignorID = vuap.UsersID
+			FROM taskassignment ta JOIN view_UserAccountParameters vuap ON ta.AssignorID = vuap.UsersID
 			WHERE ta.taskID = #trim(taskID)#
 			Order BY ta.DateCreated DESC	
 			LIMIT 1		
@@ -346,3 +346,8 @@
 </cfcomponent>
 
 	
+
+
+
+
+

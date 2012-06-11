@@ -50,7 +50,7 @@
 			<cfif StructKeyExists(stValues, "TaskID") AND stValues.TaskID NEQ 0>
 				<cfquery name="qGetTask" datasource="#trim(arguments.ds)#">
 			  		SELECT TaskID,ClientID,CreatorID,ObjectID,InstanceID,Priority,AssignedToUserID,StatusID,DueDate,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM Task  
+					FROM task  
 					WHERE TaskID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.TaskID#" /> 
 				</cfquery>		
 				<cfif qGetTask.Recordcount LTE 0>
@@ -405,5 +405,6 @@
 		
 		
 </cfcomponent>
+
 
 

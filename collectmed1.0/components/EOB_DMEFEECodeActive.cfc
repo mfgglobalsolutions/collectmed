@@ -52,7 +52,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetEOB_DMEFEECode" datasource="#trim(variables.ds)#">
 			  		SELECT RecordID,TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,Active,InactiveCode,DateCreated,DateModified
-					FROM EOB_DMEFEECode  
+					FROM eob_dmefeecode  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetEOB_DMEFEECode.Recordcount LTE 0>
@@ -383,7 +383,7 @@
 	
 		<cfquery name="qGetEOB_DMEFEECode" datasource="#trim(variables.ds)#">
 	  		SELECT RecordID,TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_DMEFEECode  
+			FROM eob_dmefeecode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -416,7 +416,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_DMEFEECode" datasource="#trim(variables.ds)#">
-				INSERT INTO EOB_DMEFEECode (TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,InactiveCode)
+				INSERT INTO eob_dmefeecode (TOSCode,Code,Description,TMRMpayable,TotalRVUs,ConversionFactor,AccessBasedMaxFee,NoteCode,InactiveCode)
 				VALUES (	
 					<cfif trim(localTOSCode) NEQ "" AND trim(localTOSCode) NEQ "@@" AND trim(localTOSCode) NEQ "NULL">						
 						<cfqueryparam value="#trim(localTOSCode)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -539,7 +539,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_DMEFEECode" datasource="#trim(variables.ds)#">
-				UPDATE EOB_DMEFEECode  SET
+				UPDATE eob_dmefeecode  SET
 					
 					TOSCode =	
 					<cfif trim(localTOSCode) NEQ "" AND trim(localTOSCode) NEQ "@@" AND trim(localTOSCode) NEQ "NULL">						
@@ -632,7 +632,7 @@
 
 		<cfquery name="qDeleteEOB_DMEFEECode" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM EOB_DMEFEECode
+			FROM eob_dmefeecode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getRecordID())#" /> 
 		</cfquery>
 
@@ -654,5 +654,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

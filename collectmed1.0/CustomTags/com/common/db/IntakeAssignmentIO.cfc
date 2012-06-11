@@ -364,7 +364,7 @@
 	
 		<cfquery name="qGetIntakeAssignment" datasource="#trim(request.datasource)#">
 	  		SELECT INTAKE_AssignmentID,IntakeID,UserID,DateCreated,AssignorID,Note
-			FROM IntakeAssignment  
+			FROM intakeassignment  
 			WHERE INTAKE_AssignmentID = #trim(arguments.INTAKE_AssignmentID)# 
 		</cfquery>
 		
@@ -724,7 +724,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO IntakeAssignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS INTAKE_AssignmentID ">
+				<cfset sqlStatement = "INSERT INTO intakeassignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS INTAKE_AssignmentID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -886,7 +886,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getIntakeAssignmentQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM IntakeAssignment   
+				FROM intakeassignment   
 				WHERE 1=1
 					<cfif INTAKE_AssignmentID NEQ "" AND IsNumeric(INTAKE_AssignmentID)>AND INTAKE_AssignmentID = #INTAKE_AssignmentID#</cfif>
 					<cfif INTAKE_AssignmentID_IN NEQ "">AND INTAKE_AssignmentID IN(#trim(INTAKE_AssignmentID_IN)#)</cfif>
@@ -963,5 +963,7 @@
 
 	
 </cfcomponent>
+
+
 
 

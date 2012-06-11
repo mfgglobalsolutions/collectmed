@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateSubCategory" datasource="#trim(arguments.ds)#">
-				INSERT INTO SubCategory (CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode)
+				INSERT INTO subcategory (CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localCategoryID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localSubCategoryName)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateSubCategory" datasource="#trim(arguments.ds)#">
-				UPDATE SubCategory  SET
+				UPDATE subcategory  SET
 					
 					CategoryID =						
 						<cfqueryparam value="#trim(localCategoryID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteSubCategory" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM SubCategory
+			FROM subcategory
 			WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getSubCategoryID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetSubCategory" datasource="#trim(arguments.ds)#">
 	  		SELECT SubCategoryID,CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM SubCategory  
+			FROM subcategory  
 			WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.SubCategoryID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

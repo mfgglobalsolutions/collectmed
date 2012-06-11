@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "ClaimEOPSCodeID") AND stValues.ClaimEOPSCodeID NEQ 0>
 				<cfquery name="qGetProcedureEOPScode" datasource="#trim(variables.ds)#">
 			  		SELECT ClaimEOPSCodeID,ProcedureID,EOPSCode,Status,ClosingUserID,CloseDate
-					FROM ProcedureEOPScode  
+					FROM procedureeopscode  
 					WHERE ClaimEOPSCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ClaimEOPSCodeID#" /> 
 				</cfquery>		
 				<cfif qGetProcedureEOPScode.Recordcount LTE 0>
@@ -218,7 +218,7 @@
 	
 		<cfquery name="qGetProcedureEOPScode" datasource="#trim(variables.ds)#">
 	  		SELECT ClaimEOPSCodeID,ProcedureID,EOPSCode,Status,ClosingUserID,CloseDate
-			FROM ProcedureEOPScode  
+			FROM procedureeopscode  
 			WHERE ClaimEOPSCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimEOPSCodeID)#" /> 
 		</cfquery>
 		
@@ -245,7 +245,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedureEOPScode" datasource="#trim(variables.ds)#">
-				INSERT INTO ProcedureEOPScode (ProcedureID,EOPSCode,Status,ClosingUserID,CloseDate)
+				INSERT INTO procedureeopscode (ProcedureID,EOPSCode,Status,ClosingUserID,CloseDate)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localEOPSCode)#" cfsqltype="CF_SQL_INTEGER" />,	
@@ -331,7 +331,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedureEOPScode" datasource="#trim(variables.ds)#">
-				UPDATE ProcedureEOPScode  SET
+				UPDATE procedureeopscode  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -382,7 +382,7 @@
 
 		<cfquery name="qDeleteProcedureEOPScode" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM ProcedureEOPScode
+			FROM procedureeopscode
 			WHERE ClaimEOPSCodeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getClaimEOPSCodeID())#" /> 
 		</cfquery>
 
@@ -404,5 +404,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

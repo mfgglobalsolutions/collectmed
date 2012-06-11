@@ -713,7 +713,7 @@
 	
 		<cfquery name="qGetEntityRS" datasource="#trim(request.datasource)#">
 	  		SELECT EntityRSID,EntityID,ColM,ColE,ColL,ColI,ColA,ColC,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityRS  
+			FROM entityrs  
 			WHERE EntityRSID = #trim(arguments.EntityRSID)# 
 		</cfquery>
 		
@@ -1089,7 +1089,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EntityRS  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityRSID ">
+				<cfset sqlStatement = "INSERT INTO entityrs  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntityRSID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1275,7 +1275,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntityRSQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM EntityRS   
+				FROM entityrs   
 				WHERE 1=1
 					<cfif EntityRSID NEQ "" AND IsNumeric(EntityRSID)>AND EntityRSID = #EntityRSID#</cfif>
 					<cfif EntityRSID_IN NEQ "">AND EntityRSID IN(#trim(EntityRSID_IN)#)</cfif>
@@ -1376,5 +1376,7 @@
 
 	
 </cfcomponent>
+
+
 
 

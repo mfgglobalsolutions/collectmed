@@ -15,7 +15,7 @@
 			
 			<cfquery name="getAddress" datasource="#trim(request.datasource)#">
 				SELECT a.AddressID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, s.ItemNameDisplay AS State
-				FROM Address a LEFT OUTER JOIN pa_master.StandardListItem s ON a.StateID = s.StandardListItemID
+				FROM address a LEFT OUTER JOIN pa_master.standardlistitem s ON a.StateID = s.StandardListItemID
 				WHERE a.AddressID = #trim(addressID)#					
 			</cfquery>
 			
@@ -51,7 +51,7 @@
 			
 			<cfquery name="getAddresses" datasource="#trim(request.datasource)#">
 				SELECT AddressID,SiteID,AddressTypeID,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,DateCreated
-				FROM Address 
+				FROM address 
 				WHERE AddressID IN(#trim(addressIDs)#)					
 			</cfquery>
 			
@@ -82,12 +82,12 @@
 		<cftry>			
 			
 			<cfquery name="deleteEntityAddress" datasource="#trim(request.datasource)#">
-				DELETE FROM EntityAddress 
+				DELETE FROM entityaddress 
 				WHERE AddressID = #trim(AddressID)#	
 			</cfquery>	
 					
 			<cfquery name="deleteAddress" datasource="#trim(request.datasource)#">
-				DELETE FROM Address 
+				DELETE FROM address 
 				WHERE AddressID = #trim(AddressID)#	
 			</cfquery>				
 			
@@ -119,13 +119,13 @@
 			
 						
 			<cfquery name="archiveEntityAddress" datasource="#trim(request.datasource)#">
-				UPDATE EntityAddress 
+				UPDATE entityaddress 
 				SET Active = 0, InactiveCode = 68
 				WHERE AddressID = #trim(AddressID)#	
 			</cfquery>	
 					
 			<cfquery name="archiveAddress" datasource="#trim(request.datasource)#">
-				UPDATE Address 
+				UPDATE address 
 				SET Active = 0, InactiveCode = 68
 				WHERE AddressID = #trim(AddressID)#	
 			</cfquery>
@@ -159,7 +159,7 @@
 		<cftry>			
 			
 			<cfquery name="insertEntityAddress" datasource="#trim(request.datasource)#">
-				INSERT INTO EntityAddress  (EntityID, AddressID)
+				INSERT INTO entityaddress  (EntityID, AddressID)
 				VALUES(#trim(EntityID)#, #trim(AddressID)#)					
 			</cfquery>
 						

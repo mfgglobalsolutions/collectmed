@@ -660,7 +660,7 @@
 	
 		<cfquery name="qGetEOB_PROCEDURECode" datasource="pa_master">
 	  		SELECT RecordID,TOSCode,Code,Description,TMRMPayable,TotalRVUs,ConversionFactor,AccessBasedOrMaxFee,NoteCode,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_PROCEDURECode  
+			FROM eob_procedurecode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -1040,7 +1040,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_PROCEDURECode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO eob_procedurecode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1223,7 +1223,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEOB_PROCEDURECodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EOB_PROCEDURECode   
+				FROM eob_procedurecode   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -1321,5 +1321,7 @@
 
 	
 </cfcomponent>
+
+
 
 

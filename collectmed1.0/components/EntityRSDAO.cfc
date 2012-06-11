@@ -30,7 +30,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityRS" datasource="#trim(arguments.ds)#">
-				INSERT INTO EntityRS (EntityID,ColM,ColE,ColL,ColI,ColA,ColC,ColR,IsDefault,Active,InactiveCode)
+				INSERT INTO entityrs (EntityID,ColM,ColE,ColL,ColI,ColA,ColC,ColR,IsDefault,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localColM)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -155,7 +155,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityRS" datasource="#trim(arguments.ds)#">
-				UPDATE EntityRS  SET
+				UPDATE entityrs  SET
 					
 					EntityID =						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -247,7 +247,7 @@
 
 		<cfquery name="qDeleteEntityRS" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EntityRS
+			FROM entityrs
 			WHERE EntityRSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getEntityRSID())#" /> 
 		</cfquery>
 
@@ -267,7 +267,7 @@
 	
 		<cfquery name="qGetEntityRS" datasource="#trim(arguments.ds)#">
 	  		SELECT EntityRSID,EntityID,ColM,ColE,ColL,ColI,ColA,ColC,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityRS  
+			FROM entityrs  
 			WHERE EntityRSID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EntityRSID)#" /> 
 		</cfquery>
 		
@@ -290,5 +290,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

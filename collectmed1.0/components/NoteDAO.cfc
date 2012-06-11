@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateNote" datasource="#trim(arguments.ds)#">
-				INSERT INTO Note (ClientID,ObjectID,InstanceID,Note,Active,InactiveCode)
+				INSERT INTO note (ClientID,ObjectID,InstanceID,Note,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localObjectID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -119,7 +119,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateNote" datasource="#trim(arguments.ds)#">
-				UPDATE Note  SET
+				UPDATE note  SET
 					
 					ClientID =						
 						<cfqueryparam value="#trim(localClientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -180,7 +180,7 @@
 
 		<cfquery name="qDeleteNote" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Note
+			FROM note
 			WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getNoteID())#" /> 
 		</cfquery>
 
@@ -200,7 +200,7 @@
 	
 		<cfquery name="qGetNote" datasource="#trim(arguments.ds)#">
 	  		SELECT NoteID,ClientID,ObjectID,InstanceID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Note  
+			FROM note  
 			WHERE NoteID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.NoteID)#" /> 
 		</cfquery>
 		
@@ -223,5 +223,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

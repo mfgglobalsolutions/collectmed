@@ -34,7 +34,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<!---<cfquery name="getClientUsers" datasource="#trim(request.datasource)#">
 		SELECT u.usersID, e.FName + ' '  + e.LName AS Fullname, u.Active  
-		FROM Entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
+		FROM entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
 		WHERE e.ClientID = #trim(session.ClientID)# AND e.ObjectTypeID = 2
 		ORDER BY u.Active DESC				
 	</cfquery>--->
@@ -75,7 +75,7 @@
 		
 		<cfquery name="getAllGroups" datasource="#trim(request.datasource)#">
 			SELECT WorkGroupID
-			FROM WorkGroup
+			FROM workgroup
 		</cfquery>
 			
 		<cfoutput>
@@ -100,3 +100,4 @@
 	</cfif>
 	
 	
+

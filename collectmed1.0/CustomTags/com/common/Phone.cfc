@@ -15,7 +15,7 @@
 			
 			<cfquery name="getPhone" datasource="PAClient_#trim(ClientID)#">
 				SELECT PhoneID,PhoneTypeID, PhoneNumber, PhoneExtension
-				FROM Phone 
+				FROM phone 
 				WHERE PhoneID = #trim(PhoneID)#			
 			</cfquery>
 			
@@ -51,12 +51,12 @@
 		<cftry>			
 			
 			<cfquery name="deleteEntityPhone" datasource="#trim(request.datasource)#">
-				DELETE FROM EntityPhone 
+				DELETE FROM entityphone 
 				WHERE PhoneID = #trim(PhoneID)#	
 			</cfquery>	
 					
 			<cfquery name="deletePhone" datasource="#trim(request.datasource)#">
-				DELETE FROM Phone 
+				DELETE FROM phone 
 				WHERE PhoneID = #trim(PhoneID)#	
 			</cfquery>				
 			
@@ -88,13 +88,13 @@
 			
 						
 			<cfquery name="archiveEntityPhone" datasource="#trim(request.datasource)#">
-				UPDATE EntityPhone 
+				UPDATE entityphone 
 				SET Active = 0, InactiveCode = 68
 				WHERE PhoneID = #trim(PhoneID)#	
 			</cfquery>	
 					
 			<cfquery name="archivePhone" datasource="#trim(request.datasource)#">
-				UPDATE Phone 
+				UPDATE phone 
 				SET Active = 0, InactiveCode = 68
 				WHERE PhoneID = #trim(PhoneID)#	
 			</cfquery>
@@ -136,7 +136,7 @@
 				<cfloop list="#trim(PhoneID)#" index="i">
 					
 					<cfquery name="archiveEntityPhone" datasource="#trim(request.datasource)#">
-						UPDATE EntityPhone 
+						UPDATE entityphone 
 						SET Active = 0, InactiveCode = 68
 						WHERE EntityID = #trim(EntityID)# AND PhoneID = #trim(PhoneID)#	
 					</cfquery>	
@@ -148,7 +148,7 @@
 			<cfif Len(PhoneIDNotIn) GTE 1>				
 					
 				<cfquery name="archiveEntityPhone" datasource="#trim(request.datasource)#">
-					UPDATE EntityPhone 
+					UPDATE entityphone 
 					SET Active = 0, InactiveCode = 68
 					WHERE EntityID = #trim(EntityID)# AND PhoneID NOT IN(#trim(PhoneIDNotIn)#)
 				</cfquery>					
@@ -185,7 +185,7 @@
 		<cftry>			
 			
 			<cfquery name="insertEntityPhone" datasource="#trim(request.datasource)#">
-				INSERT INTO EntityPhone  (EntityID, PhoneID)
+				INSERT INTO entityphone  (EntityID, PhoneID)
 				VALUES(#trim(EntityID)#, #trim(PhoneID)#)					
 			</cfquery>
 						
@@ -210,3 +210,6 @@
 </cfcomponent>
 
 	
+
+
+

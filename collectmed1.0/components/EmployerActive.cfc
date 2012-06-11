@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "EmployerID") AND stValues.EmployerID NEQ 0>
 				<cfquery name="qGetEmployer" datasource="#trim(variables.ds)#">
 			  		SELECT EmployerID,EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode,DateCreated,DateModified
-					FROM Employer  
+					FROM employer  
 					WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.EmployerID#" /> 
 				</cfquery>		
 				<cfif qGetEmployer.Recordcount LTE 0>
@@ -283,7 +283,7 @@
 	
 		<cfquery name="qGetEmployer" datasource="#trim(variables.ds)#">
 	  		SELECT EmployerID,EmployerName,EmployerDBA,EntityID,EmployerURL,Active,InactiveCode,DateCreated,DateModified
-			FROM Employer  
+			FROM employer  
 			WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EmployerID)#" /> 
 		</cfquery>
 		
@@ -312,7 +312,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEmployer" datasource="#trim(variables.ds)#">
-				INSERT INTO Employer (EmployerName,EmployerDBA,EntityID,EmployerURL,InactiveCode)
+				INSERT INTO employer (EmployerName,EmployerDBA,EntityID,EmployerURL,InactiveCode)
 				VALUES (	
 					<cfif trim(localEmployerName) NEQ "" AND trim(localEmployerName) NEQ "@@" AND trim(localEmployerName) NEQ "NULL">						
 						<cfqueryparam value="#trim(localEmployerName)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -411,7 +411,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEmployer" datasource="#trim(variables.ds)#">
-				UPDATE Employer  SET
+				UPDATE employer  SET
 					
 					EmployerName =	
 					<cfif trim(localEmployerName) NEQ "" AND trim(localEmployerName) NEQ "@@" AND trim(localEmployerName) NEQ "NULL">						
@@ -480,7 +480,7 @@
 
 		<cfquery name="qDeleteEmployer" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Employer
+			FROM employer
 			WHERE EmployerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getEmployerID())#" /> 
 		</cfquery>
 
@@ -502,5 +502,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

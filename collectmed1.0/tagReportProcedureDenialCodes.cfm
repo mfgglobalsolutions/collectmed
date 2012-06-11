@@ -61,32 +61,32 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getDenialCodes" datasource="#trim(request.datasource)#">		
 		SELECT COUNT(ClaimAdjustmentReasonCode2) AS codeCount, ClaimAdjustmentReasonCode2 as Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode2 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode2
 		UNION ALL
 		SELECT COUNT(ClaimAdjustmentReasonCode5) AS codeCount, ClaimAdjustmentReasonCode5 AS Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode5 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode5
 		UNION ALL
 		SELECT COUNT(ClaimAdjustmentReasonCode8) AS codeCount, ClaimAdjustmentReasonCode8 AS Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode8 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode8
 		UNION ALL
 		SELECT COUNT(ClaimAdjustmentReasonCode11) AS codeCount, ClaimAdjustmentReasonCode11 AS Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode11 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode11
 		UNION ALL
 		SELECT COUNT(ClaimAdjustmentReasonCode14) AS codeCount, ClaimAdjustmentReasonCode14 AS Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode14 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode14
 		UNION ALL
 		SELECT COUNT(ClaimAdjustmentReasonCode17) AS codeCount, ClaimAdjustmentReasonCode17 AS Code
-		FROM Procedure_MEDICARE_CLAIMADJUSTMENT 
+		FROM procedure_medicare_claimadjustment 
 		WHERE ClaimAdjustmentReasonCode17 IS NOT NULL
 		GROUP BY ClaimAdjustmentReasonCode17
 	</cfquery>

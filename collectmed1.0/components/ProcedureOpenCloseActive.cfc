@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "ProcedureOpenCloseID") AND stValues.ProcedureOpenCloseID NEQ 0>
 				<cfquery name="qGetProcedureOpenClose" datasource="#trim(variables.ds)#">
 			  		SELECT ProcedureOpenCloseID,ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode,DateCreated,DateModified
-					FROM ProcedureOpenClose  
+					FROM procedureopenclose  
 					WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.ProcedureOpenCloseID#" /> 
 				</cfquery>		
 				<cfif qGetProcedureOpenClose.Recordcount LTE 0>
@@ -291,7 +291,7 @@
 	
 		<cfquery name="qGetProcedureOpenClose" datasource="#trim(variables.ds)#">
 	  		SELECT ProcedureOpenCloseID,ProcedureID,OpenOrClose,UsersID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM ProcedureOpenClose  
+			FROM procedureopenclose  
 			WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ProcedureOpenCloseID)#" /> 
 		</cfquery>
 		
@@ -320,7 +320,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedureOpenClose" datasource="#trim(variables.ds)#">
-				INSERT INTO ProcedureOpenClose (ProcedureID,OpenOrClose,UsersID,Note,InactiveCode)
+				INSERT INTO procedureopenclose (ProcedureID,OpenOrClose,UsersID,Note,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localProcedureID))>						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -411,7 +411,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedureOpenClose" datasource="#trim(variables.ds)#">
-				UPDATE ProcedureOpenClose  SET
+				UPDATE procedureopenclose  SET
 					
 					ProcedureID =				
 					<cfif IsNumeric(trim(localProcedureID))>						
@@ -472,7 +472,7 @@
 
 		<cfquery name="qDeleteProcedureOpenClose" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM ProcedureOpenClose
+			FROM procedureopenclose
 			WHERE ProcedureOpenCloseID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getProcedureOpenCloseID())#" /> 
 		</cfquery>
 
@@ -494,5 +494,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

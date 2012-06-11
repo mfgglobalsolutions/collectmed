@@ -449,7 +449,7 @@
 	
 		<cfquery name="qGetFileProcess" datasource="#trim(request.datasource)#">
 	  		SELECT FileProcessID,FileID,StatusID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM FileProcess  
+			FROM fileprocess  
 			WHERE FileProcessID = #trim(arguments.FileProcessID)# 
 		</cfquery>
 		
@@ -813,7 +813,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO FileProcess  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS FileProcessID ">
+				<cfset sqlStatement = "INSERT INTO fileprocess  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS FileProcessID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -981,7 +981,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getFileProcessQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM FileProcess   
+				FROM fileprocess   
 				WHERE 1=1
 					<cfif FileProcessID NEQ "" AND IsNumeric(FileProcessID)>AND FileProcessID = #FileProcessID#</cfif>
 					<cfif FileProcessID_IN NEQ "">AND FileProcessID IN(#trim(FileProcessID_IN)#)</cfif>
@@ -1064,5 +1064,7 @@
 
 	
 </cfcomponent>
+
+
 
 

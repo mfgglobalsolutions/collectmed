@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateSystemUserMessage" datasource="#trim(arguments.ds)#">
-				INSERT INTO SystemUserMessage (UsersID,Dismissed,Note,Active,InactiveCode)
+				INSERT INTO systemusermessage (UsersID,Dismissed,Note,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localDismissed)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateSystemUserMessage" datasource="#trim(arguments.ds)#">
-				UPDATE SystemUserMessage  SET
+				UPDATE systemusermessage  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -157,7 +157,7 @@
 
 		<cfquery name="qDeleteSystemUserMessage" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM SystemUserMessage
+			FROM systemusermessage
 			WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getSystemUserMessageID())#" /> 
 		</cfquery>
 
@@ -177,7 +177,7 @@
 	
 		<cfquery name="qGetSystemUserMessage" datasource="#trim(arguments.ds)#">
 	  		SELECT SystemUserMessageID,UsersID,Dismissed,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM SystemUserMessage  
+			FROM systemusermessage  
 			WHERE SystemUserMessageID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.SystemUserMessageID)#" /> 
 		</cfquery>
 		
@@ -200,5 +200,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

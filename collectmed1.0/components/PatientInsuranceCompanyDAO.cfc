@@ -45,7 +45,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePatientInsuranceCompany" datasource="#trim(arguments.ds)#">
-				INSERT INTO PatientInsuranceCompany (PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode)
+				INSERT INTO patientinsurancecompany (PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localPatientID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localInsuranceCompanyID)#" cfsqltype="CF_SQL_INTEGER" />,				
@@ -279,7 +279,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePatientInsuranceCompany" datasource="#trim(arguments.ds)#">
-				UPDATE PatientInsuranceCompany  SET
+				UPDATE patientinsurancecompany  SET
 					
 					PatientID =						
 						<cfqueryparam value="#trim(localPatientID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -480,7 +480,7 @@
 
 		<cfquery name="qDeletePatientInsuranceCompany" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM PatientInsuranceCompany
+			FROM patientinsurancecompany
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getrecordID())#" /> 
 		</cfquery>
 
@@ -500,7 +500,7 @@
 	
 		<cfquery name="qGetPatientInsuranceCompany" datasource="#trim(arguments.ds)#">
 	  		SELECT recordID,PatientID,InsuranceCompanyID,PrimSecTer,PolicyNumber,PolicyHoldersFirstName,PolicyHoldersLastName,PolicyHoldersMiddleInitial,PolicyHoldersDOB,PolicyHoldersSex,PolicyHoldersAddressLine1,PolicyHoldersAddressLine2,PolicyHoldersCity,PolicyHoldersStateID,PolicyHoldersZipCode,PolicyHoldersPhone,PolicyHoldersPhoneExtension,PolicyHoldersEmployerSchoolName,PolicyHoldersEffectiveDateFrom,PolicyHoldersEffectiveDateTo,GroupNumber,GroupName,Deductible,PayPercentage,Relationship,Active,InactiveCode,DateCreated,DateModified
-			FROM PatientInsuranceCompany  
+			FROM patientinsurancecompany  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -523,5 +523,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

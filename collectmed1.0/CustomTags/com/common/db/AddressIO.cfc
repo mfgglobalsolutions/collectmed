@@ -710,7 +710,7 @@
 	
 		<cfquery name="qGetAddress" datasource="#trim(request.datasource)#">
 	  		SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-			FROM Address  
+			FROM address  
 			WHERE AddressID = #trim(arguments.AddressID)# 
 		</cfquery>
 		
@@ -1089,7 +1089,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Address  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS AddressID ">
+				<cfset sqlStatement = "INSERT INTO address  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS AddressID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1275,7 +1275,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getAddressQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Address   
+				FROM address   
 				WHERE 1=1
 					<cfif AddressID NEQ "" AND IsNumeric(AddressID)>AND AddressID = #AddressID#</cfif>
 					<cfif AddressID_IN NEQ "">AND AddressID IN(#trim(AddressID_IN)#)</cfif>
@@ -1376,5 +1376,6 @@
 
 	
 </cfcomponent>
+
 
 

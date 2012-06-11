@@ -697,7 +697,7 @@
 												<cfset rowColor = "FFFFFF">	
 											</cfif>
 											<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
-												SELECT CONCAT(FName, ' ', LName) AS Fullname FROM view_UserAccountParameters WHERE UsersID = #trim(UsersID)#
+												SELECT CONCAT(FName, ' ', LName) AS Fullname FROM view_useraccountparameters WHERE UsersID = #trim(UsersID)#
 											</cfquery>									
 											<tr bgcolor="#trim(rowColor)#" id="row_#trim(VerificationPatientInsuranceID)#" onclick="resetVerification#trim(number)#(#trim(VerificationPatientInsuranceID)#);" style="cursor:hand" onmouseover="this.style.backgroundColor='DCE3EB'" onmouseout="this.style.backgroundColor='FFFFFF'">
 												<td class="siteLabel">#trim(VerificationPatientInsuranceID)#</td>

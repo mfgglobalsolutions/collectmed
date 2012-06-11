@@ -718,7 +718,7 @@
 																							</cfif>--->     
 																							<cfquery name="getUsersName" datasource="#trim(request.datasource)#">
 																								SELECT FName, LName 
-																								FROM view_UserAccountParameters 
+																								FROM view_useraccountparameters 
 																								WHERE UsersID = #trim(UsersID)#
 																							</cfquery>							
 																							<option value="#trim(UsersID)#">#LEFT(getUsersName.FName, 1)#. #getUsersName.LName# <!---#inactiveSinceString#--->																	      

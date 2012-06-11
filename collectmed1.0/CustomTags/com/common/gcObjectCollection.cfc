@@ -19,7 +19,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- DESCRIPTION:                                                                   ---> 
 <!--- @@DESCRIPTION@@                                                                --->
-<!--- Creates access to a collection of rows from Debug (dbtable)                    --->  
+<!--- Creates access to a collection of rows FROM debug (dbtable)                    --->  
 <!--- @@DESCRIPTION@@                                                                --->
 <!---                                                                                --->
 <!-------------------------------------------------------------------------------------->

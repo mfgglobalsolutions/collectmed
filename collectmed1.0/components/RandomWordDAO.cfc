@@ -22,7 +22,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateRandomWord" datasource="#trim(arguments.ds)#">
-				INSERT INTO RandomWord (Word,Active,InactiveCode)
+				INSERT INTO randomword (Word,Active,InactiveCode)
 				VALUES (	
 					<cfif trim(localWord) NEQ "" AND trim(localWord) NEQ "@@" AND trim(localWord) NEQ "NULL">						
 						<cfqueryparam value="#trim(localWord)#" cfsqltype="CF_SQL_VARCHAR" />							
@@ -103,7 +103,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateRandomWord" datasource="#trim(arguments.ds)#">
-				UPDATE RandomWord  SET
+				UPDATE randomword  SET
 					
 					Word =	
 					<cfif trim(localWord) NEQ "" AND trim(localWord) NEQ "@@" AND trim(localWord) NEQ "NULL">						
@@ -151,7 +151,7 @@
 
 		<cfquery name="qDeleteRandomWord" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM RandomWord
+			FROM randomword
 			WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRandomWordID())#" /> 
 		</cfquery>
 
@@ -171,7 +171,7 @@
 	
 		<cfquery name="qGetRandomWord" datasource="#trim(arguments.ds)#">
 	  		SELECT RandomWordID,Word,Active,InactiveCode,DateCreated,DateModified
-			FROM RandomWord  
+			FROM randomword  
 			WHERE RandomWordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RandomWordID)#" /> 
 		</cfquery>
 		
@@ -194,5 +194,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

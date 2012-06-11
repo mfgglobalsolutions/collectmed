@@ -31,7 +31,7 @@
 			</cfif>
 	
 			<cfquery name="addRoute" datasource="PAClient_#clientID#">
-				INSERT INTO Route (UserID, Name)
+				INSERT INTO route (UserID, Name)
 				VALUES (
 					<cfqueryparam value="#variables.userID#" cfsqltype="CF_SQL_INTEGER" />,
 					<cfqueryparam value="#variables.RouteName#" cfsqltype="CF_SQL_VARCHAR" />
@@ -83,7 +83,7 @@
 			</cfif>
 	
 			<cfquery name="updateRoutePatient" datasource="PAClient_#clientID#">
-				UPDATE RoutePatient
+				UPDATE routepatient
 				SET #variables.updateColumn# = <cfqueryparam value="#URLDecode(trim(variables.SuppliesText))#" cfsqltype="CF_SQL_VARCHAR" />
 				WHERE RoutePatientID = #variables.RoutePatientID#
 			</cfquery>	
@@ -130,7 +130,7 @@
 			</cfif>
 	
 			<cfquery name="updateRoutePatient" datasource="PAClient_#clientID#">
-				INSERT INTO RoutePatient(RouteID, PatientID)
+				INSERT INTO routePatient(RouteID, PatientID)
 				VALUES(
 					<cfqueryparam value="#variables.RouteID#" cfsqltype="CF_SQL_INT" />,
 					<cfqueryparam value="#variables.PatientID#" cfsqltype="CF_SQL_INT" /> 					
@@ -215,7 +215,7 @@
 			</cfif>
 	
 			<cfquery name="updateRoutePatient" datasource="PAClient_#clientID#">
-				DELETE FROM RoutePatient
+				DELETE FROM routepatient
 				WHERE RoutePatientID = #variables.RoutePatientID#
 			</cfquery>	
 													
@@ -262,7 +262,7 @@
 			</cfif>
 	
 			<cfquery name="updateRoutePatient" datasource="PAClient_#clientID#">
-				UPDATE RoutePatient
+				UPDATE routepatient
 				SET Checked = <cfqueryparam value="#URLDecode(trim(variables.checked))#" cfsqltype="CF_SQL_VARCHAR" />
 				WHERE RoutePatientID = #variables.RoutePatientID#
 			</cfquery>	
@@ -285,3 +285,5 @@
 </cfcomponent>
 
 	
+
+

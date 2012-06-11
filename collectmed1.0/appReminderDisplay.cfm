@@ -78,14 +78,14 @@
 		
 		<cfquery name="getReminderUsersID" datasource="#trim(request.datasource)#">
 			SELECT UsersID 
-			FROM Reminder 
+			FROM reminder 
 			WHERE ReminderID = #trim(form.dismissReminderID)#			 
 		</cfquery>
 		
 		<cfif getReminderUsersID.RecordCount EQ 1 AND getReminderUsersID.UsersID EQ session.User.getUsersID()>
 			
 			<cfquery name="updateReminder" datasource="#trim(request.datasource)#">
-				UPDATE Reminder
+				UPDATE reminder
 				SET Dismissed = 1 
 				WHERE ReminderID = #trim(form.dismissReminderID)#			 
 			</cfquery>
@@ -101,7 +101,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getReminders" datasource="#trim(request.datasource)#">
 		SELECT ReminderID, UsersID, ObjectID, InstanceID, showDate,  LEFT(Note, 75) AS shortNote, Note, Active, DateCreated
-		FROM Reminder  
+		FROM reminder  
 		WHERE usersID = #trim(session.User.GetUsersID())# 
 		
 		<cfif NOT IsDefined("form.SubmittedReminder")>AND Dismissed = 0</cfif>
@@ -353,3 +353,4 @@
 	</cfoutput>
 		
 		
+

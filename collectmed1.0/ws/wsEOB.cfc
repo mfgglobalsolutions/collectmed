@@ -84,7 +84,7 @@
 						
 			<cfquery name="getQuote" datasource="#request.datasource#">
 				SELECT QuoteID 
-				FROM Quote
+				FROM quote
 				WHERE patientFnameTBox = '#trim(fname)#' 
 				AND patientLnameTBox = '#trim(lname)#' 
 				AND patientDOBMM = '#trim(month)#' 
@@ -151,7 +151,7 @@
 				
 			<cfquery name="getIntake" datasource="#request.datasource#">
 				SELECT i.IntakeID 
-				FROM Intake i
+				FROM intake i
 				LEFT JOIN Patient p ON i.PatientID = p.PatientID
 				LEFT JOIN Entity e ON e.EntityID = p.EntityID
 				LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID
@@ -221,7 +221,7 @@
 			
 			<cfquery name="getCreatorName" datasource="#trim(request.datasource)#">
 				SELECT FName, LName
-				FROM view_UserAccountParameters 
+				FROM view_useraccountparameters 
 				WHERE UsersID = #trim(UsersID)#
 			</cfquery>
 			
@@ -343,3 +343,5 @@
 </cfcomponent>
 
 	
+
+

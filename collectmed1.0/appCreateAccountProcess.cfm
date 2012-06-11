@@ -78,7 +78,7 @@
 			<!--- store the phones addresses and other client items.                             --->
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="createEntityRecord" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Entity  (SiteID, ObjectTypeID, ClientID)
+				INSERT INTO entity  (SiteID, ObjectTypeID, ClientID)
 				VALUES(#trim(request.Site.getSiteID())#, 1, #trim(ClientID)#);
 				SELECT LAST_INSERT_ID() AS entityID 
 			</cfquery>
@@ -93,7 +93,7 @@
 			<!--- billing and the corporate address and any other address they might send.       --->
 			<!-------------------------------------------------------------------------------------->											
 			<cfquery name="insertAddress" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
+				INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
 				VALUES(#trim(AddressTypeID)#, '#trim(AddressLine1)#', '#trim(AddressLine2)#', '#trim(AddressCity)#', #trim(AddressStateID)#, '#trim(AddressZipCode)#');
 				SELECT LAST_INSERT_ID() AS addressID 
 			</cfquery>
@@ -101,7 +101,7 @@
 			<cfset addressID = insertAddress.addressID>
 			
 			<cfquery name="insertEntityAddress" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EntityAddress  (EntityID, AddressID, IsDefault)
+				INSERT INTO entityaddress  (EntityID, AddressID, IsDefault)
 				VALUES(#trim(EntityID)#, #trim(AddressID)#, 1)					
 			</cfquery>
 					
@@ -117,7 +117,7 @@
 			</cfif>
 			
 			<cfquery name="insertMainPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Phone  (phoneNumber, phoneExtension, PhoneTypeID)
+				INSERT INTO phone  (phoneNumber, phoneExtension, PhoneTypeID)
 				VALUES('#trim(clientMainPhoneNumber)#', '#trim(form.clientMainPhoneNumberExtension)#', 74);
 				SELECT LAST_INSERT_ID() AS phoneID 
 			</cfquery>
@@ -125,7 +125,7 @@
 			<cfset corporateMainPhoneID = insertMainPhone.phoneID>
 			
 			<cfquery name="insertMainEntityPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+				INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 				VALUES(#trim(EntityID)#, #trim(corporateMainPhoneID)#, 1)				
 			</cfquery>
 			
@@ -134,7 +134,7 @@
 			<!--- Start the insert of the administrator account.                                 --->
 			<!-------------------------------------------------------------------------------------->
 			<cfquery name="insertAdministrator" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Entity  (SiteID, ClientID, FName, MName, LName, ObjectTypeID)
+				INSERT INTO entity  (SiteID, ClientID, FName, MName, LName, ObjectTypeID)
 				VALUES(#trim(request.Site.getSiteID())#, '#trim(clientID)#', '#trim(form.administratorFName)#', '#trim(form.administratorMName)#', '#trim(form.administratorLName)#', 2);
 				SELECT LAST_INSERT_ID() AS adminID 
 			</cfquery>			
@@ -157,7 +157,7 @@
 			<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(initialEntryPoint)) />
 						
 			<cfquery name="insertAdministratorUserAccount" datasource="pa_master">
-				INSERT INTO Users  (SiteID, ClientID, EntityID, Entry, EntryPoint)
+				INSERT INTO users  (SiteID, ClientID, EntityID, Entry, EntryPoint)
 				VALUES(#trim(request.Site.getSiteID())#, #trim(ClientID)#, '#trim(administratorID)#', '#trim(Entry)#', '#trim(EntryPoint)#');
 				SELECT LAST_INSERT_ID() AS usersID 
 			</cfquery>		
@@ -166,7 +166,7 @@
 			<!--- Give the administrator the Site administrator Role.                            --->
 			<!-------------------------------------------------------------------------------------->				
 			<cfquery name="insertSiteAdministratorUserRole" datasource="pa_master">
-				INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
+				INSERT INTO usersrole  (UsersID, SiteID, RoleID)
 				VALUES(#trim(insertAdministratorUserAccount.UsersID)#, #trim(request.Site.getSiteID())#, 1)
 			</cfquery>		
 			
@@ -174,7 +174,7 @@
 			<!--- Give the administrator an EOB administrator Role.                              --->
 			<!-------------------------------------------------------------------------------------->				
 			<cfquery name="insertAdministratorUserRole" datasource="pa_master">
-				INSERT INTO UsersRole  (UsersID, SiteID, RoleID)
+				INSERT INTO usersrole  (UsersID, SiteID, RoleID)
 				VALUES(#trim(insertAdministratorUserAccount.UsersID)#, #trim(request.Site.getSiteID())#, 8)
 			</cfquery>		
 			
@@ -186,7 +186,7 @@
 						
 			<cfquery name="checkEmailAddress" datasource="PAClient_#trim(ClientID)#">
 				SELECT Email
-				FROM EmailAddress  
+				FROM emailaddress  
 				WHERE Email = '#trim(administratorEmailAddress)#'
 			</cfquery>
 			
@@ -195,7 +195,7 @@
 			</cfif>
 						
 			<cfquery name="insertAdministratorEmail" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EmailAddress  (EntityID, EmailTypeID, Email, IsDefault)
+				INSERT INTO emailaddress  (EntityID, EmailTypeID, Email, IsDefault)
 				VALUES(#trim(administratorID)#, 82, '#trim(administratorEmailAddress)#', 1);
 				SELECT LAST_INSERT_ID() AS emailID 
 			</cfquery>
@@ -206,7 +206,7 @@
 			<!--- Update the Client table witht he email id of the administrator.                --->
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="updateClientRecord" datasource="pa_master">
-				UPDATE Client  
+				UPDATE client  
 				SET supportEmailID = #trim(administratorEmailID)#, EntityID = #trim(EntityID)#
 				WHERE ClientID = #trim(ClientID)#
 			</cfquery>
@@ -218,7 +218,7 @@
 			</cfif>
 			
 			<cfquery name="insertAdministratorPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Phone  (phoneNumber, phoneExtension, PhoneTypeID)
+				INSERT INTO phone  (phoneNumber, phoneExtension, PhoneTypeID)
 				VALUES('#trim(administratorPhoneNumber)#', '#trim(form.administratorPhoneNumberExtension)#', 74);
 				SELECT LAST_INSERT_ID() AS phoneID 
 			</cfquery>
@@ -226,7 +226,7 @@
 			<cfset administratorPhoneID = insertAdministratorPhone.phoneID>	
 			
 			<cfquery name="insertAdministratorEntityPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+				INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 				VALUES(#trim(EntityID)#, #trim(administratorPhoneID)#, 1)				
 			</cfquery>
 			
@@ -235,7 +235,7 @@
 			<!--- Insert the default Site Administrator group to be used to reassing intakes.    --->
 			<!-------------------------------------------------------------------------------------->						
 	 		<cfquery name="insertAdminWorkGroup" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO WorkGroup  (WorkGroupName, Description, MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd)
+				INSERT INTO workgroup  (WorkGroupName, Description, MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd)
 				VALUES('Site Administrator', 'Administrator 24 hour 7 day a week access.', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM', '1/1/1970 12:01:00 AM', '1/1/1970 11:59:00 PM');				
 				SELECT LAST_INSERT_ID() AS AdminWorkGroupID 
 			</cfquery>	
@@ -244,7 +244,7 @@
 			<!--- Give the administrator the admin workgroup for time access.                    --->
 			<!-------------------------------------------------------------------------------------->				
 			<cfquery name="insertUserWorkGroup" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO UsersWorkGroup  (UsersID, WorkGroupID)
+				INSERT INTO usersworkgroup  (UsersID, WorkGroupID)
 				VALUES(#trim(insertAdministratorUserAccount.UsersID)#, #trim(insertAdminWorkGroup.AdminWorkGroupID)#)
 			</cfquery>					
 			
@@ -253,7 +253,7 @@
 			<!--- Insert the default intake managers group to be used to reassing intakes.       --->
 			<!-------------------------------------------------------------------------------------->						
 	 		<cfquery name="insertWorkGroup" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO WorkGroup  (WorkGroupName, Description, MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd)
+				INSERT INTO workgroup  (WorkGroupName, Description, MondayStart, MondayEnd, TuesdayStart, TuesdayEnd, WednesdayStart, WednesdayEnd, ThursdayStart, ThursdayEnd, FridayStart, FridayEnd, SaturdayStart, SaturdayEnd, SundayStart, SundayEnd)
 				VALUES('Intake Manager', 'Intke Managers who deal with administrative tasks of intakes.', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM', '1/1/1970 7:00:00 AM', '1/1/1970 7:30:00 PM')				
 			</cfquery>	
 						
@@ -325,3 +325,15 @@
 		<cfdump var="#qAddresses#" expand="no">
 		
 	</cfif>	
+
+
+
+
+
+
+
+
+
+
+
+

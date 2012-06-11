@@ -69,8 +69,8 @@
 		pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.GroupNumber, pic.GroupName, IFNULL(pic.Relationship, -1) AS Relationship, 
 		pic.Deductible, pic.PayPercentage, 
 		ic.InsuranceCompanyName, ic.InsuranceCompanyDBA, ic.OCNANumber, ic.InsuranceCompanyURL, ic.EntityID AS icEntityID
-		FROM PatientInsuranceCompany pic
-		INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+		FROM patientinsurancecompany pic
+		INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 		WHERE pic.patientID = #trim(patientID)# AND pic.recordID = #trim(picID)#		
 	</cfquery>	
 	
@@ -541,3 +541,5 @@
 --->	
 	
 				
+
+

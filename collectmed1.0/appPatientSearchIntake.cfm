@@ -173,8 +173,8 @@
 		<cfsavecontent variable="sqlStatement">			
 			<cfoutput>
 				SELECT p.EntityID, p.PatientID, e.PrefixName, e.FName, LEFT(e.Mname, 1) AS Mname, e.LName, e.SSN, e.DOB, e.Sex, e.Weight, e.HeightinInches, e.MaritalStatus <!---, a.addressline1, a.addressline2, City, StateID, sli.ItemNameDisplay, ZipCode--->   
-				FROM Patient p
-				INNER JOIN Entity e ON p.EntityID = e.EntityID				
+				FROM patient p
+				INNER JOIN entity e ON p.EntityID = e.EntityID				
 				WHERE 1 =1 
 				<cfif form.LName NEQ "">
 					AND e.LName LIKE '#trim(form.LName)#%'
@@ -349,3 +349,5 @@
 					}					
 					window.opener.checkIntakeExists();*/
 --->	
+
+

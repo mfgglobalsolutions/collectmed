@@ -364,7 +364,7 @@
 	
 		<cfquery name="qGetTaskAssignment" datasource="#trim(request.datasource)#">
 	  		SELECT TaskAssignmentID,TaskID,UsersID,DateCreated,AssignorID,Note
-			FROM TaskAssignment  
+			FROM taskassignment  
 			WHERE TaskAssignmentID = #trim(arguments.TaskAssignmentID)# 
 		</cfquery>
 		
@@ -724,7 +724,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO TaskAssignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS TaskAssignmentID ">
+				<cfset sqlStatement = "INSERT INTO taskassignment  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS TaskAssignmentID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -886,7 +886,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getTaskAssignmentQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM TaskAssignment   
+				FROM taskassignment   
 				WHERE 1=1
 					<cfif TaskAssignmentID NEQ "" AND IsNumeric(TaskAssignmentID)>AND TaskAssignmentID = #TaskAssignmentID#</cfif>
 					<cfif TaskAssignmentID_IN NEQ "">AND TaskAssignmentID IN(#trim(TaskAssignmentID_IN)#)</cfif>
@@ -963,5 +963,7 @@
 
 	
 </cfcomponent>
+
+
 
 

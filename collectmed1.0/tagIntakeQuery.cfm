@@ -48,7 +48,7 @@
 		i.CPAPStudyPerformedAt3, IFNULL(e.Sex,-1) AS OPTION_3a_CBox_PatientSex, i.Equipment1NoteTBox, i.Equipment2NoteTBox, i.Equipment3NoteTBox, 
 		i.Equipment4NoteTBox, i.Equipment5NoteTBox, i.OPTION_SkilledNursing, i.SkilledNursingName, i.SkilledNursingTelephone, i.active, i.closingInvoiceNumber,	
 		ih.*
-		FROM Intake i 
+		FROM intake i 
 		LEFT JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID	
 		LEFT JOIN Patient p ON i.PatientID = p.PatientID
 		LEFT JOIN Entity e ON e.EntityID = p.EntityID 		

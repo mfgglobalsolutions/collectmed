@@ -449,7 +449,7 @@
 	
 		<cfquery name="qGetLog" datasource="#trim(request.datasource)#">
 	  		SELECT LogID,Code,IPaddress,LogText,Active,InactiveCode,DateCreated,DateModified
-			FROM Log  
+			FROM log  
 			WHERE LogID = #trim(arguments.LogID)# 
 		</cfquery>
 		
@@ -810,7 +810,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Log  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS LogID ">
+				<cfset sqlStatement = "INSERT INTO log  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS LogID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -978,7 +978,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getLogQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Log   
+				FROM log   
 				WHERE 1=1
 					<cfif LogID NEQ "" AND IsNumeric(LogID)>AND LogID = #LogID#</cfif>
 					<cfif LogID_IN NEQ "">AND LogID IN(#trim(LogID_IN)#)</cfif>
@@ -1061,5 +1061,7 @@
 
 	
 </cfcomponent>
+
+
 
 

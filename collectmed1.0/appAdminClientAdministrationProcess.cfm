@@ -46,7 +46,7 @@
 			</cfloop>
 						
 			<cfquery name="archiveOldPhoneNumbers" datasource="#trim(request.datasource)#">
-				UPDATE EntityPhone 
+				UPDATE entityphone 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)# <cfif phonenumberDBIDs NEQ ""> AND PhoneID NOT IN(#trim(phonenumberDBIDs)#)</cfif>	
 			</cfquery>
@@ -78,13 +78,13 @@
 				<cfif NOT IsNumeric(phoneDBID)> 						
 																	
 					<cfquery name="insertPhoneNumber" datasource="#trim(request.datasource)#">
-						INSERT INTO Phone  (EntityID, PhoneTypeID, PhoneNumber, PhoneExtension)
+						INSERT INTO phone  (EntityID, PhoneTypeID, PhoneNumber, PhoneExtension)
 						VALUES(#trim(EntityID)#, #trim(PhoneTypeID)#, '#trim(PhoneNumberE)#', '#trim(PhoneExtensionE)#');
 						SELECT LAST_INSERT_ID() AS phoneID 
 					</cfquery>
 									
 					<cfquery name="insertEntityPhoneRecord" datasource="#trim(request.datasource)#">
-						INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+						INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 						VALUES(#trim(EntityID)#, #trim(phoneID)#, #trim(IsDefault)#);
 						SELECT LAST_INSERT_ID() AS phoneID 
 					</cfquery>				
@@ -94,7 +94,7 @@
 				<cfelse>
 				
 					<cfquery name="updatePhoneNumber" datasource="#trim(request.datasource)#">
-						UPDATE Phone 
+						UPDATE phone 
 						SET PhoneTypeID = #trim(PhoneTypeID)#, PhoneNumber = '#trim(PhoneNumberE)#', PhoneExtension = '#trim(PhoneExtensionE)#' 
 						WHERE PhoneID = #trim(phoneDBID)#					
 					</cfquery>		
@@ -126,7 +126,7 @@
 			</cfloop>
 			
 			<cfquery name="archiveOldEmailAddresses" datasource="#trim(request.datasource)#">
-				UPDATE EmailAddress 
+				UPDATE emailaddress 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)# <cfif emailaddressDBIDs NEQ ""> AND EmailAddressID NOT IN(#trim(emailaddressDBIDs)#)</cfif>	
 			</cfquery>
@@ -152,7 +152,7 @@
 												
 					<cfquery name="checkEmailAddress" datasource="#request.datasource#">
 						SELECT Email
-						FROM EmailAddress  
+						FROM emailaddress  
 						WHERE Email = '#trim(EmailAddressE)#'
 					</cfquery>
 					
@@ -162,7 +162,7 @@
 						
 								
 					<cfquery name="insertEmailAddress" datasource="#trim(request.datasource)#">
-						INSERT INTO EmailAddress  (EntityID, EmailTypeID, Email, IsDefault)
+						INSERT INTO emailaddress  (EntityID, EmailTypeID, Email, IsDefault)
 						VALUES(#trim(EntityID)#, #trim(EmailTypeID)#, '#trim(EmailAddressE)#', #trim(IsDefault)#);
 						SELECT LAST_INSERT_ID() AS emailID 
 					</cfquery>
@@ -172,7 +172,7 @@
 				<cfelse>
 				
 					<cfquery name="updateEmailAddress" datasource="#trim(request.datasource)#">
-						UPDATE EmailAddress 
+						UPDATE emailaddress 
 						SET EmailTypeID = #trim(EmailTypeID)#, Email = '#trim(EmailAddressE)#'
 						WHERE EmailAddressID = #trim(emailaddressDBID)#					
 					</cfquery>
@@ -204,7 +204,7 @@
 			</cfloop>
 			
 			<cfquery name="archiveOldAddresses" datasource="#trim(request.datasource)#">
-				UPDATE EntityAddress 
+				UPDATE entityaddress 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)# <cfif addressDBIDs NEQ ""> AND AddressID NOT IN(#trim(AddressDBIDs)#)</cfif>	
 			</cfquery>
@@ -233,13 +233,13 @@
 				<cfif NOT IsNumeric(AddressDBID)> 					
 												
 					<cfquery name="insertAddress" datasource="#trim(request.datasource)#">
-						INSERT INTO Address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
+						INSERT INTO address  (AddressTypeID, AddressLine1, AddressLine2, City, StateID, ZipCode)
 						VALUES(#trim(AddressTypeID)#, '#trim(AddressLine1)#', '#trim(AddressLine2)#', '#trim(City)#', #trim(StateID)#, '#trim(ZipCode)#');
 						SELECT LAST_INSERT_ID() AS addressID 
 					</cfquery>
 														
 					<cfquery name="insertEntityAddress" datasource="#trim(request.datasource)#">
-						INSERT INTO EntityAddress  (EntityID, AddressID, IsDefault)
+						INSERT INTO entityaddress  (EntityID, AddressID, IsDefault)
 						VALUES(#trim(EntityID)#, #trim(insertAddress.AddressID)#, #trim(IsDefault)#)						
 					</cfquery>
 					
@@ -248,7 +248,7 @@
 				<cfelse>
 				
 					<cfquery name="updateAddress" datasource="#trim(request.datasource)#">
-						UPDATE Address 
+						UPDATE address 
 						SET AddressTypeID = #trim(AddressTypeID)#, AddressLine1 = '#trim(AddressLine1)#', AddressLine2 = '#trim(AddressLine2)#', City = '#trim(City)#', StateID = #trim(StateID)#, ZipCode = '#trim(ZipCode)#'
 						WHERE AddressID = #trim(AddressDBID)#					
 					</cfquery>
@@ -304,7 +304,7 @@
 				</cfloop>
 				
 				<cfquery name="archiveOldCreditCards" datasource="#trim(request.datasource)#">
-					UPDATE EntityRS 
+					UPDATE entityrs 
 					SET Active = 0, InactiveCode = 68
 					WHERE EntityID = #trim(EntityID)# <cfif CreditCardDBIDs NEQ ""> AND EntityRSID NOT IN(#trim(CreditCardDBIDs)#)</cfif>	
 				</cfquery>
@@ -361,7 +361,7 @@
 					<cfif NOT IsNumeric(ccDBID)> 					
 																						
 						<cfquery name="insertEntityRS" datasource="#trim(request.datasource)#">
-							INSERT INTO EntityRS  (EntityID, ColM, ColE, ColL, ColI, ColA, ColC, ColR, IsDefault)
+							INSERT INTO entityrs  (EntityID, ColM, ColE, ColL, ColI, ColA, ColC, ColR, IsDefault)
 							VALUES(#trim(EntityID)#, '#trim(EccCreditCardTypeID)#', '#trim(EccCardHolderName)#', '#trim(EccCardNumber)#', '#trim(EccExpirationMonth)#', '#trim(EccExpirationYear)#', '#trim(EccVerificationNumber)#', '#trim(EccBillingAddressID)#', #trim(ccIsDefault)#);
 							SELECT LAST_INSERT_ID() AS EntityRSID 
 						</cfquery>						
@@ -369,7 +369,7 @@
 					<cfelse>				
 						
 						<cfquery name="updateEntityRS" datasource="#trim(request.datasource)#">
-							UPDATE EntityRS 
+							UPDATE entityrs 
 							SET ColM = '#trim(EccCreditCardTypeID)#', ColE = '#trim(EccCardHolderName)#', ColL = '#trim(EccCardNumber)#', ColI = '#trim(EccExpirationMonth)#', ColA = '#trim(EccExpirationYear)#', ColC = '#trim(EccVerificationNumber)#', ColR = '#trim(EccBillingAddressID)#', IsDefault = #trim(ccIsDefault)#						
 							WHERE EntityRSID = #trim(ccDBID)#					
 						</cfquery>	
@@ -397,14 +397,14 @@
 				
 				<cfquery name="getEntitySSID" datasource="#trim(request.datasource)#">
 					SELECT EntitySSID
-					FROM EntitySS  
+					FROM entityss  
 					WHERE EntityID = #trim(EntityID)#
 				</cfquery> 
 				
 				<cfif getEntitySSID.RecordCount EQ 1>
 							
 					<cfquery name="insertEntitySS" datasource="#trim(request.datasource)#">
-						UPDATE EntitySS  
+						UPDATE entityss  
 						SET ColM = '#ListGetAt(Cols, 1, "|")#', ColE = '#ListGetAt(Cols, 2, "|")#', ColR = '#ListGetAt(Cols, 3, "|")#'						
 						WHERE EntityID = #trim(EntityID)#
 					</cfquery>
@@ -431,7 +431,7 @@
 				<cfelse>
 					
 					<cfquery name="insertEntitySS" datasource="#trim(request.datasource)#">
-						INSERT INTO EntitySS  (EntityID, ColM, ColE, ColR, IsDefault)
+						INSERT INTO entityss  (EntityID, ColM, ColE, ColR, IsDefault)
 						VALUES(#trim(EntityID)#, '#ListGetAt(Cols, 1, "|")#', '#ListGetAt(Cols, 2, "|")#', '#ListGetAt(Cols, 3, "|")#', 1);
 						SELECT LAST_INSERT_ID() AS EntitySSID 
 					</cfquery>
@@ -493,3 +493,18 @@
 	<cflocation addtoken="No" url="appAdminClientAdministration.cfm?msg=#URLEncodedFormat(trim(msg))#">		
 	
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

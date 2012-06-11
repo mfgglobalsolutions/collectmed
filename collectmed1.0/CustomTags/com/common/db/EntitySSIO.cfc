@@ -537,7 +537,7 @@
 	
 		<cfquery name="qGetEntitySS" datasource="#trim(request.datasource)#">
 	  		SELECT EntitySSID,EntityID,ColM,ColE,ColR,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntitySS  
+			FROM entityss  
 			WHERE EntitySSID = #trim(arguments.EntitySSID)# 
 		</cfquery>
 		
@@ -905,7 +905,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EntitySS  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntitySSID ">
+				<cfset sqlStatement = "INSERT INTO entityss  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS EntitySSID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1079,7 +1079,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEntitySSQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM EntitySS   
+				FROM entityss   
 				WHERE 1=1
 					<cfif EntitySSID NEQ "" AND IsNumeric(EntitySSID)>AND EntitySSID = #EntitySSID#</cfif>
 					<cfif EntitySSID_IN NEQ "">AND EntitySSID IN(#trim(EntitySSID_IN)#)</cfif>
@@ -1168,5 +1168,7 @@
 
 	
 </cfcomponent>
+
+
 
 

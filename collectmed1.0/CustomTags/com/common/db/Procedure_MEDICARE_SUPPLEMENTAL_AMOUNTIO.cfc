@@ -447,7 +447,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(request.datasource)#">
 	  		SELECT Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID,ProcedureID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT  
+			FROM procedure_medicare_supplemental_amount  
 			WHERE Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID = #trim(arguments.Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID)# 
 		</cfquery>
 		
@@ -814,7 +814,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID ">
+				<cfset sqlStatement = "INSERT INTO procedure_medicare_supplemental_amount  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -982,7 +982,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getProcedure_MEDICARE_SUPPLEMENTAL_AMOUNTQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT   
+				FROM procedure_medicare_supplemental_amount   
 				WHERE 1=1
 					<cfif Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID NEQ "" AND IsNumeric(Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID)>AND Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID = #Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID#</cfif>
 					<cfif Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID_IN NEQ "">AND Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID IN(#trim(Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID_IN)#)</cfif>
@@ -1065,5 +1065,7 @@
 
 	
 </cfcomponent>
+
+
 
 

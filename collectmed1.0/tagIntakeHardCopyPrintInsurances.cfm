@@ -30,8 +30,8 @@
 		pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, 
 		pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersSex, pic.PolicyHoldersStateID, 
 		pic.PolicyHoldersZipCode, pic.PolicyNumber, pic.PrimSecTer, pic.Relationship, ic.EntityID, pic.recordID 
-		FROM PatientInsuranceCompany pic
-		INNER JOIN InsuranceCompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
+		FROM patientinsurancecompany pic
+		INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
 		WHERE  pic.patientID = #trim(patientID)# 
 		Order By  pic.PrimSecTer
 	</cfquery> 					
@@ -964,4 +964,6 @@
 	<!---****************************************************Tertiary Insurance Above*********************************************--->		
 												
 	
+
+
 

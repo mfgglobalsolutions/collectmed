@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "StandardListID") AND stValues.StandardListID NEQ 0>
 				<cfquery name="qGetStandardList" datasource="#trim(variables.ds)#">
 			  		SELECT StandardListID,SiteID,ListName,ListDescription,Active,InactiveCode,DateCreated,DateModified
-					FROM StandardList  
+					FROM standardlist  
 					WHERE StandardListID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.StandardListID#" /> 
 				</cfquery>		
 				<cfif qGetStandardList.Recordcount LTE 0>
@@ -261,7 +261,7 @@
 	
 		<cfquery name="qGetStandardList" datasource="#trim(variables.ds)#">
 	  		SELECT StandardListID,SiteID,ListName,ListDescription,Active,InactiveCode,DateCreated,DateModified
-			FROM StandardList  
+			FROM standardlist  
 			WHERE StandardListID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.StandardListID)#" /> 
 		</cfquery>
 		
@@ -289,7 +289,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateStandardList" datasource="#trim(variables.ds)#">
-				INSERT INTO StandardList (SiteID,ListName,ListDescription,InactiveCode)
+				INSERT INTO standardlist (SiteID,ListName,ListDescription,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -377,7 +377,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateStandardList" datasource="#trim(variables.ds)#">
-				UPDATE StandardList  SET
+				UPDATE standardlist  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -435,7 +435,7 @@
 
 		<cfquery name="qDeleteStandardList" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM StandardList
+			FROM standardlist
 			WHERE StandardListID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getStandardListID())#" /> 
 		</cfquery>
 
@@ -457,5 +457,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

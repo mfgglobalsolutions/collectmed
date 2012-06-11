@@ -487,7 +487,7 @@
 	
 		<cfquery name="qGetNote" datasource="#trim(request.datasource)#">
 	  		SELECT NoteID,ClientID,ObjectID,InstanceID,Note,Active,InactiveCode,DateCreated,DateModified
-			FROM Note  
+			FROM note  
 			WHERE NoteID = #trim(arguments.NoteID)# 
 		</cfquery>
 		
@@ -856,7 +856,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Note  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS NoteID ">
+				<cfset sqlStatement = "INSERT INTO note  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS NoteID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1027,7 +1027,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getNoteQuery" datasource="#trim(request.datasource)#">
 				SELECT #trim(Fields)#
-				FROM Note   
+				FROM note   
 				WHERE 1=1
 					<cfif NoteID NEQ "" AND IsNumeric(NoteID)>AND NoteID = #NoteID#</cfif>
 					<cfif NoteID_IN NEQ "">AND NoteID IN(#trim(NoteID_IN)#)</cfif>
@@ -1113,5 +1113,7 @@
 
 	
 </cfcomponent>
+
+
 
 

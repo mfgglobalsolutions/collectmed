@@ -38,7 +38,7 @@
 			<cfif StructKeyExists(stValues, "Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID") AND stValues.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID NEQ 0>
 				<cfquery name="qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(arguments.ds)#">
 			  		SELECT Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID,ClaimID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-					FROM Claim_MEDICARE_SUPPLEMENTAL_AMOUNT  
+					FROM claim_medicare_supplemental_amount  
 					WHERE Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Claim_MEDICARE_SUPPLEMENTAL_AMOUNTID#" /> 
 				</cfquery>		
 				<cfif qGetClaim_MEDICARE_SUPPLEMENTAL_AMOUNT.Recordcount LTE 0>

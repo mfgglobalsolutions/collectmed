@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "RecordID") AND stValues.RecordID NEQ 0>
 				<cfquery name="qGetIntakeAutoSave" datasource="#trim(variables.ds)#">
 			  		SELECT RecordID,UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode,DateCreated,DateModified
-					FROM IntakeAutoSave  
+					FROM intakeautosave  
 					WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.RecordID#" /> 
 				</cfquery>		
 				<cfif qGetIntakeAutoSave.Recordcount LTE 0>
@@ -283,7 +283,7 @@
 	
 		<cfquery name="qGetIntakeAutoSave" datasource="#trim(variables.ds)#">
 	  		SELECT RecordID,UsersID,PatientFName,PatientLName,IntakeXML,Active,InactiveCode,DateCreated,DateModified
-			FROM IntakeAutoSave  
+			FROM intakeautosave  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -312,7 +312,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateIntakeAutoSave" datasource="#trim(variables.ds)#">
-				INSERT INTO IntakeAutoSave (UsersID,PatientFName,PatientLName,IntakeXML,InactiveCode)
+				INSERT INTO intakeautosave (UsersID,PatientFName,PatientLName,IntakeXML,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localPatientFName)#" cfsqltype="CF_SQL_VARCHAR" />,						
@@ -399,7 +399,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateIntakeAutoSave" datasource="#trim(variables.ds)#">
-				UPDATE IntakeAutoSave  SET
+				UPDATE intakeautosave  SET
 					
 					UsersID =						
 						<cfqueryparam value="#trim(localUsersID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -456,7 +456,7 @@
 
 		<cfquery name="qDeleteIntakeAutoSave" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM IntakeAutoSave
+			FROM intakeautosave
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getRecordID())#" /> 
 		</cfquery>
 
@@ -478,5 +478,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

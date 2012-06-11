@@ -18,7 +18,7 @@
 				
 				<cfquery name="getEntityInformation" datasource="PAClient_#trim(ClientID)#">
 					SELECT *
-					FROM Entity  
+					FROM entity  
 					WHERE EntityID = #trim(EntityID)#
 				</cfquery>
 				
@@ -52,7 +52,7 @@
 			
 			<cfquery name="getEmailAddresses" datasource="PAClient_#trim(ClientID)#">
 				SELECT EmailAddressID, EmailTypeID, Email, IsDefault
-				FROM EmailAddress
+				FROM emailaddress
 				WHERE EntityID = #trim(EntityID)# 
 				<cfif IsNumeric(Active)>
 					AND Active = #trim(Active)#	
@@ -92,7 +92,7 @@
 				SELECT ea.IsDefault, a.AddressID, a.attention, a.SiteID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, 
 				a.ZipCode, a.CountryID, a.Active, a.DateCreated, sli2.ItemNameDisplay AS AddressType,
 				sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr
-				FROM EntityAddress ea INNER JOIN Address a ON ea.AddressID = a.AddressID
+				FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID
 				INNER JOIN pa_master.StandardListItem sli	ON a.stateID = sli.StandardListItemID		
 				INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
 				WHERE ea.EntityID = #trim(EntityID)# 				
@@ -131,7 +131,7 @@
 			
 			<cfquery name="getDefaultAddress" datasource="PAClient_#trim(ClientID)#">
 				SELECT a.AddressID
-				FROM EntityAddress ea INNER JOIN Address a ON ea.AddressID = a.AddressID 				
+				FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID 				
 				WHERE ea.EntityID = #trim(EntityID)# AND ea.Active = 1 AND ea.IsDefault = 1				
 			</cfquery>
 						
@@ -164,8 +164,8 @@
 			
 			<cfquery name="getDefaultAddress" datasource="PAClient_#trim(ClientID)#">
 				SELECT ea.IsDefault, a.AddressID, a.AddressTypeID, sli2.ItemNameDisplay AS AddressType, a.AddressLine1, a.AddressLine2, a.City, a.StateID, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr, a.ZipCode, a.CountryID 
-				FROM EntityAddress ea 
-				INNER JOIN Address a ON ea.AddressID = a.AddressID 	
+				FROM entityaddress ea 
+				INNER JOIN address a ON ea.AddressID = a.AddressID 	
 				INNER JOIN pa_master.StandardListItem sli	ON a.stateID = sli.StandardListItemID		
 				INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID	
 				WHERE ea.EntityID = #trim(EntityID)# AND ea.Active = 1		
@@ -256,7 +256,7 @@
 		<cftry>
 												
 			<cfquery name="archiveEntityAddress" datasource="PAClient_#trim(ClientID)#">
-				UPDATE EntityAddress 
+				UPDATE entityaddress 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)# AND AddressID = #trim(AddressID)#	
 			</cfquery>	
@@ -289,7 +289,7 @@
 		<cftry>
 				
 			<cfquery name="archiveEntityAddress" datasource="PAClient_#trim(ClientID)#">
-				UPDATE EntityAddress 
+				UPDATE entityaddress 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)#
 				<cfif AddressIDNotIn NEQ "">
@@ -327,7 +327,7 @@
 			
 			<cfquery name="getPhones" datasource="PAClient_#trim(ClientID)#">
 				SELECT ep.IsDefault, p.PhoneID, p.SiteID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.Active			
-				FROM EntityPhone ep INNER JOIN Phone p ON ep.PhoneID = p.PhoneID 				
+				FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID 				
 				WHERE ep.EntityID = #trim(EntityID)# 
 				<cfif IsNumeric(Active)>
 					AND ep.Active = #trim(Active)#	
@@ -363,7 +363,7 @@
 			
 			<cfquery name="getDefaultPhone" datasource="PAClient_#trim(ClientID)#">
 				SELECT p.PhoneID
-				FROM EntityPhone ep INNER JOIN Phone p ON ep.PhoneID = p.PhoneID 										
+				FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID 										
 				WHERE ep.EntityID = #trim(EntityID)# AND ep.Active = 1
 				ORDER BY ep.IsDefault
 				LIMIT 1	
@@ -399,7 +399,7 @@
 			
 			<cfquery name="getDefaultPhone" datasource="PAClient_#trim(ClientID)#">
 				SELECT p.PhoneID, p.PhoneNumber, p.phoneExtension 
-				FROM EntityPhone ep INNER JOIN Phone p ON ep.PhoneID = p.PhoneID 										
+				FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID 										
 				WHERE ep.EntityID = #trim(EntityID)# AND ep.Active = 1
 				ORDER BY ep.IsDefault DESC	
 				LIMIT 1
@@ -441,7 +441,7 @@
 			
 			<cfquery name="getDefaultPhone" datasource="PAClient_#trim(ClientID)#">
 				SELECT p.PhoneID, p.PhoneNumber, p.phoneExtension 
-				FROM EntityPhone ep INNER JOIN Phone p ON ep.PhoneID = p.PhoneID 										
+				FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID 										
 				WHERE ep.EntityID = #trim(EntityID)# AND ep.Active = 1 AND p.PhoneTypeID = 87
 				ORDER BY ep.IsDefault
 				LIMIT 1	
@@ -535,7 +535,7 @@
 		<cftry>
 												
 			<cfquery name="archiveEntityPhone" datasource="PAClient_#trim(ClientID)#">
-				UPDATE EntityPhone 
+				UPDATE entityphone 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)# AND PhoneID = #trim(PhoneID)#	
 			</cfquery>	
@@ -568,7 +568,7 @@
 		<cftry>
 				
 			<cfquery name="archiveEntityPhone" datasource="PAClient_#trim(ClientID)#">
-				UPDATE EntityPhone 
+				UPDATE entityphone 
 				SET Active = 0, InactiveCode = 68
 				WHERE EntityID = #trim(EntityID)#
 				<cfif PhoneIDNotIn NEQ "">
@@ -630,3 +630,6 @@
 </cfcomponent>
 
 		
+
+
+

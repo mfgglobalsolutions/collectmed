@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEOB_MEDICARE_CLAIMMODIFIERCode" datasource="#trim(arguments.ds)#">
-				INSERT INTO EOB_MEDICARE_CLAIMMODIFIERCode (StandardListItemID,Modifier,Description,Active,InactiveCode)
+				INSERT INTO eob_medicare_claimmodifiercode (StandardListItemID,Modifier,Description,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localStandardListItemID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localModifier)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -111,7 +111,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEOB_MEDICARE_CLAIMMODIFIERCode" datasource="#trim(arguments.ds)#">
-				UPDATE EOB_MEDICARE_CLAIMMODIFIERCode  SET
+				UPDATE eob_medicare_claimmodifiercode  SET
 					
 					StandardListItemID =						
 						<cfqueryparam value="#trim(localStandardListItemID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -165,7 +165,7 @@
 
 		<cfquery name="qDeleteEOB_MEDICARE_CLAIMMODIFIERCode" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EOB_MEDICARE_CLAIMMODIFIERCode
+			FROM eob_medicare_claimmodifiercode
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getRecordID())#" /> 
 		</cfquery>
 
@@ -185,7 +185,7 @@
 	
 		<cfquery name="qGetEOB_MEDICARE_CLAIMMODIFIERCode" datasource="#trim(arguments.ds)#">
 	  		SELECT RecordID,StandardListItemID,Modifier,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_MEDICARE_CLAIMMODIFIERCode  
+			FROM eob_medicare_claimmodifiercode  
 			WHERE RecordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.RecordID)#" /> 
 		</cfquery>
 		
@@ -208,5 +208,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

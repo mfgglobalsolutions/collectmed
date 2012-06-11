@@ -32,7 +32,7 @@
 <!------------------------------------------------------------------>	
 	<cfquery name="getPageHits" datasource="#datasource#">
 		SELECT COUNT(PageHit.pageID) AS NumberOfHits, PageHit.PageID, Page.PageName
-		FROM PageHit INNER JOIN Page ON PageHit.PageID = Page.PageID
+		FROM pagehit INNER JOIN page ON PageHit.PageID = Page.PageID
 		WHERE PageHit.DateCreated >= #Today#
 		GROUP BY PageHit.PageID, Page.PageName
 	</cfquery>
@@ -41,5 +41,7 @@
 	
 <cfoutput>This page is not yet done.</cfoutput>
 <cfdump var="#getPageHits#">
+
+
 
 

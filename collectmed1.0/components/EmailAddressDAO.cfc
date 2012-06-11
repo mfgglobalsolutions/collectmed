@@ -26,7 +26,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEmailAddress" datasource="#trim(arguments.ds)#">
-				INSERT INTO EmailAddress (SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode)
+				INSERT INTO emailaddress (SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localSiteID))>						
 						<cfqueryparam value="#trim(localSiteID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -123,7 +123,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEmailAddress" datasource="#trim(arguments.ds)#">
-				UPDATE EmailAddress  SET
+				UPDATE emailaddress  SET
 					
 					SiteID =				
 					<cfif IsNumeric(trim(localSiteID))>						
@@ -187,7 +187,7 @@
 
 		<cfquery name="qDeleteEmailAddress" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EmailAddress
+			FROM emailaddress
 			WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getEmailAddressID())#" /> 
 		</cfquery>
 
@@ -207,7 +207,7 @@
 	
 		<cfquery name="qGetEmailAddress" datasource="#trim(arguments.ds)#">
 	  		SELECT EmailAddressID,SiteID,EntityID,EmailTypeID,Email,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EmailAddress  
+			FROM emailaddress  
 			WHERE EmailAddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.EmailAddressID)#" /> 
 		</cfquery>
 		
@@ -230,5 +230,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

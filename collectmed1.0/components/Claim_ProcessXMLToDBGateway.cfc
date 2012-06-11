@@ -60,7 +60,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT Claim_ProcessXMLToDBID
-			FROM Claim_ProcessXMLToDB
+			FROM claim_processxmltodb
 			WHERE Claim_ProcessXMLToDBID IN(#trim(arguments.idList)#) 
 		</cfquery>
 
@@ -89,7 +89,7 @@
 
 		<cfquery name="qRead" datasource="#trim(arguments.ds)#">
 			SELECT #trim(arguments.fieldList)#
-			FROM Claim_ProcessXMLToDB
+			FROM claim_processxmltodb
 			WHERE Claim_ProcessXMLToDBID IN(#trim(arguments.idList)#) 
 			LIMIT 100
 		</cfquery>

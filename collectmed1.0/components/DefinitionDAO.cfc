@@ -23,7 +23,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateDefinition" datasource="#trim(arguments.ds)#">
-				INSERT INTO Definition (Title,Definition,Active,InactiveCode)
+				INSERT INTO definition (Title,Definition,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localTitle)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localDefinition) NEQ "" AND trim(localDefinition) NEQ "@@" AND trim(localDefinition) NEQ "NULL">						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateDefinition" datasource="#trim(arguments.ds)#">
-				UPDATE Definition  SET
+				UPDATE definition  SET
 					
 					Title =						
 						<cfqueryparam value="#trim(localTitle)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -158,7 +158,7 @@
 
 		<cfquery name="qDeleteDefinition" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Definition
+			FROM definition
 			WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getDefinitionID())#" /> 
 		</cfquery>
 
@@ -178,7 +178,7 @@
 	
 		<cfquery name="qGetDefinition" datasource="#trim(arguments.ds)#">
 	  		SELECT DefinitionID,Title,Definition,Active,InactiveCode,DateCreated,DateModified
-			FROM Definition  
+			FROM definition  
 			WHERE DefinitionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.DefinitionID)#" /> 
 		</cfquery>
 		
@@ -201,5 +201,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

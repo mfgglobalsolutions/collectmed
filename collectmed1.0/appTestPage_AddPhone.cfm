@@ -2,7 +2,7 @@
 REMEMBER to CLEAR the template cache after you fine the EntityID of the person
 
 SELECT     *
-FROM         Entity
+FROM entity
 WHERE     (Lname = 'BROWN') AND (Fname = 'Peggy')
 
 
@@ -15,7 +15,7 @@ PUT this code in appTestPage2.cfm which is registered.
 <cfoutput>
 
 cfquery name="insertNewUserPhone" datasource="#trim(request.datasource)#">
-	INSERT INTO Phone  (phoneNumber, phoneExtension, PhoneTypeID)
+	INSERT INTO phone  (phoneNumber, phoneExtension, PhoneTypeID)
 	VALUES('#trim(NewUserPhoneNumber)#', '', 74);
 	SELECT LAST_INSERT_ID() AS phoneID 
 /cfquery>
@@ -23,9 +23,12 @@ cfquery name="insertNewUserPhone" datasource="#trim(request.datasource)#">
 cfset newUserPhoneID = insertNewUserPhone.phoneID>	
 			
 cfquery name="insertNewUserEntityPhone" datasource="#trim(request.datasource)#">
-	INSERT INTO EntityPhone  (EntityID, PhoneID, IsDefault)
+	INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
 	VALUES(146095, '#trim(newUserPhoneID)#', 1)				
 /cfquery>
 
 
 </cfoutput>
+
+
+

@@ -15,7 +15,7 @@
 		<!--- Add IMChat into the Database.                                                  --->
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="addIMChat" datasource="#trim(request.datasource)#">
-			INSERT INTO IMChat  (UsersIDFrom, UsersIDTo, IMChatXML)
+			INSERT INTO imchat  (UsersIDFrom, UsersIDTo, IMChatXML)
 			VALUES(#trim(UsersIDFrom)#, #trim(UsersIDTo)#, '<chat><entry><UserID></UserID><UserFName></UserFName><UserLName></UserLName><EntryDate></EntryDate><EntryTime></EntryTime><EntryNote></EntryNote></entry></chat>');	
 			SELECT LAST_INSERT_ID() AS recordID 
 		</cfquery>
@@ -40,7 +40,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getIMChatQuery" datasource="#trim(request.datasource)#">
 			SELECT recordID, IMChatXML, Active, DateCreated
-			FROM IMChat  
+			FROM imchat  
 			WHERE recordID = #trim(recordID)#	
 		</cfquery>
 			
@@ -88,7 +88,7 @@
 			</cfscript>
 				
 			<cfquery name="updateNote" datasource="#trim(request.datasource)#">
-				UPDATE IMChat SET IMChatXML = '#trim(getIMChat)#'
+				UPDATE imchat SET IMChatXML = '#trim(getIMChat)#'
 				WHERE recordID = #trim(recordID)#
 			</cfquery>
 				
@@ -174,7 +174,7 @@
 		
 		<cfquery name="getConversation" datasource="#trim(request.datasource)#">
 			SELECT RecordID
-			FROM IMChat
+			FROM imchat
 			WHERE Active = 1 AND ((UsersIDFrom = #trim(usersID)# AND FromActive = 1) OR (UsersIDTo = #trim(usersID)# AND ToActive = 1) OR (UsersIDJoined1 = #trim(usersID)# AND Joined1Active = 1) OR (UsersIDJoined2 = #trim(usersID)# AND Joined2Active = 1) OR (UsersIDJoined3 = #trim(usersID)# AND Joined3Active = 1))
 		</cfquery>
 		
@@ -198,7 +198,7 @@
 		
 		<cfquery name="getConversation" datasource="#trim(request.datasource)#">
 			SELECT UsersIDFrom, FromActive, UsersIDTo, ToActive, UsersIDJoined1, Joined1Active, UsersIDJoined2, Joined2Active, UsersIDJoined3, Joined3Active
-			FROM IMChat
+			FROM imchat
 			WHERE Active = 1 AND recordID = #trim(recordID)#
 		</cfquery>
 		
@@ -236,7 +236,7 @@
 		
 		<cfquery name="getConversation" datasource="#trim(request.datasource)#">
 			SELECT UsersIDFrom, FromActive, UsersIDTo, ToActive, UsersIDJoined1, Joined1Active, UsersIDJoined2, Joined2Active, UsersIDJoined3, Joined3Active
-			FROM IMChat
+			FROM imchat
 			WHERE Active = 1 AND recordID = #trim(recordID)#
 		</cfquery>
 		
@@ -294,7 +294,7 @@
 			
 		<cfsavecontent variable="sqlStatement">
 			<cfoutput>
-				UPDATE IMChat
+				UPDATE imchat
 				SET #trim(activeRole)# = 0
 				WHERE recordID = #trim(recordID)#
 			</cfoutput>
@@ -310,5 +310,8 @@
 	
 	
 </cfcomponent>
+
+
+
 
 

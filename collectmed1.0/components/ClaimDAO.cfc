@@ -39,7 +39,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateClaim" datasource="#trim(arguments.ds)#">
-				INSERT INTO Claim (InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode)
+				INSERT INTO claim (InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localInterchangeClaimID)#" cfsqltype="CF_SQL_VARCHAR" />,	
 					<cfif trim(localClientAssignedClaimID) NEQ "" AND trim(localClientAssignedClaimID) NEQ "@@" AND trim(localClientAssignedClaimID) NEQ "NULL">						
@@ -228,7 +228,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateClaim" datasource="#trim(arguments.ds)#">
-				UPDATE Claim  SET
+				UPDATE claim  SET
 					
 					InterchangeClaimID =						
 						<cfqueryparam value="#trim(localInterchangeClaimID)#" cfsqltype="CF_SQL_VARCHAR" />,
@@ -379,7 +379,7 @@
 
 		<cfquery name="qDeleteClaim" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Claim
+			FROM claim
 			WHERE ClaimID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getClaimID())#" /> 
 		</cfquery>
 
@@ -399,7 +399,7 @@
 	
 		<cfquery name="qGetClaim" datasource="#trim(arguments.ds)#">
 	  		SELECT ClaimID,InterchangeClaimID,ClientAssignedClaimID,InterchangeID,ProviderID,ClaimType,ClientID,EntityID,HICNumber,ClaimStatusCode,StatusID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3,CrossoverIdentificationCode9,Active,InactiveCode,DateCreated
-			FROM Claim  
+			FROM claim  
 			WHERE ClaimID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.ClaimID)#" /> 
 		</cfquery>
 		
@@ -422,5 +422,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

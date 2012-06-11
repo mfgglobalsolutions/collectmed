@@ -50,7 +50,7 @@
 			<cfif StructKeyExists(stValues, "AddressID") AND stValues.AddressID NEQ 0>
 				<cfquery name="qGetAddress" datasource="#trim(arguments.ds)#">
 			  		SELECT AddressID,SiteID,AddressTypeID,Attention,AddressLine1,AddressLine2,City,StateID,ZipCode,CountryID,Active,InactiveCode,DateCreated,DateModified
-					FROM Address  
+					FROM address  
 					WHERE AddressID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.AddressID#" /> 
 				</cfquery>		
 				<cfif qGetAddress.Recordcount LTE 0>

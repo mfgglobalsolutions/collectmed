@@ -30,7 +30,7 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getWorkGroup" datasource="#trim(request.datasource)#">
 		SELECT COUNT(uwg.WorkGroupID) as NumOfUsers, wg.WorkGroupID, wg.WorkGroupName
-		FROM WorkGroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID
+		FROM workgroup AS wg LEFT JOIN UsersWorkGroup AS uwg ON wg.WorkGroupID = uwg.WorkGroupID
 		WHERE wg.WorkGroupID = #trim(WorkGroupID)#
 		GROUP BY uwg.WorkGroupID, wg.WorkGroupID, wg.WorkGroupName		
 	</cfquery>
@@ -49,7 +49,7 @@
 <!--- Delete the Work Group                                                          --->
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="delWorkGroup" datasource="#trim(request.datasource)#">
-		DELETE FROM WorkGroup
+		DELETE FROM workgroup
 		WHERE WorkGroupID = #trim(WorkGroupID)#
 	</cfquery>	
 	

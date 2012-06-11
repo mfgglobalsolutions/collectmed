@@ -20,12 +20,12 @@
 <!-------------------------------------------------------------------------------------->
 	<cfquery name="getQuote" datasource="#trim(request.datasource)#"> 
 		SELECT QuoteID, ClientID, AssignedToUserID, hidden_UsersID, hidden_TimeStart, callerFNameTBox, callerMInitialTBox, callerLNameTBox, callerPhoneTBox, patientFNameTBox, patientMInitialTBox, patientLNameTBox, roomNumberTBox, bedNumberTBox, patientAddressTBox, patientCityTBox, patientStateTBox, patientZipTBox, patientPhoneTBox, patientDOBMM, patientDOBDD, patientDOBYY, IFNULL(OPTION_3a_CBox_PatientSexMale, 0) AS OPTION_3a_CBox_PatientSexMale, IFNULL(OPTION_3a_CBox_PatientSexFemale, 0) AS OPTION_3a_CBox_PatientSexFemale, patientSSNTBox, patientHeightFeet, patientHeightInches, patientWeightTBox, alternateContactFNameTBox, alternateContactMInitialTBox, alternateContactLNameTBox, alternateContactRelationshipTBox, alternateContactPhoneTBox, alternateContactWorkPhoneTBox, hcpcCode1TBox, hcpcQty1TBox, hcpcProduct1TBox, hcpcDX1TBox, hcpcDiagnosis1TBox, hcpcCost1TBox, hcpcCode2TBox, hcpcQty2TBox, hcpcProduct2TBox, hcpcDX2TBox, hcpcDiagnosis2TBox, hcpcCost2TBox, hcpcCode3TBox, hcpcQty3TBox, hcpcProduct3TBox, hcpcDX3TBox, hcpcDiagnosis3TBox, hcpcCost3TBox, hcpcCode4TBox, hcpcQty4TBox, hcpcProduct4TBox, hcpcDX4TBox, hcpcDiagnosis4TBox, hcpcCost4TBox, hcpcCode5TBox, hcpcQty5TBox, hcpcProduct5TBox, hcpcDX5TBox, hcpcDiagnosis5TBox, hcpcCost5TBox, hcpcCode6TBox, hcpcQty6TBox, hcpcProduct6TBox, hcpcDX6TBox, hcpcDiagnosis6TBox, hcpcCost6TBox, hcpcCode7TBox, hcpcQty7TBox, hcpcProduct7TBox, hcpcDX7TBox, hcpcDiagnosis7TBox, hcpcCost7TBox, hcpcCode8TBox, hcpcQty8TBox, hcpcProduct8TBox, hcpcDX8TBox, hcpcDiagnosis8TBox, hcpcCost8TBox, hcpcCode9TBox, hcpcQty9TBox, hcpcProduct9TBox, hcpcDX9TBox, hcpcDiagnosis9TBox, hcpcCost9TBox, hcpcCode10TBox, hcpcQty10TBox, hcpcProduct10TBox, hcpcDX10TBox, hcpcDiagnosis10TBox, hcpcCost10TBox, primaryInsuranceNameTBox, secondaryInsuranceNameTBox, primaryPolicyNumberTBox, secondaryPolicyNumberTBox,	orderingPhysicianFNameTBox,	orderingPhysicianMInitialTBox, orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox, DateCreated, DateModified 
-		FROM Quote		
+		FROM quote		
 		WHERE quoteID = #trim(quoteID)#
 	</cfquery>	
 
 	<cfquery name="updateQuote" datasource="#trim(request.datasource)#"> 
-		UPDATE Quote		
+		UPDATE quote		
 		SET Active = 0
 		WHERE quoteID = #trim(quoteID)#
 	</cfquery>	
@@ -138,3 +138,4 @@
 		orderingPhysicianPhoneTBox="#trim(getQuote.orderingPhysicianPhoneTBox)#">
 			
 			
+

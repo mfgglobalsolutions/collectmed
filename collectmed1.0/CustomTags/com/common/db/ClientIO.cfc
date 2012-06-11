@@ -841,7 +841,7 @@
 	
 		<cfquery name="qGetClient" datasource="pa_master">
 	  		SELECT ClientID,ClientName,ClientDBA,FederalTaxID,PinNumber,GroupNumber,EntityID,ProviderID,PreferredPayMethod,SupportEmailID,AdministratorEntityID,MainPhoneID,Logo,RecordsperPage,SettingsXML,Active,InactiveCode,DateCreated,DateModified
-			FROM Client  
+			FROM client  
 			WHERE ClientID = #trim(arguments.ClientID)# 
 		</cfquery>
 		
@@ -1239,7 +1239,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO Client  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClientID ">
+				<cfset sqlStatement = "INSERT INTO client  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ClientID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -1440,7 +1440,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getClientQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM Client   
+				FROM client   
 				WHERE 1=1
 					<cfif ClientID NEQ "" AND IsNumeric(ClientID)>AND ClientID = #ClientID#</cfif>
 					<cfif ClientID_IN NEQ "">AND ClientID IN(#trim(ClientID_IN)#)</cfif>
@@ -1556,5 +1556,7 @@
 
 	
 </cfcomponent>
+
+
 
 

@@ -42,7 +42,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getClientAccount" datasource="#trim(request.datasource)#">
 		SELECT u.usersID, e.FName + ' '  + e.LName AS Fullname  
-		FROM Entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
+		FROM entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
 		WHERE u.UsersID = #trim(UsersID)# 			
 	</cfquery>
 	
@@ -58,7 +58,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getUsersWorkGroups" datasource="#trim(request.datasource)#">
 		SELECT WorkGroupID
-		FROM UsersWorkGroup  
+		FROM usersworkgroup  
 		WHERE UsersID = #trim(UsersID)# 		
 	</cfquery>
 	
@@ -116,3 +116,4 @@
 	</cfoutput>
 	
 	
+

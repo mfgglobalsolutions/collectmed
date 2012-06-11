@@ -42,7 +42,7 @@
 			<cfif StructKeyExists(stValues, "Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID") AND stValues.Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID NEQ 0>
 				<cfquery name="qGetProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
 			  		SELECT Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID,ProcedureID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-					FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT  
+					FROM procedure_medicare_supplemental_amount  
 					WHERE Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID#" /> 
 				</cfquery>		
 				<cfif qGetProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT.Recordcount LTE 0>
@@ -269,7 +269,7 @@
 	
 		<cfquery name="qGetProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
 	  		SELECT Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID,ProcedureID,QualifierCode,MonetaryAmount2,Active,InactiveCode,DateCreated,DateModified
-			FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT  
+			FROM procedure_medicare_supplemental_amount  
 			WHERE Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID)#" /> 
 		</cfquery>
 		
@@ -297,7 +297,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
-				INSERT INTO Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT (ProcedureID,QualifierCode,MonetaryAmount2,InactiveCode)
+				INSERT INTO procedure_medicare_supplemental_amount (ProcedureID,QualifierCode,MonetaryAmount2,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localQualifierCode)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -377,7 +377,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#">
-				UPDATE Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT  SET
+				UPDATE procedure_medicare_supplemental_amount  SET
 					
 					ProcedureID =						
 						<cfqueryparam value="#trim(localProcedureID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -427,7 +427,7 @@
 
 		<cfquery name="qDeleteProcedure_MEDICARE_SUPPLEMENTAL_AMOUNT" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT
+			FROM procedure_medicare_supplemental_amount
 			WHERE Procedure_MEDICARE_SUPPLEMENTAL_AMOUNTID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getProcedure_MEDICARE_SUPPLEMENTAL_AMOUNTID())#" /> 
 		</cfquery>
 
@@ -449,5 +449,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

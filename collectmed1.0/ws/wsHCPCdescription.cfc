@@ -17,7 +17,7 @@
 						
 			<cfquery name="getHCPCDescription" datasource="pa_master">
 				SELECT LongDescription AS Description 
-				FROM EOB_MEDICARE_PROCEDURECode
+				FROM eob_medicare_procedurecode
 				WHERE HCPC = '#trim(Code)#'
 				LIMIT 1
 			</cfquery>

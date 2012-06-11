@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "SubCategoryID") AND stValues.SubCategoryID NEQ 0>
 				<cfquery name="qGetSubCategory" datasource="#trim(variables.ds)#">
 			  		SELECT SubCategoryID,CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-					FROM SubCategory  
+					FROM subcategory  
 					WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.SubCategoryID#" /> 
 				</cfquery>		
 				<cfif qGetSubCategory.Recordcount LTE 0>
@@ -287,7 +287,7 @@
 	
 		<cfquery name="qGetSubCategory" datasource="#trim(variables.ds)#">
 	  		SELECT SubCategoryID,CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,Active,InactiveCode,DateCreated,DateModified
-			FROM SubCategory  
+			FROM subcategory  
 			WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.SubCategoryID)#" /> 
 		</cfquery>
 		
@@ -316,7 +316,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateSubCategory" datasource="#trim(variables.ds)#">
-				INSERT INTO SubCategory (CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,InactiveCode)
+				INSERT INTO subcategory (CategoryID,SubCategoryName,SubCategoryURL,SubCategorySortOrder,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localCategoryID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localSubCategoryName)#" cfsqltype="CF_SQL_VARCHAR" />,	
@@ -407,7 +407,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateSubCategory" datasource="#trim(variables.ds)#">
-				UPDATE SubCategory  SET
+				UPDATE subcategory  SET
 					
 					CategoryID =						
 						<cfqueryparam value="#trim(localCategoryID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -468,7 +468,7 @@
 
 		<cfquery name="qDeleteSubCategory" datasource="#trim(variables.ds)#" result="status">
 			DELETE
-			FROM SubCategory
+			FROM subcategory
 			WHERE SubCategoryID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(obj.getSubCategoryID())#" /> 
 		</cfquery>
 
@@ -490,5 +490,8 @@
 		
 		
 </cfcomponent>
+
+
+
 
 

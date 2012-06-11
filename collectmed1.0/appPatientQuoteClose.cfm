@@ -136,7 +136,7 @@
 		<!--- query for the quote.                                                           --->
 		<!-------------------------------------------------------------------------------------->
 		<cfquery name="updateQuote" datasource="#trim(request.datasource)#">
-			UPDATE Quote
+			UPDATE quote
 			SET Active = 0, dateModified = now()
 			<cfif cancel>, Cancelled = 1</cfif>
 			WHERE quoteID = #trim(quoteID)#
@@ -179,3 +179,4 @@
 	</cfif>
 	
 		
+

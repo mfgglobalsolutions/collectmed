@@ -46,7 +46,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.instance.datasource.getDSName()#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM VerificationPatientInsuranceElectronic
+			FROM verificationpatientinsuranceelectronic
 			WHERE VerificationPatientInsuranceElectronicID = <cfqueryparam value="#arguments.VerificationPatientInsuranceElectronic.getVerificationPatientInsuranceElectronicID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 		
@@ -72,7 +72,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateVerificationPatientInsuranceElectronic" datasource="#variables.instance.datasource.getDSName()#">
-				INSERT INTO VerificationPatientInsuranceElectronic (vpicID,mashFileID,indexInFile,Active,InactiveCode)
+				INSERT INTO verificationpatientinsuranceelectronic (vpicID,mashFileID,indexInFile,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(arguments.VerificationPatientInsuranceElectronic.getvpicID())#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(arguments.VerificationPatientInsuranceElectronic.getmashFileID())#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -139,7 +139,7 @@
 		<cftry>
 		
 			<cfquery name="qUpdateVerificationPatientInsuranceElectronic" datasource="#variables.instance.datasource.getDSName()#">
-				UPDATE VerificationPatientInsuranceElectronic  SET
+				UPDATE verificationpatientinsuranceelectronic  SET
 					DateModified =	<cfqueryparam value="#trim(CreateODBCDateTIME(NOW()))#" cfsqltype="CF_SQL_TIMESTAMP" />,
 					
 					vpicID =						
@@ -183,7 +183,7 @@
 
 		<cfquery name="qDeleteVerificationPatientInsuranceElectronic" datasource="#variables.instance.datasource.getDSName()#" result="status">
 			DELETE
-			FROM VerificationPatientInsuranceElectronic
+			FROM verificationpatientinsuranceelectronic
 			WHERE VerificationPatientInsuranceElectronicID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationPatientInsuranceElectronicID)#" /> 
 		</cfquery>
 
@@ -202,7 +202,7 @@
 	
 		<cfquery name="qGetVerificationPatientInsuranceElectronic" datasource="#variables.instance.datasource.getDSName()#">
 	  		SELECT VerificationPatientInsuranceElectronicID,vpicID,mashFileID,indexInFile,Active,InactiveCode,DateCreated,DateModified
-			FROM VerificationPatientInsuranceElectronic  
+			FROM verificationpatientinsuranceelectronic  
 			WHERE VerificationPatientInsuranceElectronicID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.VerificationPatientInsuranceElectronicID)#" /> 
 		</cfquery>
 		
@@ -299,5 +299,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

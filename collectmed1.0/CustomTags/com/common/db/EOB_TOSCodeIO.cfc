@@ -411,7 +411,7 @@
 	
 		<cfquery name="qGetEOB_TOSCode" datasource="pa_master">
 	  		SELECT RecordID,Code,Description,Active,InactiveCode,DateCreated,DateModified
-			FROM EOB_TOSCode  
+			FROM eob_toscode  
 			WHERE RecordID = #trim(arguments.RecordID)# 
 		</cfquery>
 		
@@ -767,7 +767,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_TOSCode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO eob_toscode  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -932,7 +932,7 @@
 		<!-------------------------------------------------------------------------------------->			
 			<cfquery Name="getEOB_TOSCodeQuery" datasource="pa_master">
 				SELECT #trim(Fields)#
-				FROM EOB_TOSCode   
+				FROM eob_toscode   
 				WHERE 1=1
 					<cfif RecordID NEQ "" AND IsNumeric(RecordID)>AND RecordID = #RecordID#</cfif>
 					<cfif RecordID_IN NEQ "">AND RecordID IN(#trim(RecordID_IN)#)</cfif>
@@ -1012,5 +1012,7 @@
 
 	
 </cfcomponent>
+
+
 
 

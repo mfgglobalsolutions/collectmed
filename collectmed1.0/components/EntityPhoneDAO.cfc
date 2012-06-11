@@ -24,7 +24,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreateEntityPhone" datasource="#trim(arguments.ds)#">
-				INSERT INTO EntityPhone (EntityID,PhoneID,IsDefault,Active,InactiveCode)
+				INSERT INTO entityphone (EntityID,PhoneID,IsDefault,Active,InactiveCode)
 				VALUES (						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,						
 						<cfqueryparam value="#trim(localPhoneID)#" cfsqltype="CF_SQL_INTEGER" />,						
@@ -107,7 +107,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdateEntityPhone" datasource="#trim(arguments.ds)#">
-				UPDATE EntityPhone  SET
+				UPDATE entityphone  SET
 					
 					EntityID =						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />,
@@ -157,7 +157,7 @@
 
 		<cfquery name="qDeleteEntityPhone" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM EntityPhone
+			FROM entityphone
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getrecordID())#" /> 
 		</cfquery>
 
@@ -177,7 +177,7 @@
 	
 		<cfquery name="qGetEntityPhone" datasource="#trim(arguments.ds)#">
 	  		SELECT recordID,EntityID,PhoneID,IsDefault,Active,InactiveCode,DateCreated,DateModified
-			FROM EntityPhone  
+			FROM entityphone  
 			WHERE recordID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.recordID)#" /> 
 		</cfquery>
 		
@@ -200,5 +200,7 @@
 		
 	
 </cfcomponent>
+
+
 
 

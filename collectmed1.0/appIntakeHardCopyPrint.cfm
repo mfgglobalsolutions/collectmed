@@ -64,7 +64,7 @@
 					<cfif IsNumeric(trim(hidden_UsersID))>
 						<cfquery name="getUserName" datasource="#trim(request.datasource)#">
 							SELECT FName, LName
-							FROM view_UserAccountParameters 
+							FROM view_useraccountparameters 
 							WHERE UsersID = #trim(hidden_UsersID)#
 						</cfquery>					
 						<cfset empFName = trim(getUserName.FName)>

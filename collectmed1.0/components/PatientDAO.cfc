@@ -25,7 +25,7 @@
 		<cftransaction isolation="read_committed">
 			
 			<cfquery name="qCreatePatient" datasource="#trim(arguments.ds)#">
-				INSERT INTO Patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode)
+				INSERT INTO patient (EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode)
 				VALUES (				
 					<cfif IsNumeric(trim(localEntityID))>						
 						<cfqueryparam value="#trim(localEntityID)#" cfsqltype="CF_SQL_INTEGER" />							
@@ -127,7 +127,7 @@
 			<cfset localDateModified = NOW() />		
 				
 			<cfquery name="qUpdatePatient" datasource="#trim(arguments.ds)#">
-				UPDATE Patient  SET
+				UPDATE patient  SET
 					
 					EntityID =				
 					<cfif IsNumeric(trim(localEntityID))>						
@@ -196,7 +196,7 @@
 
 		<cfquery name="qDeletePatient" datasource="#trim(arguments.ds)#" result="status">
 			DELETE
-			FROM Patient
+			FROM patient
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(bean.getPatientID())#" /> 
 		</cfquery>
 
@@ -216,7 +216,7 @@
 	
 		<cfquery name="qGetPatient" datasource="#trim(arguments.ds)#">
 	  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
-			FROM Patient  
+			FROM patient  
 			WHERE PatientID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#trim(arguments.PatientID)#" /> 
 		</cfquery>
 		
@@ -239,5 +239,8 @@
 		
 	
 </cfcomponent>
+
+
+
 
 

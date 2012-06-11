@@ -11,7 +11,7 @@
 			
 			<cfquery name="getEmail" datasource="#request.datasource#">
 				SELECT EmailAddressID
-				FROM EmailAddress  
+				FROM emailaddress  
 				WHERE Email = '#trim(EmailAddress)#' <cfif IsNumeric(PersonID)> AND PersonID != #trim(PersonID)#</cfif>
 			</cfquery>
 									

@@ -20,7 +20,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.statusID, sli.ItemNameDisplay
-				FROM FileProcess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -60,7 +60,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.statusID, sli.ItemNameDisplay
-				FROM FileProcess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -98,7 +98,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.*, sli.ItemNameDisplay
-				FROM FileProcess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -139,7 +139,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT statusID
-				FROM FileProcess  
+				FROM fileprocess  
 				WHERE FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -273,7 +273,7 @@
 		
 			<cfquery name="getFileFromDB" datasource="#trim(request.datasource)#">
 				SELECT FileID
-				FROM File  
+				FROM file  
 				WHERE FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -301,7 +301,7 @@
 		
 			<cfquery name="getFileFromDBByName" datasource="#trim(request.datasource)#">
 				SELECT FileID
-				FROM File  
+				FROM file  
 				WHERE ServerFile = '#trim(fileName)#'
 			</cfquery>
 			
@@ -329,17 +329,17 @@
 				
 			<cfquery name="getFile" datasource="#request.datasource#">
 				SELECT ServerDirectory, ServerFile
-				FROM File  
+				FROM file  
 				WHERE FileID = #trim(fileID)#
 			</cfquery>	
 													
 			<cfquery name="delFile" datasource="#request.datasource#">
-				DELETE FROM FileProcess 
+				DELETE FROM fileprocess 
 				WHERE FileID = #trim(fileID)#
 			</cfquery>	
 			
 			<cfquery name="delFileProcess" datasource="#request.datasource#">
-				DELETE FROM File 
+				DELETE FROM file 
 				WHERE FileID = #trim(fileID)#
 			</cfquery>	
 			
@@ -375,7 +375,7 @@
 			
 			<cfquery name="getValidStatuses" datasource="pa_master">
 				SELECT StandardListItemID
-				FROM StandardListItem 
+				FROM standardlistitem 
 				WHERE ListID = 11
 			</cfquery>
 			
@@ -488,3 +488,5 @@
 </cfcomponent>
 
 		
+
+

@@ -44,7 +44,7 @@
 			<cfif StructKeyExists(stValues, "Claim_ProcessXMLToDBID") AND stValues.Claim_ProcessXMLToDBID NEQ 0>
 				<cfquery name="qGetClaim_ProcessXMLToDB" datasource="#trim(arguments.ds)#">
 			  		SELECT Claim_ProcessXMLToDBID,InterchangeID,ClaimXML,ProviderID,PatientID,interchangeClaimID,PossiblePatientID,Active,InactiveCode,DateCreated,DateModified
-					FROM Claim_ProcessXMLToDB  
+					FROM claim_processxmltodb  
 					WHERE Claim_ProcessXMLToDBID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#stValues.Claim_ProcessXMLToDBID#" /> 
 				</cfquery>		
 				<cfif qGetClaim_ProcessXMLToDB.Recordcount LTE 0>
