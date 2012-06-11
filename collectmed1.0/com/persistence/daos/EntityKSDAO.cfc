@@ -368,7 +368,7 @@
 		<cffunction name="getColC" returntype="any" access="public" output="false" hint="I run a query and will return col C.">
 			<cfquery name="getColC" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 	
 				SELECT ColL
-				FROM EntityKS W
+				FROM entityks
 				Where EntityKSID = 12
 			</cfquery>
 			<cfreturn getColC.ColL />
@@ -377,7 +377,7 @@
 		<cffunction name="getColD" returntype="any" access="public" output="false" hint="I run a query and will return col D.">
 			<cfquery name="getColD" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
 				SELECT ColE
-				FROM EntityKS 
+				FROM entityks 
 				Where EntityKSID = 5
 			</cfquery>
 			<cfreturn getColD.ColE />
@@ -386,7 +386,7 @@
 		<cffunction name="getColE" returntype="any" access="public" output="false" hint="I run a query and will return col E.">
 			<cfquery name="getColE" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
 				SELECT ColM
-				FROM EntityKS
+				FROM entityks
 				Where EntityKSID = 14
 			</cfquery>
 			<cfreturn getColE.ColM />
@@ -395,7 +395,7 @@
 		<cffunction name="getColF" returntype="any" access="public" output="false" hint="I run a query and will return col F.">				
 			<cfquery name="getColF" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 						
 				SELECT ColC
-				FROM EntityKS
+				FROM entityks
 				Where EntityKSID = 54
 			</cfquery>	
 			<cfreturn getColF.ColC />
