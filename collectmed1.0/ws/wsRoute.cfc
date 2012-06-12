@@ -130,7 +130,7 @@
 			</cfif>
 	
 			<cfquery name="updateRoutePatient" datasource="PAClient_#clientID#">
-				INSERT INTO routePatient(RouteID, PatientID)
+				INSERT INTO routepatient(RouteID, PatientID)
 				VALUES(
 					<cfqueryparam value="#variables.RouteID#" cfsqltype="CF_SQL_INT" />,
 					<cfqueryparam value="#variables.PatientID#" cfsqltype="CF_SQL_INT" /> 					

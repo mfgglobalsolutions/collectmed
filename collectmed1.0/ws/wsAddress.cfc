@@ -340,7 +340,7 @@
 			</cfif>			
 						
 			<cfquery name="addAddress" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Address(
+				INSERT INTO address(
 				<cfif IsNumeric(AddressTypeID)>AddressTypeID</cfif> 
 				<cfif trim(AddressLine1) NEQ "" AND trim(AddressLine1) NEQ "@@">, AddressLine1</cfif>
 				<cfif trim(AddressLine2) NEQ "" AND trim(AddressLine2) NEQ "@@">, AddressLine2</cfif>
@@ -363,7 +363,7 @@
 			
 			
 			<cfquery name="bindAddress" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EntityAddress(AddressID, EntityID)	
+				INSERT INTO entityaddress(AddressID, EntityID)	
 				VALUES(#trim(addAddress.addressID)#, #trim(EntityID)#)						
 			</cfquery>
 			

@@ -238,7 +238,7 @@
 																	
 									<cfloop list="#trim(usersID)#" index="i">
 										<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-											INSERT INTO SystemUserMessage(UsersID,Note)
+											INSERT INTO systemusermessage(UsersID,Note)
 											VALUES(#trim(i)#, '#trim(note)#')
 										</cfquery>
 									</cfloop>

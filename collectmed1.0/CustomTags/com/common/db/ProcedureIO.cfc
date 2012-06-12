@@ -905,7 +905,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO [Procedure]  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ProcedureID ">
+				<cfset sqlStatement = "INSERT INTO [procedure]  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS ProcedureID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -225,10 +225,10 @@
 												SELECT DISTINCT c.ClaimID, c.InterchangeClaimID, c.claimType, c.EntityID, c.InterchangeID, c.assignedToUserID, c.Active, c.InactiveCode, c.DateCreated, u.usersID, e.FName As userFName, e.LName AS userLName, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
 												FROM claim c 
 												LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
-												LEFT JOIN Entity e ON u.EntityID = e.EntityID
+												LEFT JOIN entity e ON u.EntityID = e.EntityID
 												LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
-												LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				
-												LEFT JOIN Patient p ON c.entityID = p.EntityID
+												LEFT JOIN entity patientEntity ON c.entityID = patientEntity.EntityID				
+												LEFT JOIN patient p ON c.entityID = p.EntityID
 												WHERE c.InterchangeID = #trim(getInterchange.InterchangeID)# 
 											</cfquery>
 											

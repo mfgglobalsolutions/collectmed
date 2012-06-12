@@ -178,7 +178,7 @@
 			pca.MonetaryAmount18, pca.Quantity19
 			FROM [Procedure] pro
 			JOIN Claim c ON pro.ClaimID = c.claimID
-			LEFT JOIN Entity ent on c.EntityID = ent.EntityID
+			LEFT JOIN entity ent on c.EntityID = ent.EntityID
 			LEFT JOIN Procedure_MEDICARE_CLAIMADJUSTMENT pca ON pca.ProcedureID = pro.ProcedureID
 			LEFT JOIN Procedure_MEDICARE_SUPPLEMENTAL_AMOUNT psa ON  psa.ProcedureID = pro.ProcedureID
 			WHERE c.clientID = #trim(session.ClientID)# AND c.claimType = 108 

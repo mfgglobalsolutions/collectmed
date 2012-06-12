@@ -47,7 +47,7 @@
 				CONCAT(q.orderingPhysicianFNameTBox, ' ', orderingPhysicianLNameTBox) AS orderingPhysicianNameTBox 
 				FROM quote q 
 				LEFT JOIN pa_master.users u ON q.hidden_UsersID = u.UsersID 
-				LEFT JOIN Entity e ON u.EntityID = e.EntityID
+				LEFT JOIN entity e ON u.EntityID = e.EntityID
 				WHERE q.ClientID = #trim(session.clientID)#
 				
 				<!---Active parameter--->		

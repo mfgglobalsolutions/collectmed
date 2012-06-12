@@ -97,9 +97,9 @@
 		ih.*
 		FROM intake i 
 		INNER JOIN intakehcpc ih ON i.intakeID = ih.IntakeID
-		LEFT JOIN Patient p ON i.PatientID = p.PatientID
-		LEFT JOIN Entity e ON e.EntityID = p.EntityID
-		LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID		
+		LEFT JOIN patient p ON i.PatientID = p.PatientID
+		LEFT JOIN entity e ON e.EntityID = p.EntityID
+		LEFT JOIN address a ON a.AddressID = i.patientAddressID		
 		WHERE 
 		<cfif NOT IsDefined("url.patientID") OR NOT IsNumeric(url.patientID)> 
 			e.LName = '#url.LName#' 

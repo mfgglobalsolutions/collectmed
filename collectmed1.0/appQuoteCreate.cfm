@@ -1428,7 +1428,7 @@
 
 		<cfsavecontent variable="sqlStatement">
 			<cfoutput>
-			INSERT INTO Quote(
+			INSERT INTO quote(
 		 		ClientID,
 				hidden_UsersID,
 				AssignedToUserID,
@@ -1530,7 +1530,7 @@
 		
 		<cfsavecontent variable="sqlStatementHCPC">
 			<cfoutput>
-				INSERT INTO QuoteHCPC(
+				INSERT INTO quotehcpc(
 			 		QuoteID					 
 					<cfif IsDefined("form.hcpcCost1TBox") AND form.hcpcCost1TBox NEQ "">,hcpcCost1TBox</cfif>
 					<cfif IsDefined("form.hcpcCode1TBox") AND form.hcpcCode1TBox NEQ "">,hcpcCode1TBox</cfif>

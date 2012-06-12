@@ -50,8 +50,8 @@
 		ih.*
 		FROM intake i 
 		LEFT JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID	
-		LEFT JOIN Patient p ON i.PatientID = p.PatientID
-		LEFT JOIN Entity e ON e.EntityID = p.EntityID 		
+		LEFT JOIN patient p ON i.PatientID = p.PatientID
+		LEFT JOIN entity e ON e.EntityID = p.EntityID 		
 		LEFT JOIN Address a ON i.PatientAddressID = a.AddressID
 		LEFT JOIN Phone ph ON i.PatientPhoneID = ph.PhoneID   
 		WHERE i.intakeID = #trim(caller.intakeID)#

@@ -502,14 +502,14 @@ GO
 <!--- 1 --->DONE
 CREATE PROCEDURE sp_GetUserInformation @usersID int AS
 SELECT E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
-FROM pa_master.[Users] AS MedU INNER JOIN Entity AS E ON MedU.EntityID = E.EntityID 
+FROM pa_master.[Users] AS MedU INNER JOIN entity AS E ON MedU.EntityID = E.EntityID 
 WHERE MedU.UsersID = @USersID 
 GO
 <!--- 2 --->DONE
 CREATE PROCEDURE sp_GetAdministratorInformation @ClientID int AS
 
 SELECT u.UsersID, E.EntityID, E.Fname, E. Lname, E.Mname, E.DOB, E.SSN, E.Sex, E.Active 
-FROM pa_master.Users AS u INNER JOIN Entity AS E ON u.EntityID = E.EntityID 
+FROM pa_master.Users AS u INNER JOIN entity AS E ON u.EntityID = E.EntityID 
 WHERE E.EntityID = (SELECT AdministratorEntityID FROM pa_master.[Client] WHERE ClientID = @ClientID)
 GO
 <!--- 3 --->DONE

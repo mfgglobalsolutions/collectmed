@@ -73,8 +73,8 @@
 						SELECT pic.RecordID, pic.PatientID, pic.InsuranceCompanyID, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersDOB, 
 						pat.EntityID, ent.EntityID, ent.FName, ent.LName, ent.DOB
 						FROM patientinsurancecompany as pic
-						JOIN Patient as pat ON pic.PatientID = pat.PatientID
-						JOIN Entity as ent ON pat.EntityID = ent.EntityID
+						JOIN patient as pat ON pic.PatientID = pat.PatientID
+						JOIN entity as ent ON pat.EntityID = ent.EntityID
 						WHERE pic.PolicyNumber = '#trim(COLUMN_4)#'
 					</cfquery>									
 					
@@ -219,7 +219,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfif>		
 		<cfif NOT G_IsRoute>	
 			<cfquery name="insertRoutePatient" datasource="PAClient_1084">
-				INSERT INTO routePatient(RouteID, SubRoute, PatientID, FName, LName, City, IDtext, SuppliesText)
+				INSERT INTO routepatient(RouteID, SubRoute, PatientID, FName, LName, City, IDtext, SuppliesText)
 				VALUES(#insertRoute.newRouteID#, '#variables.thisSubRoute#', '#H_PatientID#', '#trim(B_COLUMN_2)#', '#trim(C_COLUMN_1)#', '#D_COLUMN_3#', '#E_COLUMN_4#', '#F_COLUMN_5#')
 			</cfquery>						
 			[#insertRoute.newRouteID#], [#variables.thisSubRoute#], [#H_PatientID#], [#D_COLUMN_3#], [#E_COLUMN_4#], [#LEFT(F_COLUMN_5, 5)#]<br>						
@@ -398,17 +398,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
 	<cfquery name="insertPage" datasource="PA_MASTER">
-		INSERT INTO Page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
+		INSERT INTO page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
 		VALUES(1002, 1, '#trim(newPageName)#', '#trim(newPageTitle)#', 1, 'N', 'N', 'N',  'Y', 'Y', 1);
 		SELECT LAST_INSERT_ID() AS newPageID 
 	</cfquery>
 	<cfset variables.newPageID = insertPage.newPageID>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
 </cfif>
 
 
@@ -422,17 +422,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
 	<cfquery name="insertPage" datasource="PA_MASTER">
-		INSERT INTO Page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
+		INSERT INTO page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
 		VALUES(1002, 1, '#trim(newPageName)#', '#trim(newPageTitle)#', 1, 'N', 'N', 'N',  'Y', 'Y', 1);
 		SELECT LAST_INSERT_ID() AS newPageID 
 	</cfquery>
 	<cfset variables.newPageID = insertPage.newPageID>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
 </cfif>
 
 
@@ -446,17 +446,17 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 </cfquery>
 <cfif getPage.RecordCount LTE 0>
 	<cfquery name="insertPage" datasource="PA_MASTER">
-		INSERT INTO Page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
+		INSERT INTO page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
 		VALUES(1002, 1, '#trim(newPageName)#', '#trim(newPageTitle)#', 1, 'N', 'N', 'N',  'Y', 'Y', 1);
 		SELECT LAST_INSERT_ID() AS newPageID 
 	</cfquery>
 	<cfset variables.newPageID = insertPage.newPageID>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
-	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)</cfquery>
+	<cfquery name="insertPage" datasource="PA_MASTER">INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)</cfquery>
 </cfif>
 
 <cfabort>		
@@ -590,34 +590,34 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 	<cfif getPage.RecordCount LTE 0>
 	
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO Page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
+			INSERT INTO page(SiteID, CategoryID, PageName, Title, Security, ShowPageLink, LeftNavigation, RightNavigation, Header, Footer, Active)
 			VALUES(1002, 1, '#trim(newPageName)#', 'Web Service #trim(newPageName)#', 1, 'N', 'N', 'N',  'N', 'N', 1);
 			SELECT LAST_INSERT_ID() AS newPageID 
 		</cfquery>
 		<cfset variables.newPageID = insertPage.newPageID>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 1, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 2, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 3, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 4, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 4, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 5, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 6, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 7, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 7, 1002, 1)	
 		</cfquery>
 		<cfquery name="insertPage" datasource="PA_MASTER">
-			INSERT INTO PageRole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)	
+			INSERT INTO pagerole(PageID, RoleID, SiteID, Active) VALUES(#variables.newPageID#, 8, 1002, 1)	
 		</cfquery>
 	
 	</cfif>
@@ -1515,7 +1515,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
-				INSERT INTO PageRole(PageID, RoleID, SiteID)
+				INSERT INTO pagerole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 7, 1002)
 			</cfquery>
 			Added #PageID#<br>
@@ -1533,7 +1533,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
-				INSERT INTO PageRole(PageID, RoleID, SiteID)
+				INSERT INTO pagerole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 6, 1002)
 			</cfquery>
 			Added #PageID#<br>
@@ -1551,7 +1551,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 		</cfquery>
 		<cfif getThisRole.RecordCount LT 1>
 			<cfquery name="insertThisRole" datasource="pa_master">
-				INSERT INTO PageRole(PageID, RoleID, SiteID)
+				INSERT INTO pagerole(PageID, RoleID, SiteID)
 				VALUES(#pageID#, 5, 1002)
 			</cfquery>
 			Added #PageID#<br>
@@ -1581,12 +1581,12 @@ Add missing pageids into page roles for roles 1 and 8
 <cfloop list="#trim(pageIDs)#" index="i">
 
 	<cfquery name="insert1" datasource="pa_master">
-		INSERT INTO PageROLE(PageID, RoleID, SiteID)
+		INSERT INTO pagerole(PageID, RoleID, SiteID)
 		VALUES(#trim(i)#, 1, 1002)
 	</cfquery>
 
 	<cfquery name="insert1" datasource="pa_master">
-		INSERT INTO PageROLE(PageID, RoleID, SiteID)
+		INSERT INTO pagerole(PageID, RoleID, SiteID)
 		VALUES(#trim(i)#, 8, 1002)
 	</cfquery>
 
@@ -1766,225 +1766,18 @@ Child
 Other
 --->
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('None', 22)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('None', 22)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Friend', 22)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Friend', 22)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Parent', 22)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Parent', 22)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Grandparent', 22)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Grandparent', 22)
 </cfquery>
 
-
-
-
-
-
-
-
-
-
-
-
-<!--- New List --->
-<cfquery name="insNew" datasource="PA_MASTER">
-	INSERT INTO StandardList(ListName) VALUES('Payer Level');
-	SELECT LAST_INSERT_ID() AS StandardListID 
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('1st', 'Primary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('2nd', 'Secondary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('3rd', 'Tertiary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('4th', 'Quaternary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('5th', 'Quinary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('6th', 'Senary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('7th', 'Septenary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('8th', 'Octonary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('9th', 'Nonary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('10th', 'Denary', #trim(insNew.StandardListID)#)
-</cfquery>
-
-
-
-
-
-
-
-
-<!--- New List --->
-<cfquery name="insNew" datasource="PA_MASTER">
-	INSERT INTO StandardList(ListName) VALUES('Employment Status');
-	SELECT LAST_INSERT_ID() AS StandardListID 
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('None', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Unemployed', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Employed', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Full-Time Student', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ItemNameDisplay, ListID) VALUES('Part-Time Student', #trim(insNew.StandardListID)#)
-</cfquery>
-
-
-
-
-
-
-
-
-<!--- New List --->
-<cfquery name="insNew" datasource="PA_MASTER">
-	INSERT INTO StandardList(ListName) VALUES('Claim Code');
-	SELECT LAST_INSERT_ID() AS StandardListID 
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('09', 'Self-Pay', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('10', 'Central Certification', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('11', 'Other Non-Federal Program', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('12', 'PPO', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('13', 'POS', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('14', 'EPO', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('15', 'Indemnity Insurance', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('16', 'HMO-Medicare Risk', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('AM', 'Automobile Medical', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('BL', 'Blue Cross/Blue Shield', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CH', 'Champus', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CI', 'Commercial Insurance Co.', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('DS', 'Disability', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('HM', 'HMO or Health Maintenance Organization', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LI', 'Liability', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LM', 'Liability Medical', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MB', 'Medicare Part B', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MC', 'Medicare', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('OF', 'Other Federal Program', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('TV', 'Title V', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('VA', 'Veteran Administration Plan', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('WC', 'Workers Compensation Health Claim', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('ZZ', 'Mutually Defined', #trim(insNew.StandardListID)#)
-</cfquery>
-
-
-
-
-
-
-
-
-
-
-<!--- New List --->
-<cfquery name="insNew" datasource="PA_MASTER">
-	INSERT INTO StandardList(ListName) VALUES('Type Code');
-	SELECT LAST_INSERT_ID() AS StandardListID 
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('AP', 'Auto Insurance Policy', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CI', 'Commercial', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CP', 'Medicare Conditionally Primary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('GP', 'Group Policy', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('HM', 'Health Maintenance Organization (HMO)', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('IP', 'Individual Policy', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LD', 'Long Term Policy', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LT', 'Litigation', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MB', 'Medicare Part B', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MC', 'Medicare Primary', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('OT', 'Other', #trim(insNew.StandardListID)#)
-</cfquery>
-<cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('PP', 'Personal Payment (Cash-No Insurance)', #trim(insNew.StandardListID)#)
-</cfquery>
 
 
 
@@ -1998,113 +1791,320 @@ Other
 
 <!--- New List --->
 <cfquery name="insNew" datasource="PA_MASTER">
-	INSERT INTO StandardList(ListName) VALUES('Place of Service');
+	INSERT INTO standardlist(ListName) VALUES('Payer Level');
 	SELECT LAST_INSERT_ID() AS StandardListID 
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('01', 'Pharmacy', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('1st', 'Primary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('03', 'School', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('2nd', 'Secondary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('04', 'Homeless Shelter', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('3rd', 'Tertiary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('11', 'Office', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('4th', 'Quaternary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('12', 'Home', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('5th', 'Quinary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('13', 'Living Assisted Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('6th', 'Senary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('14', 'Group Home', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('7th', 'Septenary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('21', 'Inpatient Hospital', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('8th', 'Octonary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('22', 'Outpatient Hospital', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('9th', 'Nonary', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('23', 'Emergency Room-Hospital', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('10th', 'Denary', #trim(insNew.StandardListID)#)
+</cfquery>
+
+
+
+
+
+
+
+
+<!--- New List --->
+<cfquery name="insNew" datasource="PA_MASTER">
+	INSERT INTO standardlist(ListName) VALUES('Employment Status');
+	SELECT LAST_INSERT_ID() AS StandardListID 
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('24', 'Ambulance Surgical Center', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('None', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('25', 'Birthing Center', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Unemployed', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('26', 'Military Treatment Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Employed', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('31', 'Skilled Nursing Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Full-Time Student', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('32', 'Nursing Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ItemNameDisplay, ListID) VALUES('Part-Time Student', #trim(insNew.StandardListID)#)
+</cfquery>
+
+
+
+
+
+
+
+
+<!--- New List --->
+<cfquery name="insNew" datasource="PA_MASTER">
+	INSERT INTO standardlist(ListName) VALUES('Claim Code');
+	SELECT LAST_INSERT_ID() AS StandardListID 
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('33', 'Custodial Care Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('09', 'Self-Pay', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('34', 'Hospice', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('10', 'Central Certification', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('41', 'Ambulance - Land', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('11', 'Other Non-Federal Program', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('41', 'Ambulance - Air or Water', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('12', 'PPO', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('49', 'Independent Clinic', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('13', 'POS', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('50', 'Federally Qualified Health Center', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('14', 'EPO', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('51', 'Inpatient Psychiatric Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('15', 'Indemnity Insurance', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('52', 'Psychiatric Facility-Partial Hospitalization', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('16', 'HMO-Medicare Risk', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('53', 'Community Mental Health Center', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('AM', 'Automobile Medical', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('54', 'Intermediate Care Facility/Mentally Retarded', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('BL', 'Blue Cross/Blue Shield', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('55', 'Residential Substance Abuse Treatment Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CH', 'Champus', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('56', 'Psychiatric Residential Treatment Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CI', 'Commercial Insurance Co.', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('60', 'Mass Immunization Center', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('DS', 'Disability', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('61', 'Comprehensive Inpatient Rehabilitation Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('HM', 'HMO or Health Maintenance Organization', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('62', 'Comprehensive Outpatient Rehabilitation Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LI', 'Liability', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('71', 'State or Local Public Health Clinic', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LM', 'Liability Medical', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('72', 'Rural Health Clinic', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MB', 'Medicare Part B', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('65', 'End Stage Renal Disease', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MC', 'Medicare', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('81', 'Independent Laboratory', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('OF', 'Other Federal Program', #trim(insNew.StandardListID)#)
 </cfquery>
 <cfquery name="insNewItem" datasource="PA_MASTER">
-	INSERT INTO StandardListItem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('99', 'Other Unlisted Facility', #trim(insNew.StandardListID)#)
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('TV', 'Title V', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('VA', 'Veteran Administration Plan', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('WC', 'Workers Compensation Health Claim', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('ZZ', 'Mutually Defined', #trim(insNew.StandardListID)#)
+</cfquery>
+
+
+
+
+
+
+
+
+
+
+<!--- New List --->
+<cfquery name="insNew" datasource="PA_MASTER">
+	INSERT INTO standardlist(ListName) VALUES('Type Code');
+	SELECT LAST_INSERT_ID() AS StandardListID 
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('AP', 'Auto Insurance Policy', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CI', 'Commercial', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('CP', 'Medicare Conditionally Primary', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('GP', 'Group Policy', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('HM', 'Health Maintenance Organization (HMO)', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('IP', 'Individual Policy', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LD', 'Long Term Policy', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('LT', 'Litigation', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MB', 'Medicare Part B', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('MC', 'Medicare Primary', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('OT', 'Other', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('PP', 'Personal Payment (Cash-No Insurance)', #trim(insNew.StandardListID)#)
+</cfquery>
+
+
+
+
+
+
+
+
+
+
+
+<!--- New List --->
+<cfquery name="insNew" datasource="PA_MASTER">
+	INSERT INTO standardlist(ListName) VALUES('Place of Service');
+	SELECT LAST_INSERT_ID() AS StandardListID 
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('01', 'Pharmacy', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('03', 'School', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('04', 'Homeless Shelter', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('11', 'Office', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('12', 'Home', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('13', 'Living Assisted Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('14', 'Group Home', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('21', 'Inpatient Hospital', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('22', 'Outpatient Hospital', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('23', 'Emergency Room-Hospital', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('24', 'Ambulance Surgical Center', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('25', 'Birthing Center', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('26', 'Military Treatment Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('31', 'Skilled Nursing Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('32', 'Nursing Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('33', 'Custodial Care Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('34', 'Hospice', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('41', 'Ambulance - Land', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('41', 'Ambulance - Air or Water', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('49', 'Independent Clinic', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('50', 'Federally Qualified Health Center', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('51', 'Inpatient Psychiatric Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('52', 'Psychiatric Facility-Partial Hospitalization', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('53', 'Community Mental Health Center', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('54', 'Intermediate Care Facility/Mentally Retarded', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('55', 'Residential Substance Abuse Treatment Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('56', 'Psychiatric Residential Treatment Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('60', 'Mass Immunization Center', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('61', 'Comprehensive Inpatient Rehabilitation Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('62', 'Comprehensive Outpatient Rehabilitation Facility', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('71', 'State or Local Public Health Clinic', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('72', 'Rural Health Clinic', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('65', 'End Stage Renal Disease', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('81', 'Independent Laboratory', #trim(insNew.StandardListID)#)
+</cfquery>
+<cfquery name="insNewItem" datasource="PA_MASTER">
+	INSERT INTO standardlistitem(ExternalListItemID, ItemNameDisplay, ListID) VALUES('99', 'Other Unlisted Facility', #trim(insNew.StandardListID)#)
 </cfquery>
 
 
@@ -3250,7 +3250,7 @@ FROM intake
 
 			<cfquery name="getSS" datasource="PAClient_1084">
 				Select e.EntityID, p.PatientID
-				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID
+				FROM entity e JOIN patient p ON p.EntityID = e.EntityID
 				WHERE e.SSN = '#patientSSNTBox#'
 			</cfquery>
 
@@ -3266,7 +3266,7 @@ FROM intake
 		<cfif NOT IsQuery(getPatient) AND getPatient EQ 0 AND PatientID EQ "" AND EntityID EQ "">
 			<cfquery name="getName" datasource="PAClient_1084">
 				Select e.EntityID, p.PatientID
-				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID
+				FROM entity e JOIN patient p ON p.EntityID = e.EntityID
 				WHERE (e.FName = '#trim(getIn.patientFNameTBox)#' OR e.FName = '#LEFT(trim(getIn.patientFNameTBox), 1)#') AND e.LName = '#trim(getIn.patientLNameTBox)#'
 				AND e.SSN IS NULL AND e.DOB IS NULL
 			</cfquery>
@@ -5096,7 +5096,7 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 	</cfloop>
 
 	<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-		INSERT INTO SystemUserMessage(UsersID,Note)
+		INSERT INTO systemusermessage(UsersID,Note)
 		VALUES(#trim(i)#, '#trim(note)#')
 	</cfquery>
 

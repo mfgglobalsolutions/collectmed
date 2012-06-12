@@ -841,7 +841,7 @@
 		<!--- Insert the record.                                                             --->
 		<!-------------------------------------------------------------------------------------->		
 		<cfquery name="insertWorkGroup" datasource="#trim(request.datasource)#">
-			INSERT INTO WorkGroup(				
+			INSERT INTO workgroup(				
 				WorkGroupName, 
 				Description,				
 				MondayStart,

@@ -279,7 +279,7 @@
 		</cfquery>
 		<cfif checkIntakeHCPC.RecordCount LTE 0>
 			<cfquery name="insertIntakeHCPC" datasource="#trim(request.datasource)#">
-				INSERT INTO IntakeHCPC(intakeID) VALUES(#trim(form.intakeID)#)
+				INSERT INTO Intakehcpc(intakeID) VALUES(#trim(form.intakeID)#)
 			</cfquery>	
 		</cfif>
 			
@@ -640,7 +640,7 @@
 		
 		<cfsavecontent variable="sqlStatement">
 			<cfoutput>
-			INSERT INTO Intake(
+			INSERT INTO intake(
 		 		DateModified,
 				ClientID,
 				hidden_Step,

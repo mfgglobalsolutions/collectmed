@@ -340,11 +340,11 @@
 				p.PatientID, c.HICNumber, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
 				FROM claim c 
 				LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
-				LEFT JOIN Entity e ON u.EntityID = e.EntityID
-				LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
-				LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				
-				LEFT JOIN Patient p ON c.entityID = p.EntityID
-				LEFT JOIN Interchange i ON c.InterchangeID = i.InterchangeID						
+				LEFT JOIN entity e ON u.EntityID = e.EntityID
+				LEFT JOIN [procedure] cp ON c.ClaimID = cp.ClaimID
+				LEFT JOIN entity patiententity ON c.entityID = patientEntity.EntityID				
+				LEFT JOIN patient p ON c.entityID = p.EntityID
+				LEFT JOIN interchange i ON c.InterchangeID = i.InterchangeID						
 				WHERE c.ClientID = #trim(session.ClientID)# AND c.Active = 1 AND c.claimID = #trim(claimID)#
 			</cfquery>	
 	
@@ -354,9 +354,9 @@
 			<cfquery name="getProcedures" datasource="#trim(request.datasource)#">
 				SELECT cp.ProcedureID, cp.ProcedureCode, cp.PriorProcedureCode, cp.ServiceDateFrom, cp.ServiceDateTo, cp.BilledQuantity, cp.BilledAmount, 
 				cp.PaidQuantity, cp.PaidAmount, pc.HCPC, c.FacilityCode		
-				FROM [Procedure] cp
+				FROM [procedure] cp
 				LEFT JOIN pa_master.eob_medicare_procedurecode pc ON cp.ProcedureCode = pc.RecordID
-				JOIN Claim c ON cp.ClaimID = c.claimID
+				JOIN claim c ON cp.ClaimID = c.claimID
 				WHERE cp.ClaimID = #trim(ClaimID)#				
 			</cfquery>							
 			

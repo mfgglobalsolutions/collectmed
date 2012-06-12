@@ -152,9 +152,9 @@
 			<cfquery name="getIntake" datasource="#request.datasource#">
 				SELECT i.IntakeID 
 				FROM intake i
-				LEFT JOIN Patient p ON i.PatientID = p.PatientID
-				LEFT JOIN Entity e ON e.EntityID = p.EntityID
-				LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID
+				LEFT JOIN patient p ON i.PatientID = p.PatientID
+				LEFT JOIN entity e ON e.EntityID = p.EntityID
+				LEFT JOIN address a ON a.AddressID = i.patientAddressID
 				WHERE e.Fname = '#trim(fname)#' 
 				AND e.Lname = '#trim(lname)#' 
 				<cfif DOB NEQ ""> AND e.DOB BETWEEN '#DateFormat(trim(DOB), "YYYY-MM-DD")#' AND '#DateFormat(trim(DOB), "YYYY-MM-DD")# 23:59:59.997'</cfif>						
@@ -227,18 +227,18 @@
 			
 			
 			<!---
-			INSERT INTO Intake(inactiveCode, clientID, hidden_UsersID, AssignedToUserID, PatientFNameTBox, PatientLNameTBox, PatientDOBMM, PatientDOBDD, PatientDOBYY, hidden_Step) 
+			INSERT INTO intake(inactiveCode, clientID, hidden_UsersID, AssignedToUserID, PatientFNameTBox, PatientLNameTBox, PatientDOBMM, PatientDOBDD, PatientDOBYY, hidden_Step) 
 			VALUES(298, #trim(clientID)#, #trim(UsersID)#, #trim(UsersID)#, '#trim(FName)#', '#trim(LName)#', '#trim(Month)#', '#trim(Day)#', '#trim(Year)#', '1|#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(UsersID)#|#trim(getCreatorName.FName)# #trim(getCreatorName.LName)#~');
 			SELECT LAST_INSERT_ID() AS intakeID 
 			--->			
 			<cfquery name="insertIntake" datasource="#trim(request.datasource)#">
-				INSERT INTO Intake(inactiveCode, clientID, hidden_UsersID, AssignedToUserID, hidden_Step) 
+				INSERT INTO intake(inactiveCode, clientID, hidden_UsersID, AssignedToUserID, hidden_Step) 
 				VALUES(298, #trim(clientID)#, #trim(UsersID)#, #trim(UsersID)#, '1|#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(UsersID)#|#trim(getCreatorName.FName)# #trim(getCreatorName.LName)#~');
 				SELECT LAST_INSERT_ID() AS intakeID 
 			</cfquery>	
 			
 			<cfquery name="insertIntakeHCPC" datasource="#trim(request.datasource)#">
-				INSERT INTO IntakeHCPC(intakeID) 
+				INSERT INTO Intakehcpc(intakeID) 
 				VALUES(#trim(insertIntake.intakeID)#)				
 			</cfquery>				
 			

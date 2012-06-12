@@ -68,10 +68,10 @@
 				patientEntity.LName AS patientLName, p.PatientID
 				FROM claim c 
 				LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
-				LEFT JOIN Entity e ON u.EntityID = e.EntityID
+				LEFT JOIN entity e ON u.EntityID = e.EntityID
 				LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
-				LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				
-				LEFT JOIN Patient p ON c.entityID = p.EntityID			
+				LEFT JOIN entity patientEntity ON c.entityID = patientEntity.EntityID				
+				LEFT JOIN patient p ON c.entityID = p.EntityID			
 				
 				WHERE c.ClientID = #trim(session.clientID)#	AND c.Active = 1 AND c.AssignedToUserID = #session.user.getUsersID()#			
 				<!---This cancels out the nagatives it is ClaimStausCode 22 which is a reversal but the agents should not see it.--->

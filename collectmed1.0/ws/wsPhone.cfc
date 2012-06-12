@@ -260,7 +260,7 @@
 			</cfif>			
 						
 			<cfquery name="addPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO Phone(
+				INSERT INTO phone(
 				<cfif IsNumeric(PhoneTypeID)>PhoneTypeID</cfif> 
 				<cfif trim(PhoneNumber) NEQ "" AND trim(PhoneNumber) NEQ "@@">, PhoneNumber</cfif>				
 				)	
@@ -272,7 +272,7 @@
 			</cfquery>			
 			
 			<cfquery name="bindPhone" datasource="PAClient_#trim(ClientID)#">
-				INSERT INTO EntityPhone(PhoneID, EntityID)	
+				INSERT INTO entityphone(PhoneID, EntityID)	
 				VALUES(#trim(addPhone.PhoneID)#, #trim(EntityID)#)						
 			</cfquery>			
 			

@@ -445,7 +445,7 @@ FROM intake
 			
 			<cfquery name="getSS" datasource="PAClient_1084"> 
 				Select e.EntityID, p.PatientID
-				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID 
+				FROM entity e JOIN patient p ON p.EntityID = e.EntityID 
 				WHERE e.SSN = '#patientSSNTBox#'				
 			</cfquery>	
 			
@@ -461,7 +461,7 @@ FROM intake
 		<cfif NOT IsQuery(getPatient) AND getPatient EQ 0 AND PatientID EQ "" AND EntityID EQ "">				
 			<cfquery name="getName" datasource="PAClient_1084"> 
 				Select e.EntityID, p.PatientID
-				FROM entity e JOIN Patient p ON p.EntityID = e.EntityID 
+				FROM entity e JOIN patient p ON p.EntityID = e.EntityID 
 				WHERE (e.FName = '#trim(getIn.patientFNameTBox)#' OR e.FName = '#LEFT(trim(getIn.patientFNameTBox), 1)#') AND e.LName = '#trim(getIn.patientLNameTBox)#' 
 				AND e.SSN IS NULL AND e.DOB IS NULL 
 			</cfquery>				
@@ -2291,7 +2291,7 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 	</cfloop>
 
 	<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-		INSERT INTO SystemUserMessage(UsersID,Note)
+		INSERT INTO systemusermessage(UsersID,Note)
 		VALUES(#trim(i)#, '#trim(note)#')
 	</cfquery>
 

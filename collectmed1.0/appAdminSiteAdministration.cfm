@@ -109,7 +109,7 @@
 				<cfquery name="tempGet" datasource="#trim(thisDS)#">
 			SELECT u.usersid, u.entry, u.entrypoint, u.entryresponse, u.Active, e.clientID, e.entityID, c.clientName, e.fname, e.lname
 			FROM pa_master.users u 
-			LEFT JOIN Entity e ON u.entityID = e.EntityID 
+			LEFT JOIN entity e ON u.entityID = e.EntityID 
 			JOIN pa_master.Client c ON e.clientID = c.clientID		
 			WHERE e.objectTypeID = 2
 		</cfquery>		

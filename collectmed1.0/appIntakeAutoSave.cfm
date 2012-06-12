@@ -95,7 +95,7 @@
 				<cfset val = URLDecode(evaluate(form_element_name))>		
 				
 				<!---<cfquery name="tempIns" datasource="PAClient_1084">
-				INSERT INTO Debug(referenceID, note) VALUES(123, '#trim(i)#')
+				INSERT INTO debug(referenceID, note) VALUES(123, '#trim(i)#')
 			</cfquery>--->
 				
 				<cfif FindNoCase("patient", trim(i))>
@@ -329,7 +329,7 @@
 			<cfelse>
 			
 				<cfquery name="insertAutoSave" datasource="#trim(request.datasource)#">
-					INSERT INTO IntakeAutoSave(UsersID,PatientFName,PatientLName,IntakeXML) 
+					INSERT INTO intakeautosave(UsersID,PatientFName,PatientLName,IntakeXML) 
 					VALUES(#trim(hidden_UsersID)#, '#trim(patientFNameTBox)#', '#trim(patientLNameTBox)#', '#trim(xmlStruct)#')
 				</cfquery>	
 			

@@ -100,8 +100,8 @@
 			<cfquery name="insuranceCompanies" datasource="#trim(request.datasource)#">
 				SELECT  IC.InsuranceCompanyID, IC.InsuranceCompanyName, A.AddressLine1, A.AddressLine2, A.City, sli.ItemNameDisplay AS State, A.ZipCode
 				FROM insurancecompany IC 
-				LEFT JOIN EntityAddress EA ON IC.EntityID = EA.EntityID
-				LEFT JOIN ADDRESS A ON EA.AddressID = A.AddressID  
+				LEFT JOIN entityaddress EA ON IC.EntityID = EA.EntityID
+				LEFT JOIN address A ON EA.AddressID = A.AddressID  
 				LEFT JOIN pa_master.standardlistitem sli ON A.StateID = sli.StandardListItemID
 				WHERE IC.ClientID = #session.Client.getClientID()#
 				AND IC.InsuranceCompanyName LIKE '%#trim(form.InsComName)#%'

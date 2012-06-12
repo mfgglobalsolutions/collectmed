@@ -51,10 +51,10 @@
 					ee.SSN AS patientSSNTBox				
 					FROM intake i 
 					LEFT JOIN pa_master.users u ON i.hidden_UsersID = u.UsersID 
-					LEFT JOIN Entity e ON u.EntityID = e.EntityID
-					LEFT JOIN Patient p ON i.PatientID = p.PatientID
-					LEFT JOIN Entity ee ON ee.EntityID = p.EntityID
-					LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID
+					LEFT JOIN entity e ON u.EntityID = e.EntityID
+					LEFT JOIN patient p ON i.PatientID = p.PatientID
+					LEFT JOIN entity ee ON ee.EntityID = p.EntityID
+					LEFT JOIN address a ON a.AddressID = i.patientAddressID
 					WHERE i.ClientID = #trim(session.clientID)#
 					
 					<!---Active parameter--->		

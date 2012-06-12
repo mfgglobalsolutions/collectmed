@@ -48,16 +48,16 @@
 			<cfquery name="getIntakesTimeSpan" datasource="PAClient_#trim(ClientID)#">
 				SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateModified, TIMESTAMPDIFF(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
 				FROM intake i
-				LEFT JOIN Patient p ON i.PatientID = p.PatientID
-				LEFT JOIN Entity e ON e.EntityID = p.EntityID
+				LEFT JOIN patient p ON i.PatientID = p.PatientID
+				LEFT JOIN entity e ON e.EntityID = p.EntityID
 				JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 				WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 72
 				AND i.ClosingInvoiceNumber IS NULL
 				UNION
 				SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateCreated, TIMESTAMPDIFF(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
 				FROM intake i
-				LEFT JOIN Patient p ON i.PatientID = p.PatientID
-				LEFT JOIN Entity e ON e.EntityID = p.EntityID
+				LEFT JOIN patient p ON i.PatientID = p.PatientID
+				LEFT JOIN entity e ON e.EntityID = p.EntityID
 				JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 				WHERE i.Active = 1 AND i.DateModified IS NULL AND TIMESTAMPDIFF(Hour, i.DateCreated, now()) > 72
 				AND i.ClosingInvoiceNumber IS NULL
@@ -77,7 +77,7 @@
 			
 			<cfloop list="#trim(usersID)#" index="i">
 				<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-					INSERT INTO SystemUserMessage(UsersID,Note)
+					INSERT INTO systemusermessage(UsersID,Note)
 					VALUES(#trim(i)#, '#trim(note)#')
 				</cfquery>
 			</cfloop>
@@ -106,16 +106,16 @@
 		<cfquery name="getIntakesTimeSpan" datasource="PAClient_#trim(ClientID)#">
 			SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateModified, TIMESTAMPDIFF(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
 			FROM intake i
-			LEFT JOIN Patient p ON i.PatientID = p.PatientID
-			LEFT JOIN Entity e ON e.EntityID = p.EntityID
+			LEFT JOIN patient p ON i.PatientID = p.PatientID
+			LEFT JOIN entity e ON e.EntityID = p.EntityID
 			JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 			WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 			AND i.ClosingInvoiceNumber IS NULL
 			UNION
 			SELECT i.IntakeID AS intakeID, e.FName AS patientFNameTBox, e.LName AS PatientLNameTBox, i.assignedToUserID, i.DateCreated, TIMESTAMPDIFF(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
 			FROM intake i
-			LEFT JOIN Patient p ON i.PatientID = p.PatientID
-			LEFT JOIN Entity e ON e.EntityID = p.EntityID
+			LEFT JOIN patient p ON i.PatientID = p.PatientID
+			LEFT JOIN entity e ON e.EntityID = p.EntityID
 			JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 			WHERE i.Active = 1 AND i.DateModified IS NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 			AND i.ClosingInvoiceNumber IS NULL
@@ -137,7 +137,7 @@
 				</cfloop>
 				
 				<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-					INSERT INTO SystemUserMessage(UsersID,Note)
+					INSERT INTO systemusermessage(UsersID,Note)
 					VALUES(#trim(i)#, '#trim(note)#')
 				</cfquery>
 				
@@ -186,7 +186,7 @@
 				</cfloop>
 				
 				<cfquery name="insertSystemUserMessage" datasource="PAClient_#trim(ClientID)#">
-					INSERT INTO SystemUserMessage(UsersID,Note)
+					INSERT INTO systemusermessage(UsersID,Note)
 					VALUES(#trim(i)#, '#trim(note)#')
 				</cfquery>
 				

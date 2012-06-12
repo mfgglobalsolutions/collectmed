@@ -193,7 +193,7 @@
 				a.AddressID, a.SiteID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, a.Active, a.DateCreated, 
 				sli2.ItemNameDisplay AS AddressType, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr
 				FROM insurancecompany ic 
-				LEFT JOIN EntityAddress ea ON ic.EntityID = ea.EntityID AND ea.Active = 1		
+				LEFT JOIN entityAddress ea ON ic.EntityID = ea.EntityID AND ea.Active = 1		
 				LEFT JOIN Address a ON ea.AddressID = a.AddressID AND a.Active = 1		
 				LEFT JOIN pa_master.standardlistitem sli ON a.stateID = sli.StandardListItemID 		
 				LEFT JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID 		

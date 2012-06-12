@@ -639,7 +639,7 @@
 					FROM patient p
 					INNER JOIN entity e ON p.EntityID = e.EntityID
 					<cfif isNumeric(InsuranceCompanyID)>
-						LEFT JOIN PatientInsuranceCompany pic ON pic.PatientID = p.PatientID AND pic.InsuranceCompanyID = #trim(InsuranceCompanyID)#
+						LEFT JOIN patientInsuranceCompany pic ON pic.PatientID = p.PatientID AND pic.InsuranceCompanyID = #trim(InsuranceCompanyID)#
 					</cfif>				
 					WHERE 1 =1 
 					<cfif LName NEQ "">
