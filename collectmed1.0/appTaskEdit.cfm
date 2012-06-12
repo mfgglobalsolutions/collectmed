@@ -144,7 +144,7 @@
 		<!-------------------------------------------------------------------------------------->			
 		<cfquery name="getCreatorInfo" datasource="#trim(request.datasource)#">
 			SELECT CONCAT(e.FName, ' ', e.LName) AS Fullname
-			FROM entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+			FROM entity e LEFT JOIN pa_master.users u ON e.EntityID = u.EntityID
 			WHERE u.UsersID = #trim(request.Task.getCreatorID())#			
 		</cfquery>
 		

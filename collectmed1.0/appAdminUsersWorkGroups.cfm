@@ -42,7 +42,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getClientAccount" datasource="#trim(request.datasource)#">
 		SELECT u.usersID, e.FName + ' '  + e.LName AS Fullname  
-		FROM entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
+		FROM entity AS e   LEFT JOIN pa_master.users AS u   ON e.EntityID = u.EntityID
 		WHERE u.UsersID = #trim(UsersID)# 			
 	</cfquery>
 	

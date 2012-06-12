@@ -91,7 +91,7 @@
 <!-------------------------------------------------------------------------------------->	
 	<cfquery name="getClientAccounts" datasource="#trim(request.datasource)#">
 		SELECT e.EntityID, e.SiteID, e.ClientID, e.FName, e.MName, e.LName, e.ObjectTypeID, u.active, u.UsersID, u.Suspend
-		FROM entity AS e   LEFT JOIN pa_master.Users AS u   ON e.EntityID = u.EntityID
+		FROM entity AS e   LEFT JOIN pa_master.users AS u   ON e.EntityID = u.EntityID
 		WHERE u.ClientID = #trim(session.ClientID)# AND e.ObjectTypeID = 2
 		ORDER BY u.Active DESC, e.ObjectTypeID DESC
 	</cfquery>

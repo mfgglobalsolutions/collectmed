@@ -140,7 +140,7 @@
 	<cfquery name="getProcedureCodes" datasource="#trim(request.datasource)#">
 		SELECT cp.ProcedureID, cp.ProcedureCode, cp.ServiceDateFrom, cp.ServiceDateTo, cp.BilledQuantity, cp.BilledAmount, cp.PaidQuantity, cp.PaidAmount, pc.TOSCode, pc.Code, pc.Description, pc.TMRMPayable, pc.TotalRVUs, pc.ConversionFactor, pc.AccessBasedOrMaxFee, pc.NoteCode, IFNULL(n.noteID, 0) AS noteID							
 		FROM [Procedure] cp
-		LEFT JOIN pa_master.EOB_ProcedureCode pc ON cp.ProcedureCode = pc.RecordID
+		LEFT JOIN pa_master.eob_procedurecode pc ON cp.ProcedureCode = pc.RecordID
 		LEFT JOIN Note n ON cp.ProcedureID = n.instanceID AND n.objectID = 6
 		WHERE cp.ClaimID = #trim(ClaimID)#		
 	</cfquery>							
@@ -155,7 +155,7 @@
 			SELECT cp.ProcedureID, ce.EOBCode, eob.Code, eob.Description
 			FROM [Procedure] cp
 			LEFT JOIN ProcedureEOBCode ce ON cp.ProcedureID = ce.ProcedureID
-			LEFT JOIN pa_master.EOB_EOBCode eob ON ce.EOBCode = eob.RecordID
+			LEFT JOIN pa_master.eob_eobcode eob ON ce.EOBCode = eob.RecordID
 			WHERE cp.ProcedureID = #trim(ProcedureID)#
 		</cfquery>
 		
@@ -174,7 +174,7 @@
 			SELECT cp.ProcedureID, ce.EOPSCode, eops.Code, eops.Description
 			FROM [Procedure] cp
 			LEFT JOIN ProcedureEOPSCode ce ON cp.ProcedureID = ce.ProcedureID
-			LEFT JOIN pa_master.EOB_EOPSCode eops ON ce.EOPSCode = eops.RecordID
+			LEFT JOIN pa_master.eob_eopscode eops ON ce.EOPSCode = eops.RecordID
 			WHERE cp.ProcedureID = #trim(ProcedureID)#
 		</cfquery>
 		

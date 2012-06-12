@@ -20,7 +20,7 @@
 					ee.DOB AS patientDOB, 
 					ee.SSN AS patientSSNTBox				
 					FROM intake i 
-					LEFT JOIN pa_master.Users u ON i.hidden_UsersID = u.UsersID 
+					LEFT JOIN pa_master.users u ON i.hidden_UsersID = u.UsersID 
 					LEFT JOIN Entity e ON u.EntityID = e.EntityID
 					LEFT JOIN Patient p ON i.PatientID = p.PatientID
 					LEFT JOIN Entity ee ON ee.EntityID = p.EntityID

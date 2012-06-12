@@ -50,9 +50,9 @@
 			</cfquery>
 			<!---<cfquery name="getClientsEntities" datasource="#trim(request.datasource)#">
 				SELECT <cfif distinct>DISTINCT</cfif> e.EntityID, CONCAT(e.FName, ' ', e.LName) AS Fullname, u.UsersID, u.active
-				FROM entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+				FROM entity e LEFT JOIN pa_master.users u ON e.EntityID = u.EntityID
 				<cfif haveRoleList NEQ "">
-					LEFT JOIN UsersRole ur ON u.UsersID = ur.UsersID
+					LEFT JOIN usersrole ur ON u.UsersID = ur.UsersID
 				</cfif>
 				WHERE e.EntityID IN (SELECT EntityID FROM entity WHERE ClientID = #trim(clientID)#) AND ObjectTypeID = 2
 				<cfif haveRoleList NEQ "">

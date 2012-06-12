@@ -341,7 +341,7 @@
 	<cfif IsDefined("form.AssignedToUserID") AND form.AssignedToUserID NEQ "">
 		<cfquery name="getClientEntities" datasource="#trim(request.datasource)#">
 			SELECT e.EntityID, CONCAT(e.FName, ' ', e.LName) AS eobFullname 
-			FROM entity e LEFT JOIN pa_master.Users u ON e.EntityID = u.EntityID
+			FROM entity e LEFT JOIN pa_master.users u ON e.EntityID = u.EntityID
 			WHERE e.ClientID = #trim(session.ClientID)# AND e.ObjectTypeID = 2
 			AND u.usersID IN(#trim(form.AssignedToUserID)#)			
 		</cfquery>	
@@ -403,7 +403,7 @@
 					SELECT DISTINCT c.ClaimID, c.InterchangeClaimID, c.claimType, c.EntityID, c.InterchangeID, c.assignedToUserID, c.Active, c.InactiveCode, c.DateCreated, c.DueDate, u.usersID, e.FName As userFName, e.LName AS userLName, TIMESTAMPDIFF(day, c.DateCreated, now()) AS days
 					, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName
 					FROM claim c 
-					LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
+					LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
 					LEFT JOIN Entity e ON u.EntityID = e.EntityID
 					LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
 					LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				
@@ -896,7 +896,7 @@
 									<cfquery name="getProcedureCodes" datasource="#trim(request.datasource)#">
 										SELECT cp.ProcedureID, cp.ProcedureCode, pc.HCPC AS Code, pc.ShortDescription AS Description, cp.ServiceDateFrom, cp.ServiceDateTo							
 										FROM [Procedure] cp
-										LEFT JOIN pa_master.EOB_Medicare_ProcedureCode pc ON cp.ProcedureCode = pc.RecordID
+										LEFT JOIN pa_master.eob_medicare_procedurecode pc ON cp.ProcedureCode = pc.RecordID
 										WHERE cp.ClaimID = #trim(ClaimID)#
 									</cfquery>						
 									
@@ -911,7 +911,7 @@
 												SELECT cp.ProcedureID, ce.EOBCode, eob.Code, eob.Description
 												FROM [Procedure] cp
 												LEFT JOIN ProcedureEOBCode ce ON cp.ProcedureID = ce.ProcedureID
-												LEFT JOIN pa_master.EOB_EOBCode eob ON ce.EOBCode = eob.RecordID
+												LEFT JOIN pa_master.eob_eobcode eob ON ce.EOBCode = eob.RecordID
 												WHERE cp.ProcedureID = #trim(ProcedureID)#
 											</cfquery>
 											
@@ -920,7 +920,7 @@
 												SELECT cp.ProcedureID, ce.EOPSCode, eops.Code, eops.Description
 												FROM [Procedure] cp
 												LEFT JOIN ProcedureEOPSCode ce ON cp.ProcedureID = ce.ProcedureID
-												LEFT JOIN pa_master.EOB_EOPSCode eops ON ce.EOPSCode = eops.RecordID
+												LEFT JOIN pa_master.eob_eopscode eops ON ce.EOPSCode = eops.RecordID
 												WHERE cp.ProcedureID = #trim(ProcedureID)#
 											</cfquery>
 																

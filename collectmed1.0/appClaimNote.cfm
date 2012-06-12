@@ -241,7 +241,7 @@
 					<cfquery name="getProcedureCodes" datasource="#trim(request.datasource)#">
 						SELECT cp.ProcedureID, cp.ProcedureCode, pc.HCPC AS Code, pc.LongDescription AS Description
 						FROM [Procedure] cp
-						LEFT JOIN pa_master.EOB_MEDICARE_ProcedureCode pc ON cp.ProcedureCode = pc.RecordID
+						LEFT JOIN pa_master.eob_medicare_procedurecode pc ON cp.ProcedureCode = pc.RecordID
 						WHERE cp.ClaimID = #trim(instanceID)#
 					</cfquery>
 
@@ -250,7 +250,7 @@
 					<cfquery name="getProcedureCodes" datasource="#trim(request.datasource)#">
 						SELECT cp.ProcedureID, cp.ProcedureCode, pc.Code, pc.Description
 						FROM [Procedure] cp
-						LEFT JOIN pa_master.EOB_ProcedureCode pc ON cp.ProcedureCode = pc.RecordID
+						LEFT JOIN pa_master.eob_procedurecode pc ON cp.ProcedureCode = pc.RecordID
 						WHERE cp.ClaimID = #trim(instanceID)#
 					</cfquery>
 

@@ -179,7 +179,7 @@
 					SELECT u.usersid, u.entry, u.entrypoint, u.entryresponse, u.Active, e.clientID, e.entityID, e.fname, e.lname, c.clientName
 					FROM pa_master.users u
 					LEFT JOIN #trim(thisDS)#.Entity e ON u.entityID = e.EntityID 
-					JOIN pa_master.Client c ON e.clientID = c.clientID
+					JOIN pa_master.client c ON e.clientID = c.clientID
 					WHERE e.objectTypeID = 2 and u.active = 1
 				</cfquery>		
 				<cfif tempGet.recordCount GTE 1>

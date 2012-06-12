@@ -67,7 +67,7 @@
 				TIMESTAMPDIFF(day, c.DateCreated, now()) AS days, patientEntity.FName AS patientFName, 
 				patientEntity.LName AS patientLName, p.PatientID
 				FROM claim c 
-				LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
+				LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
 				LEFT JOIN Entity e ON u.EntityID = e.EntityID
 				LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
 				LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				

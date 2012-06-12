@@ -614,7 +614,7 @@
 		u.usersID, e.FName As userFName, e.LName AS userLName, TIMESTAMPDIFF(day, c.DateCreated, now()) AS days, 
 		p.PatientID, patientEntity.FName AS patientFName, patientEntity.LName AS patientLName, c.HICNumber
 		FROM claim c 
-		LEFT JOIN pa_master.Users u ON c.AssignedToUserID = u.UsersID 
+		LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
 		LEFT JOIN Entity e ON u.EntityID = e.EntityID
 		LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
 		LEFT JOIN Entity patientEntity ON c.entityID = patientEntity.EntityID				
@@ -663,7 +663,7 @@
 		pc.HCPC, pc.LongDescription, pc.ShortDescription,  
 		IFNULL(n.noteID, 0) AS noteID							
 		FROM [Procedure] cp
-		LEFT JOIN pa_master.EOB_MEDICARE_PROCEDURECode pc ON cp.ProcedureCode = pc.RecordID
+		LEFT JOIN pa_master.eob_medicare_procedurecode pc ON cp.ProcedureCode = pc.RecordID
 		LEFT JOIN Note n ON cp.ProcedureID = n.instanceID AND n.objectID = 6
 		WHERE cp.ClaimID = #trim(ClaimID)#		
 	</cfquery>							
@@ -1078,7 +1078,7 @@
 														<!-------------------------------------------------------------------------------------->										
 														<cfquery name="getModifiers" datasource="#trim(request.datasource)#">
 															SELECT e.Modifier
-															FROM procedure_medicare_modifier p LEFT JOIN pa_master.EOB_MEDICARE_CLAIMMODIFIERCode e ON p.ModifierCode = e.RecordID 
+															FROM procedure_medicare_modifier p LEFT JOIN pa_master.eob_medicare_claimmodifiercode e ON p.ModifierCode = e.RecordID 
 															WHERE p.ProcedureID = #trim(ProcedureID)#
 														</cfquery>
 														
