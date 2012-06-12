@@ -34,7 +34,7 @@
 				v.Active, v.InactiveCode, v.DateCreated AS DateCreated, v.DateModified,
 				CONCAT(vuap.FName, ' ', vuap.LName) AS verifiedByName
 				FROM verificationpatientinsurance v  
-				JOIN view_UserAccountParameters vuap ON v.UsersID = vuap.UsersID
+				JOIN view_useraccountparameters vuap ON v.UsersID = vuap.UsersID
 				WHERE v.VerificationPatientInsuranceID = #trim(vpiID)#					
 			</cfquery>	
 													

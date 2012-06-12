@@ -563,7 +563,7 @@
 				<cfquery name="getAssignments" datasource="#trim(request.datasource)#">
 					SELECT ca.UserID, ca.AssignorID, ca.DateCreated AS AssignmentDateCreated, ca.Note, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
 					FROM claimassignment ca 
-					JOIN view_UserAccountParameters vuap ON ca.UserID = vuap.UsersID
+					JOIN view_useraccountparameters vuap ON ca.UserID = vuap.UsersID
 					WHERE ca.ClaimID = #trim(request.thisClaim.getClaimID())#
 					ORDER BY ca.DateCreated DESC
 				</cfquery>

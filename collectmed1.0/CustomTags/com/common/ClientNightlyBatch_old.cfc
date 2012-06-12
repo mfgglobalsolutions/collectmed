@@ -50,7 +50,7 @@
 				FROM intake i
 				LEFT JOIN Patient p ON i.PatientID = p.PatientID
 				LEFT JOIN Entity e ON e.EntityID = p.EntityID
-				JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+				JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 				WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND timestampdiff(Hour, i.DateModified, now()) > 72
 				AND i.ClosingInvoiceNumber IS NULL
 				UNION
@@ -58,7 +58,7 @@
 				FROM intake i
 				LEFT JOIN Patient p ON i.PatientID = p.PatientID
 				LEFT JOIN Entity e ON e.EntityID = p.EntityID
-				JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+				JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 				WHERE i.Active = 1 AND i.DateModified IS NULL AND timestampdiff(Hour, i.DateCreated, now()) > 72
 				AND i.ClosingInvoiceNumber IS NULL
 			</cfquery>		
@@ -108,7 +108,7 @@
 			FROM intake i
 			LEFT JOIN Patient p ON i.PatientID = p.PatientID
 			LEFT JOIN Entity e ON e.EntityID = p.EntityID
-			JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+			JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 			WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND timestampdiff(Hour, i.DateModified, now()) > 48
 			AND i.ClosingInvoiceNumber IS NULL
 			UNION
@@ -116,7 +116,7 @@
 			FROM intake i
 			LEFT JOIN Patient p ON i.PatientID = p.PatientID
 			LEFT JOIN Entity e ON e.EntityID = p.EntityID
-			JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+			JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 			WHERE i.Active = 1 AND i.DateModified IS NULL AND timestampdiff(Hour, i.DateModified, now()) > 48
 			AND i.ClosingInvoiceNumber IS NULL
 		</cfquery>		
@@ -166,7 +166,7 @@
 		<cfquery name="getTasksTimeSpan" datasource="PAClient_#trim(ClientID)#">
 			SELECT t.TaskID AS TaskID, t.CreatorID, timestampdiff(Hour, t.DueDate, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName 
 			FROM task t
-			JOIN view_UserAccountParameters vw ON t.AssignedToUserID = vw.UsersID
+			JOIN view_useraccountparameters vw ON t.AssignedToUserID = vw.UsersID
 			WHERE t.Active = 1 AND t.DueDate IS NOT NULL AND timestampdiff(Hour, t.DueDate, now()) > 1 AND t.StatusID NOT IN(174,175) <!---NOT Closed/Archived--->
 		</cfquery>		
 		

@@ -5073,12 +5073,12 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 <!---<cfquery name="getIntakesTimeSpan" datasource="PAClient_1084">
 	SELECT i.IntakeID AS intakeID, i.patientFNameTBox, i.PatientLNameTBox, i.assignedToUserID, i.DateModified, TIMESTAMPDIFF(Hour, i.DateModified, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName
 	FROM intake i
-	JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+	JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 	WHERE i.Active = 1 AND i.DateModified IS NOT NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 	UNION
 	SELECT i.IntakeID AS intakeID, i.patientFNameTBox, i.PatientLNameTBox, i.assignedToUserID, i.DateCreated, TIMESTAMPDIFF(Hour, i.DateCreated, now()) AS numofHours, CONCAT(vw.FName, ' ', vw.LName) AS AssignedToName
 	FROM intake i
-	JOIN view_UserAccountParameters vw ON i.assignedToUserID = vw.UsersID
+	JOIN view_useraccountparameters vw ON i.assignedToUserID = vw.UsersID
 	WHERE i.Active = 1 AND i.DateModified IS NULL AND TIMESTAMPDIFF(Hour, i.DateModified, now()) > 48
 </cfquery>
 

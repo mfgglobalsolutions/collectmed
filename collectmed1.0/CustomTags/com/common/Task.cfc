@@ -303,7 +303,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTaskStatus" datasource="#trim(request.datasource)#">
 			SELECT  sli.ItemNameDisplay, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname, fs.note, fs.dateCreated
-			FROM taskstatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
+			FROM taskstatus fs JOIN view_useraccountparameters vuap ON fs.UsersID = vuap.UsersID
 			LEFT JOIN pa_master.standardlistitem sli ON fs.statusID = sli.StandardListItemID
 			WHERE fs.taskID = #trim(taskID)#
 			ORDER BY  fs.DateCreated #trim(orderby)#	
@@ -329,7 +329,7 @@
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTaskAssignor" datasource="#trim(request.datasource)#">
 			SELECT AssignorID, vuap.FName AS assignorFName, vuap.LName AS assignorLName
-			FROM taskassignment ta JOIN view_UserAccountParameters vuap ON ta.AssignorID = vuap.UsersID
+			FROM taskassignment ta JOIN view_useraccountparameters vuap ON ta.AssignorID = vuap.UsersID
 			WHERE ta.taskID = #trim(taskID)#
 			Order BY ta.DateCreated DESC	
 			LIMIT 1		

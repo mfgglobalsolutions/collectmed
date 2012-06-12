@@ -296,7 +296,7 @@
 						<cfquery name="getAssignments" datasource="#trim(request.datasource)#">
 							SELECT ia.UserID, ia.AssignorID, ia.DateCreated AS AssignmentDateCreated, ia.Note, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
 							FROM intakeassignment ia 
-							JOIN view_UserAccountParameters vuap ON ia.UserID = vuap.UsersID
+							JOIN view_useraccountparameters vuap ON ia.UserID = vuap.UsersID
 							WHERE ia.IntakeID = #trim(IntakeID)#
 							ORDER BY ia.DateCreated DESC
 						</cfquery>

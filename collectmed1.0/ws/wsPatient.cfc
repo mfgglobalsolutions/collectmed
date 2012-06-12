@@ -222,7 +222,7 @@
 						SELECT vpi.VerificationPatientInsuranceID, vpi.DateCreated AS DateCreated, vpi.VerificationDateAS VerificationDate, vpi.VerificationTime,
 						CONCAT(vu.FName, ' ', vu.LName) AS Fullname, vpi.VerificationRepFName, vpi.VerificationRepLName, vpi.VerificationHaveInsFromDateAS VerificationHaveInsFromDate, vpi.VerificationHaveInsToDateAS VerificationHaveInsToDate						 
 						FROM verificationpatientinsurance vpi		
-						LEFT JOIN view_UserAccountParameters vu on vpi.UsersID = vu.UsersID			
+						LEFT JOIN view_useraccountparameters vu on vpi.UsersID = vu.UsersID			
 						WHERE vpi.picID = #trim(recordID)# AND vpi.Active = 1
 						ORDER BY vpi.DateCreated DESC				
 					</cfquery> 
