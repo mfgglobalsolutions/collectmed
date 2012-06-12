@@ -37,7 +37,7 @@
 					<!-------------------------------------------------------------------------------------->				
 					<cfquery name="getEOBProcedureCode" datasource="#trim(request.datasource)#">
 						SELECT RecordID
-						FROM pa_master.EOB_MEDICARE_PROCEDURECode
+						FROM pa_master.eob_medicare_procedurecode
 						WHERE HCPC = '#trim(ProcedureCode)#' AND RIC = 3
 					</cfquery>
 					
@@ -258,3 +258,4 @@
 					
 				</cfloop>
 				
+

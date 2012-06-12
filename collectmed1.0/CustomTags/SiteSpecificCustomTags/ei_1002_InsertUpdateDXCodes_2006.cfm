@@ -134,14 +134,14 @@ ALTER TABLE [dbo].[EOB_MEDICARE_DXCode] ADD
 				
 		<cfquery name="getCode" datasource="#trim(request.datasource)#">
 			SELECT RecordID 
-			FROM pa_master.EOB_MEDICARE_DXCode
+			FROM pa_master.eob_medicare_dxcode
 			WHERE Code = '#trim(thisCode)#' 
 		</cfquery>
 		
 		<cfif getCode.Recordcount LTE 0>
 			
 			<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-				INSERT INTO pa_master.EOB_MEDICARE_DXCode  (Code, Description)
+				INSERT INTO pa_master.eob_medicare_dxcode  (Code, Description)
 				VALUES('#trim(thisCode)#', '#trim(Description)#');
 				SELECT LAST_INSERT_ID() AS thisRecordID 
 			</cfquery>				
@@ -155,3 +155,4 @@ ALTER TABLE [dbo].[EOB_MEDICARE_DXCode] ADD
 	</cfloop>	
 
 	
+

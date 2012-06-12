@@ -87,10 +87,14 @@
 											<cfif FindNoCase("INSERT INTO ", i)>
 												<cfset fromIndex = ListFindNoCase(trim(i), "INTO", chr(32)) + 1 />
 												<cfset dbWord = ListGetAt(trim(i), fromIndex, chr(32)) />
-												<cfif REFind('[A-Z]', dbWord) AND ListFindNoCase(tableList, dbWord)>
+												<cfset paFound = false>												
+												<cfif FindNoCase("pa_master.", dbWord) AND ListFindNoCase(tableList, ListLast(dbWord, '.'))>
+													<cfset paFound = true>
+												</cfif>
+												<cfif REFind('[A-Z]', dbWord) AND (ListFindNoCase(tableList, dbWord) OR paFound)>
 													<cfset findFROM = true />
 													<cfbreak>	
-												</cfif>	
+												</cfif>
 											</cfif>
 										</cfif>
 									</cfloop>
@@ -101,8 +105,9 @@
 									<cfif findFROM>
 										<br>#dbWord# = "#Directory#\#Name#"
 										
-										<cfset newFileContent = REReplaceNoCase(fileContent, '(INSERT INTO)+[ ]+(#dbWord#)', 'INSERT INTO #lcase(dbWord)#', 'all') />
-					
+										<cfset newFileContent1 = REReplaceNoCase(fileContent, '(INSERT INTO)+[ ]+(#dbWord#)', 'INSERT INTO #lcase(dbWord)#', 'all') />
+										<cfset newFileContent = REReplaceNoCase(newfileContent1, '(INSERT INTO)+[ ]+(pa_master.#dbWord#)', 'INSERT INTO pa_master.#lcase(dbWord)#', 'all') />
+										
 										<cffile 
 											action="write" 
 											nameconflict="OVERWRITE" 

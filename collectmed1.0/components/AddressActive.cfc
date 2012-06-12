@@ -705,8 +705,8 @@
 					sli2.ItemNameDisplay AS AddressType, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr,
 					ea.IsDefault
 					FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID
-					INNER JOIN pa_master.StandardListItem sli ON a.stateID = sli.StandardListItemID		
-					INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
+					INNER JOIN pa_master.standardlistitem sli ON a.stateID = sli.StandardListItemID		
+					INNER JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
 					WHERE ea.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
 					<cfif IsNumeric(Active)>
 						AND ea.Active = <cfqueryparam value="#trim(arguments.Active)#" cfsqltype="CF_SQL_INTEGER" /> 	

@@ -254,7 +254,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="getClientRecord" datasource="#trim(request.datasource)#">
 				SELECT clientID
-				FROM pa_master.Client 
+				FROM pa_master.client 
 				WHERE providerID = '#trim(providerID)#'
 			</cfquery>
 
@@ -760,3 +760,4 @@
 	</cfif>
 	
 		
+

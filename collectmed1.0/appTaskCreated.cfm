@@ -116,7 +116,7 @@
 		SELECT f.TaskID, f.ObjectID, f.InstanceID, f.AssignedtoUserID, f.priority, f.statusID, f.Note, f.dueDate, f.Active, 
 		f.DateCreated, sli.ItemNameDisplay, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname 
 		FROM task f JOIN view_UserAccountParameters vuap ON f.AssignedtoUserID = vuap.UsersID
-		LEFT JOIN pa_master.StandardListItem sli ON f.statusID = sli.StandardListItemID
+		LEFT JOIN pa_master.standardlistitem sli ON f.statusID = sli.StandardListItemID
 		WHERE f.CreatorID = #trim(session.user.getUsersID())#
 		ORDER BY PRIORITY, dueDate									
 	</cfquery>	

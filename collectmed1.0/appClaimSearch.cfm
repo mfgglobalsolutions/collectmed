@@ -29,7 +29,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getProcedureCodes" datasource="#trim(request.datasource)#"><!---cachedwithin="#CreateTimeSpan(0,1,0,0)#"--->
 		SELECT RecordID, HCPC AS Code, LEFT(CAST(ShortDescription AS VARCHAR), 30) AS Description
-		FROM pa_master.EOB_MEDICARE_PROCEDURECode
+		FROM pa_master.eob_medicare_procedurecode
 		WHERE RecordID IN(SELECT DISTINCT cp.ProcedureCode FROM [Procedure] cp JOIN Claim c ON cp.ClaimID = c.ClaimID WHERE c.ClientID = #trim(session.clientID)#)
 	</cfquery>
 	
@@ -489,4 +489,6 @@
 	</cfoutput>
 	
 		
+
+
 

@@ -320,7 +320,7 @@
 						
 			<cfquery name="getClientRecord" datasource="#trim(request.datasource)#">
 				SELECT clientID, providerID AS clientProviderIDS
-				FROM pa_master.Client 				
+				FROM pa_master.client 				
 			</cfquery>
 			
 			<cfloop query="getClientRecord">

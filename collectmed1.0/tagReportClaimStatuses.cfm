@@ -61,7 +61,7 @@
 <!-------------------------------------------------------------------------------------->		
 	<cfquery name="getClaimStatuses" datasource="#trim(request.datasource)#">
 		SELECT sli.ItemNameDisplay AS itemcolumn, count(c.statusID) AS valuecolumn
-		FROM claim c LEFT JOIN pa_master.StandardListItem sli ON c.statusID = sli.StandardListItemID
+		FROM claim c LEFT JOIN pa_master.standardlistitem sli ON c.statusID = sli.StandardListItemID
 		GROUP BY c.StatusID, sli.ItemNameDisplay
 	</cfquery>	
 		

@@ -97,7 +97,7 @@
 		<cfsavecontent variable="sqlStatement">			
 			<cfoutput>
 				SELECT recordID, Code, Description
-				FROM pa_master.EOB_MEDICARE_DXCode
+				FROM pa_master.eob_medicare_dxcode
 				<cfif form.dxCode NEQ "" OR form.dxDescription NEQ "">
 					WHERE							
 					<cfif form.dxCode NEQ "">
@@ -166,3 +166,5 @@
 	</cfif>		
 	
 	
+
+

@@ -96,7 +96,7 @@
 			<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(initialEntryPoint)) />
 						
 			<cfquery name="insertNewUserAccount" datasource="#trim(request.datasource)#">
-				INSERT INTO pa_master.Users  (SiteID, ClientID, EntityID, Entry, EntryPoint)
+				INSERT INTO pa_master.users  (SiteID, ClientID, EntityID, Entry, EntryPoint)
 				VALUES(#trim(request.Site.getSiteID())#, #trim(session.clientID)#, '#trim(newUserID)#', '#trim(Entry)#', '#trim(EntryPoint)#');
 				SELECT LAST_INSERT_ID() AS usersID 
 			</cfquery>		
@@ -113,7 +113,7 @@
 				</cfquery>		
 			
 				<cfquery name="insertAdministratorUserRole_MASTER" datasource="#trim(request.datasource)#">
-					INSERT INTO pa_master.UsersRole  (UsersID, SiteID, RoleID)
+					INSERT INTO pa_master.usersrole  (UsersID, SiteID, RoleID)
 					VALUES(#trim(insertNewUserAccount.usersID)#, #trim(request.Site.getSiteID())#, #trim(i)#)
 				</cfquery>	
 				
@@ -232,6 +232,8 @@
 		
 	
 			
+
+
 
 
 

@@ -94,7 +94,7 @@
 		<cfsavecontent variable="sqlStatement">			
 			<cfoutput>
 				SELECT recordID, HCPC, LEFT(LongDescription,100) AS Description
-				FROM pa_master.EOB_MEDICARE_PROCEDURECode
+				FROM pa_master.eob_medicare_procedurecode
 				<cfif form.hcpcCode NEQ "" OR form.hcpcDescription NEQ "">
 					WHERE							
 					<cfif form.hcpcCode NEQ "">
@@ -165,3 +165,5 @@
 	</cfif>		
 	
 	
+
+

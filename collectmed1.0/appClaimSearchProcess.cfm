@@ -496,7 +496,7 @@
 							<cfset Count = Count  + 1>						
 						</cfloop>
 						
-						<cfset procIn = "AND cp.ProcedureCode IN(SELECT RecordID FROM pa_master.EOB_MEDICARE_PROCEDURECode WHERE HCPC IN(" & ProcedureCodeList & "))">
+						<cfset procIn = "AND cp.ProcedureCode IN(SELECT RecordID FROM pa_master.eob_medicare_procedurecode WHERE HCPC IN(" & ProcedureCodeList & "))">
 										
 						<cfif ProcedureCodeList NEQ "">
 							<cfoutput>#trim(procIn)#</cfoutput>
@@ -1075,4 +1075,6 @@
 <!---<cfdump var="#variables#" expand="no">--->
 <cfdump var="#form#" expand="no">		
 --->	
+
+
 

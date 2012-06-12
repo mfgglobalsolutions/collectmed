@@ -22,7 +22,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="checkExistsClient" datasource="#trim(request.datasource)#">
 				SELECT clientID
-				FROM pa_master.Client  
+				FROM pa_master.client  
 				WHERE ClientName = '#trim(form.clientName)#'
 			</cfquery>
 			
@@ -36,7 +36,7 @@
 			<!--- the datebase and enter an enitity.                                             --->
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="insertClient" datasource="#trim(request.datasource)#">
-				INSERT INTO pa_master.Client  (ClientName, ClientDBA, EntityID, ProviderID)
+				INSERT INTO pa_master.client  (ClientName, ClientDBA, EntityID, ProviderID)
 				VALUES('#trim(form.clientName)#', '#trim(form.clientDBA)#', 5555, '#trim(form.medicareProviderID)#');
 				SELECT LAST_INSERT_ID() AS clientID 
 			</cfquery>	
@@ -325,6 +325,9 @@
 		<cfdump var="#qAddresses#" expand="no">
 		
 	</cfif>	
+
+
+
 
 
 

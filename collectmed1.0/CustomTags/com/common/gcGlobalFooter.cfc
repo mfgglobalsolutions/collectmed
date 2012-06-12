@@ -78,37 +78,37 @@
 		
 			<cfquery name="getColA" datasource="#trim(arguments.ds)#"> 
 				SELECT ColA
-				FROM pa_master.EntityKS 
+				FROM pa_master.entityks 
 				Where EntityKSID = 1
 			</cfquery>
 		
 			<cfquery name="getColB" datasource="#trim(arguments.ds)#"> 
 				SELECT ColI
-				FROM pa_master.EntityKS 
+				FROM pa_master.entityks 
 				Where EntityKSID = 9
 			</cfquery>				
 		
 			<cfquery name="getColC" datasource="#trim(arguments.ds)#"> 	
 				SELECT ColL
-				FROM pa_master.EntityKS W
+				FROM pa_master.entityks W
 				Where EntityKSID = 12
 			</cfquery>
 		
 			<cfquery name="getColD" datasource="#trim(arguments.ds)#"> 					
 				SELECT ColE
-				FROM pa_master.EntityKS 
+				FROM pa_master.entityks 
 				Where EntityKSID = 5
 			</cfquery>
 		
 			<cfquery name="getColE" datasource="#trim(arguments.ds)#"> 					
 				SELECT ColM
-				FROM pa_master.EntityKS
+				FROM pa_master.entityks
 				Where EntityKSID = 14
 			</cfquery>
 		
 			<cfquery name="getColF" datasource="#trim(arguments.ds)#"> 						
 				SELECT ColC
-				FROM pa_master.EntityKS
+				FROM pa_master.entityks
 				Where EntityKSID = 54
 			</cfquery>	
 			

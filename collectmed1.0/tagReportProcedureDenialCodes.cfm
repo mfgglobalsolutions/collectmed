@@ -104,7 +104,7 @@
 		
 		<cfquery name="getSpecificCode" datasource="#trim(request.datasource)#">
 			SELECT Code, Description
-			FROM  pa_master.EOB_MEDICARE_CLAIMADJUSTMENTCode
+			FROM pa_master.eob_medicare_claimadjustmentcode
 			WHERE RecordID = '#trim(itemcolumn)#'
 		</cfquery>
 		
@@ -152,3 +152,5 @@
 			</cfloop>																				
 		</table>		
 	</cfoutput>	
+
+

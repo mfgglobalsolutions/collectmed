@@ -187,7 +187,7 @@
 		
 		<cfquery name="getCode" datasource="#trim(request.datasource)#">
 			SELECT recordID 
-			FROM pa_master.EOB_MEDICARE_CLAIMMODIFIERCode  
+			FROM pa_master.eob_medicare_claimmodifiercode  
 			WHERE StandardListItemID = #trim(StandardListItemID)# AND modifier = '#trim(modifier)#'
 		</cfquery>
 		
@@ -198,7 +198,7 @@
 			<cfif NOT testmode>
 				
 				<cfquery name="update" datasource="#trim(request.datasource)#">
-					UPDATE pa_master.EOB_MEDICARE_CLAIMMODIFIERCode  
+					UPDATE pa_master.eob_medicare_claimmodifiercode  
 					SET StandardListItemID = #trim(StandardListItemID)#, modifier = '#trim(modifier)#', description = '#trim(description)#', dateModified = now()
 					WHERE recordID = #trim(getCode.recordID)#
 				</cfquery>
@@ -213,7 +213,7 @@
 			<cfif NOT testmode>
 
 				<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-					INSERT INTO pa_master.EOB_MEDICARE_CLAIMMODIFIERCode  (StandardListItemID, modifier, description)
+					INSERT INTO pa_master.eob_medicare_claimmodifiercode  (StandardListItemID, modifier, description)
 					VALUES(#trim(StandardListItemID)#, '#trim(modifier)#', '#trim(description)#')
 				</cfquery>
 			
@@ -228,3 +228,6 @@
 	</cfloop>
 
 		
+
+
+

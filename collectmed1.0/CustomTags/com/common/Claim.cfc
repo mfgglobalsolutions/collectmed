@@ -278,7 +278,7 @@
 		<cfquery name="getClaimStatus" datasource="#trim(request.datasource)#">
 			SELECT  sli.ItemNameDisplay, CONCAT(vuap.FName, ' ', vuap.LName) AS Fullname, fs.note, fs.dateCreated
 			FROM claimstatus fs JOIN view_UserAccountParameters vuap ON fs.UsersID = vuap.UsersID
-			LEFT JOIN pa_master.StandardListItem sli ON fs.statusID = sli.StandardListItemID
+			LEFT JOIN pa_master.standardlistitem sli ON fs.statusID = sli.StandardListItemID
 			WHERE fs.ClaimID = #trim(ClaimID)#
 			ORDER BY  fs.DateCreated #trim(orderby)#	
 		</cfquery>		

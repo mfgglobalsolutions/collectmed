@@ -453,7 +453,7 @@
 			</cfif>
 									
 			<cfquery name="updateClient" datasource="#trim(request.datasource)#">
-				UPDATE pa_master.Client 
+				UPDATE pa_master.client 
 				SET ClientName = '#trim(form.clientName)#', SupportEmailID = #trim(SupportEmailID)#, MainPhoneID = #trim(MainPhoneID)#, ClientDBA = <cfif trim(form.clientDBA) EQ "">NULL<cfelse>'#trim(form.clientDBA)#'</cfif>
 				WHERE EntityID = #trim(EntityID)#
 			</cfquery>		
@@ -493,6 +493,7 @@
 	<cflocation addtoken="No" url="appAdminClientAdministration.cfm?msg=#URLEncodedFormat(trim(msg))#">		
 	
 	
+
 
 
 

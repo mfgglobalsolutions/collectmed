@@ -240,7 +240,7 @@
 				<cfquery name="temp" datasource="PAClient_#trim(ClientID)#">
 					SELECT entityID, fname, lname 
 					FROM entity 
-					WHERE EntityID IN ( SELECT EntityID FROM pa_master.Users WHERE usersID IN(#trim(UserIDs)#) )					
+					WHERE EntityID IN ( SELECT EntityID FROM pa_master.users WHERE usersID IN(#trim(UserIDs)#) )					
 				</cfquery>						
 			</cfif>
 			
@@ -341,3 +341,5 @@
 </cfcomponent>
 
 	
+
+

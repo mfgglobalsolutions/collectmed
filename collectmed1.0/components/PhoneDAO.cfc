@@ -248,7 +248,7 @@
 				<cfquery name="getPhones" datasource="#trim(arguments.ds)#">
 					SELECT p.PhoneID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.PhoneID, p.SiteID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.Active, p.DateCreated, sli.ItemNameDisplay AS PhoneType, ep.IsDefault
 					FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID						
-					INNER JOIN pa_master.StandardListItem sli ON p.PhoneTypeID = sli.StandardListItemID 				
+					INNER JOIN pa_master.standardlistitem sli ON p.PhoneTypeID = sli.StandardListItemID 				
 					WHERE ep.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
 					<cfif IsNumeric(Active)>
 						AND ep.Active = <cfqueryparam value="#trim(arguments.Active)#" cfsqltype="CF_SQL_INTEGER" /> 	

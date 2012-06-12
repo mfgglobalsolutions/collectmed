@@ -93,8 +93,8 @@
 				a.ZipCode, a.CountryID, a.Active, a.DateCreated, sli2.ItemNameDisplay AS AddressType,
 				sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr
 				FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID
-				INNER JOIN pa_master.StandardListItem sli	ON a.stateID = sli.StandardListItemID		
-				INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
+				INNER JOIN pa_master.standardlistitem sli	ON a.stateID = sli.StandardListItemID		
+				INNER JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
 				WHERE ea.EntityID = #trim(EntityID)# 				
 				<cfif IsNumeric(Active)>
 					AND ea.Active = #trim(Active)#	
@@ -166,8 +166,8 @@
 				SELECT ea.IsDefault, a.AddressID, a.AddressTypeID, sli2.ItemNameDisplay AS AddressType, a.AddressLine1, a.AddressLine2, a.City, a.StateID, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr, a.ZipCode, a.CountryID 
 				FROM entityaddress ea 
 				INNER JOIN address a ON ea.AddressID = a.AddressID 	
-				INNER JOIN pa_master.StandardListItem sli	ON a.stateID = sli.StandardListItemID		
-				INNER JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID	
+				INNER JOIN pa_master.standardlistitem sli	ON a.stateID = sli.StandardListItemID		
+				INNER JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID	
 				WHERE ea.EntityID = #trim(EntityID)# AND ea.Active = 1		
 				Order BY ea.IsDefault DESC	
 				LIMIT 1	

@@ -87,7 +87,11 @@
 											<cfif FindNoCase("FROM ", i)>
 												<cfset fromIndex = ListFindNoCase(trim(i), "FROM", chr(32)) + 1 />
 												<cfset dbWord = ListGetAt(trim(i), fromIndex, chr(32)) />
-												<cfif REFind('[A-Z]', dbWord) AND ListFindNoCase(tableList, dbWord)>
+												<cfset paFound = false>												
+												<cfif FindNoCase("pa_master.", dbWord) AND ListFindNoCase(tableList, ListLast(dbWord, '.'))>
+													<cfset paFound = true>
+												</cfif>
+												<cfif REFind('[A-Z]', dbWord) AND (ListFindNoCase(tableList, dbWord) OR paFound)>
 													<cfset findFROM = true />
 													<cfbreak>	
 												</cfif>	
@@ -101,7 +105,8 @@
 									<cfif findFROM>
 										<br>#dbWord# = "#Directory#\#Name#"
 										
-										<cfset newFileContent = REReplaceNoCase(fileContent, '(FROM)+[ ]+(#dbWord#)', 'FROM #lcase(dbWord)#', 'all') />
+										<cfset newFileContent1 = REReplaceNoCase(fileContent, '(FROM)+[ ]+(#dbWord#)', 'FROM #lcase(dbWord)#', 'all') />
+										<cfset newFileContent = REReplaceNoCase(newfileContent1, '(FROM)+[ ]+(pa_master.#dbWord#)', 'FROM pa_master.#lcase(dbWord)#', 'all') />
 					
 										<cffile 
 											action="write" 

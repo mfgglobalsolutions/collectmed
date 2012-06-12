@@ -261,7 +261,7 @@
 	<cfsavecontent variable="sqlStatement">
 		<cfoutput>
 			SELECT #trim(stateCol)#
-			FROM pa_master.#trim(feeTableName)#
+			FROM pa_master.#lcase(trim(feeTableName)#
 			WHERE HCPCRecordID = #trim(hcpcRecordID.recordID)#
 			<cfif IsDefined("Modifier1ID") AND IsNumeric(Modifier1ID)> AND MOD1 = #trim(Modifier1ID)#</cfif>
 			<cfif IsDefined("Modifier2ID") AND IsNumeric(Modifier2ID)> AND MOD2 = #trim(Modifier2ID)#</cfif>

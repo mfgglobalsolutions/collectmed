@@ -37,7 +37,7 @@
 	
 	<cfquery name="qFiles" datasource="#request.datasource#">
 		SELECT f.fileID,f.UsersID,f.ClientFileName,f.ClientFileExt,f.dateCreated,f.fileSize,f.fileType,f.fileplacementdirectory,DATEPART(month, f.DateCreated) AS 'month', DATEPART(year, f.DateCreated) AS 'year', DATEPART(day, f.DateCreated) AS 'day', s.ItemNameDisplay as 'Type'
-		FROM file f INNER JOIN pa_master.StandardListItem s ON f.fileType = s.StandardListItemID
+		FROM file f INNER JOIN pa_master.standardlistitem s ON f.fileType = s.StandardListItemID
 		WHERE DisplayInGUID = 1			
 	</cfquery>
 		

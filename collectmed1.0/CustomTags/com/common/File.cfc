@@ -20,7 +20,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.statusID, sli.ItemNameDisplay
-				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.standardlistitem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -60,7 +60,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.statusID, sli.ItemNameDisplay
-				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.standardlistitem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			
@@ -98,7 +98,7 @@
 			
 			<cfquery name="getFileStatusesFromDB" datasource="#trim(request.datasource)#">
 				SELECT fp.*, sli.ItemNameDisplay
-				FROM fileprocess fp INNER JOIN  pa_master.StandardListItem sli ON fp.statusID = sli.standardListItemID
+				FROM fileprocess fp INNER JOIN  pa_master.standardlistitem sli ON fp.statusID = sli.standardListItemID
 				WHERE fp.FileID = #trim(fileID)#
 			</cfquery>
 			

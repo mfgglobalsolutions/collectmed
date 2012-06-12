@@ -353,7 +353,7 @@
 					
 				<cfquery name="getCode" datasource="#trim(request.datasource)#">
 					SELECT recordID 
-					FROM pa_master.EOB_MEDICARE_PROCEDURECode  
+					FROM pa_master.eob_medicare_procedurecode  
 					WHERE HCPC = '#trim(HCPC)#' AND SeqNum = '#trim(SeqNum)#'
 				</cfquery>
 				
@@ -367,7 +367,7 @@
 					<cfif NOT testmode>
 						
 						<cfquery name="update" datasource="#trim(request.datasource)#">
-							UPDATE pa_master.EOB_MEDICARE_PROCEDURECode  
+							UPDATE pa_master.eob_medicare_procedurecode  
 							SET 
 								HCPC = '#trim(HCPC)#', 
 								SeqNum = <cfif SeqNum NEQ "NULL">'#trim(SeqNum)#'<cfelse>NULL</cfif>, 
@@ -433,7 +433,7 @@
 					<cfif NOT testmode>
 		
 						<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-							INSERT INTO pa_master.EOB_MEDICARE_PROCEDURECode  (HCPC, SeqNum, RIC, LongDescription, ShortDescription, PI1, PI2, PI3, PI4, MPI, CIM1, CIM2, CIM3, MCM1, MCM2, MCM3, Statute, LabCert1, LabCert2, LabCert3, LabCert4, LabCert5, LabCert6, LabCert7, LabCert8, XRef1, XRef2, XRef3, XRef4, XRef5, Coverage, ASCPayGrp, ASCPayGrpEffDate, MOGPayGrp, MOGPayInd, MOGEffDate, ProcNote, BETOS, FILLER, TOS1, TOS2, TOS3, TOS4, TOS5, AnestBaseUnits, CodeAddDate, ActionEffDate, TermDate, ActionCode, Filler1)
+							INSERT INTO pa_master.eob_medicare_procedurecode  (HCPC, SeqNum, RIC, LongDescription, ShortDescription, PI1, PI2, PI3, PI4, MPI, CIM1, CIM2, CIM3, MCM1, MCM2, MCM3, Statute, LabCert1, LabCert2, LabCert3, LabCert4, LabCert5, LabCert6, LabCert7, LabCert8, XRef1, XRef2, XRef3, XRef4, XRef5, Coverage, ASCPayGrp, ASCPayGrpEffDate, MOGPayGrp, MOGPayInd, MOGEffDate, ProcNote, BETOS, FILLER, TOS1, TOS2, TOS3, TOS4, TOS5, AnestBaseUnits, CodeAddDate, ActionEffDate, TermDate, ActionCode, Filler1)
 							VALUES('#trim(HCPC)#', <cfif SeqNum NEQ "NULL">'#trim(SeqNum)#'<cfelse>NULL</cfif>, <cfif RIC NEQ 	"NULL">'#trim(RIC)#'<cfelse>NULL</cfif>, <cfif LongDescription NEQ "NULL">'#trim(LongDescription)#'<cfelse>NULL</cfif>, <cfif 	ShortDescription NEQ "NULL">'#trim(ShortDescription)#'<cfelse>NULL</cfif>, <cfif PI1 NEQ "NULL">'#trim(PI1)#'<cfelse>NULL</cfif>, 	<cfif PI2 NEQ "NULL">'#trim(PI2)#'<cfelse>NULL</cfif>, <cfif PI3 NEQ "NULL">'#trim(PI3)#'<cfelse>NULL</cfif>, <cfif PI4 NEQ 	"NULL">'#trim(PI4)#'<cfelse>NULL</cfif>, <cfif MPI NEQ "NULL">'#trim(MPI)#'<cfelse>NULL</cfif>, <cfif CIM1 NEQ 	"NULL">'#trim(CIM1)#'<cfelse>NULL</cfif>, <cfif CIM2 NEQ "NULL">'#trim(CIM2)#'<cfelse>NULL</cfif>, <cfif CIM3 NEQ 	"NULL">'#trim(CIM3)#'<cfelse>NULL</cfif>, <cfif MCM1 NEQ "NULL">'#trim(MCM1)#'<cfelse>NULL</cfif>, <cfif MCM2 NEQ 	"NULL">'#trim(MCM2)#'<cfelse>NULL</cfif>, <cfif MCM3 NEQ "NULL">'#trim(MCM3)#'<cfelse>NULL</cfif>, <cfif Statute NEQ 	"NULL">'#trim(Statute)#'<cfelse>NULL</cfif>, <cfif LabCert1 NEQ "NULL">'#trim(LabCert1)#'<cfelse>NULL</cfif>, <cfif LabCert2 NEQ 	"NULL">'#trim(LabCert2)#'<cfelse>NULL</cfif>, <cfif LabCert3 NEQ "NULL">'#trim(LabCert3)#'<cfelse>NULL</cfif>, <cfif LabCert4 NEQ 	"NULL">'#trim(LabCert4)#'<cfelse>NULL</cfif>, <cfif LabCert5 NEQ "NULL">'#trim(LabCert5)#'<cfelse>NULL</cfif>, <cfif LabCert6 NEQ 	"NULL">'#trim(LabCert6)#'<cfelse>NULL</cfif>, <cfif LabCert7 NEQ "NULL">'#trim(LabCert7)#'<cfelse>NULL</cfif>, <cfif LabCert8 NEQ 	"NULL">'#trim(LabCert8)#'<cfelse>NULL</cfif>, <cfif XRef1 NEQ "NULL">'#trim(XRef1)#'<cfelse>NULL</cfif>, <cfif XRef2 NEQ 	"NULL">'#trim(XRef2)#'<cfelse>NULL</cfif>, <cfif XRef3 NEQ "NULL">'#trim(XRef3)#'<cfelse>NULL</cfif>, <cfif XRef4 NEQ 	"NULL">'#trim(XRef4)#'<cfelse>NULL</cfif>, <cfif XRef5 NEQ "NULL">'#trim(XRef5)#'<cfelse>NULL</cfif>, <cfif Coverage NEQ 	"NULL">'#trim(Coverage)#'<cfelse>NULL</cfif>, <cfif ASCPayGrp NEQ "NULL">'#trim(ASCPayGrp)#'<cfelse>NULL</cfif>, 	#trim(ASCPayGrpEffDate)#, <cfif MOGPayGrp NEQ "NULL">'#trim(MOGPayGrp)#'<cfelse>NULL</cfif>, <cfif 	MOGPayInd NEQ 	"NULL">'#trim(MOGPayInd)#'<cfelse>NULL</cfif>, #trim(MOGEffDate)#, <cfif ProcNote NEQ "NULL">'#trim(ProcNote)#'<cfelse>NULL</cfif>, 	<cfif BETOS NEQ "NULL">'#trim(BETOS)#'<cfelse>NULL</cfif>, <cfif FILLER NEQ "NULL">'#trim(FILLER)#'<cfelse>NULL</cfif>, <cfif TOS1 	NEQ "NULL">'#trim(TOS1)#'<cfelse>NULL</cfif>, <cfif TOS2 NEQ "NULL">'#trim(TOS2)#'<cfelse>NULL</cfif>, <cfif TOS3 NEQ 	"NULL">'#trim(TOS3)#'<cfelse>NULL</cfif>, <cfif TOS4 NEQ "NULL">'#trim(TOS4)#'<cfelse>NULL</cfif>, <cfif TOS5 NEQ 	"NULL">'#trim(TOS5)#'<cfelse>NULL</cfif>, <cfif AnestBaseUnits NEQ "NULL">'#trim(AnestBaseUnits)#'<cfelse>NULL</cfif>, 	#trim(CodeAddDate)#, #trim(ActionEffDate)#, #trim(TermDate)#, <cfif ActionCode NEQ "NULL">'#trim(ActionCode)#'<cfelse>NULL</cfif>, 	<cfif Filler1 NEQ "NULL">'#trim(Filler1)#'<cfelse>NULL</cfif>)
 						</cfquery>
 					
@@ -603,7 +603,7 @@ ALTER TABLE [dbo].[EOB_MEDICARE_PROCEDURECode] ADD
 	) WITH  FILLFACTOR = 90  ON [PRIMARY] 
 GO
 
-Select Count(*) FROM pa_master.EOB_MEDICARE_PROCEDURECode
+Select Count(*) FROM pa_master.eob_medicare_procedurecode
 
 
 
@@ -621,3 +621,6 @@ Select Count(*) FROM pa_master.EOB_MEDICARE_PROCEDURECode
 
 
 		
+
+
+

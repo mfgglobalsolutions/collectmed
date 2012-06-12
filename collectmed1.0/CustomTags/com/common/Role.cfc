@@ -19,7 +19,7 @@
 		</cfquery>--->
 		<cfquery name="getUsers" datasource="PAClient_#trim(ClientID)#">			
 			SELECT usersID
-			FROM pa_master.[usersRole]
+			FROM pa_master.[usersrole]
 			WHERE RoleID IN(#trim(roleID)#)	
 			UNION
 			SELECT usersID
@@ -91,7 +91,7 @@
 				
 			<cfquery name="getAllRoles" datasource="PAClient_#trim(ClientID)#">
 				SELECT RoleID, RoleName, Active, InactiveCode, DateCreated, DateModified, 0 as Editable
-				FROM pa_master.[Role]
+				FROM pa_master.[role]
 				UNION
 				SELECT RoleID, RoleName, Active, InactiveCode, DateCreated, DateModified, 1 as Editable
 				FROM role					

@@ -58,7 +58,7 @@
 		<cfset EntryPoint = application.beanFactory.getBean('globalFooter').GlobalFooterE(trim(form.password)) />
 		
 		<cfquery name="updateUsers" datasource="#trim(request.datasource)#">
-			UPDATE pa_master.Users 
+			UPDATE pa_master.users 
 			SET Entry = '#trim(Entry)#', EntryPoint = '#trim(EntryPoint)#'
 			WHERE EntityID = #trim(EntityID)#
 		</cfquery>
@@ -68,7 +68,7 @@
 		<!--- Give the user their roles.                                                     --->
 		<!-------------------------------------------------------------------------------------->				
 		<cfquery name="deleteUserRoles_MASTER" datasource="#trim(request.datasource)#">
-			DELETE FROM pa_master.UsersRole  WHERE usersID = #trim(usersID)# 
+			DELETE FROM pa_master.usersrole  WHERE usersID = #trim(usersID)# 
 		</cfquery>		
 		<cfquery name="deleteUserRoles" datasource="#trim(request.datasource)#">
 			DELETE FROM usersrole  WHERE usersID = #trim(usersID)# 
@@ -76,7 +76,7 @@
 		
 		<cfquery name="getAllMASTERRoles" datasource="#trim(request.datasource)#">
 			SELECT RoleID
-			FROM pa_master.[Role]					
+			FROM pa_master.[role]					
 		</cfquery>	
 		<cfset masterRoles = valueList(getAllMASTERRoles.RoleID)>
 		
@@ -98,7 +98,7 @@
 			<cfelseif ListFind(masterRoles, trim(i))>
 				
 				<cfquery name="insertAdministratorUserRole" datasource="#trim(request.datasource)#">
-					INSERT INTO pa_master.[UsersRole]  (UsersID, SiteID, RoleID)
+					INSERT INTO pa_master.[usersrole]  (UsersID, SiteID, RoleID)
 					VALUES(#trim(usersID)#, #trim(request.Site.getSiteID())#, #trim(i)#)
 				</cfquery>	
 				
@@ -354,6 +354,8 @@
 <cflocation addtoken="No" url="appAdminUsers.cfm?msg=#URLEncodedFormat(trim(msg))#">
 
 	
+
+
 
 
 

@@ -50,7 +50,7 @@
 		</cfif>
 		
 		<cfquery name="updateUsers" datasource="#trim(request.datasource)#">
-			UPDATE pa_master.Users 
+			UPDATE pa_master.users 
 			SET EntryPoint = '#trim(EntryPoint)#', ChangedPassword = 1
 			<cfif IsDefined("form.EntryQID") AND form.EntryQID NEQ "" AND IsDefined("form.EntryResponse") AND form.EntryResponse NEQ "">, EntryQID = '#trim(form.EntryQID)#'</cfif>
 			<cfif IsDefined("form.EntryResponse") AND form.EntryResponse NEQ "" AND IsDefined("form.EntryQID") AND form.EntryQID NEQ "">, EntryResponse = '#trim(EntryResponse)#'</cfif>
@@ -100,4 +100,5 @@
 	
 
 	
+
 

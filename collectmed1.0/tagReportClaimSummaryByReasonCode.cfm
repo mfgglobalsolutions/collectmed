@@ -440,7 +440,7 @@
 					
 					<cfquery name="getSpecificCode" datasource="#trim(request.datasource)#">
 						SELECT Code, Description
-						FROM  pa_master.EOB_MEDICARE_CLAIMADJUSTMENTCode
+						FROM pa_master.eob_medicare_claimadjustmentcode
 						WHERE RecordID = #trim(Code)#
 					</cfquery>		
 					<cfset thisDescription = Replace(getSpecificCode.Description, "'", "\'", "ALL")>
@@ -476,3 +476,4 @@
 	</cfoutput>
 	
 	
+

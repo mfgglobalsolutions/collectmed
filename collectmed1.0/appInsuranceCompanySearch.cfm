@@ -102,7 +102,7 @@
 				FROM insurancecompany IC 
 				LEFT JOIN EntityAddress EA ON IC.EntityID = EA.EntityID
 				LEFT JOIN ADDRESS A ON EA.AddressID = A.AddressID  
-				LEFT JOIN pa_master.StandardListItem sli ON A.StateID = sli.StandardListItemID
+				LEFT JOIN pa_master.standardlistitem sli ON A.StateID = sli.StandardListItemID
 				WHERE IC.ClientID = #session.Client.getClientID()#
 				AND IC.InsuranceCompanyName LIKE '%#trim(form.InsComName)#%'
 			</cfquery>

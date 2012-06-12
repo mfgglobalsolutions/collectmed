@@ -19,7 +19,7 @@
 		<cfset desc = ListGetAt(i,2,"|")>
 
 		<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-			INSERT INTO pa_master.EOB_MEDICARE_PROCEDURECode  (HCPC, LongDescription, ShortDescription)
+			INSERT INTO pa_master.eob_medicare_procedurecode  (HCPC, LongDescription, ShortDescription)
 			VALUES('#trim(HCPCS)#', '#trim(Desc)#', '#trim(Desc)#')
 		</cfquery>
 
@@ -49,9 +49,10 @@
 		<cfset desc = ListGetAt(i,2,"|")>
 
 		<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-			INSERT INTO pa_master.EOB_MEDICARE_PROCEDURECode  (HCPC, LongDescription, ShortDescription)
+			INSERT INTO pa_master.eob_medicare_procedurecode  (HCPC, LongDescription, ShortDescription)
 			VALUES('#trim(HCPCS)#', '#trim(Desc)#', '#trim(Desc)#')
 		</cfquery>
 
 	</cfloop>--->
+
 

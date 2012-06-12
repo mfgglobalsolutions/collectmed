@@ -630,7 +630,7 @@
 	<!-------------------------------------------------------------------------------------->	
 	<cfquery name="getMOA" datasource="#trim(request.datasource)#">
 		SELECT e.Code AS MOACode, e.Description AS MOADescription
-		FROM claim_medicare_moa cmm INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON cmm.MOACode = e.RecordID
+		FROM claim_medicare_moa cmm INNER JOIN pa_master.eob_medicare_remittanceadviceremarkcode e ON cmm.MOACode = e.RecordID
 		WHERE cmm.ClaimID = #trim(claimID)# AND cmm.MOACode IS NOT NULL
 		ORDER BY cmm.DateCreated ASC
 	</cfquery>
@@ -642,7 +642,7 @@
 	<!-------------------------------------------------------------------------------------->																		
 	<cfquery name="getClaimInterestAmount" datasource="#trim(request.datasource)#">
 		SELECT s.ItemNameDisplay, c.* 
-		FROM claim_medicare_supplemental_amount c INNER JOIN pa_master.StandardListItem s ON c.QualifierCode = s.StandardListItemID
+		FROM claim_medicare_supplemental_amount c INNER JOIN pa_master.standardlistitem s ON c.QualifierCode = s.StandardListItemID
 		WHERE c.QualifierCode = 158 AND c.ClaimID = #trim(claimID)#
 	</cfquery>
 	
@@ -928,7 +928,7 @@
 													<!-------------------------------------------------------------------------------------->																		
 													<cfquery name="getProcedureDeductLateFee" datasource="#trim(request.datasource)#">
 														SELECT s.ItemNameDisplay, p.* 
-														FROM procedure_medicare_supplemental_amount p INNER JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID
+														FROM procedure_medicare_supplemental_amount p INNER JOIN pa_master.standardlistitem s ON p.QualifierCode = s.StandardListItemID
 														WHERE p.QualifierCode = 144 AND p.ProcedureID = #trim(ProcedureID)# 
 													</cfquery>
 													
@@ -946,7 +946,7 @@
 																														
 													<cfquery name="getProcedureCOs" datasource="#trim(request.datasource)#">
 														SELECT s.ItemNameDisplay, p.* 
-														FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+														FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.standardlistitem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 														WHERE p.ClaimAdjustmentGroupCode1 = 103 AND p.ProcedureID = #trim(ProcedureID)# 
 													</cfquery>
 																																							
@@ -1002,7 +1002,7 @@
 																									
 													<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 														SELECT s.ItemNameDisplay, p.* 
-														FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+														FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.standardlistitem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 														WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 													</cfquery>
 													
@@ -1090,7 +1090,7 @@
 														<!-------------------------------------------------------------------------------------->										
 														<cfquery name="getProcedureAmounts" datasource="#trim(request.datasource)#">
 															SELECT SUM(p.MonetaryAmount2) AS ProcedureAmounts 
-															FROM procedure_medicare_supplemental_amount p LEFT JOIN pa_master.StandardListItem s ON p.QualifierCode = s.StandardListItemID 
+															FROM procedure_medicare_supplemental_amount p LEFT JOIN pa_master.standardlistitem s ON p.QualifierCode = s.StandardListItemID 
 															WHERE p.ProcedureID = #trim(ProcedureID)# AND p.QualifierCode = 142 <!---142 is the  list id for allowed-actual--->
 														</cfquery>
 														
@@ -1107,7 +1107,7 @@
 														<!-------------------------------------------------------------------------------------->										
 														<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 															SELECT s.ItemNameDisplay, p.* 
-															FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+															FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.standardlistitem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 															WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 														</cfquery>
 														
@@ -1155,7 +1155,7 @@
 													<cfset remarkIndustryCodes = "">
 													<cfquery name="getRemarks" datasource="#trim(request.datasource)#">
 														SELECT e.Code AS IndustryCode, e.Description AS IndustryCodeDescription
-														FROM procedure_medicare_remark_code pmrc INNER JOIN pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode e ON pmrc.IndustryCode = e.RecordID
+														FROM procedure_medicare_remark_code pmrc INNER JOIN pa_master.eob_medicare_remittanceadviceremarkcode e ON pmrc.IndustryCode = e.RecordID
 														WHERE pmrc.ProcedureID = #trim(ProcedureID)# 								
 													</cfquery>
 													
@@ -1522,6 +1522,7 @@
 	</cfif>
 	
 	
+
 
 
 

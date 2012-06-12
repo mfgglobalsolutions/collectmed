@@ -435,7 +435,7 @@
 				
 		<cfquery name="qGetUserRoles" datasource="PAClient_#trim(clientID)#">	
 			SELECT RoleID
-			FROM pa_master.UsersRole
+			FROM pa_master.usersrole
 			WHERE usersID = #trim(usersID)#
 			UNION
 			SELECT RoleID
@@ -449,8 +449,8 @@
 		<cfif qGetUserRoles.RecordCount LTE 0>
 			
 			<cf_gcSendEmail
-				to="gcruz@eobmanager.net"
-				from="autoreply@eobmanager.net"
+				to="gcruz@collectmed.net"
+				from="autoreply@collectmed.net"
 				subject="The user has not been associated to a role properly: #usersID#"
 				message="This user is not associated to a role. please give immediate attention: #usersID#">
 				
@@ -661,7 +661,7 @@
 		<!-------------------------------------------------------------------------------------------------->
 		<cfquery name="getUserStartEnd" datasource="PAClient_#trim(arguments.ClientID)#">
 			SELECT LoginStart AS UsersLoginStart, LoginEnd AS UsersLoginEnd
-			FROM  pa_master.Users
+			FROM  pa_master.users
 			WHERE UsersID = #trim(arguments.UsersID)#
 		</cfquery>
 			

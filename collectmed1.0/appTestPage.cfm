@@ -1,4 +1,3 @@
-http://www.adobe.com/cfusion/event/index.cfm?event=set_registered&id=2044432&loc=en_us
 
 
 

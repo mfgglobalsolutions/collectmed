@@ -195,8 +195,8 @@
 				FROM insurancecompany ic 
 				LEFT JOIN EntityAddress ea ON ic.EntityID = ea.EntityID AND ea.Active = 1		
 				LEFT JOIN Address a ON ea.AddressID = a.AddressID AND a.Active = 1		
-				LEFT JOIN pa_master.StandardListItem sli ON a.stateID = sli.StandardListItemID 		
-				LEFT JOIN pa_master.StandardListItem sli2 ON a.AddressTypeID = sli2.StandardListItemID 		
+				LEFT JOIN pa_master.standardlistitem sli ON a.stateID = sli.StandardListItemID 		
+				LEFT JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID 		
 				WHERE ic.Active = 1			
 				Order BY ic.InsuranceCompanyID, ea.IsDefault DESC		
 			</cfquery>

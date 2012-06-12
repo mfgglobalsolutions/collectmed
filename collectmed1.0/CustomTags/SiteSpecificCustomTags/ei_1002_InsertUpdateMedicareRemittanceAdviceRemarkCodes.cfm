@@ -175,7 +175,7 @@
 		
 		<cfquery name="getCode" datasource="#trim(request.datasource)#">
 			SELECT recordID 
-			FROM pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode  
+			FROM pa_master.eob_medicare_remittanceadviceremarkcode  
 			WHERE code = '#trim(code)#'
 		</cfquery>
 		
@@ -186,7 +186,7 @@
 			<cfif NOT testmode>
 				
 				<cfquery name="update" datasource="#trim(request.datasource)#">
-					UPDATE pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode  
+					UPDATE pa_master.eob_medicare_remittanceadviceremarkcode  
 					SET code = '#trim(code)#', description = '#trim(description)#', dateModified = now()
 					WHERE recordID = #trim(getCode.recordID)#
 				</cfquery>
@@ -200,7 +200,7 @@
 			<cfif NOT testmode>
 
 				<cfquery name="insertCode" datasource="#trim(request.datasource)#">
-					INSERT INTO pa_master.EOB_MEDICARE_REMITTANCEADVICEREMARKCode  (code, description)
+					INSERT INTO pa_master.eob_medicare_remittanceadviceremarkcode  (code, description)
 					VALUES('#trim(code)#', '#trim(description)#')
 				</cfquery>
 			
@@ -214,3 +214,6 @@
 	</cfloop>
 
 		
+
+
+

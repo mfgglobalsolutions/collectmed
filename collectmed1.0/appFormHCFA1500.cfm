@@ -2268,7 +2268,7 @@
 					<!-------------------------------------------------------------------------------------->										
 					<cfquery name="getProcedurePRs" datasource="#trim(request.datasource)#">
 						SELECT s.ItemNameDisplay, p.* 
-						FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.StandardListItem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
+						FROM procedure_medicare_claimadjustment p INNER JOIN pa_master.standardlistitem s ON p.ClaimAdjustmentGroupCode1 = s.StandardListItemID
 						WHERE p.ClaimAdjustmentGroupCode1 = 107 AND p.ProcedureID = #trim(ProcedureID)# 
 					</cfquery>
 					

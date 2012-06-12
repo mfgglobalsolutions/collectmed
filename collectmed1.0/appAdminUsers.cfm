@@ -133,7 +133,7 @@
 				<cfif ObjectTypeID EQ 1>
 					<cfquery name="getClientName" datasource="#trim(request.datasource)#">
 						Select ClientName
-						FROM pa_master.Client  
+						FROM pa_master.client  
 						WHERE ClientID = #trim(session.ClientID)#
 					</cfquery>					
 				</cfif>
@@ -212,4 +212,6 @@
 	</cf_gcBorderedTable>
 	
 	
+
+
 

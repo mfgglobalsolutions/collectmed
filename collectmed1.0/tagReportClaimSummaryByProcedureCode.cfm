@@ -373,7 +373,7 @@
 															
 					<cfquery name="getCodeDescription" datasource="#trim(request.datasource)#">
 						SELECT HCPC, ShortDescription, LongDescription
-						FROM pa_master.EOB_MEDICARE_PROCEDURECode 
+						FROM pa_master.eob_medicare_procedurecode 
 						WHERE RecordID = #trim(Code)#						
 					</cfquery>
 					
@@ -576,3 +576,4 @@ QUANTITY7
 						</td>			
 					</tr>
 --->
+

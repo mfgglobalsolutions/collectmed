@@ -231,7 +231,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="getClientRecord" datasource="#trim(request.datasource)#">
 				SELECT clientID
-				FROM pa_master.Client 
+				FROM pa_master.client 
 				WHERE providerID = '#trim(providerID)#'
 			</cfquery>
 
@@ -693,7 +693,7 @@
 						</cfif> 
 						
 						<cfquery name="getEOBProcedureCode2" datasource="#trim(request.datasource)#">
-							SELECT RecordID FROM pa_master.EOB_PROCEDURECode WHERE Code = '#trim(ProcedureCode)#' AND TOSCode = '#trim(thisTOSCode)#'
+							SELECT RecordID FROM pa_master.eob_procedurecode WHERE Code = '#trim(ProcedureCode)#' AND TOSCode = '#trim(thisTOSCode)#'
 						</cfquery>
 						
 						<cfif getEOBProcedureCode2.RecordCount EQ 1>
@@ -712,7 +712,7 @@
 						</cfif> 
 						
 						<cfquery name="getEOBProcedureCode2" datasource="#trim(request.datasource)#">
-							SELECT RecordID FROM pa_master.EOB_PROCEDURECode WHERE Code = '#trim(ProcedureCode)#' AND TOSCode = '#trim(thisTOSCode)#'
+							SELECT RecordID FROM pa_master.eob_procedurecode WHERE Code = '#trim(ProcedureCode)#' AND TOSCode = '#trim(thisTOSCode)#'
 						</cfquery>
 						
 						<cfif getEOBProcedureCode2.RecordCount EQ 1>
@@ -730,7 +730,7 @@
 						<!--- Query to get the EOB Code for this ProcedureCode                               --->
 						<!-------------------------------------------------------------------------------------->						
 						<cfquery name="getEOBProcedureCode" datasource="#trim(request.datasource)#">
-							SELECT RecordID FROM pa_master.EOB_PROCEDURECode
+							SELECT RecordID FROM pa_master.eob_procedurecode
 							WHERE Code = '#trim(ProcedureCode)#'
 						</cfquery>
 						
@@ -749,7 +749,7 @@
 							
 							<cfset message = "CODE NOT FOUND.">
 							
-							<cfset adminMessage = "<p><strong>User screen:</strong> <br>#trim(message)#</p><p><strong>Admin Note: IMMEDIATE ATTENTION REQUIRED</strong><br>The tag #GetCurrentTemplatePath()# found an issue with the procedure code the recordcount from the query returned #getEOBProcedureCode.RecordCount# record(s).  <br>Query attempted: SELECT * FROM pa_master.EOB_PROCEDURECode WHERE Code = '#trim(ProcedureCode)#</p>">
+							<cfset adminMessage = "<p><strong>User screen:</strong> <br>#trim(message)#</p><p><strong>Admin Note: IMMEDIATE ATTENTION REQUIRED</strong><br>The tag #GetCurrentTemplatePath()# found an issue with the procedure code the recordcount from the query returned #getEOBProcedureCode.RecordCount# record(s).  <br>Query attempted: SELECT * FROM pa_master.eob_procedurecode WHERE Code = '#trim(ProcedureCode)#</p>">
 								    			
 							<cf_gcSendEmail	from="#trim(EmailAddress)#" to="#trim(EmailAddress)#" subject="EOB Procedure Code NOT Found. IMMEDIATE ATTENTION REQUIRED" message="#trim(adminMessage)#">	
 								
@@ -931,4 +931,6 @@
 			
 			
 			
+
+
 
