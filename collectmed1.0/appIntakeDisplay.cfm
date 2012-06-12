@@ -85,10 +85,10 @@
 	<cfquery name="getIntakes" datasource="#trim(request.datasource)#">
 		SELECT i.patientXML, i.patientID, i.IntakeID, i.hidden_Step, i.hidden_UsersID, i.hidden_TimeStart, CONCAT(LEFT(e.FName, 1), ' ', LEFT(e.LName, 9)) AS patientNameTBox, a.City AS patientCityTBox, i.DateCreated,
 		timestampdiff(hour, i.DateCreated, NOW()) AS hours, i.InactiveCode
-		FROM Intake	i	
-		LEFT JOIN Patient p ON i.PatientID = p.PatientID
-		LEFT JOIN Entity e ON e.EntityID = p.EntityID
-		LEFT JOIN ADDRESS a ON a.AddressID = i.patientAddressID
+		FROM intake	i	
+		LEFT JOIN patient p ON i.PatientID = p.PatientID
+		LEFT JOIN entity e ON e.EntityID = p.EntityID
+		LEFT JOIN aDDRESS a ON a.AddressID = i.patientAddressID
 		WHERE i.AssignedToUserID = #session.user.getUsersID()# AND i.ClosingInvoiceNumber IS NULL AND i.Active = 1
 		ORDER BY i.DateCreated						
 	</cfquery>
