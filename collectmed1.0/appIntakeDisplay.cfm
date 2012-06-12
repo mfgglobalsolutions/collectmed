@@ -88,7 +88,7 @@
 		FROM intake	i	
 		LEFT JOIN patient p ON i.PatientID = p.PatientID
 		LEFT JOIN entity e ON e.EntityID = p.EntityID
-		LEFT JOIN aDDRESS a ON a.AddressID = i.patientAddressID
+		LEFT JOIN address a ON a.AddressID = i.patientAddressID
 		WHERE i.AssignedToUserID = #session.user.getUsersID()# AND i.ClosingInvoiceNumber IS NULL AND i.Active = 1
 		ORDER BY i.DateCreated						
 	</cfquery>
