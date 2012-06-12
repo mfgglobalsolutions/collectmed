@@ -3282,7 +3282,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE EOB_MEDICARE_PROCEDURECodeFeeSchedule  SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
+				<cfset sqlStatement = "UPDATE eob_medicare_procedurecodefeeschedule SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -3429,7 +3429,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO EOB_MEDICARE_PROCEDURECodeFeeSchedule  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
+				<cfset sqlStatement = "INSERT INTO eob_medicare_procedurecodefeeschedule  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS RecordID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

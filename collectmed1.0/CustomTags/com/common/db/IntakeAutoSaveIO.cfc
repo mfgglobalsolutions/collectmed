@@ -709,7 +709,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE IntakeAutoSave  SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
+				<cfset sqlStatement = "UPDATE intakeautosave  SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

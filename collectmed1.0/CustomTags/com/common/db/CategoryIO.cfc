@@ -712,7 +712,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Category  SET #columnsToUpdate# WHERE CategoryID = #trim(variables.instance.CategoryID)#">
+				<cfset sqlStatement = "UPDATE category  SET #columnsToUpdate# WHERE CategoryID = #trim(variables.instance.CategoryID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

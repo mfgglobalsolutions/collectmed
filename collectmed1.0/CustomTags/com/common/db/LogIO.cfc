@@ -663,7 +663,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Log  SET #columnsToUpdate# WHERE LogID = #trim(variables.instance.LogID)#">
+				<cfset sqlStatement = "UPDATE log  SET #columnsToUpdate# WHERE LogID = #trim(variables.instance.LogID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

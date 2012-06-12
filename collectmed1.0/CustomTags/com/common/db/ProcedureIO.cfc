@@ -758,7 +758,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE [Procedure]  SET #columnsToUpdate# WHERE ProcedureID = #trim(variables.instance.ProcedureID)#">
+				<cfset sqlStatement = "UPDATE [procedure]  SET #columnsToUpdate# WHERE ProcedureID = #trim(variables.instance.ProcedureID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

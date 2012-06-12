@@ -2506,7 +2506,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Quote  SET #columnsToUpdate# WHERE QuoteID = #trim(variables.instance.QuoteID)#">
+				<cfset sqlStatement = "UPDATE quote  SET #columnsToUpdate# WHERE QuoteID = #trim(variables.instance.QuoteID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

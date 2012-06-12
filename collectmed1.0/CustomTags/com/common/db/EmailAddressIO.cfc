@@ -758,7 +758,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE EmailAddress  SET #columnsToUpdate# WHERE EmailAddressID = #trim(variables.instance.EmailAddressID)#">
+				<cfset sqlStatement = "UPDATE emailaddress  SET #columnsToUpdate# WHERE EmailAddressID = #trim(variables.instance.EmailAddressID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

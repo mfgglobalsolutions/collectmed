@@ -1218,7 +1218,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Interchange  SET #columnsToUpdate# WHERE InterchangeID = #trim(variables.instance.InterchangeID)#">
+				<cfset sqlStatement = "UPDATE interchange  SET #columnsToUpdate# WHERE InterchangeID = #trim(variables.instance.InterchangeID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

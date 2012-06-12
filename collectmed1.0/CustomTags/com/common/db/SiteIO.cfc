@@ -2092,7 +2092,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Site  SET #columnsToUpdate# WHERE SiteID = #trim(variables.instance.SiteID)#">
+				<cfset sqlStatement = "UPDATE site  SET #columnsToUpdate# WHERE SiteID = #trim(variables.instance.SiteID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

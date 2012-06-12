@@ -2813,7 +2813,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE EOB_MEDICARE_PROCEDURECode  SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
+				<cfset sqlStatement = "UPDATE eob_medicare_procedurecode SET #columnsToUpdate# WHERE RecordID = #trim(variables.instance.RecordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

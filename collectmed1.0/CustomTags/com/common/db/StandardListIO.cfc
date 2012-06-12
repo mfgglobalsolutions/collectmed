@@ -666,7 +666,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE StandardList  SET #columnsToUpdate# WHERE StandardListID = #trim(variables.instance.StandardListID)#">
+				<cfset sqlStatement = "UPDATE standardlist  SET #columnsToUpdate# WHERE StandardListID = #trim(variables.instance.StandardListID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

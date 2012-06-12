@@ -532,7 +532,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Procedure_MEDICARE_MODIFIER  SET #columnsToUpdate# WHERE Procedure_MEDICARE_MODIFIERID = #trim(variables.instance.Procedure_MEDICARE_MODIFIERID)#">
+				<cfset sqlStatement = "UPDATE procedure_medicare_modifier  SET #columnsToUpdate# WHERE Procedure_MEDICARE_MODIFIERID = #trim(variables.instance.Procedure_MEDICARE_MODIFIERID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

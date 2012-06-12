@@ -663,7 +663,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE SystemUserMessage  SET #columnsToUpdate# WHERE SystemUserMessageID = #trim(variables.instance.SystemUserMessageID)#">
+				<cfset sqlStatement = "UPDATE systemusermessage  SET #columnsToUpdate# WHERE SystemUserMessageID = #trim(variables.instance.SystemUserMessageID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

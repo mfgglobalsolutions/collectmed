@@ -666,7 +666,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE UsersRole  SET #columnsToUpdate# WHERE UsersRoleID = #trim(variables.instance.UsersRoleID)#">
+				<cfset sqlStatement = "UPDATE usersrole  SET #columnsToUpdate# WHERE UsersRoleID = #trim(variables.instance.UsersRoleID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

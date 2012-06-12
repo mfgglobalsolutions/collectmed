@@ -485,7 +485,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE UsersWorkGroup  SET #columnsToUpdate# WHERE UsersWorkGroupID = #trim(variables.instance.UsersWorkGroupID)#">
+				<cfset sqlStatement = "UPDATE usersworkgroup  SET #columnsToUpdate# WHERE UsersWorkGroupID = #trim(variables.instance.UsersWorkGroupID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

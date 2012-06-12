@@ -850,7 +850,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE PageHit  SET #columnsToUpdate# WHERE PageHitID = #trim(variables.instance.PageHitID)#">
+				<cfset sqlStatement = "UPDATE pagehit  SET #columnsToUpdate# WHERE PageHitID = #trim(variables.instance.PageHitID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

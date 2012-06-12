@@ -617,7 +617,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Definition  SET #columnsToUpdate# WHERE DefinitionID = #trim(variables.instance.DefinitionID)#">
+				<cfset sqlStatement = "UPDATE definition  SET #columnsToUpdate# WHERE DefinitionID = #trim(variables.instance.DefinitionID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -801,7 +801,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Reminder  SET #columnsToUpdate# WHERE ReminderID = #trim(variables.instance.ReminderID)#">
+				<cfset sqlStatement = "UPDATE reminder  SET #columnsToUpdate# WHERE ReminderID = #trim(variables.instance.ReminderID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -24,8 +24,8 @@
 		}
 	</cfscript>		
 		
-	<!--- <cfset directory = "C:\Temp\collectmed\collectmed1.0"> --->
-	<cfset directory = "#trim(request.applicationPath)#\collectmed1.0"><!--- \CustomTags\com\common\db --->
+	<cfset directory = "C:\Temp\collectmed">
+	<!---<cfset directory = "#trim(request.applicationPath)#\collectmed1.0\CustomTags\com\common\db">  --->
 	
 	<cfset next_directory_to_crawl = directory>		
 	<cfset current_directory_to_crawl = "">
@@ -80,21 +80,24 @@
 										action="READ" 
 										file="#Directory#\#Name#" 
 										variable="FileContent">
-									
+									<cfset lineNum = 0>
 									<cfloop list="#trim(FileContent)#" delimiters="#chr(13)##chr(10)#" index="i">
+										<cfset lineNum = lineNum + 1>																			
 										<cfif len(i)>											
+											<cfset j = REReplaceNoCase(i, '<', '**', 'all') />	
 											<cfset file_counter = file_counter + 1>	
-											<cfif FindNoCase("UPDATE ", i)>
+											<cfif FindNoCase("UPDATE ", i) AND Left(trim(i), 2) NEQ "<!">												
 												<cfset fromIndex = ListFindNoCase(trim(i), "UPDATE", chr(32)) + 1 />
 												<cfset dbWord = ListGetAt(trim(i), fromIndex, chr(32)) />											
-												<cfset paFound = false>												
+												<cfset paFound = false>																						
 												<cfif FindNoCase("pa_master.", dbWord) AND ListFindNoCase(tableList, ListLast(dbWord, '.'))>
 													<cfset paFound = true>
 												</cfif>
 												<cfif REFind('[A-Z]', dbWord) AND (ListFindNoCase(tableList, dbWord) OR paFound)>
-													<cfset findFROM = true />
+													<cfset findFROM = true />													
 													<cfbreak>	
-												</cfif>												
+												</cfif>										
+												<br> #lineNum#) #fromIndex# : #dbWord# **** #Name#	[<font color="red">#j#</font>]											
 											</cfif>
 										</cfif>
 									</cfloop>
@@ -105,14 +108,14 @@
 									<cfif findFROM>
 										<br>#dbWord# = "#Directory#\#Name#"
 										
-										<cfset newFileContent1 = REReplaceNoCase(fileContent, '(UPDATE)+[ ]+(#dbWord#)', 'UPDATE #lcase(dbWord)#', 'all') />
+										<!---<cfset newFileContent1 = REReplaceNoCase(fileContent, '(UPDATE)+[ ]+(#dbWord#)', 'UPDATE #lcase(dbWord)#', 'all') />
 										<cfset newFileContent = REReplaceNoCase(newfileContent1, '(UPDATE)+[ ]+(pa_master.#dbWord#)', 'UPDATE pa_master.#lcase(dbWord)#', 'all') />
 										
-										<cffile 
+										 <cffile 
 											action="write" 
 											nameconflict="OVERWRITE" 
 											file="#Directory#\#Name#" 
-											output="#newFileContent#"> 
+											output="#newFileContent#">  --->
 									
 									</cfif>
 									

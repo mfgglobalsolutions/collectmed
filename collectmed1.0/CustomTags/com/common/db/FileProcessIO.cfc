@@ -666,7 +666,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE FileProcess  SET #columnsToUpdate# WHERE FileProcessID = #trim(variables.instance.FileProcessID)#">
+				<cfset sqlStatement = "UPDATE fileprocess  SET #columnsToUpdate# WHERE FileProcessID = #trim(variables.instance.FileProcessID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

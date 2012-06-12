@@ -6738,7 +6738,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Intake  SET #columnsToUpdate# WHERE IntakeID = #trim(variables.instance.IntakeID)#">
+				<cfset sqlStatement = "UPDATE intake  SET #columnsToUpdate# WHERE IntakeID = #trim(variables.instance.IntakeID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

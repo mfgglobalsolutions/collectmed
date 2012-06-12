@@ -1624,7 +1624,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE VerificationPatientInsurance  SET #columnsToUpdate# WHERE VerificationPatientInsuranceID = #trim(variables.instance.VerificationPatientInsuranceID)#">
+				<cfset sqlStatement = "UPDATE verificationpatientinsurance  SET #columnsToUpdate# WHERE VerificationPatientInsuranceID = #trim(variables.instance.VerificationPatientInsuranceID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -1356,7 +1356,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Claim  SET #columnsToUpdate# WHERE ClaimID = #trim(variables.instance.ClaimID)#">
+				<cfset sqlStatement = "UPDATE claim  SET #columnsToUpdate# WHERE ClaimID = #trim(variables.instance.ClaimID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

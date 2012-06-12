@@ -758,7 +758,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE IPAddressLogin  SET #columnsToUpdate# WHERE IPAddressLoginID = #trim(variables.instance.IPAddressLoginID)#">
+				<cfset sqlStatement = "UPDATE ipaddresslogin  SET #columnsToUpdate# WHERE IPAddressLoginID = #trim(variables.instance.IPAddressLoginID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -905,7 +905,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO IPAddressLogin  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS IPAddressLoginID ">
+				<cfset sqlStatement = "INSERT INTO ipaddresslogin  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS IPAddressLoginID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -620,7 +620,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE ClientProvider  SET #columnsToUpdate# WHERE ClientProviderID = #trim(variables.instance.ClientProviderID)#">
+				<cfset sqlStatement = "UPDATE clientprovider  SET #columnsToUpdate# WHERE ClientProviderID = #trim(variables.instance.ClientProviderID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

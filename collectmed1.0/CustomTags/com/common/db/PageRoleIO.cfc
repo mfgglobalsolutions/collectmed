@@ -597,7 +597,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE PageRole  SET #columnsToUpdate# WHERE PageRoleID = #trim(variables.instance.PageRoleID)#">
+				<cfset sqlStatement = "UPDATE pagerole  SET #columnsToUpdate# WHERE PageRoleID = #trim(variables.instance.PageRoleID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

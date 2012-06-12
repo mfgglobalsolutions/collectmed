@@ -531,7 +531,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Debug  SET #columnsToUpdate# WHERE DebugID = #trim(variables.instance.DebugID)#">
+				<cfset sqlStatement = "UPDATE debug  SET #columnsToUpdate# WHERE DebugID = #trim(variables.instance.DebugID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

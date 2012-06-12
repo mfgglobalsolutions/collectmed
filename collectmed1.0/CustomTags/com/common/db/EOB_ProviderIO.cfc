@@ -712,7 +712,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE EOB_Provider  SET #columnsToUpdate# WHERE recordID = #trim(variables.instance.recordID)#">
+				<cfset sqlStatement = "UPDATE eob_provider SET #columnsToUpdate# WHERE recordID = #trim(variables.instance.recordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

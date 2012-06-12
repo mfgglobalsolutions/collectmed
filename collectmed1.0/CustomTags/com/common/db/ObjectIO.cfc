@@ -620,7 +620,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Object  SET #columnsToUpdate# WHERE ObjectID = #trim(variables.instance.ObjectID)#">
+				<cfset sqlStatement = "UPDATE object  SET #columnsToUpdate# WHERE ObjectID = #trim(variables.instance.ObjectID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

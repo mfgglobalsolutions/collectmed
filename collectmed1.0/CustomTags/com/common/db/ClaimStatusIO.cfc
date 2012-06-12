@@ -577,7 +577,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE ClaimStatus  SET #columnsToUpdate# WHERE ClaimStatusID = #trim(variables.instance.ClaimStatusID)#">
+				<cfset sqlStatement = "UPDATE claimstatus  SET #columnsToUpdate# WHERE ClaimStatusID = #trim(variables.instance.ClaimStatusID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

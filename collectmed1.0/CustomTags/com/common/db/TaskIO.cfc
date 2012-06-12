@@ -861,7 +861,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE Task  SET #columnsToUpdate# WHERE TaskID = #trim(variables.instance.TaskID)#">
+				<cfset sqlStatement = "UPDATE task  SET #columnsToUpdate# WHERE TaskID = #trim(variables.instance.TaskID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

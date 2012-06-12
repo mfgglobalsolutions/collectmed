@@ -712,7 +712,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE ProcedureOpenClose  SET #columnsToUpdate# WHERE ProcedureOpenCloseID = #trim(variables.instance.ProcedureOpenCloseID)#">
+				<cfset sqlStatement = "UPDATE procedureopenclose  SET #columnsToUpdate# WHERE ProcedureOpenCloseID = #trim(variables.instance.ProcedureOpenCloseID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

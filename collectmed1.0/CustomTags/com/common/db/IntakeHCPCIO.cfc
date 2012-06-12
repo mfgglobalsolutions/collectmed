@@ -15294,7 +15294,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE IntakeHCPC  SET #columnsToUpdate# WHERE IntakeHCPCID = #trim(variables.instance.IntakeHCPCID)#">
+				<cfset sqlStatement = "UPDATE intakehcpc  SET #columnsToUpdate# WHERE IntakeHCPCID = #trim(variables.instance.IntakeHCPCID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

@@ -1,339 +1,10 @@
-<!-------------------------------------------------------------------------------------->
-<!--- NAME:                                                                          --->
-<!--- @@Name@@                                                                       --->
-<!--- INTAKE_PatientIntakeFormIO.cfc                                                 --->
-<!--- @@Name@@                                                                       --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- CATEGORY:                                                                      --->
-<!--- @@CATEGORY@@                                                                   --->
-<!--- CFC                                                                            --->
-<!--- @@CATEGORY@@                                                                   --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- AUTHOR:                                                                        --->
-<!--- @@AUTHOR@@                                                                     --->
-<!--- Guillermo Cruz                                                                 --->
-<!--- @@AUTHOR@@                                                                     --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- DESCRIPTION:                                                                   ---> 
-<!--- @@DESCRIPTION@@                                                                --->
-<!--- This tag is a CFC tag tied to the INTAKE_PatientIntakeForm table in the dB.    --->  
-<!--- @@DESCRIPTION@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- EXAMPLE CALL:                                                                  --->
-<!--- @@ExampleCall@@                                                                --->
-<!--- &lt;cf_db_Get_INTAKE_PatientIntakeFormTable                                    --->  
-<!--- @@ExampleCall@@                                                                --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- REQUIRED PARAMETERS:                                                           --->
-<!--- @@RequiredParameters@@                                                         --->
-<!--- [None]                                                                         --->  
-<!--- @@RequiredParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- OPTIONAL PARAMETERS:                                                           --->
-<!--- @@OptionalParameters@@                                                         --->
-<!--- Queryname<br>                                                                  --->
-<!--- fields<br>                                                                     --->
-<!--- orderby<br>                                                                    --->
-<!--- groupby (same as fields contents maybe different order)<br>                    --->
-<!--- andclause example.... (CN1= Column Name)                                       --->
-<!--- [ andclause="RTRIM(CN1)+''+RTRIM(CN2)='#Var#'" ]<br>                           --->
-<!--- recordID<br>                                                                   --->
-<!--- hidden_UsersID<br>                                                             --->
-<!--- hidden_TimeStart<br>                                                           --->
-<!--- OPTION_1_CBox_Delivery<br>                                                     --->
-<!--- OPTION_1_CBox_Pickup<br>                                                       --->
-<!--- OPTION_1_CBox_Repair<br>                                                       --->
-<!--- OPTION_1_CBox_Switch<br>                                                       --->
-<!--- OPTION_1_CBox_Existing<br>                                                     --->
-<!--- OPTION_2_CBox_Facility<br>                                                     --->
-<!--- OPTION_2_CBox_Hospice<br>                                                      --->
-<!--- OPTION_2_CBox_Hospital<br>                                                     --->
-<!--- facilityTBox<br>                                                               --->
-<!--- hospiceTBox<br>                                                                --->
-<!--- OPTION_3_CBox_Medicare<br>                                                     --->
-<!--- OPTION_3_CBox_PrivateInsurance<br>                                             --->
-<!--- OPTION_3_CBox_Medicaid<br>                                                     --->
-<!--- OPTION_3_CBox_PrivatePay<br>                                                   --->
-<!--- hospitalTBox<br>                                                               --->
-<!--- DischargeDateMM<br>                                                            --->
-<!--- DischargeDateDD<br>                                                            --->
-<!--- DischargeDateYY<br>                                                            --->
-<!--- typeOfPay_Radio<br>                                                            --->
-<!--- callerNameTBox<br>                                                             --->
-<!--- callerPhoneTBox<br>                                                            --->
-<!--- patientNameTBox<br>                                                            --->
-<!--- roomNumberTBox<br>                                                             --->
-<!--- bedNumberTBox<br>                                                              --->
-<!--- patientAddressTBox<br>                                                         --->
-<!--- patientCityTBox<br>                                                            --->
-<!--- patientStateTBox<br>                                                           --->
-<!--- patientZipTBox<br>                                                             --->
-<!--- patientPhoneTBox<br>                                                           --->
-<!--- patientDOBMM<br>                                                               --->
-<!--- patientDOBDD<br>                                                               --->
-<!--- patientDOBYY<br>                                                               --->
-<!--- patientSSNTBox<br>                                                             --->
-<!--- patientHeightFeet<br>                                                          --->
-<!--- patientHeightInches<br>                                                        --->
-<!--- patientWeightTBox<br>                                                          --->
-<!--- alternateContactNameTBox<br>                                                   --->
-<!--- alternateContactRelationshipTBox<br>                                           --->
-<!--- alternateContactPhoneTBox<br>                                                  --->
-<!--- hcpcCode1TBox<br>                                                              --->
-<!--- hcpcQty1TBox<br>                                                               --->
-<!--- hcpcProduct1TBox<br>                                                           --->
-<!--- hcpcDX1TBox<br>                                                                --->
-<!--- hcpcDiagnosis1TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear1TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth1TBox<br>                                                 --->
-<!--- hcpcCode2TBox<br>                                                              --->
-<!--- hcpcQty2TBox<br>                                                               --->
-<!--- hcpcProduct2TBox<br>                                                           --->
-<!--- hcpcDX2TBox<br>                                                                --->
-<!--- hcpcDiagnosis2TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear2TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth2TBox<br>                                                 --->
-<!--- hcpcCode3TBox<br>                                                              --->
-<!--- hcpcQty3TBox<br>                                                               --->
-<!--- hcpcProduct3TBox<br>                                                           --->
-<!--- hcpcDX3TBox<br>                                                                --->
-<!--- hcpcDiagnosis3TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear3TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth3TBox<br>                                                 --->
-<!--- hcpcCode4TBox<br>                                                              --->
-<!--- hcpcQty4TBox<br>                                                               --->
-<!--- hcpcProduct4TBox<br>                                                           --->
-<!--- hcpcDX4TBox<br>                                                                --->
-<!--- hcpcDiagnosis4TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear4TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth4TBox<br>                                                 --->
-<!--- hcpcCode5TBox<br>                                                              --->
-<!--- hcpcQty5TBox<br>                                                               --->
-<!--- hcpcProduct5TBox<br>                                                           --->
-<!--- hcpcDX5TBox<br>                                                                --->
-<!--- hcpcDiagnosis5TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear5TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth5TBox<br>                                                 --->
-<!--- hcpcCode6TBox<br>                                                              --->
-<!--- hcpcQty6TBox<br>                                                               --->
-<!--- hcpcProduct6TBox<br>                                                           --->
-<!--- hcpcDX6TBox<br>                                                                --->
-<!--- hcpcDiagnosis6TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear6TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth6TBox<br>                                                 --->
-<!--- hcpcCode7TBox<br>                                                              --->
-<!--- hcpcQty7TBox<br>                                                               --->
-<!--- hcpcProduct7TBox<br>                                                           --->
-<!--- hcpcDX7TBox<br>                                                                --->
-<!--- hcpcDiagnosis7TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear7TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth7TBox<br>                                                 --->
-<!--- hcpcCode8TBox<br>                                                              --->
-<!--- hcpcQty8TBox<br>                                                               --->
-<!--- hcpcProduct8TBox<br>                                                           --->
-<!--- hcpcDX8TBox<br>                                                                --->
-<!--- hcpcDiagnosis8TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear8TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth8TBox<br>                                                 --->
-<!--- hcpcCode9TBox<br>                                                              --->
-<!--- hcpcQty9TBox<br>                                                               --->
-<!--- hcpcProduct9TBox<br>                                                           --->
-<!--- hcpcDX9TBox<br>                                                                --->
-<!--- hcpcDiagnosis9TBox<br>                                                         --->
-<!--- hcpcLengthOfNeedYear9TBox<br>                                                  --->
-<!--- hcpcLengthOfNeedMonth9TBox<br>                                                 --->
-<!--- hcpcCode10TBox<br>                                                             --->
-<!--- hcpcQty10TBox<br>                                                              --->
-<!--- hcpcProduct10TBox<br>                                                          --->
-<!--- hcpcDX10TBox<br>                                                               --->
-<!--- hcpcDiagnosis10TBox<br>                                                        --->
-<!--- hcpcLengthOfNeedYear10TBox<br>                                                 --->
-<!--- hcpcLengthOfNeedMonth10TBox<br>                                                --->
-<!--- primaryInsuranceNameTBox<br>                                                   --->
-<!--- secondaryInsuranceNameTBox<br>                                                 --->
-<!--- primaryPolicyNumberTBox<br>                                                    --->
-<!--- secondaryPolicyNumberTBox<br>                                                  --->
-<!--- primaryGroupNumberTBox<br>                                                     --->
-<!--- secondaryGroupNumberTBox<br>                                                   --->
-<!--- primaryPhoneNumberTBox<br>                                                     --->
-<!--- secondaryPhoneNumberTBox<br>                                                   --->
-<!--- priEffectiveDateMM<br>                                                         --->
-<!--- priEffectiveDateDD<br>                                                         --->
-<!--- priEffectiveDateYY<br>                                                         --->
-<!--- secEffectiveDateMM<br>                                                         --->
-<!--- secEffectiveDateDD<br>                                                         --->
-<!--- secEffectiveDateYY<br>                                                         --->
-<!--- priPolicyHolderNameTBox<br>                                                    --->
-<!--- secPolicyHolderNameTBox<br>                                                    --->
-<!--- priHoldersDOBMM<br>                                                            --->
-<!--- priHoldersDOBDD<br>                                                            --->
-<!--- priHoldersDOBYY<br>                                                            --->
-<!--- secHoldersDOBMM<br>                                                            --->
-<!--- secHoldersDOBDD<br>                                                            --->
-<!--- secHoldersDOBYY<br>                                                            --->
-<!--- priPolicyHolderEmployerTBox<br>                                                --->
-<!--- secPolicyHolderEmployerTBox<br>                                                --->
-<!--- priNoteTBox<br>                                                                --->
-<!--- secNoteTBox<br>                                                                --->
-<!--- poNumberTBox<br>                                                               --->
-<!--- creditCardTypeTBox<br>                                                         --->
-<!--- creditCardNumberTBox<br>                                                       --->
-<!--- ccDateMM<br>                                                                   --->
-<!--- ccDateDD<br>                                                                   --->
-<!--- ccDateYY<br>                                                                   --->
-<!--- orderingPhysicianNameTBox<br>                                                  --->
-<!--- orderingPhysicianPhoneTBox<br>                                                 --->
-<!--- orderingPhysicianUPINTBox<br>                                                  --->
-<!--- orderingPhysicianFaxTBox<br>                                                   --->
-<!--- orderingPhysicianAddressTBox<br>                                               --->
-<!--- orderingPhysicianCityTBox<br>                                                  --->
-<!--- orderingPhysicianStateTBox<br>                                                 --->
-<!--- orderingPhysicianZipTBox<br>                                                   --->
-<!--- verificationRepNameTBox<br>                                                    --->
-<!--- verificationDateMM<br>                                                         --->
-<!--- verificationDateDD<br>                                                         --->
-<!--- verificationDateYY<br>                                                         --->
-<!--- verificationTimeTBox<br>                                                       --->
-<!--- OPTION_4_CBox_VerificationHaveInsYes<br>                                       --->
-<!--- OPTION_4_CBox_VerificationHaveInsNo<br>                                        --->
-<!--- verificationHaveInsFromMM<br>                                                  --->
-<!--- verificationHaveInsFromDD<br>                                                  --->
-<!--- verificationHaveInsFromYY<br>                                                  --->
-<!--- verificationHaveInsToMM<br>                                                    --->
-<!--- verificationHaveInsToDD<br>                                                    --->
-<!--- verificationHaveInsToYY<br>                                                    --->
-<!--- OPTION_5_CBox_VerificationHaveDMECovYes<br>                                    --->
-<!--- OPTION_5_CBox_VerificationHaveDMECovNo<br>                                     --->
-<!--- OPTION_6_CBox_VerificationDeductibleYes<br>                                    --->
-<!--- OPTION_6_CBox_VerificationDeductibleNo<br>                                     --->
-<!--- OPTION_7_CBox_VerificationDeductibleMetYes<br>                                 --->
-<!--- OPTION_7_CBox_VerificationDeductibleMetNo<br>                                  --->
-<!--- verificationDeductibleAmountTBox<br>                                           --->
-<!--- OPTION_8_CBox_VerificationPPOPolicyYes<br>                                     --->
-<!--- OPTION_8_CBox_VerificationPPOPolicyNo<br>                                      --->
-<!--- verificationPercentagePayAfterDeductibleTBox<br>                               --->
-<!--- OPTION_9_CBox_VerificationPriorAuthYes<br>                                     --->
-<!--- OPTION_9_CBox_VerificationPriorAuthNo<br>                                      --->
-<!--- verificationAuthNumberTBox<br>                                                 --->
-<!--- OPTION_10_CBox_VerificationLifetimeBenefitMetYes<br>                           --->
-<!--- OPTION_10_CBox_VerificationLifetimeBenefitMetNo<br>                            --->
-<!--- verificationAuthPhoneNumberTBox<br>                                            --->
-<!--- OPTION_11_CBox_VerificationInsFollowMedicareYes<br>                            --->
-<!--- OPTION_11_CBox_VerificationInsFollowMedicareNo<br>                             --->
-<!--- OPTION_12_CBox_VerificationMedicaidPlanMQMB<br>                                --->
-<!--- OPTION_12_CBox_VerificationMedicaidPlanQMB<br>                                 --->
-<!--- OPTION_12_CBox_VerificationMedicaidPlanTraditional<br>                         --->
-<!--- VerificationTypeBasePlanTBox<br>                                               --->
-<!--- OPTION_13_CBox_PastEquipmentYes<br>                                            --->
-<!--- OPTION_13_CBox_PastEquipmentNo<br>                                             --->
-<!--- Equipment1TypeTBox<br>                                                         --->
-<!--- Equipment1RentPurchasedSelect<br>                                              --->
-<!--- Equipment1FromMM<br>                                                           --->
-<!--- Equipment1FromDD<br>                                                           --->
-<!--- Equipment1FromYY<br>                                                           --->
-<!--- Equipment1ToMM<br>                                                             --->
-<!--- Equipment1ToDD<br>                                                             --->
-<!--- Equipment1ToYY<br>                                                             --->
-<!--- Equipment1SupplierNameTBox<br>                                                 --->
-<!--- Equipment1SupplierTelephoneTBox<br>                                            --->
-<!--- Equipment2TypeTBox<br>                                                         --->
-<!--- Equipment2RentPurchasedSelect<br>                                              --->
-<!--- Equipment2FromMM<br>                                                           --->
-<!--- Equipment2FromDD<br>                                                           --->
-<!--- Equipment2FromYY<br>                                                           --->
-<!--- Equipment2ToMM<br>                                                             --->
-<!--- Equipment2ToDD<br>                                                             --->
-<!--- Equipment2ToYY<br>                                                             --->
-<!--- Equipment2SupplierNameTBox<br>                                                 --->
-<!--- Equipment2SupplierTelephoneTBox<br>                                            --->
-<!--- Equipment3TypeTBox<br>                                                         --->
-<!--- Equipment3RentPurchasedSelect<br>                                              --->
-<!--- Equipment3FromMM<br>                                                           --->
-<!--- Equipment3FromDD<br>                                                           --->
-<!--- Equipment3FromYY<br>                                                           --->
-<!--- Equipment3ToMM<br>                                                             --->
-<!--- Equipment3ToDD<br>                                                             --->
-<!--- Equipment3ToYY<br>                                                             --->
-<!--- Equipment3SupplierNameTBox<br>                                                 --->
-<!--- Equipment3SupplierTelephoneTBox<br>                                            --->
-<!--- Equipment4TypeTBox<br>                                                         --->
-<!--- Equipment4RentPurchasedSelect<br>                                              --->
-<!--- Equipment4FromMM<br>                                                           --->
-<!--- Equipment4FromDD<br>                                                           --->
-<!--- Equipment4FromYY<br>                                                           --->
-<!--- Equipment4ToMM<br>                                                             --->
-<!--- Equipment4ToDD<br>                                                             --->
-<!--- Equipment4ToYY<br>                                                             --->
-<!--- Equipment4SupplierNameTBox<br>                                                 --->
-<!--- Equipment4SupplierTelephoneTBox<br>                                            --->
-<!--- Equipment5TypeTBox<br>                                                         --->
-<!--- Equipment5RentPurchasedSelect<br>                                              --->
-<!--- Equipment5FromMM<br>                                                           --->
-<!--- Equipment5FromDD<br>                                                           --->
-<!--- Equipment5FromYY<br>                                                           --->
-<!--- Equipment5ToMM<br>                                                             --->
-<!--- Equipment5ToDD<br>                                                             --->
-<!--- Equipment5ToYY<br>                                                             --->
-<!--- Equipment5SupplierNameTBox<br>                                                 --->
-<!--- Equipment5SupplierTelephoneTBox<br>                                            --->
-<!--- OPTION_14_CBox_OxygenPAo2<br>                                                  --->
-<!--- OPTION_14_CBox_OxygenSAo2<br>                                                  --->
-<!--- OPTION_14_CBox_OxygenSPo2<br>                                                  --->
-<!--- OxygenPAO2TBox<br>                                                             --->
-<!--- OxygenSAO2TBox<br>                                                             --->
-<!--- CPAPStudy_CBox<br>                                                             --->
-<!--- CPAPStudyNote<br>                                                              --->
-<!--- OxygenSPO2TBox<br>                                                             --->
-<!--- CPAPStudyOnFile_CBox<br>                                                       --->
-<!--- CPAPStudyOnFileNote<br>                                                        --->
-<!--- LabTestDateMM<br>                                                              --->
-<!--- LabTestDateDD<br>                                                              --->
-<!--- LabTestDateYY<br>                                                              --->
-<!--- CPAPStudyPerformedAt<br>                                                       --->
-<!--- LabTestFacilityTBox<br>                                                        --->
-<!--- CPAPStudyPerformedAt2<br>                                                      --->
-<!--- CPAPStudyPerformedAt3<br>                                                      --->
-<!--- Active<br>                                                                     --->
-<!--- InactiveCode<br>                                                               --->
-<!--- DateCreated<br>                                                                --->
-<!--- DateModified<br>                                                               --->  
-<!--- @@OptionalParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- RETURNED PARAMETERS:                                                           --->
-<!--- @@ReturnedParameters@@                                                         --->
-<!--- recordID                                                                       --->  
-<!--- @@ReturnedParameters@@                                                         --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-<!--- HISTORY:                                                                       --->
-<!--- @@HISTORY@@                                                                    ---> 	
-<!--- Created 08/30/2006                                                             --->
-<!--- @@HISTORY@@                                                                    --->
-<!---                                                                                --->
-<!-------------------------------------------------------------------------------------->
-
-
 <cfcomponent name="INTAKE_PatientIntakeFormIO">
 
 	<cfset reset()>
 	
-	<!-------------------------------------------------------------------------------------->
-	<!--- Use this function when creating the obejct and anytime you need to clear the   --->
-	<!--- object to work with another instance while using the same object.              --->
-	<!-------------------------------------------------------------------------------------->
+
 	<cffunction name="reset" access="public" output="no">
-	
-		<!-------------------------------------------------------------------------------------->
-		<!--- Creat instance variables for each of the column names                          --->
-		<!--- that will have a GET and SET method.                                           --->
-		<!-------------------------------------------------------------------------------------->
+
 		<cfscript>
 			variables.instance.changedVariables = "";
 			variables.instance.recordID = "NULL";
@@ -601,17 +272,12 @@
 	</cffunction>	
 	
 	
-<!-------------------------------------------------------------------------------------->
-<!--- Create a query that will hold the defualt values of the                        --->
-<!--- columns in the table.                                                          --->
-<!-------------------------------------------------------------------------------------->
+
 	<cfset defaultsQuery = QueryNew("COLUMN_NAME,IS_NULLABLE,COLUMN_DEFAULT,DATA_TYPE")>
 	<cfset temp = QueryAddRow(defaultsQuery, 260)>
 	
 	
-<!-------------------------------------------------------------------------------------->
-<!--- Set the cells in the query.                                                    --->
-<!-------------------------------------------------------------------------------------->
+
 	<cfset temp = QuerySetCell(defaultsQuery, "COLUMN_NAME", "RECORDID", 1)>
 	<cfset temp = QuerySetCell(defaultsQuery, "IS_NULLABLE", "No", 1)>
 	<cfset temp = QuerySetCell(defaultsQuery, "COLUMN_DEFAULT", "", 1)>
@@ -1913,9 +1579,7 @@
 	<cfset temp = QuerySetCell(defaultsQuery, "DATA_TYPE", "varchar", 260)>
 	
 
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for recordID.                                               --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getRecordID" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.RecordID>
 	</cffunction>
@@ -1944,9 +1608,7 @@
 	
 	
 
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for hidden_UsersID.                                         --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getHidden_UsersID" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.Hidden_UsersID>
 	</cffunction>
@@ -1978,10 +1640,7 @@
 	</cffunction>
 	
 	
-
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for hidden_TimeStart.                                       --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getHidden_TimeStart" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.Hidden_TimeStart>
 	</cffunction>
@@ -2014,9 +1673,7 @@
 	
 	
 
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for OPTION_1_CBox_Delivery.                                 --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getOPTION_1_CBox_Delivery" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.OPTION_1_CBox_Delivery>
 	</cffunction>
@@ -2046,12 +1703,7 @@
 		<cfreturn true>
 		
 	</cffunction>
-	
-	
 
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for OPTION_1_CBox_Pickup.                                   --->
-	<!-------------------------------------------------------------------------------------->	
 	<cffunction name="getOPTION_1_CBox_Pickup" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.OPTION_1_CBox_Pickup>
 	</cffunction>
@@ -2083,10 +1735,6 @@
 	</cffunction>
 	
 	
-
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for OPTION_1_CBox_Repair.                                   --->
-	<!-------------------------------------------------------------------------------------->	
 	<cffunction name="getOPTION_1_CBox_Repair" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.OPTION_1_CBox_Repair>
 	</cffunction>
@@ -2118,10 +1766,7 @@
 	</cffunction>
 	
 	
-
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for OPTION_1_CBox_Switch.                                   --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getOPTION_1_CBox_Switch" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.OPTION_1_CBox_Switch>
 	</cffunction>
@@ -2154,9 +1799,7 @@
 	
 	
 
-	<!--------------------------------------------------------------------------------------> 	
-	<!--- GET and SET method for OPTION_1_CBox_Existing.                                 --->
-	<!-------------------------------------------------------------------------------------->	
+	
 	<cffunction name="getOPTION_1_CBox_Existing" access="public" returntype="String" output="No">
   		<cfreturn variables.instance.OPTION_1_CBox_Existing>
 	</cffunction>
@@ -12251,7 +11894,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE INTAKE_PatientIntakeForm  SET #columnsToUpdate# WHERE recordID = #trim(variables.instance.recordID)#">
+				<cfset sqlStatement = "UPDATE intake_patientintakeform  SET #columnsToUpdate# WHERE recordID = #trim(variables.instance.recordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

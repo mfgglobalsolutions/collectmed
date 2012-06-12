@@ -942,7 +942,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE EntityRS  SET #columnsToUpdate# WHERE EntityRSID = #trim(variables.instance.EntityRSID)#">
+				<cfset sqlStatement = "UPDATE entityrs  SET #columnsToUpdate# WHERE EntityRSID = #trim(variables.instance.EntityRSID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

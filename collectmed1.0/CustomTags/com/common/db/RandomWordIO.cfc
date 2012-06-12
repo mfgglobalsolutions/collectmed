@@ -574,7 +574,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE RandomWord  SET #columnsToUpdate# WHERE RandomWordID = #trim(variables.instance.RandomWordID)#">
+				<cfset sqlStatement = "UPDATE randomword  SET #columnsToUpdate# WHERE RandomWordID = #trim(variables.instance.RandomWordID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

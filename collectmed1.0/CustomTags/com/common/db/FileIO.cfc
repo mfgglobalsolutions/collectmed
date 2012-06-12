@@ -1761,7 +1761,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE File  SET #columnsToUpdate# WHERE FileID = #trim(variables.instance.FileID)#">
+				<cfset sqlStatement = "UPDATE file  SET #columnsToUpdate# WHERE FileID = #trim(variables.instance.FileID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->

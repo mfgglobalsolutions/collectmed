@@ -705,7 +705,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "UPDATE StandardListItemOriginal  SET #columnsToUpdate# WHERE StandardListItemID = #trim(variables.instance.StandardListItemID)#">
+				<cfset sqlStatement = "UPDATE standardlistitemoriginal  SET #columnsToUpdate# WHERE StandardListItemID = #trim(variables.instance.StandardListItemID)#">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
@@ -852,7 +852,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Build the SQL statement.                                                       --->
 			<!-------------------------------------------------------------------------------------->	
-				<cfset sqlStatement = "INSERT INTO StandardListItemOriginal  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS StandardListItemID ">
+				<cfset sqlStatement = "INSERT INTO standardlistitemoriginal  (#trim(columnsToInsert)#) VALUES(#trim(columnsToInsertValues)#); SELECT LAST_INSERT_ID() AS StandardListItemID ">
 				
 			<!-------------------------------------------------------------------------------------->
 			<!--- If the user sent in one column to update the initial                           --->
