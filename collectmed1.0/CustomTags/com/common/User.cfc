@@ -281,22 +281,22 @@
 		<!--- This code will create a ramdom String that will be         --->
 		<!--- attached to the sid string to make a unique string.        --->
 		<!------------------------------------------------------------------>			
-			<cfloop from="1" to="40" index="i">
-				<cfset RandomNumber = RandRange(1,62)>			
-				<cfset aNumber = ListGetAt(AsciiList, trim(RandomNumber))>			
-				<cfset appendTokeyString = trim(appendTokeyString) & chr(aNumber)>				
-			</cfloop>
+		<cfloop from="1" to="30" index="i">
+			<cfset RandomNumber = RandRange(1,62)>			
+			<cfset aNumber = ListGetAt(AsciiList, trim(RandomNumber))>			
+			<cfset appendTokeyString = trim(appendTokeyString) & chr(aNumber)>				
+		</cfloop>
+		
+		<cfset appendTokeyString = trim(appendTokeyString) & trim(usersID)>
 			
-			<cfset appendTokeyString = trim(appendTokeyString) & trim(usersID)>
-			
-			<cfif IsDefined("session.CFID")>
-				<cfset appendTokeyString = trim(appendTokeyString) & trim(session.CFID)>
-				<cfset FinalString = trim(appendTokeyString) & trim(session.CFTOKEN)>				
-			<cfelse>
-				<cfset FinalString = trim(appendTokeyString) & Replace(trim(CGI.REMOTE_ADDR), ".", "", "ALL")>
-			</cfif>
-			
-			<cfreturn UCase(trim(FinalString))>		
+		<cfif IsDefined("session.CFID")>
+			<cfset appendTokeyString = trim(appendTokeyString) & trim(session.CFID)>
+			<cfset FinalString = trim(appendTokeyString) & trim(session.CFTOKEN)>							
+		<cfelse>
+			<cfset FinalString = trim(appendTokeyString) & Replace(trim(CGI.REMOTE_ADDR), ".", "", "ALL")>
+		</cfif>
+		
+		<cfreturn UCase(trim(FinalString))>		
 					
 	</cffunction>
 	
