@@ -1,5 +1,52 @@
 
 
+<cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
+<cfset tempConfigBean = application.beanFactory.getBean('configBean') />
+
+<cfset request.mainClientDB = tempConfigBean.getDSN().masterclient />
+<cfset request.mySQLPath = tempConfigBean.getDatabase().mySQLPath /> 
+<cfset request.mySQLIpAddress = tempConfigBean.getDatabase().mySQLIpAddress />
+<cfset request.mySQLPort = tempConfigBean.getDatabase().mySQLPort /> 
+<cfset request.mySQLUser = tempConfigBean.getDatabase().mySQLUser /> 
+<cfset request.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
+<cfset request.dbBackupPath = tempConfigBean.getDatabase().dbBackupPath />
+
+
+
+<cfset request.newClientDB = "paclient_1096">
+<cfset temp = tempMySQLProcedures.createNewClientDB(request.mainClientDB, request.newClientDB, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass)>
+
+
+
+
+<cfabort>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <cf_gcRecursiveSearchCodeReplace_UPDATE>
 
 <cfabort>
