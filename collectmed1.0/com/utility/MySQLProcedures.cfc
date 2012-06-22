@@ -31,7 +31,7 @@
 		<cfargument name="mySQLPass" required="true" type="string">	
 		<cfargument name="clientTemplatePath" required="false" default="#expandPath('./mysql/paclient_master.sql')#">
 		<cfargument name="newClientBatPath" required="false" default="#expandPath('./mysql/newClientDB.bat')#">
-		<cfargument name="newClientDBSQLPath" required="false" default="#expandPath('./mysql')#\#trim(arguments.newClientDB)#.sql">
+		<cfargument name="newClientDBSQLPath" required="false" default="#expandPath('./mysql')#/#trim(arguments.newClientDB)#.sql">
 	
 		<cftry>
 
@@ -55,7 +55,7 @@
 				<!--- Create the backup of the MAIN client database                        --->
 				<!---------------------------------------------------------------------------->
 				<cfexecute 
-					name="#arguments.mySQLPath#\mysqldump" 
+					name="#arguments.mySQLPath#/mysqldump" 
 					arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# --no-data #trim(arguments.mainClientDB)#"
 					outputfile="#trim(arguments.clientTemplatePath)#"	 	
 					timeout="60"/> 
@@ -87,7 +87,7 @@
 				<!---------------------------------------------------------------------------->
 				<cfexecute 
 					name="#trim(newClientBatPath)#" 
-					arguments="""#arguments.mySQLPath#\mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 1"
+					arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 1"
 					variable="results"	
 					timeout="60"/> 
 									
@@ -101,7 +101,7 @@
 				<!---------------------------------------------------------------------------->	
 				<cfexecute 
 					name="#trim(newClientBatPath)#" 
-					arguments="""#arguments.mySQLPath#\mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
+					arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
 					variable="results"	
 					timeout="60"/> 
 				
@@ -127,7 +127,7 @@
 		<cfargument name="mySQLUser" required="true">
 		<cfargument name="mySQLPass" required="true">
 		<cfargument name="dbBackupPath" required="true">
-<cfdump var="#arguments#" output="console">
+
 		<cftry>
 			
 			<!-------------------------------------------------------------------------------------->
@@ -180,7 +180,7 @@
 			<!---------------------------------------------------------------------------->
 			<cfif NOT FindNoCase("1084", arguments.clientDB)>
 			<cfexecute 
-				name="#trim(arguments.mySQLPath)#\mysqldump" 
+				name="#trim(arguments.mySQLPath)#/mysqldump" 
 				arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.clientDB)#"
 				outputfile="#trim(arguments.clientBKPPathWName)#"	 	
 				timeout="60"/> 
