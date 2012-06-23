@@ -1,3 +1,14 @@
+<cfscript> 
+    prop = createObject("java", "java.lang.System").getProperties(); 
+    WriteDump( var=prop["user.name"], label="User.Name"); 
+    WriteDump( var=prop, label="All Properties" ); 
+</cfscript> 
+
+<cfabort>
+
+
+
+
 
 
 <cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
