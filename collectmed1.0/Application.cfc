@@ -24,7 +24,9 @@
 			/*--------------------------------------------------------------------------------------*/		
 			application.environmentFilePath = "../../../config/appVariables.xml";
 			application.serverVariablesToLoad = "production";			
+			application.os = "linux";
 			if(findNoCase("c:", trim(CGI.path_translated))){
+				application.os = "windows";
 				application.serverVariablesToLoad = "development";	
 			}
 		</cfscript>
