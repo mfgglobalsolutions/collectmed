@@ -15,3 +15,5 @@ then
 	$1 --host=$2 --port=$3 --user=$4 --password=$5 $6 < $8
 
 fi
+
+exit
