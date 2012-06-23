@@ -17,7 +17,7 @@
 
 <cfset request.newClientBatShellPath = expandPath('./mysql/newClientDB.bat') />
 <cfif application.os eq "linux">
-	<cfset request.newClientBatShellPath = expandPath('./mysql/newClientDBShell') />
+	<cfset request.newClientBatShellPath = expandPath('./mysql/newClientDBShell.sh') />
 </cfif>
 
 <cfset temp = tempMySQLProcedures.createNewClientDB(
