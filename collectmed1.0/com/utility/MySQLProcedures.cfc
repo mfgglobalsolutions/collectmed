@@ -30,7 +30,7 @@
 		<cfargument name="mySQLUser" required="true" type="string">
 		<cfargument name="mySQLPass" required="true" type="string">	
 		<cfargument name="clientTemplatePath" required="false" default="#expandPath('./mysql/paclient_master.sql')#">
-		<cfargument name="newClientBatPath" required="false" default="#expandPath('./mysql/newClientDB.bat')#">
+		<cfargument name="newClientBatShellPath" required="false" default="#expandPath('./mysql/newClientDB.bat')#">
 		<cfargument name="newClientDBSQLPath" required="false" default="#expandPath('./mysql')#/#trim(arguments.newClientDB)#.sql">
 	
 		<cftry>
@@ -86,10 +86,13 @@
 				<!--- Create the new database from the backup of the main client database. --->
 				<!---------------------------------------------------------------------------->
 				<cfexecute 
-					name="#trim(newClientBatPath)#" 
+					name="#trim(newClientBatShellPath)#" 
 					arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 1"
 					variable="results"	
 					timeout="60"/> 
+					
+
+					
 									
 				<cfscript>
 					go_to = createObject("java", "java.lang.Thread");
@@ -100,7 +103,7 @@
 				<!--- REM APPLY A SCHEMA TO THE NEW DATABASE TO BUILD ITS TABLES.          --->
 				<!---------------------------------------------------------------------------->	
 				<cfexecute 
-					name="#trim(newClientBatPath)#" 
+					name="#trim(newClientBatShellPath)#" 
 					arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
 					variable="results"	
 					timeout="60"/> 

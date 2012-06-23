@@ -14,8 +14,18 @@
 
 
 <cfset request.newClientDB = "paclient_1097">
-<cfset temp = tempMySQLProcedures.createNewClientDB(request.mainClientDB, request.newClientDB, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass)>
+<cfset request.newClientBatShellPath = expandPath('./mysql/newClientDBShell') />
 
+<cfset temp = tempMySQLProcedures.createNewClientDB(
+													mainClientDB: request.mainClientDB
+													newClientDB: request.newClientDB
+													mySQLPath: request.mySQLPath
+													mySQLIpAddress: request.mySQLIpAddress
+													mySQLPort: request.mySQLPort
+													mySQLUser: request.mySQLUser
+													mySQLPass: request.mySQLPass
+													newClientBatShellPath: request.newClientBatShellPath) />
+	
 
 
 

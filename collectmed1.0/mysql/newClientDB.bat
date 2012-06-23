@@ -1,5 +1,5 @@
 
-REM @echo off
+@echo off
 
 if %9%==1 (
 REM CREATE THE NEW DATABASE
@@ -13,7 +13,7 @@ REM APPLY A SCHEMA TO THE NEW DATABASE TO BUILD ITS TABLES.
 
 
 
-REM @echo on
+@echo on
 REM TRUE (this only proves that batch file was called to create the client)
 
 
