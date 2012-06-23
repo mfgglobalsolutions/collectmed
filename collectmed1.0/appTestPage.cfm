@@ -21,13 +21,13 @@
 </cfif>
 
 <cfset temp = tempMySQLProcedures.createNewClientDB(
-													mainClientDB: request.mainClientDB
-													newClientDB: request.newClientDB
-													mySQLPath: request.mySQLPath
-													mySQLIpAddress: request.mySQLIpAddress
-													mySQLPort: request.mySQLPort
-													mySQLUser: request.mySQLUser
-													mySQLPass: request.mySQLPass
+													mainClientDB: request.mainClientDB,
+													newClientDB: request.newClientDB,
+													mySQLPath: request.mySQLPath,
+													mySQLIpAddress: request.mySQLIpAddress,
+													mySQLPort: request.mySQLPort,
+													mySQLUser: request.mySQLUser,
+													mySQLPass: request.mySQLPass,
 													newClientBatShellPath: request.newClientBatShellPath) />
 	
 
