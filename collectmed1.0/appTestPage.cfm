@@ -13,7 +13,7 @@
 
 
 
-<cfset request.newClientDB = "paclient_1096">
+<cfset request.newClientDB = "paclient_1097">
 <cfset temp = tempMySQLProcedures.createNewClientDB(request.mainClientDB, request.newClientDB, request.mySQLPath, request.mySQLIpAddress, request.mySQLPort, request.mySQLUser, request.mySQLPass)>
 
 
