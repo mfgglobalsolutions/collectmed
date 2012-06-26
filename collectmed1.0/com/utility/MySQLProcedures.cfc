@@ -20,7 +20,7 @@
 	</cffunction>
 
 
-	<cffunction name="createNewClientDB" returntype="any" output="false">
+	<cffunction name="createNewClientDB" returntype="any" >
 	
 		<cfargument name="mainClientDB" required="true" type="string">
 		<cfargument name="newClientDB" required="true" type="string">
@@ -96,7 +96,7 @@
 					variable="results"	
 					timeout="60"/> ---> 
 					
-				
+		<cfdump var="#results#">		
 									
 				<cfscript>
 					go_to = createObject("java", "java.lang.Thread");
@@ -116,7 +116,7 @@
 					arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
 					variable="results"	
 					timeout="60"/>  --->
-				
+		<cfdump var="#results#">				
 			</cfif>
 	
 		
