@@ -74,13 +74,15 @@
 					action="write" 
 					nameconflict="OVERWRITE" 
 					file="#trim(arguments.clientTemplatePath)#" 
-					output="#newFileContent#">
+					output="#newFileContent#"
+					mode="777">
 					
 				<cffile 
 					action="write" 
 					nameconflict="OVERWRITE" 
 					file="#trim(arguments.newClientDBSQLPath)#" 
-					output="CREATE DATABASE #trim(arguments.newClientDB)#;">					
+					output="CREATE DATABASE #trim(arguments.newClientDB)#;"
+					mode="777">					
 										
 				<!---------------------------------------------------------------------------->
 				<!--- Create the new database from the backup of the main client database. --->
