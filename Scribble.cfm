@@ -485,3 +485,22 @@ case $arg in
     fedora) echo "$arg passed to $0 but output set to redhat";;
     *) usage
 esac
+
+
+
+
+
+
+
+
+
+mysql--host=127.0.0.1 --port=3306 --user=root --password=collectmednet < /usr/share/apache-tomcat-7.0.27/webapps/collectmed/collectmed1.0/mysql/paclient_1097.sql
+					
+
+
+mySQLPath" value="/usr/bin" />	
+					<key name="mySQLIpAddress" value="" />	
+					<key name="mySQLPort" value="3306" />	
+					<key name="mySQLUser" value="root" />	
+					<key name="mySQLPass" value="collectmednet" />	
+					<key name="dbBackupPath" value="/dbbackup/" />
