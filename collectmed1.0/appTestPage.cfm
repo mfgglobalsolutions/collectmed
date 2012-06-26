@@ -1,5 +1,4 @@
 
-
 <cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
 <cfset tempConfigBean = application.beanFactory.getBean('configBean') />
 
