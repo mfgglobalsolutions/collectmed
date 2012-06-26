@@ -91,8 +91,7 @@
 					variable="results"	
 					timeout="60"/> 
 					
-
-					
+				
 									
 				<cfscript>
 					go_to = createObject("java", "java.lang.Thread");
