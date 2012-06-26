@@ -464,3 +464,24 @@ variables.Result = variableleX12270('1084', '2956', ISA, '146153871', 'kgpqax6s'
 	
 </cfcomponent>
 Kinky File Explorer © 2010 Kinky Solutions / BenNadel.com 
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+arg="$1"
+
+usage(){
+    echo "Usage: $0 redhat|fedroa"
+}
+
+case $arg in
+    redhat) echo "$arg passed to $0 but output set to fedora";;
+    fedora) echo "$arg passed to $0 but output set to redhat";;
+    *) usage
+esac

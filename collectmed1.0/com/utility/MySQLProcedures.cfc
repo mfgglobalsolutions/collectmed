@@ -86,7 +86,7 @@
 				<!--- Create the new database from the backup of the main client database. --->
 				<!---------------------------------------------------------------------------->
 				<cfexecute 
-					name="#arguments.mySQLPath#/mysql.exe"
+					name="#arguments.mySQLPath#/mysql"
 					arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#"
 					variable="results"	
 					timeout="60"/>
@@ -107,7 +107,7 @@
 				<!--- REM APPLY A SCHEMA TO THE NEW DATABASE TO BUILD ITS TABLES.          --->
 				<!---------------------------------------------------------------------------->	
 				<cfexecute 
-					name="#arguments.mySQLPath#/mysql.exe"
+					name="#arguments.mySQLPath#/mysql"
 					arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
 					variable="results"	
 					timeout="60"/> 
