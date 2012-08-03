@@ -49,11 +49,11 @@
 		i.Equipment4NoteTBox, i.Equipment5NoteTBox, i.OPTION_SkilledNursing, i.SkilledNursingName, i.SkilledNursingTelephone, i.active, i.closingInvoiceNumber,	
 		ih.*
 		FROM intake i 
-		LEFT JOIN IntakeHCPC ih ON i.intakeID = ih.IntakeID	
+		LEFT JOIN intakehcpc ih ON i.intakeID = ih.IntakeID	
 		LEFT JOIN patient p ON i.PatientID = p.PatientID
 		LEFT JOIN entity e ON e.EntityID = p.EntityID 		
-		LEFT JOIN Address a ON i.PatientAddressID = a.AddressID
-		LEFT JOIN Phone ph ON i.PatientPhoneID = ph.PhoneID   
+		LEFT JOIN address a ON i.PatientAddressID = a.AddressID
+		LEFT JOIN phone ph ON i.PatientPhoneID = ph.PhoneID   
 		WHERE i.intakeID = #trim(caller.intakeID)#
 	</cfquery>
 	

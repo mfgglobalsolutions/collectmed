@@ -226,7 +226,7 @@
 												FROM claim c 
 												LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
 												LEFT JOIN entity e ON u.EntityID = e.EntityID
-												LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
+												LEFT JOIN [procedure] cp ON c.ClaimID = cp.ClaimID
 												LEFT JOIN entity patientEntity ON c.entityID = patientEntity.EntityID				
 												LEFT JOIN patient p ON c.entityID = p.EntityID
 												WHERE c.InterchangeID = #trim(getInterchange.InterchangeID)# 

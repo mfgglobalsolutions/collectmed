@@ -420,10 +420,10 @@
 		FROM claim c 
 		LEFT JOIN pa_master.users u ON c.AssignedToUserID = u.UsersID 
 		LEFT JOIN entity e ON u.EntityID = e.EntityID
-		LEFT JOIN [Procedure] cp ON c.ClaimID = cp.ClaimID
+		LEFT JOIN [procedure] cp ON c.ClaimID = cp.ClaimID
 		LEFT JOIN entity patientEntity ON c.entityID = patientEntity.EntityID				
 		LEFT JOIN patient p ON c.entityID = p.EntityID
-		LEFT JOIN Interchange i ON c.InterchangeID = i.InterchangeID						
+		LEFT JOIN interchange i ON c.InterchangeID = i.InterchangeID						
 		WHERE c.ClientID = #trim(session.ClientID)# AND c.Active = 1 AND c.claimID = #trim(claimID)#
 	</cfquery>
 	
@@ -468,7 +468,7 @@
 		IFNULL(n.noteID, 0) AS noteID							
 		FROM [procedure] cp
 		LEFT JOIN pa_master.eob_medicare_procedurecode pc ON cp.ProcedureCode = pc.RecordID
-		LEFT JOIN Note n ON cp.ProcedureID = n.instanceID AND n.objectID = 6
+		LEFT JOIN note n ON cp.ProcedureID = n.instanceID AND n.objectID = 6
 		WHERE cp.ClaimID = #trim(ClaimID)#		
 	</cfquery>							
 	
