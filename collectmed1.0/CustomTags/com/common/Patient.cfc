@@ -2,7 +2,7 @@
 
 
 
-<cfcomponent extends="com.common.db.PatientIO">		
+<cfcomponent extends="cmComponents.com.common.db.PatientIO">		
 
 
 	<!-------------------------------------------------------------------------------------->
