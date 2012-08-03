@@ -6,6 +6,7 @@
 	<bean id="IMChat" class="cmComponents.com.common.IMChat" singleton="false" />
 	<bean id="InsuranceCompany_Com" class="cmComponents.com.common.InsuranceCompany" singleton="false" />
 	<bean id="Patient" class="cmComponents.com.common.Patient" singleton="false" />	
+	<bean id="PatientInsuranceCompany" class="cmComponents.com.common.PatientInsuranceCompany" singleton="false" />
 	<bean id="Note" class="cmComponents.com.common.Note" singleton="false" />	
 	<bean id="UserSessionInsert" class="cmComponents.com.common.UserSessionInsert" singleton="false" />
 	<bean id="User" class="cmComponents.com.common.User" singleton="false">
