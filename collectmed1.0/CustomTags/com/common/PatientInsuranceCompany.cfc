@@ -1,6 +1,6 @@
 
 
-<cfcomponent extends="com.common.db.PatientInsuranceCompanyIO">		
+<cfcomponent extends="cmComponents.com.common.db.PatientInsuranceCompanyIO">		
 	
 	
 	<!-------------------------------------------------------------------------------------->

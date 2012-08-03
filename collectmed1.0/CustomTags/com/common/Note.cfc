@@ -1,6 +1,6 @@
 
 
-<cfcomponent name="Note" extends="com.common.db.NoteIO">	
+<cfcomponent name="Note" extends="cmComponents.com.common.db.NoteIO">	
 	
 	
 	<!-------------------------------------------------------------------------------------->

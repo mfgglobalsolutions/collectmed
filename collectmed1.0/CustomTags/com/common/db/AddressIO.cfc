@@ -701,7 +701,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="AddressIO" output="No">
+	<cffunction name="InitAddressIO" access="public" returntype="AddressIO" output="No">
 		
 		<cfargument name="AddressID" required="yes" type="numeric">		
 		<cfset var qGetAddress = "">

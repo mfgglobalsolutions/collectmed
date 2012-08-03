@@ -2197,9 +2197,9 @@
 <!-------------------------------------------------------------------------------------->
 	<cfif IsNumeric(patientID)>
 		
-		<cfset request.Patient = CreateObject("component", "com.common.Patient").init(patientID)>	
+		<cfset request.Patient = application.beanFactory.getBean('Patient').init(patientID)>	
 		<cfset entityID = request.Patient.getEntityID()>
-		<cfset request.Entity = CreateObject("component", "com.common.Entity").init(entityID)>	
+		<cfset request.Entity = application.beanFactory.getBean('Entity').init(entityID)>	
 		
 		<cfset patientfnametbox = trim(request.Entity.getFName())>
 		<cfset patientminitialtbox = trim(request.Entity.getMName())>
@@ -2225,8 +2225,9 @@
 		<cfset patientAddresses = request.Entity.getEntityAddresses(clientID: trim(session.clientID), entityID: entityID, Active: 1)>					
 		<cfset patientPhones = request.Entity.getEntityPhones(clientID: trim(session.clientID), entityID: entityID, Active: 1)>		
 		
-		<cfinvoke component="com.common.PatientInsuranceCompany" method="reorderPrimSecTer" clientID="#trim(session.ClientID)#" patientID="#trim(patientID)#"> 			
-	
+		<!--- <cfinvoke component="com.common.PatientInsuranceCompany" method="reorderPrimSecTer" clientID="#trim(session.ClientID)#" patientID="#trim(patientID)#"> 	 --->
+		<cfset request.PatientInsuranceCompany = application.beanFactory.getBean("PatientInsuranceCompany").reorderPrimSecTer(clientID: trim(session.ClientID), patientID: trim(patientID))>	
+			
 	</cfif>				
 	
 
@@ -2343,7 +2344,10 @@
 					<td class="siteLabel" colspan="2" style="padding-top:8px; padding-bottom:8px;">
 						&nbsp;&nbsp;<span style=cursor:hand class=siteLabel onclick="location.href='appPatientIntakeSearch.cfm?clear=1'"><u>Search&nbsp;Intakes</u></span>&nbsp;|
 						<cfif IsNumeric(intakeID)>
-							<cfinvoke component="com.common.note" method="getNumberOfNotes" clientID="#trim(session.ClientID)#" objectID="8" instanceID="#trim(intakeID)#" returnvariable="numOfNotes">  
+							
+							<!--- <cfinvoke component="com.common.note" method="getNumberOfNotes" clientID="#trim(session.ClientID)#" objectID="8" instanceID="#trim(intakeID)#" returnvariable="numOfNotes">   --->
+							<cfset numOfNotes = application.beanFactory.getBean("Note").getNumberOfNotes(clientID: trim(session.ClientID),  objectID: 8, instanceID: trim(intakeID))>	
+									
 							<span class="siteLabel" style="cursor:hand" onclick="createViewNotes();">
 								&nbsp;<u>View/Add&nbsp;Intake&nbsp;Notes</u> (#trim(numOfNotes)#)
 							</span>							

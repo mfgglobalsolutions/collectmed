@@ -478,7 +478,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="NoteIO" output="No">
+	<cffunction name="InitNoteIO" access="public" returntype="NoteIO" output="No">
 		
 		<cfargument name="NoteID" required="yes" type="numeric">		
 		<cfset var qGetNote = "">
