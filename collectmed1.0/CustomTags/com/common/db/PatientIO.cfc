@@ -487,7 +487,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="PatientIO" output="No">
+	<cffunction name="InitPatientIO" access="public" returntype="PatientIO" output="No">
 		
 		<cfargument name="PatientID" required="yes" type="numeric">		
 		<cfset var qGetPatient = "">
