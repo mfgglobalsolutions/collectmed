@@ -2197,9 +2197,9 @@
 <!-------------------------------------------------------------------------------------->
 	<cfif IsNumeric(patientID)>
 		
-		<cfset request.Patient = application.beanFactory.getBean('Patient').init(patientID)>	
+		<cfset request.Patient = application.beanFactory.getBean('Patient').initPatientIO(patientID)>	
 		<cfset entityID = request.Patient.getEntityID()>
-		<cfset request.Entity = application.beanFactory.getBean('Entity').init(entityID)>	
+		<cfset request.Entity = application.beanFactory.getBean('Entity').initEntityIO(entityID)>	
 		
 		<cfset patientfnametbox = trim(request.Entity.getFName())>
 		<cfset patientminitialtbox = trim(request.Entity.getMName())>
