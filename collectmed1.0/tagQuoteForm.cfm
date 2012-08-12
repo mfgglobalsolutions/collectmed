@@ -1521,7 +1521,8 @@
 				<tr>						
 					<td colspan="2" style="padding-top:8px; padding-bottom:8px;">
 						<cfif Isnumeric(quoteID)>
-							<cfinvoke component="com.common.note" method="getNumberOfNotes" clientID="#trim(session.ClientID)#" objectID="9" instanceID="#trim(quoteID)#" returnvariable="numOfNotes">  
+							<!--- <cfinvoke component="com.common.note" method="getNumberOfNotes" clientID="#trim(session.ClientID)#" objectID="9" instanceID="#trim(quoteID)#" returnvariable="numOfNotes">   --->
+							<cfset numOfNotes = application.beanFactory.getBean("Note").getNumberOfNotes(clientID: trim(session.ClientID), objectID: 9, instanceID: trim(quoteID)) />
 							<span class="siteLabel" style="cursor:hand" onclick="createViewNotes();">
 								&nbsp;&nbsp;<u>View/Add&nbsp;Quote&nbsp;Notes</u> (#trim(numOfNotes)#)
 							</span>							
@@ -1635,7 +1636,8 @@
 							<tr>
 							    <td id="td_patientCityTBox" colspan="1" class="siteLabel" style="border-Top: 0px solid; border-right: 1px solid; border-bottom: 1px solid; border-left: 2px solid; border-color: 000000;">&nbsp;CITY:&nbsp;<input tabindex="12" type="Text" size="25" maxlength="30" name="patientCityTBox" onblur="bgColorRequired(this);" onChange="capitalizeMe(this)" value="#trim(patientCityTBox)#" class="siteTextBox"></td>
 							    <td id="td_patientStateTBox" colspan="2" class="siteLabel" style="border-Top: 0px solid; border-right: 2px solid; border-bottom: 1px solid; border-left: 0px solid; border-color: 000000;">&nbsp;STATE:&nbsp;
-								<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" listid="4" active="1" returnvariable="getAllStates"><!---style="background-color: blue"--->
+								<!--- <cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" listid="4" active="1" returnvariable="getAllStates"> ---><!---style="background-color: blue"--->
+								<cfset getAllStates = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(listid: 4, active: 1) />
 								<select tabindex="13" class="SiteSelectBox" name="patientStateTBox" onchange="changeSelColor(this.selectedIndex);">
 									<option value="">
 									<cfloop query="getAllStates">
