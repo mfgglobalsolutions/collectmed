@@ -55,13 +55,20 @@
 	
 	
 			<cfscript>
-		
+				
+				if(application.serverVariablesToLoad eq "development"){
+					request.cfservername = "dev";	
+				}				
+				else{
+					request.cfservername = "prod";				
+				}	
+				/*
 				try{					
 					jr = CreateObject("java", "jrunx.kernel.JRun"); 
 					request.cfservername = jr.getServerName();									
 				}catch(any e){
 					request.cfservername = ReplaceNoCase(getContextRoot(), "/", "", "ALL");
-				}
+				}*/
 							
 				request.PageName = trim(CGI.SCRIPT_NAME);			
 				if(FindNoCase("/", request.PageName)){		

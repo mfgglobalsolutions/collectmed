@@ -13,6 +13,8 @@
 	
 	<cfset runOnRequestEnd = "yes">
 	
+	<cfset noHeaderPages = "appQuoteNote.cfm">
+	
 	<cfset noBorderPages = "appCalendar.cfm,appReminder.cfm">
 		
 	<cfset mainID = "siteMainContainer">	
@@ -106,7 +108,11 @@
 											<td width="1"></td>
 										</cfif>
 										<td>
-											<cfinclude template="/collectmed1.0/appHeader.cfm">
+											<cfif ListFindNocase(noHeaderPages, trim(request.PageName))>
+												&nbsp;
+											<cfelse>
+												<cfinclude template="/collectmed1.0/appHeader.cfm">
+											</cfif>	
 										</td>
 										<cfif trim(request.Page.getLeftNavigation()) EQ "Y">
 											<td width="1"></td>

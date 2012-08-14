@@ -2,32 +2,32 @@
 <cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
 <cfset tempConfigBean = application.beanFactory.getBean('configBean') />
 
-<cfset request.mainClientDB = tempConfigBean.getDSN().masterclient />
-<cfset request.mySQLPath = tempConfigBean.getDatabase().mySQLPath /> 
-<cfset request.mySQLIpAddress = tempConfigBean.getDatabase().mySQLIpAddress />
-<cfset request.mySQLPort = tempConfigBean.getDatabase().mySQLPort /> 
-<cfset request.mySQLUser = tempConfigBean.getDatabase().mySQLUser /> 
-<cfset request.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
-<cfset request.dbBackupPath = tempConfigBean.getDatabase().dbBackupPath />
+<cfset request.newdb.mainClientDB = tempConfigBean.getDSN().masterclient />
+<cfset request.newdb.mySQLPath = tempConfigBean.getDatabase().mySQLPath /> 
+<cfset request.newdb.mySQLIpAddress = tempConfigBean.getDatabase().mySQLIpAddress />
+<cfset request.newdb.mySQLPort = tempConfigBean.getDatabase().mySQLPort /> 
+<cfset request.newdb.mySQLUser = tempConfigBean.getDatabase().mySQLUser /> 
+<cfset request.newdb.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
+<cfset request.newdb.dbBackupPath = tempConfigBean.getDatabase().dbBackupPath />
 
 
 
-<cfset request.newClientDB = "paclient_1097">
+<cfset request.newdb.newClientDB = "paclient_1098">
 
-<cfset request.newClientBatShellPath = expandPath('./mysql/newClientDB.bat') />
+<cfset request.newdb.newClientBatShellPath = expandPath('./mysql/newClientDB.bat') />
 <cfif application.os eq "linux">
-	<cfset request.newClientBatShellPath = expandPath('./mysql/newClientDBShell.sh') />
+	<cfset request.newdb.newClientBatShellPath = expandPath('./mysql/newClientDBShell.sh') />
 </cfif>
 
 <cfset temp = tempMySQLProcedures.createNewClientDB(
-													mainClientDB: request.mainClientDB,
-													newClientDB: request.newClientDB,
-													mySQLPath: request.mySQLPath,
-													mySQLIpAddress: request.mySQLIpAddress,
-													mySQLPort: request.mySQLPort,
-													mySQLUser: request.mySQLUser,
-													mySQLPass: request.mySQLPass,
-													newClientBatShellPath: request.newClientBatShellPath) />
+													mainClientDB: request.newdb.mainClientDB,
+													newClientDB: request.newdb.newClientDB,
+													mySQLPath: request.newdb.mySQLPath,
+													mySQLIpAddress: request.newdb.mySQLIpAddress,
+													mySQLPort: request.newdb.mySQLPort,
+													mySQLUser: request.newdb.mySQLUser,
+													mySQLPass: request.newdb.mySQLPass,
+													newClientBatShellPath: request.newdb.newClientBatShellPath) />
 	
 
 

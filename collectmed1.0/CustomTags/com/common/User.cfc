@@ -71,9 +71,9 @@
 	<!-------------------------------------------------------------------------------------->	
 	<cffunction name="setLName">
 		<cfargument name="EntityID" type="numeric" required="true">
-		<cfset Entity = CreateObject("component", "com.common.db.EntityIO")>
-		<cfset Entity.init(EntityID)>
-		<cfset variables.instance.lName = Entity.getLName()>
+		<cfset EntityLName = application.beanFactory.getBean('EntityIO')>
+		<cfset EntityLName.initEntityIO(EntityID)>
+		<cfset variables.instance.lName = EntityLName.getLName()>
 	</cffunction>
 	
 	<cffunction name="getLName" access="public" output="No">		  		
@@ -96,8 +96,9 @@
 	<!-------------------------------------------------------------------------------------->	
 	<cffunction name="setEmailAddress">
 		<cfargument name="EmailAddressID" type="numeric" required="true">
-		<cfset EmailAddress = CreateObject("component", "com.common.db.EmailAddressIO")>
-		<cfset EmailAddress.init(EmailAddressID)>
+		<!--- <cfset EmailAddress = CreateObject("component", "com.common.db.EmailAddressIO")> --->
+		<cfset EmailAddress = application.beanFactory.getBean('EmailAddressIO')>
+		<cfset EmailAddress.initEmailAddressIO(EmailAddressID)>
 	</cffunction>
 	
 	<cffunction name="getEmailAddress" access="public" output="No">

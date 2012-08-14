@@ -58,7 +58,8 @@ CREATE TABLE `category` (
   `InactiveCode` int(10) DEFAULT NULL,
   `DateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `DateModified` datetime DEFAULT NULL,
-  PRIMARY KEY (`CategoryID`)
+  PRIMARY KEY (`CategoryID`),
+  KEY `AddressType` (`SiteID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2400,5 +2401,5 @@ CREATE TABLE `workgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-31 15:56:20
+-- Dump completed on 2012-08-13 23:46:10
 
