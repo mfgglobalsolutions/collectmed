@@ -103,15 +103,9 @@
 						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# --execute='CREATE DATABASE #trim(arguments.newClientDB)#'"
 						variable="results"	
 						timeout="60"/>
-					<!--- <cfexecute 
-						name="#arguments.mySQLPath#/mysql"
-						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#"
-						variable="results"	
-						timeout="60"/>  --->	
 				
 				</cfif>	
 				
-<cfdump var="#results#">		
 									
 				<cfscript>
 					go_to = createObject("java", "java.lang.Thread");
@@ -131,11 +125,17 @@
 				
 				<cfelse>
 					
+<!--- <cfexecute 
+						name="/usr/bin/mysql"
+						arguments="--host=127.0.0.1 --port=3306 --user=root --password=collectmednet paclient_1098 < /usr/share/apache-tomcat-7.0.27/webapps/collectmed/collectmed1.0/mysql/paclient_master.sql"
+						variable="results"	
+						timeout="60"/>	 --->
+
 					<cfexecute 
 						name="#arguments.mySQLPath#/mysql"
-						arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
+						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < '#trim(arguments.clientTemplatePath)#'"
 						variable="results"	
-						timeout="60"/>						
+						timeout="60"/>					
 				
 				</cfif>	
 				
