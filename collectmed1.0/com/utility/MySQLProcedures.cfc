@@ -100,7 +100,7 @@
 
 					<cfexecute 
 						name="#arguments.mySQLPath#/mysql"
-						arguments="'mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)#' < #trim(arguments.newClientDBSQLPath)#"
+						arguments="'mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#'"
 						variable="results"	
 						timeout="60"/> 	
 				
