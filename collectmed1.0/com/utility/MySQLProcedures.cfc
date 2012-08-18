@@ -133,10 +133,11 @@
 
 					<cfexecute 
 						name="#arguments.mySQLPath#/mysql"
-						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# \< #trim(arguments.clientTemplatePath)#"
+						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
+						errorVariable="errorInfo"
 						variable="results"	
 						timeout="60"/>					
-				
+				<cfdump label="Error INFORMATION" var="#errorInfo#">
 				</cfif>	
 				
 <cfdump var="#results#">	
