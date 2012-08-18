@@ -88,21 +88,21 @@
 				<!---------------------------------------------------------------------------->
 				<!--- Create the new database from the backup of the main client database. --->
 				<!---------------------------------------------------------------------------->
-				<cfif trim(arguments.os) NEQ "windows">
+				<cfif trim(arguments.os) EQ "windows">
 	 				
-		 			<cfexecute 
-						name="#arguments.mySQLPath#/mysql"
-						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#"
-						variable="results"	
-						timeout="60"/> 
-						
-				<cfelse>
-					
 					<cfexecute 
 						name="#trim(newClientBatShellPath)#" 
 						arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 1"
 						variable="results"	
 						timeout="60"/>
+												
+				<cfelse>
+
+					<cfexecute 
+						name="#arguments.mySQLPath#/mysql"
+						arguments="'mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)#' < #trim(arguments.newClientDBSQLPath)#"
+						variable="results"	
+						timeout="60"/> 	
 				
 				</cfif>	
 				
@@ -116,21 +116,21 @@
 				<!---------------------------------------------------------------------------->
 				<!--- REM APPLY A SCHEMA TO THE NEW DATABASE TO BUILD ITS TABLES.          --->
 				<!---------------------------------------------------------------------------->	
-				<cfif trim(arguments.os) NEQ "windows">
+				<cfif trim(arguments.os) EQ "windows">
+
+					<cfexecute 
+						name="#trim(newClientBatShellPath)#" 
+						arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
+						variable="results"	
+						timeout="60"/>					
+				
+				<cfelse>
 					
 					<cfexecute 
 						name="#arguments.mySQLPath#/mysql"
 						arguments="--host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
 						variable="results"	
-						timeout="60"/>
-				
-				<cfelse>
-					
-					<cfexecute 
-						name="#trim(newClientBatShellPath)#" 
-						arguments="""#arguments.mySQLPath#/mysql.exe"" #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.newClientDBSQLPath)# #trim(arguments.clientTemplatePath)# 2"
-						variable="results"	
-						timeout="60"/>
+						timeout="60"/>						
 				
 				</cfif>	
 				
