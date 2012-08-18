@@ -97,12 +97,17 @@
 						timeout="60"/>
 												
 				<cfelse>
-
+					
 					<cfexecute 
 						name="#arguments.mySQLPath#/mysql"
-						arguments="'mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#'"
+						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# --execute='CREATE DATABASE #trim(arguments.newClientDB)#'"
 						variable="results"	
-						timeout="60"/> 	
+						timeout="60"/>
+					<!--- <cfexecute 
+						name="#arguments.mySQLPath#/mysql"
+						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# < #trim(arguments.newClientDBSQLPath)#"
+						variable="results"	
+						timeout="60"/>  --->	
 				
 				</cfif>	
 				

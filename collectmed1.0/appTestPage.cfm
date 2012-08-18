@@ -12,7 +12,7 @@
 
 
 
-<cfset request.newdb.newClientDB = "paclient_1097">
+<cfset request.newdb.newClientDB = "paclient_1098">
 
 <cfset request.newdb.newClientBatShellPath = expandPath('./mysql/newClientDB.bat') />
 <cfif application.os eq "linux">
