@@ -124,14 +124,14 @@
 						timeout="60"/>					
 				
 				<cfelse>
-					
-					<cfscript>
-						execute
-							name="#arguments.mySQLPath#/mysql"
-							arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
-							variable="results"	
-							timeout="60" {}
-					</cfscript>				
+
+<cfdump var="[name=#trim(newClientBatShellPath)#] [arguments=mysql #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.clientTemplatePath)#]">
+
+					<cfexecute 
+						name="#trim(newClientBatShellPath)#" 
+						arguments="mysql #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.clientTemplatePath)#"
+						variable="results"	
+						timeout="60"/>					
 				
 				</cfif>	
 				
