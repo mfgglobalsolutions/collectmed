@@ -125,19 +125,14 @@
 				
 				<cfelse>
 					
-<!--- <cfexecute 
-						name="/usr/bin/mysql"
-						arguments="--host=127.0.0.1 --port=3306 --user=root --password=collectmednet paclient_1098 < /usr/share/apache-tomcat-7.0.27/webapps/collectmed/collectmed1.0/mysql/paclient_master.sql"
-						variable="results"	
-						timeout="60"/>	 --->
-
-					<cfexecute 
-						name="#arguments.mySQLPath#/mysql"
-						arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
-						errorVariable="errorInfo"
-						variable="results"	
-						timeout="60"/>					
-				<cfdump label="Error INFORMATION" var="#errorInfo#">
+					<cfscript>
+						execute
+							name="#arguments.mySQLPath#/mysql"
+							arguments="mysql --host=#trim(arguments.mySQLIpAddress)# --port=#trim(arguments.mySQLPort)# --user=#trim(arguments.mySQLUser)# --password=#trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
+							variable="results"	
+							timeout="60" {}
+					</cfscript>				
+				
 				</cfif>	
 				
 <cfdump var="#results#">	
