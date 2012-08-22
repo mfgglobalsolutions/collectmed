@@ -127,8 +127,8 @@
 
 
 					<cfexecute 
-						name="/usr/bin/mysql" 
-						arguments="mysql --host=127.0.0.1 --port=3306 --user=root --password=collectmednet --database=paclient_1099 ""#chr(60)#"" /usr/share/apache-tomcat-7.0.27/webapps/collectmed/collectmed1.0/mysql/paclient_master.sql"
+						name="#trim(newClientBatShellPath)#" 
+						arguments="/usr/bin/mysql #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.clientTemplatePath)#"
 						variable="results"	
 						timeout="60"/>					
 				

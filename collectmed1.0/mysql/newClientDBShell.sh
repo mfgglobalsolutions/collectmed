@@ -1,7 +1,3 @@
-#!/bin/bash
-result=$(mysql --host=$2 --port=$3 --user=$4 --password=$5 $6 -sN -e “UPDATE client SET ClientName = 'MFG Global Medical Inc.' WHERE ClientID = 1084”)
-
-
-
-
-					
+#/bin/bash
+mysql --host=127.0.0.1 --port=3306 --user=root --password=collectmednet --database=paclient_1099 < /usr/share/apache-tomcat-7.0.27/webapps/collectmed/collectmed1.0/mysql/paclient_master.sql"
+						
