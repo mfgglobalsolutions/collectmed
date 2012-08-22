@@ -127,8 +127,8 @@
 
 
 					<cfexecute 
-						name=".#trim(newClientBatShellPath)#" 
-						arguments="/usr/bin/mysql #trim(arguments.mySQLIpAddress)# #trim(arguments.mySQLPort)# #trim(arguments.mySQLUser)# #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# #trim(arguments.clientTemplatePath)#"
+						name="/usr/bin/mysql" 
+						arguments="-e -host #trim(arguments.mySQLIpAddress)# -port #trim(arguments.mySQLPort)# -u #trim(arguments.mySQLUser)# -p #trim(arguments.mySQLPass)# #trim(arguments.newClientDB)# < #trim(arguments.clientTemplatePath)#"
 						variable="results"	
 						timeout="60"/>					
 				
