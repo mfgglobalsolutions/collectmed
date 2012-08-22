@@ -1,9 +1,6 @@
-#!/bin/bash 
-
-
-
-$1 --host=$2 --port=$3 --user=$4 --password=$5 $6 < $7  
-
-echo: "never heard of $1" 
-
-
+#!/bin/bash
+mysql pa_master << EOFMYSQL
+UPDATE pa_master.client 
+SET ClientName = 'MFG Global Medical Inc.' 
+WHERE ClientID = 1084;
+EOFMYSQL
