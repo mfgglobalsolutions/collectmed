@@ -213,7 +213,10 @@
 					request.correctVersion = true;
 				};
 								
-								
+				if(NOT ListFindNoCase("NS,IE", request.BrowserType) OR NOT request.correctVersion){
+					module name="gcGatewayLogger" datasource="#trim(request.datasource)#" code="175" logtext="ERROR: request.BrowserType: #trim(request.BrowserType)#";							
+				};
+				
 				
 				
 				/*------------------------------------------------------------------*/
