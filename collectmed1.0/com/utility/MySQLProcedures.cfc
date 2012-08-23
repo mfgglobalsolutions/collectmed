@@ -34,8 +34,7 @@
 		<cfargument name="newClientDBSQLPath" required="false" default="#expandPath('./mysql')#/#trim(arguments.newClientDB)#.sql">
 		<cfargument name="os" required="false" default="windows">
 		
-		<!--- <cftry> --->
-
+		<cftry>
 
 			<cfquery name="local.getAllClients" datasource="#trim(variables.instance.configBean.getDsn().master)#">
 				SHOW Databases
@@ -133,19 +132,18 @@
 						timeout="60"/>					
 				
 				</cfif>	
-				
-<cfdump var="#results#">	
+	
 					
 			</cfif>
 	
 		
 			<cfreturn true>		
 			
-			<!--- <cfcatch type="Any">			
+			<cfcatch type="Any">			
 				<cfthrow message="[#cfcatch.message#<br><br>#cfcatch.detail#] There was an error MySQL createNewClientDB.">						
 			</cfcatch>
 			
-		</cftry> --->
+		</cftry> 
 		
 	</cffunction>
 

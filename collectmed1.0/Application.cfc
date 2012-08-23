@@ -213,10 +213,7 @@
 					request.correctVersion = true;
 				};
 								
-				if(NOT ListFindNoCase("NS,IE", request.BrowserType) OR NOT request.correctVersion){
-					module name="gcGeneralErrorTemplate" message="<strong>You must use Microsoft Internet Explorer Version 6.0+ to view this site.</strong><br><br>Please go to the <a href=""http://www.microsoft.com/windows/ie/default.mspx"">Microsoft Internet Explorer</a> website to download or upgrade to the correct version." back="no";		
-				};
-				
+								
 				
 				
 				/*------------------------------------------------------------------*/
