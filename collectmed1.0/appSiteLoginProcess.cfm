@@ -75,22 +75,25 @@
 		</cfif>
 
 
+		<!-------------------------------------------------------------------------------------->
+		<!--- Changing the configBean ??                                                     --->
+		<!-------------------------------------------------------------------------------------->
+		<cfset application.beanFactory.getBean("configBean").getDSN().client = "paclient_#trim(userValidated.ClientID)#" />
+
+
 		<cfset datasourceSingleton = application.beanFactory.getBean('old_Datasource')>
 		<cfset datasourceSingleton.setDSName("PAClient_#userValidated.ClientID#")>
 				
 		<cfset request.datasource = "PAClient_#userValidated.ClientID#">
 		<cfset request.ro_datasource = "ro_PACLient_#userValidated.ClientID#">
 				
-		<!-------------------------------------------------------------------------------------->
-		<!--- This is the only variable that gets set outside of the user.cfc.               --->
-		<!-------------------------------------------------------------------------------------->		
-		<cfset session.User.EndLoginTime = ListLast(UserValidLoginTime, "|")> 
-				
-		<cfset session.User.InitUserIO(userValidated.usersID)>				
+			
+		<cfset session.User.InitUserIO(userValidated.usersID)>	
 		<cfset session.User.setUsersSessionIdentification('#session.User.CreateUserSessionID(userValidated.usersID)#')>		
 		<cfset session.User.SetUsersPagesAccess(usersID: trim(session.User.getUsersID()), clientID: userValidated.ClientID)>
 		<cfset session.User.setIPAddress('#trim(CGI.REMOTE_ADDR)#')>
-		
+		<cfset session.User.setEndLoginTime(ListLast(UserValidLoginTime, "|"))>
+				
 		
 		<!-------------------------------------------------------------------------------------->
 		<!--- Create the user object that will be populated or read into memory. Depending   --->

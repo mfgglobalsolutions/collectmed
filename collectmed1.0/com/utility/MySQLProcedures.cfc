@@ -162,7 +162,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Get the administrator information.                                             --->
 			<!-------------------------------------------------------------------------------------->	
-			<cfquery name="getAllClients" datasource="#trim(arguments.masterDatasource)#">
+			<cfquery name="getAllClients" datasource="#trim(variables.instance.configBean.getDsn().master)#">
 				SHOW Databases
 			</cfquery>	
 			

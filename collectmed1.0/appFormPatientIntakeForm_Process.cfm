@@ -1,6 +1,9 @@
 <!---- appFormPatientIntakeForm_Process.cfm ---->
 <!--- Test --->
 
+
+<cfset sqlStatement = "">
+
 <cfsetting requestTimeOut = "900">
 
 <cftry>
@@ -10,12 +13,12 @@
 		<cfset patientID = trim(form.patientID)>
 	</cfif>
 	
-	<cfset Entity = CreateObject("component","com.common.Entity")>		
+	<cfset Entity = application.beanFactory.getBean("Entity") />		
 	
 	<cfif (NOT IsDefined("form.patientID") OR NOT IsNumeric(form.patientID)) AND IsDefined("form.patientFNameTBox") AND form.patientFNameTBox NEQ "" AND IsDefined("form.patientLNameTBox") AND form.patientLNameTBox NEQ "" AND IsDefined("form.patientDOBYY") AND IsNumeric(form.patientDOBYY) AND IsDefined("form.patientDOBMM") AND IsNumeric(form.patientDOBMM) AND IsDefined("form.patientDOBDD") AND IsNumeric(form.patientDOBDD)>
 	
 		<cfset DOB = CreateDateTime(trim(form.patientDOBYY), trim(form.patientDOBMM), trim(form.patientDOBDD), 0, 0, 0)>
-		<cfset Patient = CreateObject("component","com.common.Patient")>		
+		<cfset Patient = application.beanFactory.getBean("Patient")>		
 		<cfset getPatient = Patient.patientExists(namematch: 1, clientID: trim(session.clientID), FName: trim(form.patientFNameTBox), LName: trim(form.patientLNameTBox), DOB: trim(DOB), SSN: trim(form.patientSSNTBox))>			
 	
 		<cfif NOT IsQuery(getPatient) AND getPatient EQ 0>				
@@ -66,13 +69,13 @@
 	</cfif>	
 	
 	<cfif IsDefined("patientID") AND IsNumeric(patientID) AND NOT IsDefined("EntityID")>
-		<cfset Patient = CreateObject("component","com.common.Patient").init(trim(PatientID))>	
+		<cfset Patient = application.beanFactory.getBean("Patient").initPatientIO(trim(PatientID))>	
 		<cfset EntityID = Patient.getEntityID()>				
 	</cfif>
 	
 	<cfif (NOT IsDefined("form.patientAddressID") OR NOT IsNumeric(form.patientAddressID) OR (IsDefined("form.patientAddressID") AND form.patientAddressID EQ 0)) AND IsDefined("form.patientAddressTBox") AND trim(form.patientAddressTBox) NEQ "" AND IsDefined("form.patientCityTBox") AND trim(form.patientCityTBox) NEQ "" AND IsDefined("form.patientAddressStateID") AND trim(form.patientAddressStateID) NEQ "" AND IsDefined("form.patientZipTBox") AND trim(form.patientZipTBox) NEQ "">
 							
-		<cfset request.Address = CreateObject("component","com.common.Address")>	
+		<cfset request.Address = application.beanFactory.getBean("Address") />	
 		<cfset request.Address.new(EntityID: trim(EntityID), AddressTypeID: 12, AddressLine1: REQUEST.mssqlReplaceSingleQuote(trim(form.patientAddressTBox)), City: REQUEST.mssqlReplaceSingleQuote(trim(form.patientCityTBox)), StateID: trim(form.patientAddressStateID), ZipCode: REQUEST.mssqlReplaceSingleQuote(trim(form.patientZipTBox)))>	
 		<cfset patientAddressID = request.Address.commit()>	
 		
@@ -85,7 +88,7 @@
 	<cfif (NOT IsDefined("form.patientPhoneID") OR NOT IsNumeric(form.patientPhoneID) OR (IsDefined("form.patientPhoneID") AND form.patientPhoneID EQ 0)) AND IsDefined("form.patientPhoneTBox") AND trim(form.patientPhoneTBox) NEQ "">
 		
 		<cfset PhoneNumberE = application.beanFactory.getBean('globalFooter').GlobalFooterE(request.cleanNumericString(trim(form.patientPhoneTBox))) />		
-		<cfset request.Phone = CreateObject("component","com.common.Phone")>	
+		<cfset request.Phone = application.beanFactory.getBean("Phone") />	
 		<cfset request.Phone.setPhoneTypeID(76)>
 		<cfset request.Phone.setPhoneNumber(trim(PhoneNumberE))>
 		<cfset patientPhoneID = request.Phone.commit()>
@@ -262,11 +265,11 @@
 	
 		
 		
-		<!---<cfmail from="support@eobmanager.net" to="gcruz@eobmanager.net" subject="GOOD UPDATE There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
+		<!---<cfmail from="support@mfgglobalsolutions.com" to="gcruz@mfgglobalsolutions.com" subject="GOOD UPDATE There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
 			#PreserveSingleQuotes(sqlStatement)#
 		</cfmail>--->
 		
-		<cfquery name="updateIntake" dataSource="#request.datasource#" result="myresult">
+		<cfquery name="updateIntake" dataSource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#" result="myresult">
 			#PreserveSingleQuotes(sqlStatement)#
 		</cfquery>
 		
@@ -274,11 +277,11 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- If an IntakeHCPC record does not exist we have to create one.                  --->
 		<!-------------------------------------------------------------------------------------->
-		<cfquery name="checkIntakeHCPC" datasource="#trim(request.datasource)#">
+		<cfquery name="checkIntakeHCPC" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 			SELECT IntakeID FROM intakehcpc WHERE intakeID = #trim(form.intakeID)#
 		</cfquery>
 		<cfif checkIntakeHCPC.RecordCount LTE 0>
-			<cfquery name="insertIntakeHCPC" datasource="#trim(request.datasource)#">
+			<cfquery name="insertIntakeHCPC" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 				INSERT INTO Intakehcpc(intakeID) VALUES(#trim(form.intakeID)#)
 			</cfquery>	
 		</cfif>
@@ -613,12 +616,12 @@
 			</cfoutput>
 		</cfsavecontent>
 
-		<!---<cfmail from="support@eobmanager.net" to="gcruz@eobmanager.net" subject="[PreserveSingleQuotes(sqlStatementHCPC)] UPDATE There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
+		<!---<cfmail from="support@mfgglobalsolutions.com" to="gcruz@mfgglobalsolutions.com" subject="[PreserveSingleQuotes(sqlStatementHCPC)] UPDATE There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
 			#PreserveSingleQuotes(sqlStatementHCPC)#
 		</cfmail>--->
 		
 		
-		<cfquery name="updateIntakeHCPC" dataSource="#request.datasource#">
+		<cfquery name="updateIntakeHCPC" dataSource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 			#PreserveSingleQuotes(sqlStatementHCPC)#
 		</cfquery>	
 
@@ -919,14 +922,14 @@
 		</cfsavecontent>
 		
 		
-		<cfmail from="support@eobmanager.net" to="support@eobmanager.net" subject="GOOD INSERT There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
+		<cfmail from="support@mfgglobalsolutions.com" to="support@mfgglobalsolutions.com" subject="GOOD INSERT There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
 			#PreserveSingleQuotes(sqlStatement)#
 		</cfmail>
 
 		<!-------------------------------------------------------------------------------------->
 		<!--- Run the query that was just built.                                             --->
 		<!-------------------------------------------------------------------------------------->
-		<cfquery name="insertIntake" datasource="#trim(request.datasource)#">
+		<cfquery name="insertIntake" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 			#PreserveSingleQuotes(sqlStatement)#
 		</cfquery>
 
@@ -1594,14 +1597,14 @@
 		</cfsavecontent>
 		
 		
-		<!---<cfmail from="support@eobmanager.net" to="gcruz@eobmanager.net" subject="[PreserveSingleQuotes(sqlStatementHCPC)] INSERT There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
+		<!---<cfmail from="support@mfgglobalsolutions.com" to="gcruz@mfgglobalsolutions.com" subject="[PreserveSingleQuotes(sqlStatementHCPC)] INSERT There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
 			#PreserveSingleQuotes(sqlStatementHCPC)#
 		</cfmail>--->
 		
 		<!-------------------------------------------------------------------------------------->
 		<!--- Run the query that was just built.                                             --->
 		<!-------------------------------------------------------------------------------------->
-		<cfquery name="insertIntakeHCPC" datasource="#trim(request.datasource)#">
+		<cfquery name="insertIntakeHCPC" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 			#PreserveSingleQuotes(sqlStatementHCPC)#
 		</cfquery>
 		
@@ -1611,7 +1614,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<cfif IsDefined("form.Note") AND form.Note NEQ "">
 
-			<cfset request.NoteXML = CreateObject("component","com.common.Note")>
+			<cfset request.NoteXML = application.beanFactory.getBean("Note") />
 			<cfset noteID = request.NoteXML.addNote(clientID: trim(session.clientID), objectID: 8, instanceID: trim(insertIntake.intakeID))>
 			<cfset request.NoteXML.addNoteEntry(clientID: trim(session.clientID), NoteID: noteID, noteEntry: '#trim(form.note)#', userID: #trim(session.user.getUsersID())#, userFName: '#trim(session.user.getFName())#', userLName: '#trim(session.user.getLName())#')>
 
@@ -1671,7 +1674,7 @@
 		
 	<cfelseif IsDefined("form.primaryInsuranceNameTBox") AND form.primaryInsuranceNameTBox NEQ "" AND (NOT IsDefined("form.hidden_primaryInsuranceID") OR NOT IsNumeric(form.hidden_primaryInsuranceID))>					
 		
-		<cfset request.primaryICEntity = CreateObject("component","com.common.Entity")>		
+		<cfset request.primaryICEntity = application.beanFactory.getBean("Entity") />		
 		<cfset request.primaryICEntity.setObjectTypeID(4)>
 		<cfset primaryICEntityID = request.primaryICEntity.commit()>		
 		
@@ -2274,7 +2277,7 @@
 		<cfset list5 = "OPTION_2_CBox_Other,OPTION_2_CBox_Hospice,OPTION_2_CBox_Hospital">
 		<cfset list6 = "OPTION_3_CBox_Medicare,OPTION_3_CBox_PrivateInsurance,OPTION_3_CBox_Medicaid,OPTION_3_CBox_PrivatePay">
 
-		<cfquery name="getThisIntake" datasource="#trim(request.datasource)#">
+		<cfquery name="getThisIntake" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 			SELECT otherTBox,hospiceTBox,hospitalTBox,OPTION_13_CBox_PastEquipmentYes,OPTION_13_CBox_PastEquipmentNo,
 			OPTION_1_CBox_Delivery,OPTION_1_CBox_Pickup,OPTION_1_CBox_Repair,OPTION_1_CBox_Switch,OPTION_1_CBox_Existing,
 			OPTION_2_CBox_Other,OPTION_2_CBox_Hospice,OPTION_2_CBox_Hospital,OPTION_3_CBox_Medicare,
@@ -2349,7 +2352,7 @@
 
 
 		<cfif upgrade>
-			<cfquery name="updateThisIntake" datasource="#trim(request.datasource)#">
+			<cfquery name="updateThisIntake" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
 				UPDATE intake SET InactiveCode = NULL
 				WHERE IntakeID = #trim(intakeID)#
 			</cfquery>
@@ -2375,27 +2378,31 @@
 	<!--- CFCATCH QUERY ERRORS--->
 	<cfcatch type="Any">
 		
-		<cfmail from="support@eobmanager.net" to="gcruz@eobmanager.net" subject="There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
+		<cfif sqlStatement eq "">
+			<cfset sqlStatement = "NO SQL STATEMENT">
+		</cfif>
+		
+<!--- 		<cfmail from="support@mfgglobalsolutions.com" to="gcruz@mfgglobalsolutions.com" subject="There was an issue processing the page. Please try your intake again. - #DateFormat( now(), 'm/d/yyyy' )# #TimeFormat( now() )#" type="HTML">
 			<cfif IsDefined("FORM.fieldnames")>
 				<cfloop list="#trim(form.FieldNames)#" index="i">
 					form.#trim(i)# = #trim(evaluate(i))#<br />
 				</cfloop>		
 			</cfif>
-		</cfmail>
+		</cfmail> --->
 
 		<cfset message = "There was an issue processing the page. Please try your intake again. If you continue to see this message please contact your site administrator.">
 
 		<cf_gcGatewayLogger
-			datasource="#trim(request.datasource)#"
+			datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#"
 			code="115"
-			logtext="<p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p> #PreserveSingleQuotes(sqlStatement)#">
+			logtext="<p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p> sqlStatement: #PreserveSingleQuotes(sqlStatement)#">
 
 		<cfset intakeIDNote = "">	
 		<cfif IsDefined("intakeID") AND IsNumeric(intakeID)>
 			<cfset intakeIDNote = "[intakeID: #intakeID#]">
 		</cfif>	
 		
-		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net" bcc="gcruz@eobmanager.net" 
+		<cf_gcSendEmail	from="support@mfgglobalsolutions.com" to="support@mfgglobalsolutions.com" bcc="gcruz@mfgglobalsolutions.com" 
 			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/UPDATE intake failed."
 			message="#intakeIDNote#<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p></p>">
 

@@ -494,7 +494,7 @@
 		
 		<cfset preInit(PatientID)>
 	
-		<cfquery name="qGetPatient" datasource="#trim(request.datasource)#">
+		<cfquery name="qGetPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 	  		SELECT PatientID,EntityID,ClaimSubmitterIdentifier,NM1IdentificationCode9,AccountNumber,Active,InactiveCode,DateCreated,DateModified
 			FROM patient  
 			WHERE PatientID = #trim(arguments.PatientID)# 
@@ -560,7 +560,7 @@
 			
 				<cfset sqlStatement = preUpdateDataCheck()>				
 				
-				<cfquery name="qUpdateCommitPatient" datasource="#trim(request.datasource)#">
+				<cfquery name="qUpdateCommitPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>
 							
@@ -580,7 +580,7 @@
 			
 			<cfelse>
 			
-				<cfquery name="qInsertCommitPatient" datasource="#trim(request.datasource)#">
+				<cfquery name="qInsertCommitPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 		   			#PreserveSingleQuotes(sqlStatement)#
 		   		</cfquery>		
 		 					
@@ -1028,7 +1028,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getPatientQuery" datasource="#trim(request.datasource)#">
+			<cfquery Name="getPatientQuery" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 				SELECT #trim(Fields)#
 				FROM patient   
 				WHERE 1=1

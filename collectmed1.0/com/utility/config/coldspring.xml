@@ -13,7 +13,12 @@
             <map>${Database}</map>
         </property>
 	</bean>	
-	<bean id="globalFooter" class="com.utility.GlobalFooter" singleton="false" autowire="byType" />	
-	<bean id="mySQLProcedures" class="com.utility.MySQLProcedures" singleton="false" autowire="byType" />	
+	
+	<!-- This bean can be a singleton based on a change in appSiteLoginProcess.cfm that sets the datasource 
+	<cfset application.beanFactory.getBean("configBean").getDSN().client = "paclient_#trim(userValidated.ClientID)#" />
+	 -->
+	<bean id="globalFooter" class="com.utility.GlobalFooter" autowire="byType" />	
+	
+	<bean id="mySQLProcedures" class="com.utility.MySQLProcedures" autowire="byType" />	
 	
 </beans>

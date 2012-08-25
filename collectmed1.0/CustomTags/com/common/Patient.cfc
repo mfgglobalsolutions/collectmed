@@ -6,6 +6,20 @@
 
 
 	<!-------------------------------------------------------------------------------------->
+	<!--- Pseudo-constructor                                                             --->
+	<!-------------------------------------------------------------------------------------->
+	<cfset variables.instance.configBean = '' />
+	
+	<cffunction name="init" access="public" output="false" returntype="any" hint="I am the constructor method for the Address DAO Class.">
+		<cfargument name="configBean" required="true" type="com.utility.configBean" hint="I am the config object." />
+			<cfscript>
+				variables.instance.configBean = arguments.configBean;
+			</cfscript>
+		<cfreturn this />
+	</cffunction>
+
+
+	<!-------------------------------------------------------------------------------------->
 	<!--- This function will be called to check if a file exists in the DB.              --->
 	<!-------------------------------------------------------------------------------------->	
 	<cffunction name="patientExists" output="yes" hint="This function will be called to find out if a specific patient exists for this client.">		
@@ -24,7 +38,7 @@
 		
 			<cfif IsNumeric(patientID)>
 				
-				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
+				<cfquery name="getPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 					SELECT p.PatientID, e.entityID
 					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE p.PatientID = '#trim(patientID)#'
@@ -51,7 +65,7 @@
 					
 			<cfif trim(FName) NEQ "" AND trim(LName) NEQ "">
 					
-				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
+				<cfquery name="getPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 					SELECT p.PatientID, e.entityID
 					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE e.clientID = #trim(clientID)# AND (e.FName = '#trim(FName)#' OR e.FName = '#LEFT(trim(FName), 1)#') AND e.LName = '#trim(LName)#' 
@@ -106,7 +120,7 @@
 				
 			<cfif trim(ClaimSubmitterIdentifier) NEQ "" AND trim(ClaimSubmitterIdentifier) NEQ 0>		
 							
-				<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
+				<cfquery name="getPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 					SELECT p.PatientID, e.entityID
 					FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 					WHERE p.ClaimSubmitterIdentifier = '#trim(ClaimSubmitterIdentifier)#'
@@ -188,7 +202,7 @@
 							
 		<cftry>
 		
-			<cfquery name="getInsComs" datasource="#trim(request.datasource)#">
+			<cfquery name="getInsComs" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 				SELECT pic.InsuranceCompanyID, pic.PrimSecTer, pic.PolicyNumber, pic.PolicyHoldersFirstName, pic.PolicyHoldersLastName, pic.PolicyHoldersMiddleInitial, pic.PolicyHoldersDOB, pic.PolicyHoldersSex, pic.PolicyHoldersAddressLine1, pic.PolicyHoldersAddressLine2, pic.PolicyHoldersCity, pic.PolicyHoldersStateID, pic.PolicyHoldersZipCode, pic.PolicyHoldersPhone, pic.PolicyHoldersPhoneExtension, pic.PolicyHoldersEmployerSchoolName, pic.PolicyHoldersEffectiveDateFrom, pic.PolicyHoldersEffectiveDateTo, pic.GroupNumber, pic.GroupName, pic.Relationship, pic.Deductible, pic.PayPercentage, ic.InsuranceCompanyName
 				FROM patientinsurancecompany pic
 				INNER JOIN insurancecompany ic ON pic.InsuranceCompanyID = ic.InsuranceCompanyID
@@ -220,7 +234,7 @@
 							
 		<cftry>
 			
-			<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">
+			<cfquery name="getPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">
 				SELECT e.LName + ', ' + e.FName AS Fullname
 				FROM patient p   INNER JOIN entity e ON p.EntityID = e.EntityID
 				WHERE p.PatientID = '#trim(patientID)#'
@@ -259,7 +273,7 @@
 			
 			<cfset returnList = "">
 						
-			<cfquery name="getPatient" datasource="PAClient_#trim(ClientID)#">								
+			<cfquery name="getPatient" datasource="#trim(variables.instance.configBean.getDSN().client)#">								
 				SELECT p.EntityID, p.PatientID, e.FName, e.Mname, e.LName, e.SSN, e.DOB, e.Sex, e.Weight, e.HeightInInches, e.MaritalStatus 				
 				FROM patient p
 				INNER JOIN entity e ON p.EntityID = e.EntityID						

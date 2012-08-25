@@ -242,7 +242,7 @@
 					/*--- If the user has reached their final time of the day that they can be           ---*/
 					/*--- logged in log them out.                                                        ---*/
 					/*--------------------------------------------------------------------------------------*/	
-					if(session.User.EndLoginTime LT NOW()){			
+					if(session.User.getEndLoginTime() LT NOW()){			
 						module name="gcLogUserOutClearScopes";
 						request.message ="Your account cannot stay logged in past the current time. <br>You must contact your administrator to change your settings to be able to login at the current time.";
 						location addtoken="No" url="appSiteLogin.cfm?msg=#URLEncodedFormat(request.message)#";			

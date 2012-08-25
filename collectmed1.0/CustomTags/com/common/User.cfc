@@ -19,6 +19,7 @@
 		variables.instance.fName = "";
 		variables.instance.lName = "";
 		variables.instance.datasource = "";	
+		variables.instance.EndLoginTime = "";
 		
 		variables.instance.PageIO = '';	 
 		variables.instance.PageRoleIO = '';	 
@@ -48,7 +49,20 @@
   		<cfset setDatasource()>		
 		<cfreturn variables.instance.datasource>
 	</cffunction>
+
+
+	<!-------------------------------------------------------------------------------------->
+	<!--- Get the users EndLoginTime.                                                      --->
+	<!-------------------------------------------------------------------------------------->	
+	<cffunction name="setEndLoginTime">
+		<cfargument name="EndLoginTime" type="String" required="true">	
+		<cfset variables.instance.EndLoginTime = arguments.EndLoginTime>			
+	</cffunction>
 	
+	<cffunction name="getEndLoginTime" access="public" output="No">
+		<cfreturn variables.instance.EndLoginTime>
+	</cffunction>
+
 	
 	<!-------------------------------------------------------------------------------------->
 	<!--- Get the users first name.                                                      --->
