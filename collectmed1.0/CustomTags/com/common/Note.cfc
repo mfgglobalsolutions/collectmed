@@ -67,7 +67,7 @@
 			<cfsavecontent variable="sqlStatement">			
 				<cfoutput>
 					SELECT #trim(keyID)#
-					FROM #trim(objectName)#
+					FROM #lcase(trim(objectName))#
 					WHERE #trim(keyID)#	= #trim(instanceID)#	
 				</cfoutput>		
 			</cfsavecontent>	
