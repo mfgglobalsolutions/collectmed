@@ -282,7 +282,7 @@
 		</cfquery>
 		<cfif checkIntakeHCPC.RecordCount LTE 0>
 			<cfquery name="insertIntakeHCPC" datasource="#trim(application.beanFactory.getBean('configBean').getDSN().client)#">
-				INSERT INTO Intakehcpc(intakeID) VALUES(#trim(form.intakeID)#)
+				INSERT INTO intakehcpc(intakeID) VALUES(#trim(form.intakeID)#)
 			</cfquery>	
 		</cfif>
 			
@@ -946,7 +946,7 @@
 		<!-------------------------------------------------------------------------------------->		
 		<cfsavecontent variable="sqlStatementHCPC">
 			<cfoutput>
-				INSERT INTO IntakeHCPC(
+				INSERT INTO intakehcpc(
 			 		IntakeID					 
 					<cfif IsDefined("form.hcpcCost1TBox") AND form.hcpcCost1TBox NEQ "">,hcpcCost1TBox</cfif>
 					<cfif IsDefined("form.hcpcCode1TBox") AND form.hcpcCode1TBox NEQ "">,hcpcCode1TBox</cfif>
