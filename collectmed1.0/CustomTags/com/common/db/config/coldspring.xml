@@ -1,7 +1,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	
-	<bean id="StandardListItemIO" class="cmComponents.com.common.db.StandardListItemIO" />
+	<bean id="StandardListItemIO" class="cmComponents.com.common.db.StandardListItemIO" singelton="false" />
 	<bean id="IMChatIO" class="cmComponents.com.common.db.IMChatIO" singelton="false" />
 	<bean id="InsuranceCompanyIO" class="cmComponents.com.common.db.InsuranceCompanyIO" singelton="false" />
 	<bean id="old_FileProcessIO" class="cmComponents.com.common.db.FileProcessIO" singelton="false" />
