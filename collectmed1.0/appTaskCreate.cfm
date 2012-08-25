@@ -153,7 +153,7 @@
 									<cfif IsNumeric(ObjectID) AND IsNumeric(InstanceID)>
 										
 										<cfif ObjectID EQ 5>
-											<cfset request.instance = CreateObject("component","com.common.db.ClaimIO")>
+											<cfset request.instance = application.beanFactory.getBean("Claim") />
 											<cfset request.instance.init(trim(InstanceID))>
 											<cfset parametersList = "InterchangeClaimID,ClientAssignedClaimID,InterchangeID,EntityID,ClaimPreviousPaidAmount,ClaimPaidAmount,PatientResponsibilityAmount,AssignedToUserID,DueDate,FacilityCode,DateCreated,CrossoverEntityTypeQualifier2,CrossoverNameLastorOrganizationName3">
 											<cfset parametersListDisplay = "ICN,Assigned&nbsp;Claim&nbsp;ID,Interchange&nbsp;ID,Entity&nbsp;ID,Previous&nbsp;Paid&nbsp;Amount,Paid&nbsp;Amount,Patient&nbsp;Resp&nbsp;Amount,Assigned&nbsp;To&nbsp;User&nbsp;ID,Due&nbsp;Date,Facility&nbsp;Code,Date&nbsp;Created,Crossover&nbsp;Entity&nbsp;Qualifier,Crossover&nbsp;Name">
@@ -175,7 +175,7 @@
 												<cfset parameterListValues = ListAppend(parameterListValues, thisParameterValue)>
 											</cfloop>						
 										<cfelseif ObjectID EQ 3>
-											<cfset request.instance = CreateObject("component","com.common.db.PatientIO")>
+											<cfset request.instance = application.beanFactory.getBean("Patient")>
 											<cfset request.instance.init(trim(InstanceID))>
 											<cfset parametersList = "PatientID,DateCreated">
 											<cfset parametersListDisplay = "Patient&nbsp;ID,Date&nbsp;Created">
@@ -197,7 +197,7 @@
 												<cfset parameterListValues = ListAppend(parameterListValues, thisParameterValue)>
 											</cfloop>
 										<cfelseif ObjectID EQ 6>
-											<cfset request.instance = CreateObject("component","com.common.db.ProcedureIO")>
+											<cfset request.instance = application.beanFactory.getBean("Procedure")>
 											<cfset request.instance.init(trim(InstanceID))>
 											<cfset parametersList = "ProcedureID,ProcedureCode,PriorProcedureCode,ServiceDateFrom,ServiceDateTo,BilledQuantity,BilledAmount,PaidQuantity,PaidAmount">
 											<cfset parametersListDisplay = "Procedure&nbsp;ID,Procedure&nbsp;Code,Prior&nbsp;Procedure&nbsp;Code,Service&nbsp;Date&nbsp;From,Service&nbsp;Date&nbsp;To,Billed&nbsp;Quantity,Billed&nbsp;Amount,Paid&nbsp;Quantity,Paid&nbsp;Amount">
@@ -219,7 +219,7 @@
 												<cfset parameterListValues = ListAppend(parameterListValues, thisParameterValue)>
 											</cfloop>
 										<cfelseif ObjectID EQ 8>
-											<cfset request.instance = CreateObject("component","com.common.Intake")>
+											<cfset request.instance = application.beanFactory.getBean("Intake")>
 											<cfset request.instance.init(trim(InstanceID))>
 											<cfset parametersList = "IntakeID,alternateContactFNameTBox,alternateContactLNameTBox,alternateContactPhoneTBox,orderingPhysicianFNameTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,DateCreated"><!---patientFNameTBox,patientLNameTBox,patientCityTBox,patientPhoneTBox,patientSSNTBox,primaryInsuranceNameTBox,primaryPolicyNumberTBox,primaryPhoneNumberTBox,--->
 											<cfset parametersListDisplay = "Intake ID,Alternate First Name,Alternate Last Name,Alternate Phone,Physician First Name,Physician Last Name,Physician Phone,Date Created"><!---Patient First Name,Patient Last Name,Patient City,Patient Phone,Patient SSN,Primary Ins Name,Primary Policy ##,Primary Phone,--->
@@ -245,10 +245,10 @@
 											<!--- if the patient is filled get the info.                                         --->
 											<!-------------------------------------------------------------------------------------->
 											<cfif IsNumeric(request.instance.getPatientID())>	
-												<cfset request.Patient = CreateObject("component","com.common.Patient")>
+												<cfset request.Patient = application.beanFactory.getBean("Patient")>
 												<cfset request.Patient.init(trim(request.instance.getPatientID()))>
 												
-												<cfset request.Entity = CreateObject("component","com.common.Entity")>
+												<cfset request.Entity = application.beanFactory.getBean("Entity")>
 												<cfset request.Entity.init(trim(request.Patient.getEntityID()))>
 												
 												<cfset parametersList = parametersList & ",patientFNameTBox,patientLNameTBox,patientSSNTBox">
@@ -257,7 +257,7 @@
 											</cfif>
 																							
 										<cfelseif ObjectID EQ 9>
-											<cfset request.instance = CreateObject("component","com.common.Quote")>
+											<cfset request.instance = application.beanFactory.getBean("Quote")>
 											<cfset request.instance.init(trim(InstanceID))>
 											<cfset parametersList = "">
 											<cfset parametersListDisplay = "">
@@ -474,7 +474,7 @@
 	
 	<cfelse>
 		
-		<cfset request.Task = CreateObject("component", "com.common.Task")>
+		<cfset request.Task = application.beanFactory.getBean("Task") />
 		<cfset request.Task.setClientID(trim(session.clientID))>
 		<cfset request.Task.setCreatorID(trim(session.user.getUsersID()))>
 		
