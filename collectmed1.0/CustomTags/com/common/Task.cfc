@@ -86,7 +86,7 @@
 		<!--- Get the Task parameters form the Database.                                     --->
 		<!-------------------------------------------------------------------------------------->	
 		<cfquery name="getTask" datasource="#trim(request.datasource)#">
-			INSERT INTO TaskStatus(TaskID, StatusID, UsersID, Note)
+			INSERT INTO taskstatus(TaskID, StatusID, UsersID, Note)
 			VALUES(#trim(taskID)#, #trim(Arguments.statusID)#, #trim(Arguments.usersID)#, '#trim(Arguments.note)#')		
 		</cfquery>
 		
