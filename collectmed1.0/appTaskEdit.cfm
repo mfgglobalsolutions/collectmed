@@ -95,7 +95,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- Create the task Object.                                                        --->
 		<!-------------------------------------------------------------------------------------->	
-		<cfset request.Task = CreateObject("component", "com.common.Task").init(taskID)>
+		<cfset request.Task = application.beanFactory.getBean("Task").initTaskIO(taskID) />
 		
 		<!-------------------------------------------------------------------------------------->
 		<!--- Find out if this user has viewed this task if not add the record that they     --->
@@ -108,13 +108,14 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- Re-Init after any changes to the task.                                         --->
 		<!-------------------------------------------------------------------------------------->		
-		<cfset request.Task.init(taskID)>
+		<cfset request.Task.initTaskIO(taskID)>
 		
 				
 		<!-------------------------------------------------------------------------------------->
 		<!--- Get the current status of this task.                                           --->
 		<!-------------------------------------------------------------------------------------->		
-		<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" listid="20" standardlistitemid="#request.Task.getStatusID()#" active="1" returnvariable="getDisplay">
+		<cfset getDisplay = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(listid: 20,  standardlistitemid:"#request.Task.getStatusID()#", active: 1) />
+								
 		<cfset displayStatus = getDisplay.ItemNameDisplay>
 	
 	
@@ -403,7 +404,7 @@
 			datatypes="numeric">
 			
 			
-		<cfset request.Task = CreateObject("component", "com.common.Task").init(form.taskID)>
+		<cfset request.Task = application.beanFactory.getBean("Task").initTaskIO(form.taskID)>
 	
 		<cfif IsDefined("form.Priority") AND IsNumeric(form.Priority)>	
 			<cfset request.Task.setPriority(trim(form.Priority))>
@@ -426,7 +427,7 @@
 		</cfif>
 		
 		<cfif IsDefined("form.StatusID") AND IsNumeric(form.StatusID)>
-			<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" listid="20" standardlistitemid="#trim(form.StatusID)#" active="1" returnvariable="getDisplay">
+			<cfset getDisplay = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(listid: 20, standardlistitemid: "#trim(form.StatusID)#", active: 1) />
 			<cfset request.Task.updateTaskStatus(taskID, trim(StatusID), trim(session.user.getUsersID()), 'System Note: #getDisplay.ItemNameDisplay#')>
 		</cfif>
 				

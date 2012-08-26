@@ -616,7 +616,7 @@
 		<!--- Create the Quote print file PDF. Placing pagetype="A4" keeps everything on     --->
 		<!--- the same page.                                                                 --->
 		<!-------------------------------------------------------------------------------------->
-		<cfdocument marginbottom=".05" marginleft=".15" marginright=".15" margintop=".15" format="PDF" filename="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\QuotePrintVariable_#session.Client.getClientID()#_#trim(fileDateTimeStamp)#_#trim(QuoteID)#.pdf" overwrite="yes">
+		<cfdocument marginbottom=".05" marginleft=".15" marginright=".15" margintop=".15" format="PDF" filename="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash#QuotePrintVariable_#session.Client.getClientID()#_#trim(fileDateTimeStamp)#_#trim(QuoteID)#.pdf" overwrite="yes">
 			<cfoutput>			
 				<cfif IsDefined("form.faxSheet") AND form.faxSheet>		
 					#CoverSheetPrintVariable#				
@@ -624,7 +624,7 @@
 				#QuotePrintVariable#
 			</cfoutput>
 		</cfdocument>
-		<cfset listOfFiles = listAppend(listOfFiles,"#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\QuotePrintVariable_#session.Client.getClientID()#_#trim(fileDateTimeStamp)#_#trim(QuoteID)#.pdf")>
+		<cfset listOfFiles = listAppend(listOfFiles,"#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash#QuotePrintVariable_#session.Client.getClientID()#_#trim(fileDateTimeStamp)#_#trim(QuoteID)#.pdf")>
 								
 			
 		<!-------------------------------------------------------------------------------------->
@@ -636,14 +636,14 @@
 		
 			<cf_gcConcatenatePDFs 
 				listofPDFs="#trim(listOfFiles)#"
-				finalOutPutFile="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(finalFileName)#">
+				finalOutPutFile="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(finalFileName)#">
 			
 				
 	
 			<!-------------------------------------------------------------------------------------->
 			<!--- Now that we know the print was done lets log it.                               --->
 			<!-------------------------------------------------------------------------------------->
-			<cfset newPrinted = ListAppend(request.Quote.getPrinted(), "#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(session.User.getUsersID())#|#trim(session.Entity.getFName())# #trim(session.Entity.getLName())#|#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(finalFileName)#")>
+			<cfset newPrinted = ListAppend(request.Quote.getPrinted(), "#DateFormat(NOW(), 'mm/dd/yyyy')#|#TimeFormat(NOW(), 'hh:mm:ss tt')#|#trim(session.User.getUsersID())#|#trim(session.Entity.getFName())# #trim(session.Entity.getLName())#|#trim(request.mfgfmsDirectoryPath)#\#trim(finalFileName)#")>
 			
 			<cfquery name="updateQuote" datasource="#request.datasource#">
 				UPDATE quote
@@ -651,7 +651,7 @@
 				WHERE QuoteID = #trim(quoteID)#
 			</cfquery>
 			
-		<cfdump var="#trim(request.tempDocsURL)#/#trim(finalFileName)#">	<cfabort>	
+		
 									
 			<!-------------------------------------------------------------------------------------->
 			<!--- Locate the user to where they will be able to print it.                        --->
@@ -662,7 +662,7 @@
 				</script>--->
 				
 				<script language="JavaScript">					
-					reminder=window.open('#trim(request.tempDocsURL)#/#trim(finalFileName)#', 'reminder', 'top=0,left=0,dependent=yes,directories=no,hotkeys=no,location=no,copyhistory=no,scrollbars=no,toolbar=no,menubar=no,resizable=yes,width=#trim(session.screenWidth)#,height=#trim(session.screenHeight)#'); reminder.focus(0);
+					reminder=window.open('#trim(request.mfgTempDocsURL)#/#trim(finalFileName)#', 'reminder', 'top=0,left=0,dependent=yes,directories=no,hotkeys=no,location=no,copyhistory=no,scrollbars=no,toolbar=no,menubar=no,resizable=yes,width=#trim(session.screenWidth)#,height=#trim(session.screenHeight)#'); reminder.focus(0);
 					setTimeout('self.close()',500); // close self after a seconds delay			
 				</script>
 				

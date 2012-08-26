@@ -25,9 +25,11 @@
 			application.environmentFilePath = "../../../config/appVariables.xml";
 			application.serverVariablesToLoad = "production";			
 			application.os = "linux";
+			application.forwardBackslash = "/";	
 			if(findNoCase("c:", trim(CGI.path_translated))){
 				application.os = "windows";
 				application.serverVariablesToLoad = "development";	
+				application.forwardBackslash = "\";
 			}
 		</cfscript>
 		
@@ -38,19 +40,20 @@
 		
 		<cfsilent>
 
-		
+
 			<!-------------------------------------------------------------------------------------->
 			<!--- HERE ONLY FOR DEVELOPMENT PURPOSES TO RELOAD EVERY REQUEST                     --->
-			<!-------------------------------------------------------------------------------------->	
-			<cflock name="#application.applicationname#_reinit" type="exclusive" timeout="30">
-			    <cfloop collection="#application#" item="i">
-			           <cfif i NEQ "ApplicationName">
-			                   <cfset structDelete(application,i) />
-			           </cfif>
-			    </cfloop>
-			</cflock>                             
-			<cfset OnApplicationStart() />
-       
+			<!-------------------------------------------------------------------------------------->				
+			<cfif application.serverVariablesToLoad eq "development">			
+				<cflock name="#application.applicationname#_reinit" type="exclusive" timeout="30">
+				    <cfloop collection="#application#" item="i">
+				           <cfif i NEQ "ApplicationName">
+				                   <cfset structDelete(application,i) />
+				           </cfif>
+				    </cfloop>
+				</cflock>                             
+				<cfset OnApplicationStart() />				
+	       </cfif>
 	
 	
 	
@@ -94,7 +97,7 @@
 				request.driveLetter = "C";
 				request.driveLetterFMS = "C";
 				request.tempDocsFolder =  "temp";
-				request.fmsVirtualDirectory = "pafms";
+				request.fmsVirtualDirectory = "fms";
 				request.applicationPathMainFolder = "CollectMed";				
 				request.fmsPathMainFolder = "CollectMed";				
 				request.applicationPath = expandPath("/");				
@@ -103,8 +106,11 @@
 				request.fmsPath = expandPath("/") & "#trim(request.fmsVirtualDirectory)#";				
 				request.tempDocsURL = "#trim(request.urlProtocol)##trim(request.urlHost)#.#trim(request.urlDomain)#.#trim(request.urlHighLevelDomain)#/#trim(request.fmsVirtualDirectory)#";
 				request.ediURL = "https://www.mfgedi.com";				
-				request.coldspringConfig = expandPath("/") & "frameworks\coldspring\coldspring.xml"; 				
-				request.masterDatasource = "pa_master";					
+				request.coldspringConfig = expandPath("/") & "frameworks/coldspring/coldspring.xml"; 				
+				request.masterDatasource = "pa_master";
+				
+				request.mfgfmsTopLevelDirectory = "fms";
+				request.mfgfmsDirectoryPath = expandPath('') & application.forwardBackslash & request.mfgfmsTopLevelDirectory;
 				
 				request.Site = structNew();
 				request.Site.getFont = "Tahoma";				
@@ -168,6 +174,8 @@
 				if(IsDefined("session.ClientID") AND IsNumeric(session.ClientID)){	
 					request.fmsPath = request.fmsPath & "\" & trim(session.ClientID);		
 					request.tempDocsURL = trim(request.tempDocsURL )& "/#trim(application.beanFactory.getBean('Client').getClientID())#/" & trim(request.tempDocsFolder);
+					request.mfgTempDocsURL = "/" & trim(request.mfgfmsTopLevelDirectory) & "/" & trim(session.ClientID) & "/" & trim(request.tempDocsFolder);
+					request.mfgfmsDirectoryPath = request.mfgfmsDirectoryPath & application.forwardBackslash & trim(session.ClientID) & application.forwardBackslash & trim(request.tempDocsFolder);
 				};
 
 
