@@ -246,10 +246,10 @@
 											<!-------------------------------------------------------------------------------------->
 											<cfif IsNumeric(request.instance.getPatientID())>	
 												<cfset request.Patient = application.beanFactory.getBean("Patient")>
-												<cfset request.Patient.init(trim(request.instance.getPatientID()))>
+												<cfset request.Patient.initPatientIO(trim(request.instance.getPatientID()))>
 												
 												<cfset request.Entity = application.beanFactory.getBean("Entity")>
-												<cfset request.Entity.init(trim(request.Patient.getEntityID()))>
+												<cfset request.Entity.initEntityIO(trim(request.Patient.getEntityID()))>
 												
 												<cfset parametersList = parametersList & ",patientFNameTBox,patientLNameTBox,patientSSNTBox">
 												<cfset parametersListDisplay = parametersListDisplay & ",Patient First Name,Patient Last Name,Patient SSN">
