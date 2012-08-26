@@ -2200,7 +2200,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="QuoteIO" output="No">
+	<cffunction name="InitQuoteIO" access="public" returntype="QuoteIO" output="No">
 		
 		<cfargument name="QuoteID" required="yes" type="numeric">		
 		<cfset var qGetQuote = "">

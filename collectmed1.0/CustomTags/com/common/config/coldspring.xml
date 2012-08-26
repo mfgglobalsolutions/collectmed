@@ -11,8 +11,9 @@
 			<ref bean="configBean" />
 		</constructor-arg>
 	</bean>	
-	<bean id="PatientInsuranceCompany" class="cmComponents.com.common.PatientInsuranceCompany" singleton="false" />
-	<bean id="Note" class="cmComponents.com.common.Note" singleton="false" />	
+	<bean id="Note" class="cmComponents.com.common.Note" singleton="false" />
+	<bean id="PatientInsuranceCompany" class="cmComponents.com.common.PatientInsuranceCompany" singleton="false" />	
+	<bean id="Quote" class="cmComponents.com.common.Quote" singleton="false" />
 	<bean id="UserSessionInsert" class="cmComponents.com.common.UserSessionInsert" singleton="false" />
 	<bean id="User" class="cmComponents.com.common.User" singleton="false">
 		<constructor-arg name="PageIO">

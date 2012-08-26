@@ -63,8 +63,8 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the quote object.                                                       --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Quote = CreateObject("component", "com.common.quote")>		
-	<cfset request.Quote.init(trim(quoteID))>	
+	<cfset request.Quote = application.beanFactory.getBean("Quote") />
+	<cfset request.Quote.initQuoteIO(trim(quoteID))>	
 	
 	<cfquery name="getQuoteHCPCID" datasource="#request.datasource#">
 		SELECT QuoteHCPCID
@@ -83,7 +83,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the address object to work with addresses with.                         --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.EntityObj = CreateObject("component", "com.common.Entity")>	
+	<cfset request.EntityObj = application.beanFactory.getBean("Entity") />
 	<cfset clientAddress = request.EntityObj.getEntityDefaultFullAddress(clientID: trim(session.clientID), EntityID: session.Client.getEntityID(), Active: 1)>					
 		
 	<cfset defaultPhone = request.EntityObj.getEntityDefaultPhoneFull(clientID: trim(session.clientID), entityID: trim(session.Client.getEntityID()))>
@@ -651,7 +651,7 @@
 				WHERE QuoteID = #trim(quoteID)#
 			</cfquery>
 			
-				
+		<cfdump var="#trim(request.tempDocsURL)#/#trim(finalFileName)#">	<cfabort>	
 									
 			<!-------------------------------------------------------------------------------------->
 			<!--- Locate the user to where they will be able to print it.                        --->

@@ -21,7 +21,7 @@
 				
 			<cfset request.datasource = "PAClient_" & clientID>	
 			
-			<cfset request.Note = CreateObject("component","com.common.Note")>				
+			<cfset request.Note = application.beanFactory.getBean("Note") />				
 			<cfset noteID = request.Note.getNoteID(clientID: trim(clientID), objectID: 9, instanceID: trim(quoteID))>			
 			<cfset formattedNotes = request.Note.getFormattedNotes(noteID: trim(noteID), showTime: trim(showTime), clientID: trim(clientID))>
  										

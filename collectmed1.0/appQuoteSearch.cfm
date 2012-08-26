@@ -1,4 +1,12 @@
 <!---- appQuoteSearch.cfm ---->
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationTop.cfm";
+</cfscript>
+
+
 	
 	
 <!-------------------------------------------------------------------------------------->
@@ -384,4 +392,12 @@
 	
 	</cfoutput>
 	
-	
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationBottom.cfm";
+</cfscript>
+
+		

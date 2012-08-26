@@ -126,7 +126,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Put a note in the notes for this instance.                                     --->
 			<!-------------------------------------------------------------------------------------->
-			<cfset request.intakeNote = CreateObject("component","com.common.Note")>	
+			<cfset request.intakeNote = application.beanFactory.getBean("Note") />	
 			<cfset intakeNoteID = request.intakeNote.getNoteID(clientid: trim(ClientID), objectID: 8, instanceID: trim(intakeID))>		
 			<cfif NOT IsNumeric(intakeNoteID) AND IsNumeric(intakeID)>
 				<cfset intakeNoteID = request.intakeNote.addNote(clientID: trim(clientID), objectID: 8, instanceID: trim(intakeID))>

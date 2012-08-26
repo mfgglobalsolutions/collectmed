@@ -1109,7 +1109,7 @@ GO
 
 
 <!---
-<cfset request.NoteXML = CreateObject("component","com.common.Note")>
+<cfset request.NoteXML = application.beanFactory.getBean("Note") />
 <cfset noteID = request.NoteXML.addNote(clientID: trim(session.Client.getClientID()), objectID: 8, instanceID: 287)>
 <cfset request.NoteXML.addNoteEntry(clientID: trim(session.Client.getClientID()), NoteID: noteID, noteEntry: 'trim(form.note)', userID: trim(session.user.getUsersID()), userFName: '#trim(session.user.getFName())#', userLName: '#trim(session.user.getFName())#')>
 
@@ -2152,7 +2152,7 @@ http://www.hibcc.org/
 
 
 
-<!---<cfset request.intakeNote = CreateObject("component","com.common.Note")>
+<!---<cfset request.intakeNote = application.beanFactory.getBean("Note") />
 
 <cfset intakeNoteID = request.intakeNote.getNoteID(objectID: 8, instanceID: 98, clientID: trim(session.clientID))>
 
@@ -2178,7 +2178,7 @@ WHERE     (Active = 0) AND (ClosingInvoiceNumber IS NULL)
 	FROM intake
 </cfquery>
 
-<cfset request.intakeNote = CreateObject("component","com.common.Note")>
+<cfset request.intakeNote = application.beanFactory.getBean("Note") />
 <cfset note = "System Note: Intake cancelled through cancellation system going online 12/8/06">
 
 <cfloop query="getIntakes">

@@ -94,7 +94,7 @@
 				request.driveLetter = "C";
 				request.driveLetterFMS = "C";
 				request.tempDocsFolder =  "temp";
-				request.fmsVirtualDirectory = "fms";
+				request.fmsVirtualDirectory = "pafms";
 				request.applicationPathMainFolder = "CollectMed";				
 				request.fmsPathMainFolder = "CollectMed";				
 				request.applicationPath = expandPath("/");				

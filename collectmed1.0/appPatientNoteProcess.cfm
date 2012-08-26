@@ -41,7 +41,7 @@
 
 	<cfset note = evaluate(note1)>
 
-	<cfset request.NoteXML = CreateObject("component","com.common.Note")>
+	<cfset request.NoteXML = application.beanFactory.getBean("Note") />
 
 	<cfif NOT IsNumeric(NoteID) OR NoteID EQ  0>
 		<cfset noteID = request.NoteXML.addNote(clientID: trim(session.clientID), objectID: trim(objectID), instanceID: trim(instanceID))>

@@ -1874,7 +1874,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<cfif note NEQ "<font color=FF0000>SYSTEM INPUT NOTE: INTAKE CHANGED</font><br>">
 
-			<cfset request.intakeNote = CreateObject("component","com.common.Note")>
+			<cfset request.intakeNote = application.beanFactory.getBean("Note") />
 
 			<cfset intakeNoteID = request.intakeNote.getNoteID(objectID: 8, instanceID: trim(form.intakeID), clientID: trim(session.clientID))>
 

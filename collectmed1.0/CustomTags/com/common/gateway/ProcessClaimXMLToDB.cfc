@@ -307,7 +307,7 @@
 						<cfset userLName = ListGetAt(notes, 3, "|")>
 						<cfset note = ListGetAt(notes, 4, "|")>
 						
-						<cfset request.NoteXML = CreateObject("component","com.common.Note")>		
+						<cfset request.NoteXML = application.beanFactory.getBean("Note") />		
 						<cfset noteID = request.NoteXML.addNote(clientID: trim(clientID), objectID: 5, instanceID: trim(ClaimID))>						
 						<cfset request.NoteXML.addNoteEntry(clientID: trim(clientID), NoteID: noteID, noteEntry: '#trim(note)#', userID: trim(UsersID), userFName: '#trim(userFName)#', userLName: '#trim(userLName)#', newClaimID: '#trim(ClaimID)#')>
 					

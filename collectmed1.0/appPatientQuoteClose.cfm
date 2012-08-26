@@ -146,7 +146,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- Add the note that the user input.                                              --->
 		<!-------------------------------------------------------------------------------------->		
-		<cfset request.Note = CreateObject("component","com.common.Note")>
+		<cfset request.Note = application.beanFactory.getBean("Note") />
 		<cfset NoteID = request.Note.getNoteID(clientid: trim(session.ClientID), objectID: trim(objectID), instanceID: trim(quoteID))>
 
 		<cfif NOT IsNumeric(NoteID) AND IsNumeric(objectID) AND IsNumeric(quoteID)>

@@ -1661,7 +1661,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.primaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.primaryNoteTBox") AND form.primaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: primaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: primaryPICID)>
@@ -1736,7 +1736,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.primaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.primaryNoteTBox") AND form.primaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: primaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: primaryPICID)>
@@ -1872,7 +1872,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.secondaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.secondaryNoteTBox") AND form.secondaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: secondaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: secondaryPICID)>
@@ -1946,7 +1946,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.secondaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.secondaryNoteTBox") AND form.secondaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: secondaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: secondaryPICID)>
@@ -2082,7 +2082,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.tertiaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.tertiaryNoteTBox") AND form.tertiaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: tertiaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: tertiaryPICID)>
@@ -2156,7 +2156,7 @@
 				PolicyHoldersEmployerSchoolNameTBox="#trim(form.tertiaryPolicyHolderEmployerTBox)#">
 							
 			<cfif IsDefined("form.tertiaryNoteTBox") AND form.tertiaryNoteTBox NEQ "">								
-				<cfset request.Note = CreateObject("component", "com.common.Note")>
+				<cfset request.Note = application.beanFactory.getBean("Note") />
 				<cfset noteID = request.Note.getNoteID(clientID: session.ClientID, objectID: 4, instanceID: tertiaryPICID)>
 				<cfif NOT IsNumeric(noteID)>
 					<cfset noteID = request.Note.addNote(clientID: session.ClientID, objectID: 4, instanceID: tertiaryPICID)>

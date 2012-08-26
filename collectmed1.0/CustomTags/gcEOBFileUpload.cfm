@@ -369,7 +369,7 @@
 			<!-------------------------------------------------------------------------------------->
 			<!--- Create the object and get the XML.                                             --->
 			<!-------------------------------------------------------------------------------------->
-			<cfset request.NoteXML = CreateObject("component","com.common.Note")>
+			<cfset request.NoteXML = application.beanFactory.getBean("Note") />
 
 			<!-------------------------------------------------------------------------------------->
 			<!--- If at this point the noteID is not available it means that the instance does   --->

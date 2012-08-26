@@ -157,7 +157,7 @@
 			<!-------------------------------------------------------------------------------------->			
 			<cfif isDefined("form.note") AND form.note NEQ "" AND IsDefined("form.clientID") AND IsNumeric(form.clientID)>				
 				
-				<cfset request.NoteXML = CreateObject("component","com.common.Note")>					
+				<cfset request.NoteXML = application.beanFactory.getBean("Note") />					
 				<cfset noteID = request.NoteXML.getNoteID(objectID: 8, instanceID: trim(form.intakeID), clientID: trim(form.clientID))>
 				<cfif NOT IsNumeric(noteID) AND IsNumeric(form.intakeID)>
 					<cfset noteID = request.NoteXML.addNote(clientID: trim(form.clientID), objectID: 8, instanceID: trim(form.intakeID))>						

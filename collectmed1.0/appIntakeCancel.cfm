@@ -145,7 +145,7 @@
 				WHERE IntakeID = #trim(IntakeID)#
 			</cfquery>
 
-			<cfset request.intakeNote = CreateObject("component","com.common.Note")>
+			<cfset request.intakeNote = application.beanFactory.getBean("Note") />
 			<cfset intakeNoteID = request.intakeNote.getNoteID(objectID: 8, instanceID: trim(intakeID), clientID: trim(session.clientID))>
 			<cfif NOT IsNumeric(intakeNoteID) AND IsNumeric(intakeID)>
 				<cfset intakeNoteID = request.intakeNote.addNote(clientID: trim(session.clientID), objectID: 8, instanceID: trim(intakeID))>

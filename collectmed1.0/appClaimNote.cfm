@@ -79,7 +79,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the note object and populate it with the DB parameters.                 --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.claimNote = CreateObject("component","com.common.Note")>
+	<cfset request.claimNote = application.beanFactory.getBean("Note") />
 
 
 
@@ -267,7 +267,7 @@
 							<!-------------------------------------------------------------------------------------->
 							<!--- Create the note object and populate it with the DB parameters.                 --->
 							<!-------------------------------------------------------------------------------------->
-							<cfset request.claimProcedureNote = CreateObject("component","com.common.Note")>
+							<cfset request.claimProcedureNote = application.beanFactory.getBean("Note") />
 							<cfset claimProcedureNoteID = request.claimProcedureNote.getNoteID(clientID: trim(session.clientID), objectID: 6, instanceID: ProcedureID)>
 
 							<!-------------------------------------------------------------------------------------->

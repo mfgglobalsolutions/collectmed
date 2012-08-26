@@ -39,8 +39,8 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the quote object.                                                       --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Quote = CreateObject("component", "com.common.quote")>		
-	<cfset request.Quote.init(trim(quoteID))>
+	<cfset request.Quote = application.beanFactory.getBean("Quote") />		
+	<cfset request.Quote.initQuoteIO(trim(quoteID))>
 	
 	
 	

@@ -88,7 +88,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the note object and populate it with the DB parameters.                 --->
 <!-------------------------------------------------------------------------------------->
-	<!--- <cfset request.quoteNote = CreateObject("component","com.common.Note")> --->
+	<!--- <cfset request.quoteNote = application.beanFactory.getBean("Note") /> --->
 	<cfset request.quoteNote = application.beanFactory.getBean("Note")>
 
 

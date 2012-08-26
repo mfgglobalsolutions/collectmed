@@ -59,7 +59,7 @@
 		<!-------------------------------------------------------------------------------------->
 		<!--- Create the object and get the XML.                                             --->
 		<!-------------------------------------------------------------------------------------->
-		<!--- <cfset request.NoteXML = CreateObject("component","com.common.Note")> --->
+		<!--- <cfset request.NoteXML = application.beanFactory.getBean("Note") /> --->
 		<cfset request.NoteXML = application.beanFactory.getBean("Note")>
 
 		<!-------------------------------------------------------------------------------------->

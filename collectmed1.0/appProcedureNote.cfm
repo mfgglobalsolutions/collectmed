@@ -97,7 +97,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the note object and populate it with the DB parameters.                 --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Note = CreateObject("component","com.common.Note")>
+	<cfset request.Note = application.beanFactory.getBean("Note") />
 
 <!-------------------------------------------------------------------------------------->
 <!--- If the noteid was not sent in but other parameters were get the NoteID.        --->
