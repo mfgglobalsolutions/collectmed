@@ -220,7 +220,7 @@
 											</cfloop>
 										<cfelseif ObjectID EQ 8>
 											<cfset request.instance = application.beanFactory.getBean("Intake")>
-											<cfset request.instance.init(trim(InstanceID))>
+											<cfset request.instance.initIntakeIO(trim(InstanceID))>
 											<cfset parametersList = "IntakeID,alternateContactFNameTBox,alternateContactLNameTBox,alternateContactPhoneTBox,orderingPhysicianFNameTBox,orderingPhysicianLNameTBox,orderingPhysicianPhoneTBox,DateCreated"><!---patientFNameTBox,patientLNameTBox,patientCityTBox,patientPhoneTBox,patientSSNTBox,primaryInsuranceNameTBox,primaryPolicyNumberTBox,primaryPhoneNumberTBox,--->
 											<cfset parametersListDisplay = "Intake ID,Alternate First Name,Alternate Last Name,Alternate Phone,Physician First Name,Physician Last Name,Physician Phone,Date Created"><!---Patient First Name,Patient Last Name,Patient City,Patient Phone,Patient SSN,Primary Ins Name,Primary Policy ##,Primary Phone,--->
 											<cfset parameterListValues = "">
