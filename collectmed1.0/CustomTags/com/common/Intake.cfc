@@ -1,7 +1,7 @@
 
 
 
-<cfcomponent name="Intake" extends="com.common.db.IntakeIO">		
+<cfcomponent name="Intake" extends="cmComponents.com.common.db.IntakeIO">		
 	
 			
 	<!-------------------------------------------------------------------------------------->

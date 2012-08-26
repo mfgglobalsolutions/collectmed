@@ -6239,7 +6239,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="IntakeIO" output="No">
+	<cffunction name="InitIntakeIO" access="public" returntype="IntakeIO" output="No">
 		
 		<cfargument name="IntakeID" required="yes" type="numeric">		
 		<cfset var qGetIntake = "">
