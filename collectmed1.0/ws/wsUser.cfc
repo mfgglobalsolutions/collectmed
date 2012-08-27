@@ -68,7 +68,7 @@
 		<cftry>
 							
 			<cfset request.datasource = "PAClient_" & clientID>				
-			<cfset request.User = createObject("component", "com.common.User")>
+			<cfset request.User = application.beanFactory.getBean("User") />
 			<cfset thisDate = request.User.getUserCurrentLoginModifiedTime(usersID)>
 			<cfreturn "#dateFormat(thisDate, 'mm/dd/yyyy')# #timeFormat(thisDate, 'hh:mm:ss tt')#">		
 					
