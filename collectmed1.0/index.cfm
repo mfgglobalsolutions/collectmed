@@ -144,6 +144,7 @@
 
 
 
+<!--- 
 
 <cfset tempMySQLProcedures = application.beanFactory.getBean('mySQLProcedures')>
 <cfset tempConfigBean = application.beanFactory.getBean('configBean') />
@@ -156,6 +157,7 @@
 <cfset request.mySQLPass = tempConfigBean.getDatabase().mySQLPass />
 <cfset request.dbBackupPath = tempConfigBean.getDatabase().dbBackupPath />
 
+ --->
 
 
 

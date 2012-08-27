@@ -232,11 +232,11 @@
 		<!------------------------------------------------------------------>
 		<!--- Arguments needed for this method.                          --->
 		<!------------------------------------------------------------------>	
-		<cfargument name="usersID" required="true" type="numeric">
-		<cfargument name="clientID" required="true" type="numeric">
+		<cfargument name="usersID" required="Yes" type="numeric">
+		<cfargument name="clientID" required="Yes" type="numeric">
 		
-		 
-		<!--- <cfset setRoleIDs(getUserRoles(usersID: trim(arguments.usersID), clientID: trim(arguments.clientID)))> --->
+		<cfset usersRoles = getUsersRoles(usersID: trim(arguments.usersID), clientID: trim(arguments.clientID)) /> 
+		<cfset setRoleIDs(usersRoles) /> 
 				
 		<cfset UserPageIDs = variables.instance.PageRoleIO.getPageRoleQuery(RoleID_IN: '#trim(getRoleIDs())#', Active: '1')>
 			
@@ -443,9 +443,9 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Get the roles that a user currently has.                                       --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="getUserRoles" returntype="string" output="No" hint="This function will return a list of the roles that this user is tied to.">
+	<cffunction name="getUsersRoles" returntype="string" output="No" hint="This function will return a list of the roles that this user is tied to.">
 		
-		<cfargument name="usersID" required="true" type="numeric">
+		<cfargument name="usersID" required="yes" type="numeric">
 		<cfargument name="clientID" required="yes" type="numeric">
 				
 		<cfquery name="qGetUserRoles" datasource="PAClient_#trim(clientID)#">	
