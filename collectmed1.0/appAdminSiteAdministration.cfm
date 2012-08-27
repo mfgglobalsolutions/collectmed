@@ -102,8 +102,8 @@
 		</cfquery>	
 		<cfset clientList = "">
 		<cfloop query="getAllClients">
-			<cfif database_name neq "paclient_master" AND findNoCase("paclient_", database_name)>
-				<cfset clientList = ListAppend(clientList, database_name)>
+			<cfif DATABASE neq "paclient_master" AND findNoCase("paclient_", DATABASE)>
+				<cfset clientList = ListAppend(clientList, DATABASE)>
 			</cfif>
 		</cfloop>
 		
