@@ -64,7 +64,7 @@
 		<cfset return = url.return>
 	</cfif>
 
-
+	<cfset getIntakeNote = "" />
 
 <!-------------------------------------------------------------------------------------->
 <!--- Needed CSS for this page.                                                      --->
