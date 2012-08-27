@@ -229,7 +229,7 @@
 	<cfquery name="tempGet" datasource="paclient_1084">
 		SELECT * 
 		FROM paclient_1084.entity
-		WHERE SSN IS NOT NULL;
+		WHERE SSN IS NOT NULL AND length(SSN) < 32;
 	</cfquery>
 	<cfif tempGet.recordCount GTE 1>
 
