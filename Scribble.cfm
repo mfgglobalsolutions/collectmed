@@ -504,3 +504,44 @@ mySQLPath" value="/usr/bin" />
 					<key name="mySQLUser" value="root" />	
 					<key name="mySQLPass" value="collectmednet" />	
 					<key name="dbBackupPath" value="/dbbackup/" />
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+<!--- 	<cfset globalFoot = application.beanFactory.getBean('globalFooter')>
+	<cfquery name="tempGet" datasource="paclient_1084">
+		SELECT * 
+		FROM paclient_1084.entity
+		WHERE SSN IS NOT NULL AND length(SSN) < 32;
+	</cfquery>
+	<cfif tempGet.recordCount GTE 1>
+
+		<cfloop query="tempGet">
+		
+			<cfset newSSN = "#randRange(100, 999)#-00-#randRange(1000, 9999)#">	
+			<cfset newSSNE = globalFoot.GlobalFooterE(newSSN)>
+			
+			<cfquery name="tempUpdate" datasource="paclient_1084">
+				UPDATE paclient_1084.entity
+				SET SSN = '#trim(newSSNE)#'
+				WHERE EntityID = #EntityID#
+			</cfquery>			
+			
+			<!--- <cfoutput>
+				#EntityID# ---- #SSN# : #trim(newSSN)# : #newSSNE# (#len(newSSNE)#)<br>			
+			</cfoutput> --->
+			
+		</cfloop>       
+		
+	</cfif> --->						
+					

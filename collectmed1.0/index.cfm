@@ -225,32 +225,31 @@
 
                        <cfelseif UsersID eq 56> --->
 
-<!--- 	<cfset globalFoot = application.beanFactory.getBean('globalFooter')>
+
 	<cfquery name="tempGet" datasource="paclient_1084">
 		SELECT * 
 		FROM paclient_1084.entity
-		WHERE SSN IS NOT NULL AND length(SSN) < 32;
+		WHERE DOB IS NOT NULL;
 	</cfquery>
 	<cfif tempGet.recordCount GTE 1>
 
 		<cfloop query="tempGet">
 		
-			<cfset newSSN = "#randRange(100, 999)#-00-#randRange(1000, 9999)#">	
-			<cfset newSSNE = globalFoot.GlobalFooterE(newSSN)>
+			<cfset newDOB = "#DateADD("m", 15, DOB)#">	
 			
 			<cfquery name="tempUpdate" datasource="paclient_1084">
 				UPDATE paclient_1084.entity
-				SET SSN = '#trim(newSSNE)#'
+				SET DOB = #trim(newDOB)#
 				WHERE EntityID = #EntityID#
-			</cfquery>			
+			</cfquery>
 			
-			<!--- <cfoutput>
-				#EntityID# ---- #SSN# : #trim(newSSN)# : #newSSNE# (#len(newSSNE)#)<br>			
-			</cfoutput> --->
+			<cfoutput>
+				#EntityID# ---- #DOB# : #trim(newDOB)#<br>			
+			</cfoutput> 
 			
 		</cfloop>       
 		
-	</cfif>	 --->					
+	</cfif>						
 
 
 
