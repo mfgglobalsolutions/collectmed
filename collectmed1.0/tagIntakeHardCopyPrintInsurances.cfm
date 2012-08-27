@@ -36,7 +36,7 @@
 		Order By  pic.PrimSecTer
 	</cfquery> 					
 	
-	<cfset request.thisInsuranceEntity = CreateObject("component","com.common.Entity")>	
+	<cfset request.thisInsuranceEntity = application.beanFactory.getBean("Entity") />	
 	
 
 	
@@ -136,7 +136,7 @@
 		       	   	<td id="td_PrimaryPolicyHolderEmployerTBox" colspan="3" class="siteLabel" style="border-Top: 0px solid; border-right: 1px solid; border-bottom: 1px solid; border-left: 0px solid; border-color: 000000;">&nbsp;<strong>POLICY&nbsp;HOLDERS&nbsp;EMPLOYER:</strong>&nbsp;#trim(PolicyHoldersEmployerSchoolName)#</td>
 		       	</tr>	  
 			    
-				<cfset request.VerificationPIC = CreateObject("component","com.common.VerificationPIC")>	 
+				<cfset request.VerificationPIC = application.beanFactory.getBean("VerificationPIC") />
 			  	<cfset verifications = request.VerificationPIC.getVerificationPatientInsuranceQuery(picID: recordid, fields: "VerificationPatientInsuranceID, usersID, picID, VerificationRepFName, VerificationRepLName, VerificationDate, VerificationTime, VerificationHaveIns, VerificationHaveInsFromDate, VerificationHaveInsToDate, VerificationHaveDMECov, VerificationDeductible, VerificationDeductibleAmount, VerificationDeductibleAmountMet, VerificationPPOPolicy, VerificationPercentagePayAfterDeductible, VerificationPriorAuth, VerificationAuthNumber, VerificationLifetimeBenefitMet, VerificationAuthPhoneNumber, VerificationMedicareSupplement, VerificationCoordinateBenefits, VerificationPaidMedicareDeductible, VerificationMedicaidPlan, VerificationTypeBasePlan, Active, InactiveCode, DateCreated, DateModified")>
 				
 				<cfloop query="verifications">

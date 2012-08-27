@@ -77,8 +77,8 @@
 			</cfif>
 			
 			
-			<cfset Patient = CreateObject("component", "com.common.Patient")>		
-			<cfset Entity = CreateObject("component", "com.common.Entity")>	
+			<cfset Patient = application.beanFactory.getBean("Patient") />		
+			<cfset Entity = application.beanFactory.getBean("Entity") />			
 			<cfset Entity.setFName(variables.FName)>
 			<cfset Entity.setMName(variables.MName)>
 			<cfset Entity.setLName(variables.LName)>		
@@ -98,7 +98,7 @@
 			<!--------------------------------------------------------------------------------------->
 			<cfif variables.PolicyNumber NEQ "" AND isNumeric(PatientID) AND isNumeric(variables.InsuranceCompanyID)>				
 							
-				<cfset variables.PatientInsuranceCompany = CreateObject("component", "com.common.db.PatientInsuranceCompanyIO")>
+				<cfset variables.PatientInsuranceCompany = application.beanFactory.getBean("PatientInsuranceCompanyIO") />		
 				<cfset variables.PatientInsuranceCompany.setInsuranceCompanyID(trim(variables.InsuranceCompanyID))>
 				<cfset variables.PatientInsuranceCompany.setPatientID(trim(patientID))>
 				<cfset variables.PatientInsuranceCompany.setPrimSecTer(1)> 
@@ -157,14 +157,9 @@
 		<cfsetting showdebugoutput="No">
 		
 		<cftry>
-									
-			<cfinvoke 
-				component="com.common.Patient" 
-				method="getPatient" 
-				clientID="#trim(ClientID)#"
-				patientid="#trim(patientID)#"
-				returnvariable="Patient">
-									
+			
+			<cfset Patient = application.beanFactory.getBean("Patient").getPatient(clientID: "#trim(ClientID)#",	patientid: "#trim(patientID)#") />						
+												
 			<cfif Patient NEQ "">				
 				<cfreturn Patient>
 			<cfelse>

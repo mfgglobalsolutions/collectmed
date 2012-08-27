@@ -1,5 +1,5 @@
 
-<cfcomponent extends="com.common.db.VerificationPatientInsuranceIO">		
+<cfcomponent extends="cmComponents.com.common.db.VerificationPatientInsuranceIO">		
 
 		
 		

@@ -158,7 +158,7 @@
 								
 								
 								<cfif IsNumeric(patientStateTBox)>
-									<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" fields="itemNameDisplay" listid="4" standardlistitemid="#trim(patientStateTBox)#" active="1" returnvariable="getState">
+									<cfset getState = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(fields: "itemNameDisplay", listid: "4", standardlistitemid: "#trim(patientStateTBox)#", active: "1") />
 									<cfset patientState = getState.itemNameDisplay>
 								<cfelse>
 									<cfset patientState = patientStateTBox>
@@ -697,7 +697,7 @@
 							</tr>							
 							
 							<cfif IsNumeric(orderingPhysicianStateTBox)>
-								<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" fields="itemNameDisplay" listid="4" standardlistitemid="#trim(orderingPhysicianStateTBox)#" active="1" returnvariable="getState">
+								<cfset getState = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(fields: "itemNameDisplay", listid: "4", standardlistitemid: "#trim(orderingPhysicianStateTBox)#", active: "1") />
 								<cfset orderingPhysicianState = getState.itemNameDisplay>
 							<cfelse>
 								<cfset orderingPhysicianState = orderingPhysicianStateTBox>
@@ -872,7 +872,7 @@
 	<!--- Create the claim print file PDF. Placing pagetype="A4" keeps everything on     --->
 	<!--- the same page.                                                                 --->
 	<!-------------------------------------------------------------------------------------->
-	<cfdocument marginbottom=".07" marginleft=".07" marginright=".07" margintop=".07" format="PDF" filename="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(finalFileName)#" overwrite="yes">
+	<cfdocument marginbottom=".07" marginleft=".07" marginright=".07" margintop=".07" format="PDF" filename="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(finalFileName)#" overwrite="yes">
 		<cfoutput>				
 			#ClaimPrintHardCopy#
 		</cfoutput>
@@ -884,7 +884,7 @@
 	<cfoutput>		
 		
 		<script language="JavaScript">					
-			reminder=window.open('#trim(request.tempDocsURL)#/#trim(finalFileName)#', 'reminder', 'top=0,left=0,dependent=yes,directories=no,hotkeys=no,location=no,copyhistory=no,scrollbars=no,toolbar=no,menubar=no,resizable=yes,width=#trim(session.screenWidth)#,height=#trim(session.screenHeight)#'); reminder.focus(0);
+			reminder=window.open('#trim(request.mfgTempDocsURL)#/#trim(finalFileName)#', 'reminder', 'top=0,left=0,dependent=yes,directories=no,hotkeys=no,location=no,copyhistory=no,scrollbars=no,toolbar=no,menubar=no,resizable=yes,width=#trim(session.screenWidth)#,height=#trim(session.screenHeight)#'); reminder.focus(0);
 			setTimeout('self.close()',500); // close self after a seconds delay			
 		</script>
 		

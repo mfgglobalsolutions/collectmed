@@ -25,6 +25,8 @@
 	</bean>
 	
 	<bean id="Task" class="cmComponents.com.common.Task" singleton="false" />	
+	<bean id="VerificationPIC" class="cmComponents.com.common.VerificationPIC" singleton="false" />
+	
 	<bean id="old_Address" class="cmComponents.com.common.Address" singleton="false" />
 	<bean id="old_xmlFunctions" class="cmComponents.com.common.xmlFunctions" />
 	<bean id="old_toXML" class="cmComponents.com.common.toXML" />
