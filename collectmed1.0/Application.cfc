@@ -231,7 +231,10 @@
 				/*--- Get the information of the page that the user has chosen   ---*/
 				/*--- to view.                                                   ---*/
 				/*------------------------------------------------------------------*/	
-				request.Page = application.beanFactory.getBean('PageIO');	
+				request.Page = application.beanFactory.getBean('PageIO');
+				
+				dump(request.Page);abort;
+					
 				request.thisPageID = request.Page.getPageIDByName(pageName: trim(request.pageName));					
 				if(NOT isNumeric(request.thisPageID)){		
 					module name="gcGeneralErrorTemplate" message="No page exists";		

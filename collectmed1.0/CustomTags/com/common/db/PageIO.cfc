@@ -1560,7 +1560,7 @@
 			
 			<cfargument name="pageName" required="Yes" type="String">
 			
-			<cfset getPageID = getPageQuery(PageName:trim(arguments.pageName), Active: '1', Fields: 'PageID') />		
+			<cfset getPageID = getPageQuery(PageName: '#trim(arguments.pageName)#', Active: '1', Fields: 'PageID') />		
 				
 			<cfif getPageID.RecordCount NEQ 1>
 				<cfreturn "No Page Exists">
