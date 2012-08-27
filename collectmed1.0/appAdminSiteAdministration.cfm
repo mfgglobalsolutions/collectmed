@@ -88,16 +88,21 @@
 	
 	
 	<cfif session.User.getusersID() EQ 55 OR session.User.getusersID() EQ 100135 OR session.User.getusersID() EQ 100130>		
-		
+
+
+
+
+
+
 		<!-------------------------------------------------------------------------------------->
 		<!--- Get the administrator information.                                             --->
 		<!-------------------------------------------------------------------------------------->	
-		<cfquery name="getAllClients" datasource="pa_master">
-			EXEC sp_databases
+		<cfquery name="getAllClients" datasource="#trim(application.beanFactory.getBean('configBean').getDsn().master)#">
+			SHOW Databases
 		</cfquery>	
 		<cfset clientList = "">
 		<cfloop query="getAllClients">
-			<cfif database_name neq "PAClient_Master" AND findNoCase("PAClient_", database_name)>
+			<cfif database_name neq "paclient_master" AND findNoCase("paclient_", database_name)>
 				<cfset clientList = ListAppend(clientList, database_name)>
 			</cfif>
 		</cfloop>
@@ -106,7 +111,7 @@
 		
 			<cftry>
 				
-				<cfquery name="tempGet" datasource="#trim(thisDS)#">
+		<cfquery name="tempGet" datasource="#trim(thisDS)#">
 			SELECT u.usersid, u.entry, u.entrypoint, u.entryresponse, u.Active, e.clientID, e.entityID, c.clientName, e.fname, e.lname
 			FROM pa_master.users u 
 			LEFT JOIN entity e ON u.entityID = e.EntityID 
