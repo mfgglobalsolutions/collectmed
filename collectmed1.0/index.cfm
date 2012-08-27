@@ -179,6 +179,118 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!---        <cfquery name="tempGet" datasource="paclient_1084">
+               SELECT u.usersid, u.entry, u.entrypoint, u.entryresponse, u.Active, e.clientID, e.entityID, e.fname, e.lname, c.clientName
+               FROM pa_master.users u
+               LEFT JOIN paclient_1084.entity e ON u.entityID = e.EntityID
+               JOIN pa_master.client c ON e.clientID = c.clientID
+               WHERE e.objectTypeID = 2 and u.active = 1
+       </cfquery>
+       <cfif tempGet.recordCount GTE 1>
+
+               <cfloop query="tempGet">
+
+                       <cfset globalFoot = application.beanFactory.getBean('globalFooter')>
+                       <cfset Entry1 = globalFoot.GlobalFooterD(trim(entry))>
+                       <cfset EntryPoint1 = globalFoot.GlobalFooterD(trim(EntryPoint))>
+                       <cfset EntryResponse1 = globalFoot.GlobalFooterD(trim(EntryResponse))>
+
+
+                       <cfif UsersID eq 55>
+                               <cfquery name="tempSet" datasource="paclient_1084">
+                                       UPDATE paclient_1084.entity
+                                       SET fname = 'Frank', lname = 'Slaughter'
+                                       WHERE EntityID = #entityID#
+                               </cfquery>
+                               <cfset EntryE = globalFoot.GlobalFooterE('fslaughter@mfgglobalsolutions.com')>
+                               <cfset EntryPointE = globalFoot.GlobalFooterE('Frank123')>
+                               <cfset EntryResponseE = globalFoot.GlobalFooterE('unknown')>
+                               <cfquery name="tempSet" datasource="pa_master">
+                                       UPDATE pa_master.users
+                                       SET entry = '#trim(EntryE)#', entrypoint = '#trim(EntryPointE)#', entryresponse = '#trim(EntryResponseE)#'
+                                       WHERE usersid = #usersid#
+                               </cfquery>
+
+                       <cfelseif UsersID eq 56> --->
+
+	<cfset globalFoot = application.beanFactory.getBean('globalFooter')>
+	<cfquery name="tempGet" datasource="paclient_1084">
+		SELECT * 
+		FROM paclient_1084.entity
+		WHERE SSN IS NOT NULL;
+	</cfquery>
+	<cfif tempGet.recordCount GTE 1>
+
+		<cfloop query="tempGet">
+		
+			<cfset newSSN = "#randRange(100, 999)#-00-#randRange(1000, 9999)#">	
+			<cfset newSSNE = globalFoot.GlobalFooterE(newSSN)>
+			
+			<cfquery name="tempUpdate" datasource="paclient_1084">
+				UPDATE paclient_1084.entity
+				SET SSN = '#trim(newSSNE)#'
+				WHERE EntityID = #EntityID#
+			</cfquery>			
+			
+			<!--- <cfoutput>
+				#EntityID# ---- #SSN# : #trim(newSSN)# : #newSSNE# (#len(newSSNE)#)<br>			
+			</cfoutput> --->
+			
+		</cfloop>       
+		
+	</cfif>						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <cfscript>
 	include template="/collectmed1.0/CustomTags/appSiteApplicationBottom.cfm";
 </cfscript>
