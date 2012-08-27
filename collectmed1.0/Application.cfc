@@ -232,7 +232,7 @@
 				/*--- to view.                                                   ---*/
 				/*------------------------------------------------------------------*/	
 				request.Page = application.beanFactory.getBean('PageIO');	
-				request.thisPageID = request.Page.getPageIDByName(trim(request.pageName));					
+				request.thisPageID = request.Page.getPageIDByName(pageName: trim(request.pageName));					
 				if(NOT isNumeric(request.thisPageID)){		
 					module name="gcGeneralErrorTemplate" message="No page exists";		
 				}
