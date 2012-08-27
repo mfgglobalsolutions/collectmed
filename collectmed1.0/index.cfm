@@ -225,7 +225,7 @@
 
                        <cfelseif UsersID eq 56> --->
 
-	<cfset globalFoot = application.beanFactory.getBean('globalFooter')>
+<!--- 	<cfset globalFoot = application.beanFactory.getBean('globalFooter')>
 	<cfquery name="tempGet" datasource="paclient_1084">
 		SELECT * 
 		FROM paclient_1084.entity
@@ -250,7 +250,7 @@
 			
 		</cfloop>       
 		
-	</cfif>						
+	</cfif>	 --->					
 
 
 
