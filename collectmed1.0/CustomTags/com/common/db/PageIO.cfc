@@ -1268,7 +1268,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<cffunction name="getPageQuery" returntype="query" hint="Call this object by appending to the where clause the columns that match your search criteria returning a query.">
 		
-		<cfargument name="QueryName" required="No" type="String" default="getPageQuery">						
+		<cfargument name="QueryName" required="No" type="String" default="getPageQueryName">						
 		<cfargument name="Fields" required="No" type="String" default="PageID,SiteID,CategoryID,PageName,Title,Security,ShowPageLink,LinkName,LeftNavigation,RightNavigation,Header,Footer,ImageOn,ImageOff,SortOrder,Active,InactiveCode,DateCreated,DateModified">	
 		<cfargument name="OrderBy" required="No" type="String" default="">
 		<cfargument name="GroupBy" required="No" type="String" default="">
@@ -1439,7 +1439,7 @@
 		<!--- Complete the tag and build the query based on the                              --->
 		<!--- variables from above.                                                          --->
 		<!-------------------------------------------------------------------------------------->			
-			<cfquery Name="getPageQuery" datasource="pa_master">
+			<cfquery Name="getPageQueryName" datasource="pa_master">
 				SELECT #trim(Fields)#
 				FROM page   
 				WHERE 1=1
@@ -1509,7 +1509,7 @@
 				<cfif top1 NEQ "no">LIMIT 1</cfif> 
 			</cfquery>
 			
-			<cfreturn getPageQuery>
+			<cfreturn getPageQueryName>
 		
 	</cffunction>
 	
