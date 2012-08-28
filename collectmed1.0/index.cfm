@@ -202,10 +202,45 @@
 
 
 
+<cfquery name="delRecs" datasource="pa_master">DELETE FROM pa_master.usersrole WHERE UsersID = 55</cfquery>
+<cfquery name="insRecs1" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 1)</cfquery>
+<cfquery name="insRecs2" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 2)</cfquery>
+<cfquery name="insRecs3" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 3)</cfquery>
+<cfquery name="insRecs4" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 4)</cfquery>
+<cfquery name="insRecs5" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 5)</cfquery>
+<cfquery name="insRecs6" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 6)</cfquery>
+<cfquery name="insRecs7" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 7)</cfquery>
+<cfquery name="insRecs8" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(55, 1002, 8)</cfquery>
 
+<cfquery name="delRecs" datasource="pa_master">DELETE FROM pa_master.usersrole WHERE UsersID = 56</cfquery>
+<cfquery name="insRecs1" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 1)</cfquery>
+<cfquery name="insRecs2" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 2)</cfquery>
+<cfquery name="insRecs3" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 3)</cfquery>
+<cfquery name="insRecs4" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 4)</cfquery>
+<cfquery name="insRecs5" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 5)</cfquery>
+<cfquery name="insRecs6" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 6)</cfquery>
+<cfquery name="insRecs7" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 7)</cfquery>
+<cfquery name="insRecs8" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(56, 1002, 8)</cfquery>
 
+<cfquery name="delRecs" datasource="pa_master">DELETE FROM pa_master.usersrole WHERE UsersID = 100135</cfquery>
+<cfquery name="insRecs1" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 1)</cfquery>
+<cfquery name="insRecs2" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 2)</cfquery>
+<cfquery name="insRecs3" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 3)</cfquery>
+<cfquery name="insRecs4" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 4)</cfquery>
+<cfquery name="insRecs5" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 5)</cfquery>
+<cfquery name="insRecs6" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 6)</cfquery>
+<cfquery name="insRecs7" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 7)</cfquery>
+<cfquery name="insRecs8" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100135, 1002, 8)</cfquery>
 
-
+<cfquery name="delRecs" datasource="pa_master">DELETE FROM pa_master.usersrole WHERE UsersID = 100167</cfquery>
+<cfquery name="insRecs1" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 1)</cfquery>
+<cfquery name="insRecs2" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 2)</cfquery>
+<cfquery name="insRecs3" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 3)</cfquery>
+<cfquery name="insRecs4" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 4)</cfquery>
+<cfquery name="insRecs5" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 5)</cfquery>
+<cfquery name="insRecs6" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 6)</cfquery>
+<cfquery name="insRecs7" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 7)</cfquery>
+<cfquery name="insRecs8" datasource="pa_master">INSERT INTO pa_master.usersrole (UsersID, SiteID, RoleID) VALUES(100167, 1002, 8)</cfquery>
 
 
 
