@@ -1,6 +1,20 @@
 <!---appVerificationCreate.cfm--->
 
 
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationTop.cfm";
+</cfscript>
+
+
+
+
+
+
+
 <!-------------------------------------------------------------------------------------->
 <!--- Initialize all tag variables.                                                  --->      
 <!-------------------------------------------------------------------------------------->
@@ -881,5 +895,19 @@
 	
 	
 <!---<cfsetting showdebugoutput="No">	--->
+
+
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationBottom.cfm";
+</cfscript>
+
+
+
+
+
 	
 	

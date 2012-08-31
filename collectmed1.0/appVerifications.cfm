@@ -1,4 +1,17 @@
 
+
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationTop.cfm";
+</cfscript>
+
+	
+	
+
+
 <cfscript>
 	variables.filterVF = structNew();
 	variables.filterVF.UsersID = trim(session.user.getUsersID());
@@ -67,5 +80,17 @@
 	</table>
 	<br><br>
 </cfoutput>
+
+
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationBottom.cfm";
+</cfscript>
+
+
+
 
 
