@@ -348,54 +348,54 @@
 	<!---Start_Custom_Functions--->
 
 		<cffunction name="getColA" returntype="any" access="public" output="false" hint="I run a query and will return col A.">
-			<cfquery name="getColA" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 
+			<cfquery name="getColA" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 
 				SELECT ColA
-				FROM entityks 
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks 
 				Where EntityKSID = 9
 			</cfquery>				
 			<cfreturn getColB.ColA />
 		</cffunction>
 		
 		<cffunction name="getColB" returntype="any" access="public" output="false" hint="I run a query and will return col B.">
-			<cfquery name="getColB" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 
+			<cfquery name="getColB" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 
 				SELECT ColI
-				FROM entityks 
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks 
 				Where EntityKSID = 9
 			</cfquery>				
 			<cfreturn getColB.ColI />
 		</cffunction>
 
 		<cffunction name="getColC" returntype="any" access="public" output="false" hint="I run a query and will return col C.">
-			<cfquery name="getColC" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 	
+			<cfquery name="getColC" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 	
 				SELECT ColL
-				FROM entityks
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks
 				Where EntityKSID = 12
 			</cfquery>
 			<cfreturn getColC.ColL />
 		</cffunction>
 
 		<cffunction name="getColD" returntype="any" access="public" output="false" hint="I run a query and will return col D.">
-			<cfquery name="getColD" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
+			<cfquery name="getColD" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 					
 				SELECT ColE
-				FROM entityks 
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks 
 				Where EntityKSID = 5
 			</cfquery>
 			<cfreturn getColD.ColE />
 		</cffunction>
 
 		<cffunction name="getColE" returntype="any" access="public" output="false" hint="I run a query and will return col E.">
-			<cfquery name="getColE" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 					
+			<cfquery name="getColE" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 					
 				SELECT ColM
-				FROM entityks
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks
 				Where EntityKSID = 14
 			</cfquery>
 			<cfreturn getColE.ColM />
 		</cffunction>
 
 		<cffunction name="getColF" returntype="any" access="public" output="false" hint="I run a query and will return col F.">				
-			<cfquery name="getColF" datasource="#trim(variables.instance.configBean.getDSN().master)#"> 						
+			<cfquery name="getColF" datasource="#trim(variables.instance.configBean.getDSN().client)#"> 						
 				SELECT ColC
-				FROM entityks
+				FROM #trim(variables.instance.configBean.getDSN().master)#.entityks
 				Where EntityKSID = 54
 			</cfquery>	
 			<cfreturn getColF.ColC />

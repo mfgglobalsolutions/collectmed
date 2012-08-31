@@ -487,7 +487,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="EmployerIO" output="No">
+	<cffunction name="InitEmployerIO" access="public" returntype="EmployerIO" output="No">
 		
 		<cfargument name="EmployerID" required="yes" type="numeric">		
 		<cfset var qGetEmployer = "">

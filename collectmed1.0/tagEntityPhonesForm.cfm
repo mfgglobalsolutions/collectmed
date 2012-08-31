@@ -103,7 +103,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the phone object to work with phonees with.                         --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.PhoneObj = CreateObject("component", "PhoneDAO")>	
+	<cfset request.PhoneObj =  application.beanFactory.getBean("PhoneService") />	
 	<cfset Phones = request.PhoneObj.getPhonesByEntityId(ds: trim(request.datasource), clientID: trim(session.clientID), entityID: entityID, Active: 1)>			
 			
 

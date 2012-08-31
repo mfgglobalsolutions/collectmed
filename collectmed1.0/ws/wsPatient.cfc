@@ -495,7 +495,7 @@
 		<cfargument name="Data9" type="numeric" hint="PatientID" required="false" default="0">
 		<cfargument name="Data10" type="string" hint="InsurancePolicyID" required="false" default="">
 		<cfargument name="Data11" type="string" hint="InsuranceCompanyID" required="false" default="">
-	
+<cflog file="testing" text="we are in the wsPatient.">	
 		<cfscript>
 			var ClientID = arguments.Data1;
 			var UserID = arguments.Data2;

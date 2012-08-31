@@ -201,7 +201,7 @@
 									
 		<cftry>			
 			
-			<cfset EntityAddressObj = CreateObject("component", "com.common.db.EntityAddressIO")>
+			<cfset EntityAddressObj = application.beanFactory.getBean("EntityAddressIO")>
 					
 			<cfset tempQuery = EntityAddressObj.getEntityAddressQuery(fields: 'RecordID', EntityID: trim(EntityID), AddressID: trim(AddressID))>
 			

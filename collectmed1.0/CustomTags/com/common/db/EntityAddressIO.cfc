@@ -440,7 +440,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="EntityAddressIO" output="No">
+	<cffunction name="InitEntityAddressIO" access="public" returntype="EntityAddressIO" output="No">
 		
 		<cfargument name="recordID" required="yes" type="numeric">		
 		<cfset var qGetEntityAddress = "">

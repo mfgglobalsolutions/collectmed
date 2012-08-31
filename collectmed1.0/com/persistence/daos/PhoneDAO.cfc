@@ -318,7 +318,109 @@
 	<!---Start_Custom_Functions--->
 
 		
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to get addresses belonging to an entity.          --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="getPhonesByEntityId">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="clientID" required="yes" type="numeric">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="Active" required="no" default="">
+												
+			<cftry>			
+				
+				<cfquery name="getPhones" datasource="#trim(arguments.ds)#">
+					SELECT p.PhoneID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.PhoneID, p.SiteID, p.PhoneTypeID, p.PhoneNumber, p.PhoneExtension, p.Active, p.DateCreated, sli.ItemNameDisplay AS PhoneType, ep.IsDefault
+					FROM entityphone ep INNER JOIN phone p ON ep.PhoneID = p.PhoneID						
+					INNER JOIN pa_master.standardlistitem sli ON p.PhoneTypeID = sli.StandardListItemID 				
+					WHERE ep.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
+					<cfif IsNumeric(Active)>
+						AND ep.Active = <cfqueryparam value="#trim(arguments.Active)#" cfsqltype="CF_SQL_INTEGER" /> 	
+					</cfif>		
+					Order BY ep.IsDefault DESC		
+				</cfquery>
+							
+				<cfreturn getPhones>						
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
+		
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to bind a phone to an entity.                     --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="bindPhoneEntity">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="PhoneID" required="yes" type="numeric">
+			<cfargument name="IsDefault" required="no" type="numeric" default="0">
+								
+			<cftry>			
+				
+				<cfquery name="getEntityPhone" datasource="#trim(arguments.ds)#">
+					SELECT * 
+					FROM entityphone  
+					WHERE EntityID = #trim(arguments.EntityID)# AND PhoneID = #trim(arguments.PhoneID)#					
+				</cfquery>		
+				<cfif getEntityPhone.recordCount LTE 0>
+					<cfquery name="insertEntityPhone" datasource="#trim(arguments.ds)#">
+						INSERT INTO entityphone  (EntityID, PhoneID, IsDefault)
+						VALUES(
+							<cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />, 
+							<cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" />, 
+							<cfqueryparam value="#trim(arguments.IsDefault)#" cfsqltype="CF_SQL_INTEGER" /> 	
+						)					
+					</cfquery>							
+				</cfif>
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>	
+		
+		
+			
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to ARCHIVE an Phone from the db.                  --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="archivePhone">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="PhoneID" required="yes" type="numeric">
+								
+			<cftry>
+											
+				<cfquery name="archiveEntityPhone" datasource="#trim(arguments.ds)#">
+					UPDATE entityphone 
+					SET Active = 0, InactiveCode = 68
+					WHERE PhoneID = <cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" /> 		
+				</cfquery>	
+						
+				<cfquery name="archivePhone" datasource="#trim(arguments.ds)#">
+					UPDATE phone 
+					SET Active = 0, InactiveCode = 68
+					WHERE PhoneID = <cfqueryparam value="#trim(arguments.PhoneID)#" cfsqltype="CF_SQL_INTEGER" /> 	 	
+				</cfquery>
+				
+															
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">										
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
 	
+		
 	<!---End_Custom_Functions--->		
 		
 	

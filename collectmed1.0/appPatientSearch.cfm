@@ -1,6 +1,12 @@
 <!---- appPatientSearch.cfm ---->
 
 
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationTop.cfm";
+</cfscript>
+
+
+
 <!-------------------------------------------------------------------------------------->
 <!--- Initialize all tag variables.                                                  --->      
 <!-------------------------------------------------------------------------------------->
@@ -247,8 +253,8 @@
 		</cfquery>
 				
 				
-		<cfset request.Entity = CreateobJect("component", "com.common.Entity")>
-				
+		<cfset request.Entity = application.beanFactory.getBean("Entity") />
+		<cfset globalFoot = application.beanFactory.getBean('globalFooter')>		
 						
 		<cfoutput>		
 			<form name="#trim(formName)#">
@@ -298,6 +304,8 @@
 												<cfset thisDOBYY = "">	
 											</cfif>
 											
+											<cfset thisSSN = globalFoot.GlobalFooterD(trim(SSN))>
+											
 											<cfoutput>
 												
 												<!---showChange();--->
@@ -306,7 +314,7 @@
 													<td class="siteLabel" nowrap onclick="patientOnclick(#trim(patientID)#);">#trim(PatientID)#</td>
 													<td class="siteLabel" nowrap onclick="patientOnclick(#trim(patientID)#);">#trim(FName)# #LEFT(trim(Mname), 1)# #trim(LName)#</td>		
 													<td class="siteLabel" nowrap onclick="patientOnclick(#trim(patientID)#);"><cfif IsDate(DOB)>#DateFormat(trim(DOB), "MM/DD/YYYY")#</cfif></td>		
-													<td class="siteLabel" nowrap onclick="patientOnclick(#trim(patientID)#);">#trim(SSN)#</td>		
+													<td class="siteLabel" nowrap onclick="patientOnclick(#trim(patientID)#);">#trim(thisSSN)#</td>		
 												</tr>											
 												<tr style="display:none" id="row_#trim(patientID)#" style="cursor: hand;" onmouseover="this.style.backgroundColor='DCE3EB'; toprow_#trim(patientID)#.style.backgroundColor='DCE3EB';" onmouseout="this.style.backgroundColor='#trim(rowColor)#'; toprow_#trim(patientID)#.style.backgroundColor='#trim(rowColor)#';" bgcolor="#trim(rowColor)#">							
 													<td colspan="5" class="siteLabel" nowrap>														
@@ -314,7 +322,7 @@
 															<cfif addressQuery.RecordCount LTE 0><option value="">No address on file</cfif>
 															<cfif addressQuery.RecordCount GTE 1>
 																<cfloop query="addressQuery">
-																	<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" standardlistitemID="#trim(stateID)#" listid="4" active="1" returnvariable="getState">
+																	<cfset getState = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(standardlistitemID: "#trim(stateID)#", listid: "4", active: "1") />																
 																	<option value="#trim(AddressID)#" <cfif IsDefault>SELECTED</cfif>> #trim(AddressLine1)# #trim(AddressLine2)# #trim(city)#, #trim(getState.ItemNameDisplay)# #trim(zipcode)#
 																</cfloop>
 															</cfif>
@@ -346,4 +354,19 @@
 	</cfif>		
 	
 	
+
+
+
+
+
+
+<cfscript>
+	include template="/collectmed1.0/CustomTags/appSiteApplicationBottom.cfm";
+</cfscript>
+
+
+
+
+
+
 

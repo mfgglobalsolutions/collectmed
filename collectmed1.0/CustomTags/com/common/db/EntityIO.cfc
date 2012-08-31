@@ -545,7 +545,7 @@
 			<cfelseif NOT REQUEST.isvarcharDataType(SSN)>
 				<cf_gcGeneralErrorTemplate				
 					message="<strong>SSN</strong> (#SSN#) is not of type <strong>varchar</strong>.">	
-			<cfelseif len(SSN) GT 20>
+			<cfelseif len(SSN) GT 40>
 				<cf_gcGeneralErrorTemplate
 					message="The field <strong>SSN</strong> cannot be greater than 20 character(s).">
 			</cfif>

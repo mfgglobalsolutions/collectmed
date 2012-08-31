@@ -10,6 +10,7 @@
 		this.applicationTimeout = createTimeSpan(0,1,0,0);		
 		this.mappings["/coldspring"] = expandPath("/frameworks/coldspring");	
 		this.mappings["/com"] = expandPath("/collectmed1.0/com");	
+		this.mappings["/components"] = expandPath("/collectmed1.0/components");	
 		this.mappings["/cmComponents"] = expandPath("/collectmed1.0/CustomTags");	
 		this.customtagpaths = expandPath("/collectmed1.0/CustomTags"); 
 		this.defaultdatasource = "pa_master";

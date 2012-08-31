@@ -1,6 +1,6 @@
 
 
-<cfcomponent extends="com.common.db.EmployerIO">		
+<cfcomponent extends="cmComponents.com.common.db.EmployerIO">		
 	
 	
 	<!-------------------------------------------------------------------------------------->
@@ -88,8 +88,7 @@
 				<!--- Create a entity account for this Employer. This entity account will            --->
 				<!--- be used to store the phones addresses and other Employer items.                --->
 				<!-------------------------------------------------------------------------------------->		
-				<cfset request.thisEntity = CreateObject("component","com.common.Entity")>				
-				<cfset request.thisEntity.setSiteID(trim(request.Site.getSiteID()))>
+				<cfset request.thisEntity = application.beanFactory.getBean("Entity") />
 				<cfset request.thisEntity.setObjectTypeID(8)>
 				<cfset EntityID = request.thisEntity.commit()>			
 				
@@ -107,7 +106,7 @@
 				<!-------------------------------------------------------------------------------------->			
 				<cfif AddressLine1 NEQ "" AND AddressLine1 NEQ "NULL">
 					
-					<cfset request.thisAddress = CreateObject("component","com.common.Address")>	
+					<cfset request.thisAddress = application.beanFactory.getBean("old_Address") />	
 					<cfset request.thisAddress.setAddressTypeID(trim(AddressTypeID))>
 					<cfset request.thisAddress.setAddressLine1(trim(AddressLine1))>
 					<cfset request.thisAddress.setAddressLine2(trim(AddressLine2))>
@@ -138,7 +137,7 @@
 						<cfset PhoneExtensionEncrypted = "NULL">
 					</cfif>			
 					
-					<cfset request.thisPhone = CreateObject("component","com.common.Phone")>	
+					<cfset request.thisPhone = application.beanFactory.getBean("old_Phone") />	
 					<cfset request.thisPhone.setPhoneTypeID(trim(PhoneTypeID))>
 					<cfset request.thisPhone.setPhoneNumber(trim(PhoneNumberEncrypted))>
 					<cfif PhoneExtension GT "">

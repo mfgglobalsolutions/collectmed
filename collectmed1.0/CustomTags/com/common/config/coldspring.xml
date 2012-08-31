@@ -1,8 +1,9 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	
-	<bean id="Entity" class="cmComponents.com.common.Entity" singleton="false" />
 	<bean id="Client" class="cmComponents.com.common.Client" singleton="false" />
+	<bean id="Employer" class="cmComponents.com.common.Employer" singleton="false" />
+	<bean id="Entity" class="cmComponents.com.common.Entity" singleton="false" />
 	<bean id="IMChat" class="cmComponents.com.common.IMChat" singleton="false" />
 	<bean id="Intake" class="cmComponents.com.common.Intake" singleton="false" />
 	<bean id="InsuranceCompany_Com" class="cmComponents.com.common.InsuranceCompany" singleton="false" />
@@ -28,6 +29,7 @@
 	<bean id="VerificationPIC" class="cmComponents.com.common.VerificationPIC" singleton="false" />
 	
 	<bean id="old_Address" class="cmComponents.com.common.Address" singleton="false" />
+	<bean id="old_Phone" class="cmComponents.com.common.Phone" singleton="false" />
 	<bean id="old_xmlFunctions" class="cmComponents.com.common.xmlFunctions" />
 	<bean id="old_toXML" class="cmComponents.com.common.toXML" />
 

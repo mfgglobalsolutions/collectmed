@@ -175,10 +175,12 @@
 				var addedARRAY_TODATE = new Array();
 				
 				function showPageError(hide, scroll, msg){
+					alert(hide);
+					alert(scroll);
 					if(!hide){
 						$("##pageError").html(msg);
 						$('##pageError').show(400);
-						if(scroll){
+						if(scroll){alert('inside scroll to by');
 							scrollToByID('pageError');
 						};
 					}else{

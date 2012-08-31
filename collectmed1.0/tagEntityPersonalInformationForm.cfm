@@ -110,7 +110,8 @@
 								SSN:&nbsp;
 						</td>
 						    <td id="ssnDisplay" class="SiteLabelMedium" style="display:block" colspan="5">
-								<input class="SiteTextBox" type="Text" id="entitySSN_ID" name="entitySSN" value="#REQUEST.formatSSN(trim(request.Entity.getSSN()))#">						
+							    <cfset SSND = application.beanFactory.getBean("globalFooter").GlobalFooterD(request.Entity.getSSN()) />
+								<input class="SiteTextBox" type="Text" id="entitySSN_ID" name="entitySSN" value="#REQUEST.formatSSN(trim(SSND))#">						
 						</td>
 							 
 					</tr>	
@@ -176,7 +177,7 @@
 					
 					
 					<!--- Marital Status --->
-					<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" fields="StandardListItemID, ItemNameDisplay" listid="25" active="1" returnvariable="getAllMaritalStatuses">
+					<cfset getAllMaritalStatuses = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(fields: "StandardListItemID, ItemNameDisplay", listid: "25", active: "1") />
 					<tr>
 						    <td class="SiteLabelMedium" align="right" valign="top">
 								Marital&nbsp;Status:&nbsp;
@@ -244,8 +245,8 @@
 					
 					<cfif IsNumeric(request.Entity.getEmployerID())>
 					
-						<cfset request.Employer = CreateObject("component", "com.common.Employer").init(request.Entity.getEmployerID())>		
-						<cfset request.employerEntity = CreateObject("component", "com.common.Entity").init(request.Employer.getEntityID())>		
+						<cfset request.Employer = application.beanFactory.getBean("Employer").initEmployerIO(request.Entity.getEmployerID())>		
+						<cfset request.employerEntity = application.beanFactory.getBean("Entity").initEntityIO(request.Employer.getEntityID()) />		
 						<cfset employerName = "#request.Employer.getEmployerName()#">	
 						
 						<cfset request.employerAddresses = request.employerEntity.getEntityAddresses(clientID: trim(session.clientID), entityID: request.Employer.getEntityID(), Active: 1)>				
@@ -312,7 +313,8 @@
 								<tr>
 										<td class="SiteLabelMedium">State&nbsp;</td>
 									<td>
-										<cfinvoke component="com.common.db.StandardListItemIO" method="getStandardListItemQuery" listid="4" active="1" returnvariable="getAllStates"><select class="SiteSelectBox" name="employerAddressStateID"><option value=""><cfloop query="getAllStates"><option value="#StandardListItemID#" <cfif StandardListItemID EQ employerAddressStateID>SELECTED</cfif>>#ItemNameDisplay#</cfloop></select>
+										<cfset getAllStates = application.beanFactory.getBean("StandardListItemIO").getStandardListItemQuery(listid: "4", active:"1") />					
+										<select class="SiteSelectBox" name="employerAddressStateID"><option value=""><cfloop query="getAllStates"><option value="#StandardListItemID#" <cfif StandardListItemID EQ employerAddressStateID>SELECTED</cfif>>#ItemNameDisplay#</cfloop></select>
 									</td>
 								</tr>
 								<tr>

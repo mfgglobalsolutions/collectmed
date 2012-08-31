@@ -61,10 +61,67 @@
 	<!---Start_Custom_Functions--->
 
 		
+		<cffunction name="getPhonesByEntityId">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="clientID" required="yes" type="numeric">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="Active" required="no" default="">
+												
+			<cftry>						
+											
+				<cfreturn variables.instance.systemDAO.getPhoneDAO().getPhonesByEntityId(argumentCollection=ARGUMENTS) />				
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
+		
+				
+		<cffunction name="bindPhoneEntity">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="PhoneID" required="yes" type="numeric">
+			<cfargument name="IsDefault" required="no" type="numeric" default="0">
+								
+			<cftry>			
+				
+				<cfreturn variables.instance.systemDAO.getPhoneDAO().bindPhoneEntity(argumentCollection=ARGUMENTS) />		
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>	
+
+	
+		<cffunction name="archivePhone">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="PhoneID" required="yes" type="numeric">
+								
+			<cftry>
+				
+				<cfreturn variables.instance.systemDAO.getPhoneDAO().archivePhone(argumentCollection=ARGUMENTS) />									
+																			
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">										
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
 	
 	<!---End_Custom_Functions--->		
-	
 		
+			
+	
 	
 </cfcomponent>
 

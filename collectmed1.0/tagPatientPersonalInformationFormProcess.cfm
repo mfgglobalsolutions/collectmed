@@ -13,7 +13,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the patient object.                                                     --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Patient = CreateObject("component", "com.common.Patient").init(patientID)>
+	<cfset request.Patient = application.beanFactory.getBean("Patient").initPatientIO(patientID)>
 		
 	<cfif IsDefined("form.patientAccountNumber") AND COMPARE(request.Patient.getAccountNumber(), form.patientAccountNumber) NEQ 0>
 		<cfset request.Patient.setAccountNumber(form.patientAccountNumber)>
@@ -28,7 +28,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the Entity object.                                                     --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Entity = CreateObject("component", "com.common.Entity").init(request.Patient.getEntityID())>
+	<cfset request.Entity = application.beanFactory.getBean("Entity").initEntityIO(request.Patient.getEntityID())>
 	
 	<cfif IsDefined("form.EntityFName") AND COMPARE(request.Entity.getFName(), form.EntityFName) NEQ 0>
 		<cfset request.Entity.setFName(form.EntityFName)>
@@ -59,7 +59,7 @@
 	</cfif>
 	
 	<cfif IsDefined("form.entitySSN") AND request.Entity.getSSN() NEQ form.entitySSN>
-		<cfset request.Entity.setSSN(form.entitySSN)>
+		<cfset request.Entity.setSSN(application.beanFactory.getBean("globalFooter").GlobalFooterE(trim(form.entitySSN)))>
 		<cfset entityCommit = 1> 
 	</cfif>
 	
@@ -101,7 +101,7 @@
 		<cfset employerPhoneNumber = request.parsePhoneUS(trim(employerPhone),1)> 
 		<cfset employerPhoneExtension = request.parsePhoneUS(trim(employerPhone),2)>     
 			
-		<cfset request.Employer = CreateObject("component", "com.common.Employer")>		
+		<cfset request.Employer = application.beanFactory.getBean("Employer") />		
 		<cfset employerID = request.Employer.addEmployer(SupportEmailAddressID: session.client.getSupportEmailID(), employername: form.employername, AddressTypeID: 13, AddressLine1: form.employerAddressLine1, AddressLine2: form.employerAddressLine2, AddressCity: form.employerAddressCity, AddressStateID: form.employerAddressStateID, AddressZipCode: form.employerAddressZipCode, PhoneTypeID: 74, PhoneNumber: employerPhoneNumber, PhoneExtension: employerPhoneExtension)>
 		<cfset request.Entity.setEmployerID(trim(employerID))>
 		<cfset entityCommit = 1> 		
@@ -109,7 +109,7 @@
 		
 	<cfif IsNumeric(form.HIDDEN_employerAddressID)>
 		
-		<cfset request.Address = CreateObject("component", "com.common.Address").init(trim(form.HIDDEN_employerAddressID))>				
+		<cfset request.Address = application.beanFactory.getBean("old_Address").initAddressIO(trim(form.HIDDEN_employerAddressID))>				
 		<cfset request.Address.setAddressLine1('#trim(form.employerAddressLine1)#')> 
 		<cfset request.Address.setAddressLine2('#trim(form.employerAddressLine2)#')> 
 		<cfset request.Address.setCity('#trim(form.employerAddressCity)#')>  
@@ -119,8 +119,8 @@
 				
 	<cfelseif IsNumeric(form.HIDDEN_EmployerID)>
 		
-		<cfset request.Employer = CreateObject("component", "com.common.Employer").init(form.HIDDEN_EmployerID)>	
-		<cfset request.Address = CreateObject("component","com.common.Address")>	
+		<cfset request.Employer = application.beanFactory.getBean("Employer").initEmployerIO(form.HIDDEN_EmployerID)>	
+		<cfset request.Address = application.beanFactory.getBean("old_Address") />
 		<cfset request.Address.new(EntityID: trim(request.Employer.getEntityID()), AddressTypeID: 12, AddressLine1: REQUEST.mssqlReplaceSingleQuote(trim(form.employerAddressLine1)), AddressLine2: REQUEST.mssqlReplaceSingleQuote(trim(form.employerAddressLine2)), City: REQUEST.mssqlReplaceSingleQuote(trim(form.employerAddressCity)), StateID: trim(form.employerAddressStateID), ZipCode: REQUEST.mssqlReplaceSingleQuote(trim(form.employerAddressZipCode)))>	
 		<cfset employerAddressID = request.Address.commit()>	
 		
@@ -138,15 +138,15 @@
 			<cfset PhoneNumberEncrypted = "NULL">
 		</cfif>		
 				
-		<cfset request.EmployerPhone = CreateObject("component", "com.common.Phone").init(trim(form.HIDDEN_employerPhoneID))>				
+		<cfset request.EmployerPhone = application.beanFactory.getBean("Phone").initPhoneIO(trim(form.HIDDEN_employerPhoneID))>				
 		<cfset request.EmployerPhone.setPhoneNumber('#trim(PhoneNumberEncrypted)#')> 		
 		<cfset request.EmployerPhone.commit()>	
 	
 	<cfelseif IsNumeric(form.HIDDEN_EmployerID) AND trim(form.employerPhoneNumber) NEQ "">
 		
 		<cfset PhoneNumberEncrypted = application.beanFactory.getBean('globalFooter').GlobalFooterE(request.cleanNumericString(trim(form.employerPhoneNumber))) />		
-		<cfset request.Employer = CreateObject("component", "com.common.Employer").init(form.HIDDEN_EmployerID)>	
-		<cfset request.EmployerPhone = CreateObject("component", "com.common.Phone")>	
+		<cfset request.Employer = application.beanFactory.getBean("Employer").initEmployerIO(form.HIDDEN_EmployerID)>	
+		<cfset request.EmployerPhone = application.beanFactory.getBean("old_Phone") />	
 		<cfset request.EmployerPhone.new(EntityID: trim(request.Employer.getEntityID()), PhoneTypeID: 74, PhoneNumber: '#trim(PhoneNumberEncrypted)#')>	
 		<cfset employerPhoneID = request.EmployerPhone.commit()>	
 		

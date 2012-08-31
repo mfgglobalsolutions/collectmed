@@ -487,7 +487,7 @@
 	<!-------------------------------------------------------------------------------------->
 	<!--- Use this function initialize a record into an object.                          --->
 	<!-------------------------------------------------------------------------------------->	
-	<cffunction name="Init" access="public" returntype="PhoneIO" output="No">
+	<cffunction name="InitPhoneIO" access="public" returntype="PhoneIO" output="No">
 		
 		<cfargument name="PhoneID" required="yes" type="numeric">		
 		<cfset var qGetPhone = "">

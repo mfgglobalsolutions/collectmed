@@ -102,7 +102,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the address object to work with addresses with.                         --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.AddressObj = CreateObject("component", "AddressDAO")>	
+	<cfset request.AddressObj = application.beanFactory.getBean("AddressService") />	
 	<cfset Addresses = request.AddressObj.getAddressesByEntityId(ds: trim(request.datasource), clientID: trim(session.clientID), entityID: entityID, Active: 1)>			
 			
 

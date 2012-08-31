@@ -60,7 +60,61 @@
 	
 	<!---Start_Custom_Functions--->
 
+		<cffunction name="getAddressesByEntityId">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="clientID" required="yes" type="numeric">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="Active" required="no" default="">
+												
+			<cftry>			
+							
+				<cfreturn variables.instance.systemDAO.getAddressDAO().getAddressesByEntityId(argumentCollection=ARGUMENTS) />										
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
 		
+		
+		<cffunction name="bindAddressEntity">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="AddressID" required="yes" type="numeric">
+								
+			<cftry>			
+				
+				<cfreturn variables.instance.systemDAO.getAddressDAO().bindAddressEntity(argumentCollection=ARGUMENTS) />
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>	
+		
+		
+		<cffunction name="archiveAddress">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="AddressID" required="yes" type="numeric">
+								
+			<cftry>			
+				
+				<cfreturn variables.instance.systemDAO.getAddressDAO().archiveAddress(argumentCollection=ARGUMENTS) />						
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>		
 	
 	<!---End_Custom_Functions--->		
 	

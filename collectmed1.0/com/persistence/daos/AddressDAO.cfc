@@ -392,7 +392,105 @@
 	
 	<!---Start_Custom_Functions--->
 
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to get addresses belonging to an entity.          --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="getAddressesByEntityId">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="clientID" required="yes" type="numeric">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="Active" required="no" default="">
+												
+			<cftry>			
+				
+				<cfquery name="getAddresses" datasource="#trim(arguments.ds)#">
+					SELECT a.AddressID, a.SiteID, a.AddressTypeID, a.AddressLine1, a.AddressLine2, a.City, a.StateID, a.ZipCode, a.CountryID, a.Active, a.DateCreated, a.Attention, 
+					sli2.ItemNameDisplay AS AddressType, sli.ItemNameDisplay AS StateFull, sli.ItemDescription AS StateAbbr,
+					ea.IsDefault
+					FROM entityaddress ea INNER JOIN address a ON ea.AddressID = a.AddressID
+					INNER JOIN pa_master.standardlistitem sli ON a.stateID = sli.StandardListItemID		
+					INNER JOIN pa_master.standardlistitem sli2 ON a.AddressTypeID = sli2.StandardListItemID 				
+					WHERE ea.EntityID = <cfqueryparam value="#trim(arguments.EntityID)#" cfsqltype="CF_SQL_INTEGER" />  				
+					<cfif IsNumeric(Active)>
+						AND ea.Active = <cfqueryparam value="#trim(arguments.Active)#" cfsqltype="CF_SQL_INTEGER" /> 	
+					</cfif>		
+					Order BY ea.IsDefault DESC		
+				</cfquery>
+							
+				<cfreturn getAddresses>						
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>
 		
+		
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to bind an Address to an entity.                  --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="bindAddressEntity">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="EntityID" required="yes" type="numeric">
+			<cfargument name="AddressID" required="yes" type="numeric">
+								
+			<cftry>			
+				
+				<cfquery name="getEntityAddress" datasource="#trim(arguments.ds)#">
+					SELECT * 
+					FROM entityaddress  
+					WHERE EntityID = #trim(EntityID)# AND AddressID = #trim(AddressID)#					
+				</cfquery>		
+				<cfif getEntityAddress.recordCount LTE 0>
+					<cfquery name="insertEntityAddress" datasource="#trim(arguments.ds)#">
+						INSERT INTO entityaddress  (EntityID, AddressID)
+						VALUES(#trim(EntityID)#, #trim(AddressID)#)					
+					</cfquery>							
+				</cfif>
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>	
+		
+		
+		<!-------------------------------------------------------------------------------------->
+		<!--- This function will be called to ARCHIVE an address from the db.                --->
+		<!-------------------------------------------------------------------------------------->		
+		<cffunction name="archiveAddress">		
+			
+			<cfargument name="ds" required="yes" type="string">
+			<cfargument name="AddressID" required="yes" type="numeric">
+								
+			<cftry>			
+							
+				<cfquery name="archiveEntityAddress" datasource="#trim(arguments.ds)#">
+					UPDATE entityaddress 
+					SET Active = 0, InactiveCode = 68
+					WHERE AddressID = #trim(arguments.AddressID)#	
+				</cfquery>	
+						
+				<cfquery name="archiveAddress" datasource="#trim(arguments.ds)#">
+					UPDATE address 
+					SET Active = 0, InactiveCode = 68
+					WHERE AddressID = #trim(arguments.AddressID)#	
+				</cfquery>
+									
+						
+				<cfcatch type="Any">				
+					<cfthrow message="Caught Exception: #CFCATCH.TYPE# #cfcatch.message# #cfcatch.detail#">						
+				</cfcatch>
+				
+			</cftry>
+			
+		</cffunction>		
 	
 	<!---End_Custom_Functions--->		
 		

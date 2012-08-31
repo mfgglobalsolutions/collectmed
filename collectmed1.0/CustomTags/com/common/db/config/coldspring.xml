@@ -7,7 +7,8 @@
 	<bean id="old_FileProcessIO" class="cmComponents.com.common.db.FileProcessIO" singelton="false" />
 	<bean id="PatientInsuranceCompanyIO" class="cmComponents.com.common.db.PatientInsuranceCompanyIO" singelton="false" />	
 	<bean id="TaskIO" class="cmComponents.com.common.db.TaskIO" singelton="false" />		
-	<bean id="EntityIO" class="cmComponents.com.common.db.EntityIO" singelton="false" />		
+	<bean id="EntityIO" class="cmComponents.com.common.db.EntityIO" singelton="false" />	
+	<bean id="EntityAddressIO" class="cmComponents.com.common.db.EntityAddressIO" singelton="false" />		
 	<bean id="PageIO" class="cmComponents.com.common.db.PageIO" singelton="false" />
 	<bean id="PageRoleIO" class="cmComponents.com.common.db.PageRoleIO" singelton="false" />
 	<bean id="EmailAddressIO" class="cmComponents.com.common.db.EmailAddressIO" singelton="false" />

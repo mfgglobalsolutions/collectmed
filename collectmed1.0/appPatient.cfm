@@ -72,14 +72,14 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Create the patient object.                                                     --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.patient = CreateObject("component", "com.common.Patient").init(patientID)>
+	<cfset request.patient = application.beanFactory.getBean("Patient").initPatientIO(patientID)>
 	
 	
 	
 <!-------------------------------------------------------------------------------------->
 <!--- Create the Entity object based on the patientID sent in.                       --->
 <!-------------------------------------------------------------------------------------->
-	<cfset request.Entity = CreateObject("component", "com.common.Entity").init(trim(request.Patient.getEntityID()))>	
+	<cfset request.Entity = application.beanFactory.getBean("Entity").initEntityIO(trim(request.Patient.getEntityID()))>	
 	
 		
 		

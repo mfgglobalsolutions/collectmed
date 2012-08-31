@@ -1,7 +1,7 @@
 
 
 
-<cfcomponent extends="com.common.db.PhoneIO">		
+<cfcomponent extends="cmComponents.com.common.db.PhoneIO">		
 	
 	<!-------------------------------------------------------------------------------------->
 	<!--- This function will be called to get a phone by phoneID.                        --->
