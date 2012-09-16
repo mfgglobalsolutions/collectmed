@@ -261,7 +261,7 @@
 							  	doc.loadXML(data);
 							}				
 							var x=doc.documentElement;			
-							alert(x);
+							
 							createPatientResultTable();
 													
 							$(x).find('PATIENT').each(function(){								
