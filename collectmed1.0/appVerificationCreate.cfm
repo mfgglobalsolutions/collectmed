@@ -189,8 +189,8 @@
 				var addedARRAY_TODATE = new Array();
 				
 				function showPageError(hide, scroll, msg){
-					alert(hide);
-					alert(scroll);
+					//alert(hide);
+					//alert(scroll);
 					if(!hide){
 						$("##pageError").html(msg);
 						$('##pageError').show(400);
@@ -230,13 +230,14 @@
 					if($("##patientID").val() != ''){
 						patientID = $("##patientID").val();
 					}
-					
+										
 					wsSearchPatients(#trim(session.ClientID)#, #trim(session.User.getUsersID())#, $("##FName").val(), $("##LName").val(), $("##SSN").val(), patientID, $("##InsurancePolicyID").val(), $("##insuranceCompanyID").val());
 																						
 				};
 
 				function wsSearchPatients(data1, data2, data3, data4, data5, data9, data10, data11){							
-					showPageError(true, false, '');
+					//showPageError(true, false, '');
+				
 					$.get("#trim(request.urlReconstructed)#/ws/wsPatient.cfc", 
 						{ 
 							method: "wsSearchPatientsPlainXML",
@@ -260,7 +261,7 @@
 							  	doc.loadXML(data);
 							}				
 							var x=doc.documentElement;			
-							
+							alert(x);
 							createPatientResultTable();
 													
 							$(x).find('PATIENT').each(function(){								

@@ -495,7 +495,7 @@
 		<cfargument name="Data9" type="numeric" hint="PatientID" required="false" default="0">
 		<cfargument name="Data10" type="string" hint="InsurancePolicyID" required="false" default="">
 		<cfargument name="Data11" type="string" hint="InsuranceCompanyID" required="false" default="">
-<cflog file="testing" text="we are in the wsPatient.">	
+
 		<cfscript>
 			var ClientID = arguments.Data1;
 			var UserID = arguments.Data2;
@@ -634,7 +634,7 @@
 					FROM patient p
 					INNER JOIN entity e ON p.EntityID = e.EntityID
 					<cfif isNumeric(InsuranceCompanyID)>
-						LEFT JOIN patientInsuranceCompany pic ON pic.PatientID = p.PatientID AND pic.InsuranceCompanyID = #trim(InsuranceCompanyID)#
+						LEFT JOIN patientinsurancecompany pic ON pic.PatientID = p.PatientID AND pic.InsuranceCompanyID = #trim(InsuranceCompanyID)#
 					</cfif>				
 					WHERE 1 =1 
 					<cfif LName NEQ "">
@@ -660,14 +660,14 @@
 					</cfif>											
 				</cfoutput>			
 			</cfsavecontent>	
-			
+		
 			<!-------------------------------------------------------------------------------------->
 			<!--- Run the query that was just built.                                             --->
 			<!-------------------------------------------------------------------------------------->			
 			<cfquery name="temp" datasource="PAClient_#trim(ClientID)#">
 				#PreserveSingleQuotes(sqlStatement)#
 			</cfquery>
-			
+		
 			<cfif NOT IsQuery(temp)>
 				<cfset temp = querynew("patientID")>
 			</cfif>
