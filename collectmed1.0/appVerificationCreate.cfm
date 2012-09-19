@@ -252,8 +252,7 @@
 							Data11: escape(data11), 							
 							rand: escape(randNum_JS()) 
 						},
-					   	function(data){		
-							
+					   	function(data){									
 							//this needs to stay so that the result will be converted to usable XML  **NEED TO FIND OUT WHY
 							if (window.ActiveXObject){
 								var doc=new ActiveXObject("Microsoft.XMLDOM");

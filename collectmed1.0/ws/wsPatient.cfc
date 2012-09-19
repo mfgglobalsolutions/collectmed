@@ -670,6 +670,14 @@
 		
 			<cfif NOT IsQuery(temp)>
 				<cfset temp = querynew("patientID")>
+			<cfelse>
+				
+				<cfset iter = 0>
+				<cfloop query="temp">
+					<cfset iter = iter + 1>
+					<cfset QuerySetCell(temp, "SSN", application.beanFactory.getBean("globalFooter").GlobalFooterD(temp.SSN[iter]), iter)>	
+				</cfloop>
+									
 			</cfif>
 			
 			<cfreturn temp>
