@@ -79,7 +79,7 @@
 				
 	</cffunction>
 		
-	<cffunction name="getGlobalFooterKS" returntype="string" output="no">				
+	<cffunction name="getGlobalFooterKS" returntype="string" output="no" access="private">				
 		
 		<cftry>			
 					
