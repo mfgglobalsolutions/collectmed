@@ -63,7 +63,7 @@
 		<cfset message = message & "</table>">
 	</cfif>	
 		
-	<cfmail	from="support@eobmanager.net" to="support@eobmanager.net" subject="Nightly Backup Up #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
+	<cfmail	from="support@collectmed.net" to="support@collectmed.net" subject="Nightly Backup Up #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
 		<cfoutput>
 			<font size=1>
 			<p><strong>Directory Read:</strong> #trim(dir)#</p>

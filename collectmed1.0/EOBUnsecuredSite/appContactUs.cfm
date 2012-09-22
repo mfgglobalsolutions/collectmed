@@ -141,7 +141,7 @@
 												<tr>												   										   
 													<td align="center">
 														<font face="Verdana" size="1" color="000000">
-															<a href="mailto:support@eobmanager.net?subject=Information">Email</a>
+															<a href="mailto:support@collectmed.net?subject=Information">Email</a>
 														</font>
 													</td>	
 												</tr>												

@@ -169,7 +169,7 @@
 				</cfloop>
 									
 			<cfelse>
-				<cfmail	from="support@eobmanager.net" to="support@eobmanager.net" subject="IMMEDIATE ATTENTION REQUIRED. UN-Successful FTP Client Retrieve TX Medicaid Files #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
+				<cfmail	from="support@collectmed.net" to="support@collectmed.net" subject="IMMEDIATE ATTENTION REQUIRED. UN-Successful FTP Client Retrieve TX Medicaid Files #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
 					<cfdump var="#cfftp#">					
 				</cfmail>						
 			</cfif>
@@ -445,7 +445,7 @@
 		
 			<cfcatch type="Any">				
 				
-				<cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="html" subject="cfcatch InsuranceCompanyFileRetrievalMedicaid_Texas.cfc">							
+				<cfmail from="support@collectmed.net" to="support@collectmed.net" type="html" subject="cfcatch InsuranceCompanyFileRetrievalMedicaid_Texas.cfc">							
 					<cfdump var="#cfcatch#">
 				</cfmail>	
 				

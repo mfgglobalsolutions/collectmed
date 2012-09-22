@@ -840,12 +840,12 @@ restartGatewayInstance --->
  
 <!--- Get the debugging service from the service factory. --->
 <cfset objDebugging = objFactory.GetDebuggingService() />
- <cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="html" subject="objDebugging.GetDebugger().hashCode() gateway">
+ <cfmail from="support@collectmed.net" to="support@collectmed.net" type="html" subject="objDebugging.GetDebugger().hashCode() gateway">
 	<cfdump var="#objDebugging.GetDebugger().hashCode()#" />
 </cfmail>   
 <!---	Get the events table. This includes all events	that have taken place, not just template executions.	This is returned as a query.--->
 <cfset qEvents = objDebugging.GetDebugger().GetData() />
- <cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="html" subject="qEvents gateway">
+ <cfmail from="support@collectmed.net" to="support@collectmed.net" type="html" subject="qEvents gateway">
 	<cfdump var="#qEvents#" />
 </cfmail>  
 <!---	Now that we have all the events in query format, do a	query of queries to get only events that were template	executions event.--->
@@ -857,7 +857,7 @@ restartGatewayInstance --->
 </cfquery>
 
 
-<cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="html" subject="when cfc">
+<cfmail from="support@collectmed.net" to="support@collectmed.net" type="html" subject="when cfc">
 	<cfdump var="#qTemplates#" />
 </cfmail>
 

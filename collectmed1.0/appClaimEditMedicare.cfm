@@ -195,7 +195,7 @@
 		
 		<cf_gcGatewayLogger datasource="#trim(request.datasource)#" code="115" logtext="#trim(message)#<br>#trim(adminNote)#">				
 				
-		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net" 
+		<cf_gcSendEmail	from="support@collectmed.net" to="support@collectmed.net" 
 			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to view claim not belonging to Org." 
 			message="<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong>#trim(adminNote)#</p>">	
 		

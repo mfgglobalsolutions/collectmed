@@ -1174,7 +1174,7 @@
 			code="115"
 			logtext="<p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p> #PreserveSingleQuotes(sqlStatement)#">
 
-		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net"
+		<cf_gcSendEmail	from="support@collectmed.net" to="support@collectmed.net"
 			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to insert/UPDATE quote failed."
 			message="<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p></p>">
 

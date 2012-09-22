@@ -81,7 +81,7 @@
 					<cfif getPatient.RecordCount GTE 1 AND trim(getPatient.PolicyHoldersDOB) EQ trim(getPatient.DOB)>
 						<cfset thisPatientID = "#getPatient.PatientID[1]#">
 					<cfelseif getPatient.RecordCount GTE 1 AND (NOT IsDate(trim(getPatient.PolicyHoldersDOB)) OR NOT IsDate(trim(getPatient.DOB)))>	
-						<cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="HTML" subject="NOT IS DATE DOB #trim(COLUMN_4)#">
+						<cfmail from="support@collectmed.net" to="support@collectmed.net" type="HTML" subject="NOT IS DATE DOB #trim(COLUMN_4)#">
 							<cfdump var="#getPatient#">
 						</cfmail>					
 					<cfelseif getPatient.RecordCount GTE 1 AND trim(getPatient.PolicyHoldersDOB) NEQ trim(getPatient.DOB)>									
@@ -96,7 +96,7 @@
 						<cfif picDay neq entDay><cfset DOBCount = DOBCount + 1></cfif>
 						<cfif picYear neq entYear><cfset DOBCount = DOBCount + 1></cfif>
 						<cfif DOBCount gte 2>
-							<cfmail from="support@eobmanager.net" to="support@eobmanager.net" type="HTML" subject="dob3 #trim(COLUMN_4)#">
+							<cfmail from="support@collectmed.net" to="support@collectmed.net" type="HTML" subject="dob3 #trim(COLUMN_4)#">
 								<cfdump var="#getPatient#">
 							</cfmail>	
 						<cfelse>
@@ -640,7 +640,7 @@ Bryan 12  	FRANKLIN  		Elbrich  	[CITY]  		[MCD]  			ss blue sheid?  false  		[e
 
 
 
-<!------- support@eobmanager.net:eobmanagernet@smtpout.secureserver.net --->
+<!------- support@collectmed.net:eobmanagernet@smtpout.secureserver.net --->
 
 <!--- <cfmail to="4692298834@fax.local.net" server="192.168.0.100" port="25" subject="Test send fax" from="gcruz@eobmanager.net" type="text" mimeattach="C:\EOBManager\paFMS\1084\temp\QuotePrintVariable_1084_052709045319_1397.pdf">
 	This is a test.

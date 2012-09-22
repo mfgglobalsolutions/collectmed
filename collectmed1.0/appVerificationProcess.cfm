@@ -107,24 +107,34 @@
 	<!--- Save the XML created in a Verification XML File.                               --->
 	<!-------------------------------------------------------------------------------------->
 	<cfset variables.finalFileName = "#session.Client.getClientID()#3020110000001#trim(variables.fileDateTimeStamp)#.xml">
-	<cffile action="write" file="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(variables.finalFileName)#" output="#variables.fileContents#" addnewline="no">	
+	
+	<cffile action="write" file="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(variables.finalFileName)#" output="#variables.fileContents#" addnewline="no">	
+<cflog file="testing" text="in line 1TWELVE">	
+<cflog file="testing" text="113 #trim(session.ClientID)# ">	
+<cflog file="testing" text="in line 114 #trim(request.mfgfmsDirectoryPath)#">	
+<cflog file="testing" text="in line 115 #application.forwardBackslash##trim(variables.finalFileName)# ">	
+	
+<cflog file="testing" text="in line 117 #trim(session.User.getUsersID())#">	
+<cflog file="testing" text="in line 118 #request.Site.getSupportEmailAddressID()#">			
+			
+				
+				
 	<cf_gcEOBFileUpload 
 		fileType="301"
 		clientID="#trim(session.ClientID)#" 	
-		filePath="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(variables.finalFileName)#" 
-		siteID="#request.Site.getSiteID()#"
+		filePath="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(variables.finalFileName)#" 
 		usersID="#trim(session.User.getUsersID())#"
 		foldersToSkip="temp"
 		movefile="true"
 		SupportEmailAddressID="#request.Site.getSupportEmailAddressID()#">
-	
+<cflog file="testing" text="in line 121">		
 	<cfset variables.xmlFileID = trim(newFileID)>
 		
 	<cfcatch type="Any">
 		
 		<cfset message = "There was an issue processing the verifications. You can try your verification again or contact an administraator and reference id: #variables.pageUUID#">
 
-		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net"
+		<cf_gcSendEmail	from="gcruz@mfgglobalsolutions.com" to="support@collectmed.net"
 			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to create a verification file. pageUUID: #variables.pageUUID#"
 			message="<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p><p>issue happened with: #form.verificatinPatientXML#</p></p>">
 
@@ -191,12 +201,12 @@
 	<!--- Save the file to a temp directory.                                             --->
 	<!-------------------------------------------------------------------------------------->
 	<cfset variables.finalFileName = "#session.Client.getClientID()#3020110000002#trim(variables.fileDateTimeStamp)#.txt">
-	<cffile action="write" file="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(variables.finalFileName)#" output="#variables.strRequest270X12#" addnewline="no">	
+	<cffile action="write" file="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(variables.finalFileName)#" output="#variables.strRequest270X12#" addnewline="no">	
 	<cf_gcEOBFileUpload 
 		fileType="302"
 		clientID="#trim(session.ClientID)#"
 		checkFilefor="ST*270*"
-		filePath="#trim(request.fmsPath)#\#trim(request.tempDocsFolder)#\#trim(variables.finalFileName)#" 
+		filePath="#trim(request.mfgfmsDirectoryPath)##application.forwardBackslash##trim(variables.finalFileName)#" 
 		siteID="#request.Site.getSiteID()#"
 		usersID="#trim(session.User.getUsersID())#"
 		foldersToSkip="temp"
@@ -263,7 +273,7 @@
 		
 		<cfset message = "There was an issue processing the verifications. Please contact an administraator and reference id: #variables.pageUUID#">
 
-		<cf_gcSendEmail	from="support@eobmanager.net" to="support@eobmanager.net"
+		<cf_gcSendEmail	from="support@collectmed.net" to="support@collectmed.net"
 			subject="IMMEDIATE ATTENTION REQUIRED. User attempted to create a verification file. pageUUID: #variables.pageUUID#"
 			message="<p><strong>User was sent:</strong> <br>#trim(message)#</p><p><strong>Admin Note:</strong><p>Caught an exception, type = #CFCATCH.TYPE#</p><p>#cfcatch.message# #cfcatch.detail#</p><p>User tried creating a verification xml file in database (ID: #variables.xmlFileID#)</p></p>">
 

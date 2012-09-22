@@ -163,7 +163,7 @@
 <!-------------------------------------------------------------------------------------->			
 	<cfif trim(to) EQ "phillip@eobmanager.net">
 		<cfset bccReceipient = "gcruz@eobmanager.net">
-		<cfset from = "support@eobmanager.net">
+		<cfset from = "support@collectmed.net">
 	</cfif>
 	
 	<cfif FindNoCase("test", trim(to))>	

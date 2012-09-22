@@ -66,7 +66,7 @@
 <!-------------------------------------------------------------------------------------->
 <!--- Email the administrator that this run was successful.                          --->
 <!-------------------------------------------------------------------------------------->		
-	<cfmail	from="support@eobmanager.net" to="support@eobmanager.net" subject="Nightly Bactch Work #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
+	<cfmail	from="support@collectmed.net" to="support@collectmed.net" subject="Nightly Bactch Work #DayOfWeekAsString(DayOfweek(NOW()))# #DateFormat(NOW(), 'mm/dd/yyyy')# #TimeFormat(NOW(), 'hh:mm:ss')# [#trim(CGI.REMOTE_ADDR)#]" type="HTML">
 		<cfoutput>
 			<p>#trim(message)#</p>			
 		</cfoutput>

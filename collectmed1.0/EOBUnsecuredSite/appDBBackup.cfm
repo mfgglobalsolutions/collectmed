@@ -24,7 +24,7 @@
 								
 								<cfif ListFindNoCase("bak", getExtension(name))>
 												
-									<cfmail	from="support@eobmanager.net" to="support@eobmanager.net" subject="backup up">
+									<cfmail	from="support@collectmed.net" to="support@collectmed.net" subject="backup up">
 										<cfoutput>#name#<br></cfoutput>
 									</cfmail>	
 									<!---<cfoutput>#name#<br></cfoutput>--->

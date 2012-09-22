@@ -139,12 +139,12 @@
 		<cfset request.fileObject = Createobject("component","com.common.File")>
 
 		<cfif NOT directoryExists(trim(fileLocationPathCheck))>
-
+<cflog file="testing" text="in line 142">	
 			<cfinvoke component="com.common.db.EmailAddressIO" method="getEmailAddressQuery" returnVariable="EAQuery" fields="Email" EmailAddressID="#trim(SupportEmailAddressID)#">
 			<cfset EmailAddress = application.beanFactory.getBean('globalFooter').GlobalFooterD(trim(EAQuery.Email)) />
 
 			<cf_gcSendEmail	from="#trim(EmailAddress)#" to="#trim(EmailAddress)#" subject="The client file directory does not exist. Immediate attention required"	message="<p>There was an issue with file Location path. It did not exist but was created.</p>Location Attempted: #trim(fileLocationPathCheck)#">
-
+<cflog file="testing" text="in line 147">	
 			<cf_gcGatewayLogger	datasource="#trim(request.datasource)#" code="115" logtext="<p>There was an issue with file Location path. It did not exist but was created.</p>Location Attempted: #trim(fileLocationPathCheck)#">
 
 			<cfdirectory mode="777" action="CREATE" directory="#trim(fileLocationPathCheck)#">
@@ -154,9 +154,9 @@
 		<!--- Check to see if the file already exists in the clients folder.                 --->
 		<!-------------------------------------------------------------------------------------->
 		<cfelse>
-
+<cflog file="testing" text="in line 157">	
 			<cfset existsFile = request.fileObject.checkFileExistsInDirectory(foldersToSkip: "#trim(foldersToSkip)#", filename: "#ListLast(filePath, '\')#", directory: "#trim(fileLocationPathCheck)#\")>
-
+<cflog file="testing" text="in line 159">	
 			<cfif existsFile GTE 1>
 				<cfif debug>
 					<cfoutput>
